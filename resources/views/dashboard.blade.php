@@ -16,10 +16,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Dashboard</h4>
-                <h6 class="card-subtitle">
-                    this is dashboard
-                </h6>
+           
             </div>
         </div>
     </div>

@@ -18,14 +18,10 @@
                 action="{{ route('register') }}"
             >
                 @csrf
-                <!-- <form class="form-horizontal form-material" id="loginform" action="index.html"> -->
-                <a href="javascript:void(0)" class="text-center db"
-                    ><img
-                        src="../assets/images/logo-icon.png"
-                        alt="Home"/><br /><img
-                        src="../assets/images/logo-text.png"
-                        alt="Home"
-                /></a>
+                
+                <a href="" class="text-center db">
+                    Canvas Studio
+                </a>
                 <div class="form-group m-t-40">
                     <div class="col-xs-12">
                         <input

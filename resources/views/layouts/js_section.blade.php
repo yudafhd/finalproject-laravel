@@ -12,4 +12,14 @@
     <script src="../assets/plugins/c3-master/c3.min.js"></script>
     <script src="../assets/plugins/toast-master/js/jquery.toast.js"></script>
     <script src="{{ asset('assets/js/dashboard1.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        $('#myTable').DataTable();
+        });
+        </script>
