@@ -26,6 +26,7 @@
                                 <th>Nama</th>
                                 <th>Address</th>
                                 <th>Phone</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,6 +35,27 @@
                                 <td>{{ $customer->name }}</td>
                                 <td>{{ $customer->address }}</td>
                                 <td>{{ $customer->phone }}</td>
+                                <td>
+                                    <form
+                                        action="{{ route('customers.destroy',$customer->id) }}"
+                                        method="POST"
+                                    >
+                                        <a
+                                            class="btn btn-info"
+                                            href="{{ Route('customers.edit',$customer->id) }}"
+                                            >Edit</a
+                                        >
+
+                                        @csrf @method('DELETE')
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-danger"
+                                        >
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                             @empty
                             <p>No Customer</p>

@@ -1,7 +1,7 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">CUSTOMERS CREATE</h3>
+        <h3 class="text-themecolor">CUSTOMERS EDIT</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
@@ -11,7 +11,7 @@
             <li class="breadcrumb-item">
                 <a href="{{ Route('customers.index') }}">Customers</a>
             </li>
-            <li class="breadcrumb-item active">Create</li>
+            <li class="breadcrumb-item active">Edit</li>
         </ol>
     </div>
 </div>
@@ -20,16 +20,18 @@
         <div class="card card-body">
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-                    <form method="POST" action="{{ Route('customers.store') }}">
-                        @csrf
+                    <form
+                        method="POST"
+                        action="{{ Route('customers.update', $customer->id) }}"
+                    >
+                        @csrf @method('PUT')
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama</label>
                             <input
                                 type="text"
                                 name="name"
                                 class="form-control"
-                                id="exampleInputEmail1"
-                                placeholder="ex: michael"
+                                value="{{$customer->name}}"
                             />
                         </div>
                         <div class="form-group">
@@ -38,21 +40,23 @@
                                 class="form-control"
                                 name="address"
                                 placeholder="Jln. xxxxxxx"
-                            ></textarea>
+                                >{{$customer->address}}</textarea
+                            >
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">No. HP</label>
+                            <label for="exampleInputEmail1">No. P</label>
                             <input
                                 class="form-control"
                                 name="phone"
                                 placeholder="ex: 085xxxxxxx"
+                                value="{{$customer->phone}}"
                             />
                         </div>
                         <button
                             type="submit"
                             class="btn btn-success waves-effect waves-light m-r-10"
                         >
-                            Submit
+                            Save
                         </button>
                     </form>
                 </div>

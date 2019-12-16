@@ -37,6 +37,8 @@ class CustomerController extends Controller
         $customer->address = $request->address;
         $customer->phone = $request->phone;
         $customer->save();
+        $request->session()->flash('alert-success', "Customer {$request->name} berhasil dibuat!");
+        return redirect('/customers');
     }
 
 
@@ -47,17 +49,27 @@ class CustomerController extends Controller
 
     public function edit(Customer $customer)
     {
-        //
+        $user = Auth::user();
+        return view('customers.edit',  ['user' => $user, 'customer'=> $customer]);
     }
 
 
     public function update(Request $request, Customer $customer)
     {
-        //
+        $customer->name = $request->name;
+        $customer->address = $request->address;
+        $customer->phone = $request->phone;
+        $customer->save();
+
+        return redirect()->route('customers.edit', $customer->id)
+        ->with('success','Customers updated successfully');
     }
 
     public function destroy(Customer $customer)
     {
-        //
+         $customer->delete();
+  
+        return redirect()->route('customers.index')
+                        ->with('success','Customer deleted successfully');
     }
 }
