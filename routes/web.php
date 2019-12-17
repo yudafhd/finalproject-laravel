@@ -17,3 +17,4 @@ Route::get('/', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/user', 'UserController@index')->name('user');
 Route::resource('customers', 'CustomerController');
+Route::resource('package', 'BookingPackagesController');

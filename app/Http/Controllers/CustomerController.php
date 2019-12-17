@@ -24,14 +24,12 @@ class CustomerController extends Controller
 
     public function create()
     {
-        $user = Auth::user();
-        $customerList = Customer::all();    
+        $user = Auth::user();   
         return view('customers.create',  ['user' => $user]);
     }
 
     public function store(Request $request)
     {
-
         $customer = new Customer;
         $customer->name = $request->name;
         $customer->address = $request->address;
