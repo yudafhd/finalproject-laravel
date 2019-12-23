@@ -25,6 +25,7 @@
                         action="{{ Route('package.update', $package->id) }}"
                     >
                         @csrf @method('PUT')
+                        
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama</label>
                             <input
@@ -46,7 +47,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Deskripsi</label>
                             <textarea
-                                class="form-control"
+                                class="textarea_editor form-control"
                                 name="description"
                                 placeholder="isi informasi produk"
                             >{{$package->description}}</textarea>

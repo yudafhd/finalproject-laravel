@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Deskripsi</label>
                             <textarea
-                                class="form-control"
+                                class="textarea_editor form-control"
                                 name="description"
                                 placeholder="isi informasi produk"
                             ></textarea>

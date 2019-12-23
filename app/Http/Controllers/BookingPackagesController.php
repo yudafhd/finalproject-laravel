@@ -44,26 +44,26 @@ class BookingPackagesController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(BookingPackages $package)
     {
         $user = Auth::user();
-        return view('packages.edit',  ['user' => $user, 'package'=> BookingPackages::find($id)]);
+        return view('packages.edit',  ['user' => $user, 'package'=> $package]);
     }
 
-    public function update(Request $request, BookingPackages $bookingPackages)
+    public function update(Request $request, BookingPackages $package)
     {
-        $bookingPackages->name = $request->name;
-        $bookingPackages->price = $request->price;
-        $bookingPackages->description = $request->description;
-        $bookingPackages->save();
+        $package->name = $request->name;
+        $package->price = $request->price;
+        $package->description = $request->description;
+        $package->save();
 
-        return redirect()->route('package.edit', $bookingPackages->id)
+        return redirect()->route('package.index')
         ->with('success','Package updated successfully');
     }
 
-    public function destroy($id)
+    public function destroy( BookingPackages $package)
     {
-        BookingPackages::find($id)->delete();
+        $package->delete();
         return redirect()->route('package.index')
                         ->with('success','Paket deleted successfully');
     }

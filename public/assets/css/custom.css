@@ -1,0 +1,10 @@
+@media print {
+
+    aside#left-sidebar,
+    header[role="banner"],
+    footer,
+    #comments,
+    #respond {
+        display: none;
+    }
+}

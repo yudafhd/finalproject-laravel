@@ -59,7 +59,7 @@ class CustomerController extends Controller
         $customer->phone = $request->phone;
         $customer->save();
 
-        return redirect()->route('customers.edit', $customer->id)
+        return redirect()->route('customers.index')
         ->with('success','Customers updated successfully');
     }
 

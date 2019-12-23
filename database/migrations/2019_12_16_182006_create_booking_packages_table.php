@@ -16,7 +16,7 @@ class CreateBookingPackagesTable extends Migration
         Schema::create('booking_packages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('price', 15);
+            $table->integer('price');
             $table->text('description');
             $table->timestamps();
         });

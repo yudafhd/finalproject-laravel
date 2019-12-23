@@ -1,14 +1,14 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">PAKET</h3>
+        <h3 class="text-themecolor">BOOKING</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="javascript:void(0)">Home</a>
             </li>
-            <li class="breadcrumb-item active">Paket</li>
+            <li class="breadcrumb-item active">Booking</li>
         </ol>
     </div>
 </div>
@@ -23,26 +23,33 @@
                     >
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Harga</th>
-                                <th>Keterangan</th>
+                                <th>Nama Customer</th>
+                                <th>Paket Booking</th>
+                                <th>Tanggal Booking</th>
+                                <th>Jam mulai</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($packages as $package)
+                            @forelse ($bookingList as $booking)
                             <tr>
-                                <td>{{ $package->name }}</td>
-                                <td>{{ $package->price }}</td>
-                                <td>{!! $package->description !!}</td>
+                                <td>{{ $booking->customer->name }}</td>
+                                <td>{{ $booking->bookingPackage->name }}</td>
+                                <td>{{ $booking->booking_date }}</td>
+                                <td>{{ $booking->start_time_at }}</td>
                                 <td>
                                     <form
-                                        action="{{ route('package.destroy',$package->id) }}"
+                                        action="{{ route('booking.destroy',$booking->id) }}"
                                         method="POST"
                                     >
                                         <a
+                                            class="btn btn-success"
+                                            href="{{ Route('booking.show',$booking->id) }}"
+                                            >Detail</a
+                                        >
+                                        <a
                                             class="btn btn-info"
-                                            href="{{ Route('package.edit',$package->id) }}"
+                                            href="{{ Route('booking.edit',$booking->id) }}"
                                             >Edit</a
                                         >
 
@@ -57,7 +64,9 @@
                                     </form>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <p>No Customer</p>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
