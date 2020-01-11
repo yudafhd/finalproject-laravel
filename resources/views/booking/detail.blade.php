@@ -16,56 +16,99 @@
     </div>
 </div>
 
-<div class="row" >
+<div class="row">
     <div class="col-12">
         <div class="card card-body">
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-                    <button class="btn btn-success printMe" style="float:right;margin-bottom:1em">Print</button>
+                    <button
+                        class="btn btn-success printMe"
+                        style="float:right;margin-bottom:1em"
+                    >
+                        Print
+                    </button>
                     <table class="table" id="outPrint">
-                        {{-- <span style="font-size: 7em;
+                        {{--
+                        <span
+                            style="font-size: 7em;
                         font-weight: bold;
                         opacity: 0.12;
                         position: absolute;
                         top: 35%;
-                        left: 10%;">CANVAS STUDIO</span> --}}
+                        left: 10%;"
+                            >CANVAS STUDIO</span
+                        >
+                        --}}
                         <tbody>
                             <tr>
                                 <td><strong>Customer</strong></td>
-                                <td><span>{{$bookingDetail->customer->name}}
-                                    <br>{{$bookingDetail->customer->address}}
-                                    <br>{{$bookingDetail->customer->phone}}
-                                </span>
+                                <td>
+                                    <span
+                                        >
+                                        <br />{{$bookingDetail->customer->name}} - {{$bookingDetail->customer->id_customer}} 
+                                        <br />{{$bookingDetail->customer->address}}
+                                        <br />{{$bookingDetail->customer->phone}}
+                                    </span>
                                 </td>
-                                
                             </tr>
                             <tr>
                                 <td><strong>Paket</strong></td>
-                                <td><span>{{$bookingDetail->bookingPackage->name}}
-                                    <br> {!! $bookingDetail->bookingPackage->description !!}
-                                </span></td>
-                                
+                                <td>
+                                    <span
+                                        >{{$bookingDetail->bookingPackage->name}}
+                                        <br />
+                                        {!!
+                                        $bookingDetail->bookingPackage->description
+                                        !!}
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
                                 <td><strong>Harga</strong></td>
-                                <td><span>
-                                    Rp.{{$bookingDetail->bookingPackage->price}}
-                                </span></td>
-                                
+                                <td>
+                                    <span>
+                                        Rp.{{$bookingDetail->bookingPackage->price}}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pembayaran</strong></td>
+                                <td>
+                                    <span>
+                                        @if ($bookingDetail->bookingPackage->price <= $bookingDetail->payment) 
+                                        LUNAS 
+                                        @else
+                                        {{ $bookingDetail->payment }}
+                                        @endif
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
                                 <td><strong>Tanggal Booking</strong></td>
-                                <td><span>{{$bookingDetail->booking_date}}</span></td>
-                                
+                                <td>
+                                    <span
+                                        >{{$bookingDetail->booking_date}}</span
+                                    >
+                                </td>
                             </tr>
                             <tr>
                                 <td><strong>Jam Mulai</strong></td>
-                                <td><span>{{$bookingDetail->start_time_at}}</span></td>
-                                
+                                <td>
+                                    <span
+                                        >{{$bookingDetail->start_time_at}}</span
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Admin Penerima</strong></td>
+                                <td>
+                                    <span
+                                        >{{$bookingDetail->admin_booking}}</span
+                                    >
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                    
                 </div>
             </div>
         </div>

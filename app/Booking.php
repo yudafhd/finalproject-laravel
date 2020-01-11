@@ -10,7 +10,7 @@ class Booking extends Model
 {
     protected $table = 'booking';
     protected $hidden = ['id'];
-    protected $fillable = ['booking_date','customer_id', 'booking_package_id', 'start_time_at','end_time_at'];
+    protected $fillable = ['booking_date','customer_id', 'booking_package_id', 'payment', 'start_time_at','end_time_at'];
 
     public function customer()
     {

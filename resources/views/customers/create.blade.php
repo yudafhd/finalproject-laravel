@@ -23,6 +23,16 @@
                     <form method="POST" action="{{ Route('customers.store') }}">
                         @csrf
                         <div class="form-group">
+                            <label for="exampleInputEmail1">ID customers</label>
+                            <input
+                                type="text"
+                                name="id_customer"
+                                class="form-control"
+                                id="exampleInputEmail1"
+                                placeholder="ex: 784HHDIUU345"
+                            />
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Nama</label>
                             <input
                                 type="text"

@@ -44,7 +44,7 @@
                             >
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">No. P</label>
+                            <label for="exampleInputEmail1">No. Phone</label>
                             <input
                                 class="form-control"
                                 name="phone"

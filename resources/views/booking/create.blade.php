@@ -33,7 +33,11 @@
                                 name="booking_date"
                                 id="mdate"
                             />
+                            <span id="result_booking">
+                                
+                            </span>
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Jam Mulai</label>
                             <input
@@ -54,7 +58,7 @@
                                 @forelse ($customerList as $customer)
                                 <option
                                     value="{{$customer->id}}"
-                                    >{{$customer->name}}</option
+                                    >{{$customer->id_customer}} - {{$customer->name}}</option
                                 >
                                 @empty
                                 <p>No Customer</p>
@@ -80,6 +84,17 @@
                                 <p>No Customer</p>
                                 @endforelse
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"
+                                >Pembayaran</label
+                            >
+                            <input
+                            type="text"
+                            placeholder="Rp. 100000"
+                            class="form-control"
+                            name="payment"
+                        />
                         </div>
 
                         <button

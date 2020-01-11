@@ -34,6 +34,7 @@ class CustomerController extends Controller
         $customer->name = $request->name;
         $customer->address = $request->address;
         $customer->phone = $request->phone;
+        $customer->id_customer = $request->id_customer;
         $customer->save();
         $request->session()->flash('alert-success', "Customer {$request->name} berhasil dibuat!");
         return redirect('/customers');

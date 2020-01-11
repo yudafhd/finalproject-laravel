@@ -23,6 +23,7 @@
                     >
                         <thead>
                             <tr>
+                                <th>Customer ID</th>
                                 <th>Nama</th>
                                 <th>Address</th>
                                 <th>Phone</th>
@@ -32,6 +33,7 @@
                         <tbody>
                             @forelse ($customerList as $customer)
                             <tr>
+                                <td>{{ $customer->id_customer }}</td>
                                 <td>{{ $customer->name }}</td>
                                 <td>{{ $customer->address }}</td>
                                 <td>{{ $customer->phone }}</td>

@@ -28,11 +28,14 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
+        $user = Auth::user();
         $booking = new Booking;
         $booking->booking_date = $request->booking_date;
         $booking->start_time_at = $request->start_time_at;
         $booking->customer_id = $request->customer_id;
         $booking->booking_package_id = $request->booking_package_id;
+        $booking->payment = $request->payment;
+        $booking->admin_booking = $user->name;
         $booking->save();
         $request->session()->flash('alert-success', "Booking berhasil dibuat!");
         return redirect()->route('booking.index');
@@ -60,6 +63,7 @@ class BookingController extends Controller
         $booking->start_time_at = $request->start_time_at;
         $booking->customer_id = $request->customer_id;
         $booking->booking_package_id = $request->booking_package_id;
+        $booking->payment = $request->payment;
         $booking->save();
         $request->session()->flash('alert-success', "Booking berhasil dibuat!");
         return redirect()->route('booking.index');
@@ -71,5 +75,12 @@ class BookingController extends Controller
         $booking->delete();
         return redirect()->route('booking.index')
                         ->with('success','Booking deleted successfully');
+    }
+
+    // API LIST
+    public function listbooking($date) {
+        $bookingDetail = Booking::with('customer','bookingPackage')->where('booking_date', $date)->get();
+        $filterData = count($bookingDetail) > 0 ? $bookingDetail : [];
+        return response()->json($filterData, 200);
     }
 }

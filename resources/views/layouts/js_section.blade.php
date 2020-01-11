@@ -27,7 +27,18 @@
         $(document).ready(function() {
         $('#myTable').DataTable();
         $('.textarea_editor').wysihtml5();
-        $('#mdate').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+        $('#mdate').bootstrapMaterialDatePicker({ weekStart: 0, time: false }).on('change', function(e, date) {
+            $('#result_booking').append( "<p>LOADING...</p>" );
+$.get( " http://localhost:8000/api/listbooking/"+date.format('YYYY-MM-DD'), function( data ) {
+    $('#result_booking').html('');
+    $('#result_booking').append(`Ada <strong>${data.length}</strong> booking tanggal ini <br /><br />`)
+    data.forEach(function(item){
+        console.log(item)
+        $('#result_booking').append( `<p>Tanggal Booking: ${item.booking_date}, Jam Mulai:  ${item.start_time_at}, Customer: ${item.customer.id_customer} - ${item.customer.name}</p>` );
+    })
+    
+});
+        });
         $('#timepicker').bootstrapMaterialDatePicker({ format: 'HH:mm', time: true, date: false });
         $(".select2").select2();
         $('.printMe').click(function(){

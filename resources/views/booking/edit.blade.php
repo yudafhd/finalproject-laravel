@@ -90,7 +90,18 @@
                                 @endforelse
                             </select>
                         </div>
-
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"
+                                >Pembayaran</label
+                            >
+                            <input
+                            type="text"
+                            placeholder="Rp. 100000"
+                            class="form-control"
+                            name="payment"
+                            value="{{$booking->payment}}"
+                        />
+                        </div>
                         <button
                             type="submit"
                             class="btn btn-success waves-effect waves-light m-r-10"
