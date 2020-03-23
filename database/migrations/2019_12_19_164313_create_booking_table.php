@@ -23,6 +23,7 @@ class CreateBookingTable extends Migration
             $table->foreign('booking_package_id')->references('id')->on('booking_packages');
             $table->string('start_time_at');
             $table->string('admin_booking');
+            $table->integer('status')->default('1');
             $table->timestamps();
         });
     }

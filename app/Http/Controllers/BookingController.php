@@ -13,9 +13,17 @@ class BookingController extends Controller
 
     public function index()
     {
-        $booking = Booking::with('customer','bookingPackage')->get();
+        $booking = Booking::with('customer','bookingPackage')->where('status', 1)->get();
         $user = Auth::user(); 
         return view('booking.list',  ['user' => $user,'bookingList' => $booking]);
+    }
+
+    public function cancelList()
+    {
+
+        $booking = Booking::with('customer','bookingPackage')->where('status', 0)->get();
+        $user = Auth::user(); 
+        return view('booking.cancel',  ['user' => $user,'bookingList' => $booking]);
     }
 
     public function create()
@@ -59,12 +67,7 @@ class BookingController extends Controller
 
     public function update(Request $request, Booking $booking)
     {
-        $booking->booking_date = $request->booking_date;
-        $booking->start_time_at = $request->start_time_at;
-        $booking->customer_id = $request->customer_id;
-        $booking->booking_package_id = $request->booking_package_id;
-        $booking->payment = $request->payment;
-        $booking->save();
+        $booking->update($request->all());
         $request->session()->flash('alert-success', "Booking berhasil dibuat!");
         return redirect()->route('booking.index');
     }

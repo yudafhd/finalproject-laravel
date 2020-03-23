@@ -42,6 +42,7 @@
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{Route('booking.create')}}">Create</a></li>
                             <li><a href="{{Route('booking.index')}}">List</a></li>
+                            <li><a href="{{Route('booking.cancel')}}">Cancel</a></li>
                             </ul>
                         </li>
                        

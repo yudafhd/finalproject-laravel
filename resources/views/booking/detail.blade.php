@@ -45,7 +45,7 @@
                                 <td>
                                     <span
                                         >
-                                        <br />{{$bookingDetail->customer->name}} - {{$bookingDetail->customer->id_customer}} 
+                                       {{$bookingDetail->customer->name}} - {{$bookingDetail->customer->id_customer}} 
                                         <br />{{$bookingDetail->customer->address}}
                                         <br />{{$bookingDetail->customer->phone}}
                                     </span>
@@ -78,7 +78,21 @@
                                         @if ($bookingDetail->bookingPackage->price <= $bookingDetail->payment) 
                                         LUNAS 
                                         @else
-                                        {{ $bookingDetail->payment }}
+                                        Rp. {{ $bookingDetail->payment }},  Kurang: Rp. {{ $bookingDetail->bookingPackage->price - $bookingDetail->payment }} 
+                                        <form method="POST" action="{{ Route('booking.update',$bookingDetail->id) }}">
+                                            <input
+                                            type="hidden"
+                                    value="{{$bookingDetail->bookingPackage->price}}"
+                                            name="payment"
+                                        />
+                                            @csrf @method('PUT')
+                                        <button
+                                        type="submit"
+                                        class="btn btn-success waves-effect waves-light m-r-10"
+                                    >
+                                        Tandai Lunas
+                                    </button>
+                                </form>
                                         @endif
                                     </span>
                                 </td>
@@ -109,6 +123,20 @@
                             </tr>
                         </tbody>
                     </table>
+                    <form method="POST" action="{{ Route('booking.update',$bookingDetail->id) }}">
+                        <input
+                        type="hidden"
+                value="0"
+                        name="status"
+                    />
+                        @csrf @method('PUT')
+                    <button
+                    type="submit"
+                    class="btn btn-warning waves-effect waves-light m-r-10"
+                >
+                    BATALKAN BOOKING
+                </button>
+            </form>
                 </div>
             </div>
         </div>
