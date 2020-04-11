@@ -31,7 +31,8 @@
                         <input
                             id="email"
                             type="email"
-                            placeholder="Username"
+                            placeholder="Email"
+                            value="admin@gmail.com"
                             class="form-control @error('email') is-invalid @enderror"
                             name="email"
                             value="{{ old('email') }}"
@@ -60,6 +61,7 @@
                             type="password"
                             class="form-control @error('password') is-invalid @enderror"
                             name="password"
+                            value="admin123"
                             placeholder="Password"
                             required
                             autocomplete="current-password"
