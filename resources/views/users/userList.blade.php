@@ -16,6 +16,10 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <button class="btn btn-primary waves-effect waves-light m-b-20 float-right" type="button">
+                    <i class="mdi mdi-account-plus"></i>
+                    Create Admin
+                </button>
                 <div class="table-responsive m-t-10">
                     <table
                         id="myTable"
@@ -33,7 +37,17 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>detail</td>
+                                <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        aksi
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Detail</a>
+                                      <a class="dropdown-item" href="#">Edit</a>
+                                    </div>
+                                  </div>
+                            </td>
                             </tr>
                             @endforeach
                         </tbody>
