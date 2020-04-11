@@ -23,7 +23,7 @@
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-box"></i><span class="hide-menu">Users</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="app-calendar.html">List</a></li>
+                                <li><a href="{{Route('user.admin')}}">Admin</a></li>
                             </ul>
                         </li>
                        

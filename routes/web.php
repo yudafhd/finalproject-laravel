@@ -11,11 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/user/admin', 'UserController@index')->name('user.admin');
+// Route::get('/booking/cancel', 'BookingController@cancelList')->name('booking.cancel');
+
+// Route::resource('customers', 'CustomerController');
+// Route::resource('package', 'BookingPackagesController');
+// Route::resource('booking', 'BookingController');
