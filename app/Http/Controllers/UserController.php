@@ -19,6 +19,6 @@ class UserController extends Controller
         $user = Auth::user();
         $userList = User::all();
 
-        return view('users.userList',  ['user' => $user, 'userList' => $userList]);
+        return view('users.adminList',  ['user' => $user, 'userList' => $userList]);
     }
 }
