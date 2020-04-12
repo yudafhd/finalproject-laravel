@@ -27,7 +27,7 @@
                 <div class="table-responsive m-t-10">
                     <table
                         id="myTable"
-                        class="table table-bordered table-striped"
+                        class="table"
                     >
                         <thead>
                             <tr>

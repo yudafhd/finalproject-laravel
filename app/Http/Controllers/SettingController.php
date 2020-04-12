@@ -17,7 +17,7 @@ class SettingController extends Controller
 
     public function roleList()
     {
-        $roles = Roles::all();
+        $roles = Roles::orderBy('id', 'DESC')->get();
         $user = Auth::user();
         return view('settings.rolesList',  ['user' => $user, 'roles' => $roles]);
     }
@@ -31,11 +31,11 @@ class SettingController extends Controller
 
     public function storeRole(Request $request)
     {
-        dd($request);
         $roles = Roles::all();
         $user = Auth::user();
-        $role = Role::create(['name' => 'edit artikel', 'code' => 'editartikel']);
-        return view('settings.rolesList',  ['user' => $user, 'roles' => $roles]);
+        $role = Role::create(['name' => $request->all()['name'], 'code' => $request->all()['code'], 'created_by' => $user->id]);
+        $request->session()->flash('alert-success', "Roles {$request->name} berhasil dibuat!");
+        return redirect()->route('role.list');
     }
 
     // public function create()

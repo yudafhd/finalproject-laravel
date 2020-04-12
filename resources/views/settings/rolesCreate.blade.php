@@ -24,6 +24,7 @@
                 </div>
                 <div class=" m-t-10">
                     <form method="POST" action="{{ Route('role.store') }}">
+                        @csrf
                         <div class="form-row">
                             <div class="col-md-5 mb-3">
                               <label for="validationServer01">Nama Role</label>
