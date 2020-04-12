@@ -21,6 +21,7 @@ Route::get('/user/admin', 'UserController@index')->name('user.admin');
 Route::group(['prefix' => 'setting'], function () {
     Route::get('/roles', 'SettingController@roleList')->name('role.list');
     Route::get('/roles/create', 'SettingController@createRole')->name('role.create');
+    Route::post('/roles/store', 'SettingController@storeRole')->name('role.store');
 });
 
 

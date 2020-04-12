@@ -20,10 +20,10 @@
                     Total Roles
                 <span class="label label-success label-rounded">{{count($roles)}}</span>
                 </span>
-                <button class="btn btn-primary waves-effect waves-light m-b-20 float-right" type="button">
+                <a href="{{Route('role.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
                     Create Role
-                </button>
+                </a>
                 <div class="table-responsive m-t-10">
                     <table
                         id="myTable"
