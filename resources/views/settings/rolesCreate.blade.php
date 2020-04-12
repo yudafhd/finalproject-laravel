@@ -23,11 +23,11 @@
                     </a>
                 </div>
                 <div class=" m-t-10">
-                    <form>
+                    <form method="POST" action="{{ Route('role.store') }}">
                         <div class="form-row">
                             <div class="col-md-5 mb-3">
                               <label for="validationServer01">Nama Role</label>
-                              <input type="text" class="form-control"  placeholder="Contoh : edit user" required>
+                              <input type="text" name="name" class="form-control"  placeholder="Contoh : edit user" required>
                               {{-- <div class="valid-feedback">
                                 Looks good!
                               </div> --}}
@@ -43,7 +43,7 @@
                             </div> --}}
                             <div class="col-md-5 mb-3">
                               <label for="validationServer02">Kode Role</label>
-                              <input type="text" class="form-control"  placeholder="Contoh : edituser" required>
+                              <input type="text" name="code" class="form-control"  placeholder="Contoh : edituser" required>
                                 {{-- <div class="invalid-feedback">
                                     Please provide a valid city.
                                 </div> --}}

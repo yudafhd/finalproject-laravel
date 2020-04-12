@@ -29,8 +29,9 @@ class SettingController extends Controller
         return view('settings.rolesCreate',  ['user' => $user, 'roles' => $roles]);
     }
 
-    public function storeRole()
+    public function storeRole(Request $request)
     {
+        dd($request);
         $roles = Roles::all();
         $user = Auth::user();
         $role = Role::create(['name' => 'edit artikel', 'code' => 'editartikel']);
