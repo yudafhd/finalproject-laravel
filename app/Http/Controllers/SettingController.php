@@ -2,27 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Roles;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function rolesList()
+    public function roleList()
     {
-        // return view('home');
+        $roles = Roles::all();
+        $user = Auth::user();
+        return view('settings.rolesList',  ['user' => $user, 'roles' => $roles]);
+    }
+
+    public function createRole()
+    {
+        $roles = Roles::all();
+        $user = Auth::user();
+        return view('settings.rolesList',  ['user' => $user, 'roles' => $roles]);
     }
 }
