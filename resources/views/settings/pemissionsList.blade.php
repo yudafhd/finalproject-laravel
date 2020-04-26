@@ -1,14 +1,14 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">ROLES</h3>
+        <h3 class="text-themecolor">PERMISSIONS</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="javascript:void(0)">Home</a>
             </li>
-            <li class="breadcrumb-item active">Role</li>
+            <li class="breadcrumb-item active">Permissions</li>
         </ol>
     </div>
 </div>
@@ -27,26 +27,26 @@
                 @endif
 
                 <span>
-                    Total Roles
-                    <span class="label label-success label-rounded">{{count($roles)}}</span>
+                    Total Permissions
+                    <span class="label label-success label-rounded">{{count($permissions)}}</span>
                 </span>
-                <a href="{{Route('role.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('permission.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
-                    Create Role
+                    Create Permission
                 </a>
-                @if(count($roles) > 0)
+                @if(count($permissions) > 0)
                 <div class="table-responsive m-t-10">
                     <table id="myTable" class="table">
                         <thead>
                             <tr>
-                                <th>Nama Role</th>
+                                <th>Nama Permission</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $role)
+                            @foreach ($permissions as $permission)
                             <tr>
-                                <td>{{ $role->name }}</td>
+                                <td>{{ $permission->name }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
@@ -56,7 +56,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('role.delete', $role->name)}}">Delete</a>
+                                                href="{{Route('permission.delete', $permission->name)}}">Delete</a>
                                             {{-- <a class="dropdown-item"
                                                 href="{{Route('role.update', $role->id)}}">Update</a> --}}
                                         </div>
@@ -67,9 +67,9 @@
                         </tbody>
                     </table>
                 </div>
-                @else 
+                @else
                 <div class="table-responsive m-t-10">
-                    Roles belum ada
+                    Permission belum ada
                 </div>
                 @endif
             </div>
