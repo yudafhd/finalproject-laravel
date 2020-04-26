@@ -57,6 +57,7 @@ class SettingController extends Controller
             return redirect()->route('role.list');
         }
     }
+
     public function deleteRole($name, Request $request)
     {
         try {
@@ -99,6 +100,21 @@ class SettingController extends Controller
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', "Roles " . $request->all()['name'] . " sudah ada!");
             return redirect()->route('role.create');
+        }
+    }
+
+    public function deletePermission($name, Request $request)
+    {
+        try {
+
+            $roles = Permission::findByName($name);
+            $roles->delete();
+            $request->session()->flash('alert-success', "Permission {$name} berhasil dihapus!");
+            return redirect()->route('permission.list');
+        } catch (\Exception $e) {
+            dd($e);
+            $request->session()->flash('alert-error', "Permission " . $e->getMessage());
+            return redirect()->route('permission.list');
         }
     }
 }
