@@ -57,6 +57,19 @@ class SettingController extends Controller
             return redirect()->route('role.list');
         }
     }
+    public function storeUpdateRole(Request $request)
+    {
+        try {
+            $roles = Role::findById(urldecode((int) $request->id));
+            $roles->name = $request->name;
+            $roles->save();
+            $request->session()->flash('alert-success', "Roles {$request->name} berhasil di update  !");
+            return redirect()->route('role.list');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', "Roles " . $e->getMessage() . " sudah ada!");
+            return redirect()->route('role.list');
+        }
+    }
 
     public function deleteRole($name, Request $request)
     {
@@ -114,6 +127,33 @@ class SettingController extends Controller
         } catch (\Exception $e) {
             dd($e);
             $request->session()->flash('alert-error', "Permission " . $e->getMessage());
+            return redirect()->route('permission.list');
+        }
+    }
+
+    public function updatePermission($id, Request $request)
+    {
+        try {
+            $permissions = Permission::findById(urldecode((int) $id));
+            $user = Auth::user();
+            return view('settings.permissionsUpdate',  ['user' => $user, 'permissions' => $permissions]);
+        } catch (\Exception $e) {
+            dd($e);
+            $request->session()->flash('alert-error', "Something " . $e->getMessage());
+            return redirect()->route('permission.list');
+        }
+    }
+
+    public function storeUpdatePermission(Request $request)
+    {
+        try {
+            $permissions = Permission::findById(urldecode((int) $request->id));
+            $permissions->name = $request->name;
+            $permissions->save();
+            $request->session()->flash('alert-success', "Permissions {$permissions->name} berhasil di update  !");
+            return redirect()->route('permission.list');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', "Permissions " . $e->getMessage());
             return redirect()->route('permission.list');
         }
     }

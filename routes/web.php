@@ -24,12 +24,14 @@ Route::group(['prefix' => 'setting'], function () {
     Route::post('/roles/store', 'SettingController@storeRole')->name('role.store');
     Route::get('/roles/delete/{name}', 'SettingController@deleteRole')->name('role.delete');
     Route::get('/roles/update/{id}', 'SettingController@updateRole')->name('role.update');
+    Route::post('/roles/storeUpdate', 'SettingController@storeUpdateRole')->name('role.store.update');
 
     Route::get('/permissions', 'SettingController@permissionList')->name('permission.list');
     Route::get('/permissions/create', 'SettingController@createPermission')->name('permission.create');
     Route::post('/permissions/store', 'SettingController@storePermission')->name('permission.store');
     Route::get('/permissions/delete/{name}', 'SettingController@deletePermission')->name('permission.delete');
-    Route::get('/permissions/update/{id}', 'SettingController@updateRole')->name('permission.update');
+    Route::get('/permissions/update/{id}', 'SettingController@updatePermission')->name('permission.update');
+    Route::post('/permissions/storeUpdate', 'SettingController@storeUpdatePermission')->name('permission.store.update');
 });
 
 

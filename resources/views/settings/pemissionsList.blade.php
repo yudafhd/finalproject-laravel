@@ -57,8 +57,8 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
                                                 href="{{Route('permission.delete', $permission->name)}}">Delete</a>
-                                            {{-- <a class="dropdown-item"
-                                                href="{{Route('role.update', $role->id)}}">Update</a> --}}
+                                            <a class="dropdown-item"
+                                                href="{{Route('permission.update', $permission->id)}}">Update</a>
                                         </div>
                                     </div>
                                 </td>
