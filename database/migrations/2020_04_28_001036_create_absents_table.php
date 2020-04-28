@@ -15,8 +15,12 @@ class CreateAbsentsTable extends Migration
     {
         Schema::create('absents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('userId');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('schedule_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('schedule_id')->references('id')->on('schedules');
             $table->string('reason');
+            $table->date('date');
             $table->text('description');
             $table->string('image');
             $table->timestamps();
