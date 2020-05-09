@@ -7,6 +7,7 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/pages/dashboard1.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/colors/default.css') }}" id="theme" rel="stylesheet">
+    <link href="{{ asset('assets/css/pages/floating-label.css') }}" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

@@ -16,8 +16,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-
+               
                 <div class=" m-t-10">
+                    
                     <form method="POST" action="{{ Route('permission.store.update') }}">
                         @csrf
                         <div class="form-row">

@@ -14,6 +14,7 @@ class AddInformationToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->integer('nip')->nullable();
             $table->integer('nis')->nullable();
             $table->date('dob')->nullable();
             $table->string('city')->nullable();

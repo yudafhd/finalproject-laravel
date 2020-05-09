@@ -16,19 +16,28 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button class="btn btn-primary waves-effect waves-light m-b-20 float-right" type="button">
+                @if ($success_message)
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{$success_message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                @endif
+                <a href="{{Route('user.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
-                    Create Admin
-                </button>
+                    Create
+                </a>
                 <div class="table-responsive m-t-10">
                     <table
                         id="myTable"
-                        class="table table-bordered table-striped"
+                        class="table"
                     >
                         <thead>
                             <tr>
                                 <th>Nama</th>
                                 <th>Email</th>
+                                <th>Type</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -37,14 +46,14 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->type }}</td>
                                 <td>
                                 <div class="dropdown">
                                     <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         aksi
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="#">Detail</a>
-                                      <a class="dropdown-item" href="#">Edit</a>
+                                        <a class="dropdown-item" href="{{Route('user.update', $user->id)}}">Update</a>
                                     </div>
                                   </div>
                             </td>

@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">
-    <title>Canvas Studio Backoffice</title>
+    <title>{{ config('app.name') }}</title>
     @include('layouts.css_section') 
 </head>
 
@@ -39,9 +40,9 @@
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
                 
-                         <span style="font-size:27px;color:royalblue;font-weight:bold"> Canvas
+                         <span style="font-size:25px;color:royalblue;font-weight:bold"> SMKN 1
                          <span style="color: black;">
-                             Studio
+                             Absensi
                          </span>
                         </span>
                     
@@ -224,7 +225,7 @@
             <div class="container-fluid">
                 @yield('content')
             </div>
-            <footer class="footer"> © 2019 Admin Pro by wrappixel.com </footer>
+            <footer class="footer"> © 2019 SMKN 1 Absensi </footer>
         </div>
     </div>
     @include('layouts.js_section') 

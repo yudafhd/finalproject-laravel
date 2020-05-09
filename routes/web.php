@@ -15,7 +15,14 @@
 Auth::routes();
 Route::get('/', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::get('/user/admin', 'UserController@index')->name('user.admin');
+
+// User
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/create', 'UserController@createManual')->name('user.create');
+    Route::get('/{type}', 'UserController@index')->name('user.list');
+    Route::get('/update/{id}', 'UserController@update')->name('user.update');
+    Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');
+});
 
 //Roles
 Route::group(['prefix' => 'setting'], function () {
@@ -35,6 +42,5 @@ Route::group(['prefix' => 'setting'], function () {
 });
 
 
+
 // Route::resource('customers', 'CustomerController');
-// Route::resource('package', 'BookingPackagesController');
-// Route::resource('booking', 'BookingController');

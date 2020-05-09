@@ -18,7 +18,7 @@ class SettingController extends Controller
 
     public function roleList(Request $request)
     {
-        $roles = Roles::orderBy('id', 'DESC')->get();
+        $roles = Roles::orderBy('updated_at', 'ASC')->get();
         $user = Auth::user();
         $success_message = $request->session()->get('alert-success');
         return view('settings.rolesList',  ['user' => $user, 'roles' => $roles, 'success_message' => $success_message]);
@@ -27,20 +27,30 @@ class SettingController extends Controller
     public function createRole(Request $request)
     {
         $roles = Roles::all();
+        $permissions = Permission::all();
         $user = Auth::user();
         $error_message = $request->session()->get('alert-error');
-        return view('settings.rolesCreate',  ['user' => $user, 'roles' => $roles, 'error_message' => $error_message]);
+        return view('settings.rolesCreate',  ['user' => $user, 'roles' => $roles, 'permissions' => $permissions, 'error_message' => $error_message]);
     }
 
     public function storeRole(Request $request)
     {
         $user = Auth::user();
         try {
-            Role::create(['name' => $request->all()['name'], 'created_by' => $user->id]);
+            $roles = Role::create(['name' => $request->all()['name'], 'created_by' => $user->id]);
+            if ($request->permissions_check) {
+                if (count($request->permissions_check)) {
+                    $permission_collection = [];
+                    foreach ($request->permissions_check as $permission) {
+                        array_push($permission_collection, $permission);
+                    }
+                    $roles->syncPermissions($permission_collection);
+                }
+            }
             $request->session()->flash('alert-success', "Roles {$request->name} berhasil dibuat!");
             return redirect()->route('role.list');
         } catch (\Exception $e) {
-            $request->session()->flash('alert-error', "Roles " . $request->all()['name'] . " sudah ada!");
+            $request->session()->flash('alert-error', $e->getMessage());
             return redirect()->route('role.create');
         }
     }
@@ -49,8 +59,15 @@ class SettingController extends Controller
     {
         try {
             $roles = Role::findById(urldecode((int) $id));
+            $rolesPermission = $roles->permissions->pluck('name')->toArray();
+            $permissions = Permission::all();
             $user = Auth::user();
-            return view('settings.rolesUpdate',  ['user' => $user, 'roles' => $roles]);
+            return view('settings.rolesUpdate',  [
+                'user' => $user,
+                'roles' => $roles,
+                'rolesPermission' => $rolesPermission,
+                'permissions' => $permissions
+            ]);
         } catch (\Exception $e) {
             dd($e);
             $request->session()->flash('alert-error', "Roles " . $e->getMessage() . " sudah ada!");
@@ -59,8 +76,21 @@ class SettingController extends Controller
     }
     public function storeUpdateRole(Request $request)
     {
+
         try {
             $roles = Role::findById(urldecode((int) $request->id));
+
+            if ($request->permissions_check == null) {
+                $roles->syncPermissions();
+            }
+            if (count($request->permissions_check)) {
+                $permission_collection = [];
+                foreach ($request->permissions_check as $permission) {
+                    array_push($permission_collection, $permission);
+                }
+                $roles->syncPermissions($permission_collection);
+            }
+
             $roles->name = $request->name;
             $roles->save();
             $request->session()->flash('alert-success', "Roles {$request->name} berhasil di update  !");
@@ -76,6 +106,7 @@ class SettingController extends Controller
         try {
 
             $roles = Role::findByName($name);
+            $roles->syncPermissions();
             $roles->delete();
             $request->session()->flash('alert-success', "Roles {$name} berhasil dihapus!");
             return redirect()->route('role.list');
@@ -97,10 +128,10 @@ class SettingController extends Controller
 
     public function createPermission(Request $request)
     {
-        $permissions = Permission::all();
+        $roles = Roles::all();
         $user = Auth::user();
         $error_message = $request->session()->get('alert-error');
-        return view('settings.permissionsCreate',  ['user' => $user, 'permissions' => $permissions, 'error_message' => $error_message]);
+        return view('settings.permissionsCreate',  ['user' => $user, 'roles' => $roles, 'error_message' => $error_message]);
     }
 
     public function storePermission(Request $request)
@@ -120,8 +151,9 @@ class SettingController extends Controller
     {
         try {
 
-            $roles = Permission::findByName($name);
-            $roles->delete();
+            $permission = Permission::findByName($name);
+            $permission->syncRoles();
+            $permission->delete();
             $request->session()->flash('alert-success', "Permission {$name} berhasil dihapus!");
             return redirect()->route('permission.list');
         } catch (\Exception $e) {
@@ -135,8 +167,9 @@ class SettingController extends Controller
     {
         try {
             $permissions = Permission::findById(urldecode((int) $id));
+            $roles = Roles::all();
             $user = Auth::user();
-            return view('settings.permissionsUpdate',  ['user' => $user, 'permissions' => $permissions]);
+            return view('settings.permissionsUpdate',  ['user' => $user, 'permissions' => $permissions, 'roles' => $roles]);
         } catch (\Exception $e) {
             dd($e);
             $request->session()->flash('alert-error', "Something " . $e->getMessage());
