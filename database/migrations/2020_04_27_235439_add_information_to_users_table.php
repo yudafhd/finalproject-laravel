@@ -14,14 +14,15 @@ class AddInformationToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('nip')->nullable();
-            $table->integer('nis')->nullable();
+            $table->bigInteger('nip')->nullable();
+            $table->bigInteger('nis')->nullable();
             $table->date('dob')->nullable();
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('parent_name')->nullable();
             $table->string('short_info')->nullable();
             $table->string('type')->nullable();
+            $table->unsignedInteger('email')->nullable()->change();
         });
     }
 
@@ -40,6 +41,7 @@ class AddInformationToUsersTable extends Migration
             $table->dropColumn('parent_name');
             $table->dropColumn('short_info');
             $table->dropColumn('type');
+            $table->unsignedInteger('email')->nullable(false)->change();
         });
     }
 }

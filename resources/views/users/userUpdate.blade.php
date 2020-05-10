@@ -1,7 +1,7 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">USER EDIT</h3>
+        <h3 class="text-themecolor">USER UPDATE</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
@@ -15,141 +15,107 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            {{-- <div class="card-header bg-info">
-                <h4 class="m-b-0 text-white">Other Sample form</h4>
-            </div> --}}
             <div class="card-body">
                 <form method="POST" action="{{ Route('user.store.update') }}">
                     @csrf
                     <input type="hidden" name="id" class="form-control" value="{{$userDetail->id}}">
                     <div class="form-body">
-                        <h3 class="card-title">Person Info</h3>
+                        <h3 class="card-title" style="font-weight: bold">Personal Info</h3>
                         <hr>
-                        <div class="row p-t-20">
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Name</label>
-                                    <input type="text" name="name" class="form-control" value="{{$userDetail->name}}" placeholder="Anggi Kinata">
+                                    <label class="control-label">Nama</label>
+                                <input type="text" name="name" class="form-control" value="{{$userDetail->name}}">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                  </div>
                             </div>
-                            <!--/span-->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Email</label>
-                                <input type="text" name="email" class="form-control" value="{{$userDetail->email}}"
-                                        placeholder="@gmail.com">
+                                <input type="text" name="email" class="form-control" value="{{$userDetail->email}}">
                                     {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
                                 </div>
                             </div>
-                            <!--/span-->
                         </div>
-                        <!--/row-->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <label class="control-label">Type <small class="form-control-feedback"> user ini sekarang <strong>{{$userDetail->type}}</strong></small></label>
-                                    @if($userDetail->type=='admin_default')
-                                    <br /> <small class="form-control-feedback">Kamu tidak dapat mengganti tipe <strong>admin_default</strong> </small> </div>
-                                    @else
-                                    <select class="form-control" name="type_user" custom-select">
-                                        @foreach ($roles as $role)
-                                        <option value="{{$role->name}}">{{$role->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    @endif
-                                    
-                            </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                {{-- <div class="form-group">
-                                    <label class="control-label">Date of Birth</label>
-                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy">
-                                </div> --}}
-                            </div>
-                            <!--/span-->
-                        </div>
-                        <!--/row-->
-                        {{-- <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Category</label>
-                                    <select class="form-control custom-select" data-placeholder="Choose a Category"
-                                        tabindex="1">
-                                        <option value="Category 1">Category 1</option>
-                                        <option value="Category 2">Category 2</option>
-                                        <option value="Category 3">Category 5</option>
-                                        <option value="Category 4">Category 4</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Membership</label>
-                                    <div class="m-b-10">
-                                        <label class="custom-control custom-radio">
-                                            <input id="radio1" name="radio" type="radio" class="custom-control-input">
-                                            <span class="custom-control-label">Free</span>
-                                        </label>
-                                        <label class="custom-control custom-radio">
-                                            <input id="radio2" name="radio" type="radio" class="custom-control-input">
-                                            <span class="custom-control-label">Paid</span>
-                                        </label>
+                                    <label class="control-label">Type <small class="form-control-feedback"> user ini sekarang <strong>{{$userDetail->type}}</strong></small></label>
+                                        @if($userDetail->type=='admin_default')
+                                        <br /> <small class="form-control-feedback">Kamu tidak dapat mengganti tipe <strong>admin_default</strong> </small> 
+                                        @else
+                                        <select class="form-control" name="type_user" custom-select">
+                                            @foreach ($roles as $role)
+                                            <option value="{{$role->name}}" {{$userDetail->type == $role->name ? 'selected' :''}}>{{$role->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @endif
                                     </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div> --}}
-                        <!--/row-->
-                        {{-- <h3 class="box-title m-t-40">Address</h3>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-12 ">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label class="control-label">Tanggal Lahir</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            placeholder="2017-06-04"
+                            name="dob"
+                            value="{{$userDetail->dob}}"
+                            id="mdatepicker"
+                        />                               
+                        </div>
+                    </div>
+                        <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Street</label>
-                                    <input type="text" class="form-control">
-                                </div>
+                                <label class="control-label">Alamat</label>
+                                <input type="text" name="address" class="form-control" value="{{$userDetail->address}}">                    
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
+                        <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" class="form-control">
-                                </div>
+                                <label class="control-label">Kota</label>
+                                <input type="text" name="city" class="form-control" value="{{$userDetail->city}}">                       
                             </div>
-                            <!--/span-->
-                            <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>State</label>
-                                    <input type="text" class="form-control">
-                                </div>
+                                <label class="control-label">Bio singkat</label>
+                                <textarea name="short_info" class="form-control"> {{$userDetail->short_info}}   </textarea>                   
                             </div>
-                            <!--/span-->
-                        </div> --}}
-                        <!--/row-->
-                        {{-- <div class="row">
-                            <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Post Code</label>
-                                    <input type="text" class="form-control">
-                                </div>
+                                <label class="control-label">Password </label>  
+                                <input type="text" name="password" class="form-control" value="">               
                             </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Country</label>
-                                    <select class="form-control custom-select">
-                                        <option>--Select your Country--</option>
-                                        <option>India</option>
-                                        <option>Sri Lanka</option>
-                                        <option>USA</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div> --}}
+                        </div>
+                    </div>
+                    <h3 class="card-title" style="font-weight: bold">Data Siswa</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">NIS</label>
+                                <input type="number" name="nis" class="form-control" value="{{$userDetail->nis}}">
+                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Nama Orang Tua</label>
+                                <input type="text" name="parent_name" class="form-control" value="{{$userDetail->parent_name}}">
+                             </div>
+                        </div>
+                    </div>
+                    <h3 class="card-title" style="font-weight: bold">Data Guru</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">NIP</label>
+                                <input type="number" name="nip" class="form-control" value="{{$userDetail->nip}}">
+                             </div>
+                        </div>
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>

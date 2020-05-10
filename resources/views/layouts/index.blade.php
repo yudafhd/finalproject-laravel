@@ -191,8 +191,8 @@
                                         <div class="dw-user-box">
                                             <div class="u-img"><img src="{{ asset('assets/images/users/1.jpg') }}" alt="user"></div>
                                             <div class="u-text">
-                                                <h4>{{$user->name}}</h4>
-                                                <p class="text-muted">{{$user->email}}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                                <h4>{{auth()->user()->name}}</h4>
+                                                <p class="text-muted">{{auth()->user()->email}}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
                                         </div>
                                     </li>
                                     {{-- <li role="separator" class="divider"></li>
