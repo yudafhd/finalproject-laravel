@@ -16,6 +16,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <label> * user siswa butuh class_id </label>
                 @if ($success_message)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>{{$success_message}}

@@ -24,8 +24,9 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('absents.store') }}">
+                <form method="POST" action="{{ Route('absents.update', $absents->id) }}">
                     @csrf
+                    {{ method_field('PUT') }}
                     <div class="form-body">
                         <h3 class="card-title" style="font-weight: bold">Absent Info</h3>
                         <hr>
@@ -35,7 +36,9 @@
                                     <label class="control-label">Siswa</label>
                                     <select class="form-control" name="user_id" custom-select">
                                         @foreach ($users as $user)
-                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                        <option value="{{$user->id}}"
+                                            {{$absents->user_id == $user->id ? 'selected' : ''}}
+                                            >{{$user->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -45,7 +48,9 @@
                                     <label class="control-label">Jadwal</label>
                                     <select class="form-control" name="schedule_id" custom-select">
                                         @foreach ($schedules as $schedule)
-                                        <option value="{{$schedule->id}}">
+                                        <option value="{{$schedule->id}}"
+                                            {{$absents->schedule_id == $schedule->id ? 'selected' : ''}}
+                                            >
                                             {{$schedule->class->grade}}
                                             {{$schedule->class->majors}}
                                             {{$schedule->class->number}}
@@ -61,23 +66,23 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tanggal Absent</label>
-                                    <input type="text" class="form-control" name="date" id="mdatepicker" />
+                                <input type="text" class="form-control" name="date" value="{{$absents->date}}" id="mdatepicker" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Reason</label>
                                     <select class="form-control" name="reason">
-                                        <option value="absen">Absen</option>
-                                        <option value="izin">Izin</option>
-                                        <option value="lain">Lain</option>
+                                        <option value="absen" {{$absents->reason == 'absen' ? 'selected' : ''}}>Absen</option>
+                                        <option value="izin" {{$absents->reason == 'izin' ? 'selected' : ''}}>Izin</option>
+                                        <option value="lain" {{$absents->reason == 'lain' ? 'selected' : ''}}>Lain</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Penjelasan</label>
-                                    <textarea name="description" class="form-control"></textarea>
+                                    <textarea name="description" class="form-control">{{$absents->description}}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">

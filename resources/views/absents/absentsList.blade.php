@@ -27,8 +27,8 @@
                 @endif
 
                 <span>
-                    Total Absensi hari ini
-                    {{-- <span class="label label-success label-rounded">{{count($permissions)}}</span> --}}
+                    Total Absensi hari ini 
+                    <span class="label label-success label-rounded">{{count($absents)}}</span>
                 </span>
                 <a href="{{Route('absents.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-checkbox-marked-outline"></i>

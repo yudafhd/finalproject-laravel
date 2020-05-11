@@ -16,10 +16,8 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Dashboard</h4>
-                <h6 class="card-subtitle">
-                    this is dashboard
-                </h6>
+                <h3 class="card-title" style="font-weight: bold">Grafik Absensi</h3>
+                <hr>
             </div>
         </div>
     </div>

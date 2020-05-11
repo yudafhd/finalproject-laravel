@@ -92,7 +92,7 @@ class AbsentsController extends Controller
         $users = User::all()->where('type', 'siswa');
         $schedules = Schedules::all();
         $error_message = $request->session()->get('alert-error');
-        return view('absents.absentsCreate', ['absents' => $absents, 'users' => $users, 'schedules' => $schedules, 'error_message' => $error_message]);
+        return view('absents.absentsUpdate', ['absents' => $absents, 'users' => $users, 'schedules' => $schedules, 'error_message' => $error_message]);
     }
 
     /**
@@ -104,7 +104,20 @@ class AbsentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $absents = Absents::find($id);
+            $absents->user_id = $request->user_id;
+            $absents->schedule_id = $request->schedule_id;
+            $absents->date = $request->date;
+            $absents->reason = $request->reason;
+            $absents->description = $request->description;
+            $absents->save();
+            $request->session()->flash('alert-success', "Absen berhasil di perbarui!");
+            return redirect()->route('absents.index');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect()->route('absents.index');
+        }
     }
 
     /**
