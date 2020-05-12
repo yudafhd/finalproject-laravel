@@ -26,14 +26,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Nama</label>
-                                <input type="text" name="name" class="form-control" value="{{$userDetail->name}}">
+                                    <input type="text" name="name" class="form-control" value="{{$userDetail->name}}">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
-                                 </div>
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Email</label>
-                                <input type="text" name="email" class="form-control" value="{{$userDetail->email}}">
+                                    <input type="text" name="email" class="form-control" value="{{$userDetail->email}}">
                                     {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
                                 </div>
                             </div>
@@ -41,86 +41,33 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Type <small class="form-control-feedback"> user ini sekarang <strong>{{$userDetail->type}}</strong></small></label>
-                                        @if($userDetail->type=='admin_default')
-                                        <br /> <small class="form-control-feedback">Kamu tidak dapat mengganti tipe <strong>admin_default</strong> </small> 
-                                        @else
-                                        <select class="form-control" name="type_user" custom-select">
-                                            @foreach ($roles as $role)
-                                            <option value="{{$role->name}}" {{$userDetail->type == $role->name ? 'selected' :''}}>{{$role->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @endif
-                                    </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label class="control-label">Tanggal Lahir</label>
-                            <input
-                            type="text"
-                            class="form-control"
-                            placeholder="2017-06-04"
-                            name="dob"
-                            value="{{$userDetail->dob}}"
-                            id="mdatepicker"
-                        />                               
-                        </div>
-                    </div>
-                        <div class="col-md-6">
+                                    <label class="control-label">Level <small class="form-control-feedback"> user ini
+                                            sekarang <strong>{{$userDetail->level}}</strong></small></label>
+                                    @if($userDetail->level=='superadmin')
+                                    <br /> <small class="form-control-feedback">Kamu tidak dapat mengganti tipe
+                                        <strong>superadmin</strong> </small>
+                                    @else
+                                    <select class="form-control" name="level" custom-select">
+                                        @foreach ($roles as $role)
+                                        <option value="{{$role->name}}"
+                                            {{$userDetail->level == $role->name ? 'selected' :''}}>{{$role->name}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                <label class="control-label">Alamat</label>
-                                <input type="text" name="address" class="form-control" value="{{$userDetail->address}}">                    
+                                    <label class="control-label">Password </label>
+                                    <input type="text" name="password" class="form-control" value="">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                                <div class="form-group">
-                                <label class="control-label">Kota</label>
-                                <input type="text" name="city" class="form-control" value="{{$userDetail->city}}">                       
-                            </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                            <a href="{{url('/user')}}" class="btn btn-inverse">Cancel</a>
                         </div>
-                        <div class="col-md-6">
-                                <div class="form-group">
-                                <label class="control-label">Bio singkat</label>
-                                <textarea name="short_info" class="form-control"> {{$userDetail->short_info}}   </textarea>                   
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                                <div class="form-group">
-                                <label class="control-label">Password </label>  
-                                <input type="text" name="password" class="form-control" value="">               
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="card-title" style="font-weight: bold">Data Siswa</h3>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">NIS</label>
-                                <input type="number" name="nis" class="form-control" value="{{$userDetail->nis}}">
-                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Nama Orang Tua</label>
-                                <input type="text" name="parent_name" class="form-control" value="{{$userDetail->parent_name}}">
-                             </div>
-                        </div>
-                    </div>
-                    <h3 class="card-title" style="font-weight: bold">Data Guru</h3>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">NIP</label>
-                                <input type="number" name="nip" class="form-control" value="{{$userDetail->nip}}">
-                             </div>
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                    <a href="{{url('/user/admin')}}" class="btn btn-inverse">Cancel</a>
-                    </div>
                 </form>
             </div>
         </div>

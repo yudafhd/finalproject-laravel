@@ -20,7 +20,7 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::group(['prefix' => 'user'], function () {
     Route::get('/create', 'UserController@create')->name('user.create');
     Route::post('/store', 'UserController@store')->name('user.store');
-    Route::get('/{type}', 'UserController@index')->name('user.list');
+    Route::get('/', 'UserController@index')->name('user.list');
     Route::get('/update/{id}', 'UserController@update')->name('user.update');
     Route::get('/delete/{id}', 'UserController@delete')->name('user.delete');
     Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');

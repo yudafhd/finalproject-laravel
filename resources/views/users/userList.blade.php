@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <label> * user siswa butuh class_id </label>
+
                 @if ($success_message)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>{{$success_message}}
@@ -38,7 +38,7 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>Email</th>
-                                <th>Type</th>
+                                <th>Level</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -47,7 +47,7 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->type }}</td>
+                                <td>{{ $user->level }}</td>
                                 <td>
                                 <div class="dropdown">
                                     <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +56,7 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="{{Route('user.update', $user->id)}}">Update</a>
                                         <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter" 
-                                    onclick="insertModalInfo({url:'{{Route('user.delete', $user->id)}}', info:'Nama : {{$user->name}} Tipe: {{$user->type}}'})">Delete</a>
+                                    onclick="insertModalInfo({url:'{{Route('user.delete', $user->id)}}', info:'Nama : {{$user->name}} Tipe: {{$user->level}}'})">Delete</a>
                                     </div>
                                   </div>
                             </td>

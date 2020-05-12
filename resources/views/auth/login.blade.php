@@ -32,7 +32,7 @@
                             id="email"
                             type="email"
                             placeholder="Email"
-                            value="admin@gmail.com"
+                            value="alifa@gmail.com"
                             class="form-control @error('email') is-invalid @enderror"
                             name="email"
                             value="{{ old('email') }}"
@@ -61,7 +61,7 @@
                             type="password"
                             class="form-control @error('password') is-invalid @enderror"
                             name="password"
-                            value="admin123"
+                            value="admin12345"
                             placeholder="Password"
                             required
                             autocomplete="current-password"
@@ -138,14 +138,14 @@
                         </div>
                     </div> -->
                 </div>
-                <div class="form-group m-b-0">
+                {{-- <div class="form-group m-b-0">
                     <div class="col-sm-12 text-center">
                         Don't have an account?
                         <a href="register" class="text-primary m-l-5"
                             ><b>Sign Up</b></a
                         >
                     </div>
-                </div>
+                </div> --}}
             </form>
             <form class="form-horizontal" id="recoverform" action="index.html">
                 <div class="form-group ">

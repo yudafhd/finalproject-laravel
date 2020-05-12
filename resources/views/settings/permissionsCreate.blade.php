@@ -32,7 +32,7 @@
                         <div class="form-row">
                             <div class="col-md-5 mb-3">
                                 <label for="validationServer01">Nama Permission</label>
-                                <input type="text" name="name" class="form-control" placeholder="Contoh : admin"
+                                <input type="text" name="name" class="form-control" placeholder="menu setting"
                                     required>
                                 {{-- <div class="valid-feedback">
                                 Looks good!

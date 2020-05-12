@@ -40,10 +40,7 @@
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
                 
-                         <span style="font-size:25px;color:royalblue;font-weight:bold"> SMKN 1
-                         <span style="color: black;">
-                             Absensi
-                         </span>
+                         <span style="font-size:25px;color:royalblue;font-weight:bold"> {{ config('app.name', 'Laravel') }}
                         </span>
                     
                          <!-- Light Logo text -->    

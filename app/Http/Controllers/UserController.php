@@ -14,13 +14,10 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($type, Request $request)
+    public function index(Request $request)
     {
-        if (!in_array($type, ['admin', 'guru', 'siswa'])) {
-            return abort(404);
-        }
         $user = Auth::user();
-        $userList = User::all()->where('type', $type);;
+        $userList = User::all();
         $success_message = $request->session()->get('alert-success');
         return view('users.userList',  ['user' => $user, 'userList' => $userList, 'success_message' => $success_message]);
     }
@@ -35,29 +32,21 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try {
-            $roles = Role::findByName($request->type_user);
+            $roles = Role::findByName($request->level);
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'type' => $request->type_user,
-                'role_id' => $roles->id,
-                'dob' => $request->dob,
-                'address' => $request->address,
-                'city' => $request->city,
-                'short_info' => $request->short_info,
-                'city' => $request->city,
-                'nis' => $request->nis,
-                'nip' => $request->nip,
-                'parent_name' => $request->parent_name,
-                'password' => bcrypt('Smkn1user'),
+                'level' => $roles->name,
+                'password' => bcrypt('admin12345'),
 
             ]);
+            $user->syncRoles($roles->name);
             $request->session()->flash('alert-success', "User {$request->name} berhasil di buat!");
-            return redirect('/user/admin');
+            return redirect('/user');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
             dd($e->getMessage());
-            return redirect('/user/admin');
+            return redirect('/user');
         }
     }
 
@@ -73,31 +62,25 @@ class UserController extends Controller
     public function storeUpdate(Request $request)
     {
         try {
-            $roles = Role::findByName($request->type_user);
             $userDetail = User::find($request->id);
-
-            // assign role to user
-            $userDetail->assignRole($roles->name);
+            if ($request->level) {
+                $roles = Role::findByName($request->level);
+                // assign role to user
+                $userDetail->syncRoles([$roles->name]);
+                $userDetail->level = $roles->name;
+            }
+            if ($request->password) {
+                $userDetail->password = bcrypt($request->password);
+            }
 
             $userDetail->name = $request->name;
             $userDetail->email = $request->email;
-            $userDetail->type = $request->type_user;
-            $userDetail->role_id = $roles->id;
-            $userDetail->dob = $request->dob;
-            $userDetail->address = $request->address;
-            $userDetail->city = $request->city;
-            $userDetail->short_info = $request->short_info;
-            $userDetail->city = $request->city;
-            $userDetail->nis = $request->nis;
-            $userDetail->nip = $request->nip;
-            $userDetail->parent_name = $request->parent_name;
-            $userDetail->password = bcrypt($request->password);
             $userDetail->save();
             $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
-            return redirect('/user/' . $request->type_user);
+            return redirect('/user');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect('/user/' . $request->type_user);
+            return redirect('/user/update/' . $request->id);
         }
     }
 

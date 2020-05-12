@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title" style="font-weight: bold">Grafik Absensi</h3>
+                <h3 class="card-title" style="font-weight: bold">Grafik OKP</h3>
                 <hr>
             </div>
         </div>

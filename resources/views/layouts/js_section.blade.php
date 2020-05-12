@@ -51,7 +51,7 @@
     });
 
     function insertModalInfo(data) {
-        $('div.modal-body').append(data.info);
+        $('div.modal-body').text(data.info);
         $('#delete-user').each(function () {
             $(this).attr("href", data.url);
         });
