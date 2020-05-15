@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Bidang;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
@@ -16,17 +17,16 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $user = Auth::user();
-        $userList = User::all();
+        $userList = User::where('level', '!=', 'superadmin')->get();
         $success_message = $request->session()->get('alert-success');
-        return view('users.userList',  ['user' => $user, 'userList' => $userList, 'success_message' => $success_message]);
+        return view('users.userList',  ['userList' => $userList, 'success_message' => $success_message]);
     }
 
     public function create()
     {
-        $user = Auth::user();
         $roles = Role::all();
-        return view('users.userCreate',  ['user' => $user, 'roles' => $roles]);
+        $bidangs = Bidang::all();
+        return view('users.userCreate',  ['roles' => $roles, 'bidangs' => $bidangs]);
     }
 
     public function store(Request $request)
@@ -37,6 +37,7 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'level' => $roles->name,
+                'bidang_id' => $request->bidang,
                 'password' => bcrypt('admin12345'),
 
             ]);
@@ -53,10 +54,10 @@ class UserController extends Controller
 
     public function update($id)
     {
-        $user = Auth::user();
         $userDetail = User::find($id);
         $roles = Role::all();
-        return view('users.userUpdate',  ['user' => $user, 'userDetail' => $userDetail, 'roles' => $roles]);
+        $bidangs = Bidang::all();
+        return view('users.userUpdate',  ['userDetail' => $userDetail, 'roles' => $roles, 'bidangs' => $bidangs]);
     }
 
     public function storeUpdate(Request $request)
@@ -71,6 +72,9 @@ class UserController extends Controller
             }
             if ($request->password) {
                 $userDetail->password = bcrypt($request->password);
+            }
+            if ($request->bidang) {
+                $userDetail->bidang_id = $request->bidang;
             }
 
             $userDetail->name = $request->name;

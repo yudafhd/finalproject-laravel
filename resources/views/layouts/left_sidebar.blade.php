@@ -24,9 +24,9 @@
                             </ul>
                         </li>
                         @endif --}}
-                        <li> <a href="/">
+                        {{-- <li> <a href="/">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
-                        </li>
+                        </li> --}}
                         {{-- @if (auth()->user()->level ==='superadmin' ||  in_array('menu users', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-box"></i><span class="hide-menu">Users</span></a>
                             <ul aria-expanded="false" class="collapse">
@@ -36,27 +36,36 @@
                             </ul>
                         </li>
                         @endif --}}
-                        @if (auth()->user()->level ==='superadmin' ||  in_array('menu okp', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('absents.index')}}">
+                        <li> <a href="{{Route('okp.index')}}">
                             <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Data OKP</span></a>
                         </li>
-                       @endif
                         @if (auth()->user()->level ==='superadmin' ||  in_array('menu kegiatan', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('absents.index')}}">
+                        <li> <a href="{{Route('kegiatan.index')}}">
                             <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Data Kegiatan</span></a>
                         </li>
                        @endif
                         @if (auth()->user()->level ==='superadmin' ||  in_array('menu anggota', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('absents.index')}}">
+                        <li> <a href="{{Route('anggota.index')}}">
                             <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Data Anggota</span></a>
+                        </li>
+                       @endif
+                        @if (auth()->user()->level ==='superadmin' ||  in_array('menu bidang', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        <li> <a href="{{Route('bidang.index')}}">
+                            <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Bidang</span></a>
                         </li>
                        @endif
                         @if (auth()->user()->level ==='superadmin' ||  in_array('menu settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-settings-box"></i><span class="hide-menu">Settings</span></a>
                             <ul aria-expanded="false" class="collapse">
+                                @if (auth()->user()->level ==='superadmin' ||  in_array('menu user', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                                 <li><a href="{{Route('user.list')}}">User</a></li>
+                                @endif
+                                @if (auth()->user()->level ==='superadmin' ||  in_array('menu roles', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                                 <li><a href="{{Route('role.list')}}">Roles</a></li>
+                                @endif
+                                @if (auth()->user()->level ==='superadmin' ||  in_array('menu permissions', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                                 <li><a href="{{Route('permission.list')}}">Permissions</a></li>
+                                @endif
                             </ul>
                         </li>
                        @endif

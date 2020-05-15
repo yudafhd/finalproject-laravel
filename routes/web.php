@@ -13,8 +13,15 @@
 
 
 Auth::routes();
-Route::get('/', 'DashboardController@index')->name('dashboard');
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/', 'OkpController@index')->name('dashboard');
+Route::get('/dashboard', 'OkpController@index')->name('dashboard');
+
+
+Route::resource('okp', 'OkpController');
+Route::resource('kegiatan', 'KegiatanController');
+Route::resource('anggota', 'AnggotaController');
+Route::resource('bidang', 'BidangController');
+
 
 // User
 Route::group(['prefix' => 'user'], function () {
@@ -25,10 +32,6 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/delete/{id}', 'UserController@delete')->name('user.delete');
     Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');
 });
-
-// Absensi
-Route::resource('absents', 'AbsentsController');
-
 
 //Roles
 Route::group(['prefix' => 'setting'], function () {

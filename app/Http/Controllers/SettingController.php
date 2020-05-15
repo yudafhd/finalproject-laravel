@@ -60,7 +60,7 @@ class SettingController extends Controller
         try {
             $roles = Role::findById(urldecode((int) $id));
             $rolesPermission = $roles->permissions->pluck('name')->toArray();
-            $permissions = Permission::all();
+            $permissions = Permission::orderBy('name', 'ASC')->get();
             $user = Auth::user();
             return view('settings.rolesUpdate',  [
                 'user' => $user,
@@ -119,7 +119,7 @@ class SettingController extends Controller
 
     public function permissionList(Request $request)
     {
-        $permissions = Permission::orderBy('id', 'DESC')->get();
+        $permissions = Permission::orderBy('name', 'ASC')->get();
         $user = Auth::user();
         $success_message = $request->session()->get('alert-success');
         return view('settings.pemissionsList',  ['user' => $user, 'permissions' => $permissions, 'success_message' => $success_message]);

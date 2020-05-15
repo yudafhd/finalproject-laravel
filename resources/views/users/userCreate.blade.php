@@ -50,15 +50,26 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label">Bidang</label>
+                                    <select class="form-control" name="bidang" custom-select">
+                                        @foreach ($bidangs as $bidang)
+                                        <option value="{{$bidang->id}}">{{$bidang->nama}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label class="control-label p-t-20">Password default: <span
                                             class="badge badge-info">admin12345</span></label>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
-                       
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                            <a href="{{url('/user')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{url('/user/admin')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                 </form>
             </div>

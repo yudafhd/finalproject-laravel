@@ -182,15 +182,16 @@
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" 
                             data-toggle="dropdown" aria-haspopup="true" 
                             aria-expanded="false">
-                            <img src="{{ asset('assets/images/users/1.jpg') }}" alt="user" class="profile-pic" /></a>
+                            <img src="{{ asset('assets/images/users/user.png') }}" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="{{ asset('assets/images/users/1.jpg') }}" alt="user"></div>
+                                            <div class="u-img"><img src="{{ asset('assets/images/users/user.png') }}" alt="user"></div>
                                             <div class="u-text">
                                                 <h4>{{auth()->user()->name}}</h4>
-                                                <p class="text-muted">{{auth()->user()->email}}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                                <p class="text-muted">{{auth()->user()->email}}</p>
+                                            <a href="{{Route('user.update', auth()->user()->id)}}" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
                                         </div>
                                     </li>
                                     {{-- <li role="separator" class="divider"></li>
@@ -223,7 +224,7 @@
             <div class="container-fluid">
                 @yield('content')
             </div>
-            <footer class="footer"> © 2019 SMKN 1 Absensi </footer>
+            <footer class="footer"> © {{date("Y")}}  {{ config('app.name', 'Laravel') }} </footer>
         </div>
     </div>
     @include('layouts.js_section') 

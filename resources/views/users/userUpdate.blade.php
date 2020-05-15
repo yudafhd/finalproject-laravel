@@ -37,7 +37,24 @@
                                     {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Bidang</label>
+                                    <select class="form-control" name="bidang" custom-select">
+                                        @foreach ($bidangs as $bidang)
+                                        <option value="{{$bidang->id}}">{{$bidang->nama}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>  
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Password </label>
+                                    <input type="text" name="password" class="form-control" value="">
+                                </div>
+                            </div>
                         </div>
+                    
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -47,6 +64,8 @@
                                     <br /> <small class="form-control-feedback">Kamu tidak dapat mengganti tipe
                                         <strong>superadmin</strong> </small>
                                     @else
+                                    @if (auth()->user()->level ==='superadmin' ||  in_array('menu user ganti level', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                                    {{-- @if ($userDetail->level=='superadmin' || auth()->user()->roles[0]->hasPermissionTo('menu user ganti level')) --}}
                                     <select class="form-control" name="level" custom-select">
                                         @foreach ($roles as $role)
                                         <option value="{{$role->name}}"
@@ -55,18 +74,17 @@
                                         @endforeach
                                     </select>
                                     @endif
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Password </label>
-                                    <input type="text" name="password" class="form-control" value="">
+                                    @endif
                                 </div>
                             </div>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                            @if (auth()->user()->level ==='superadmin' ||  auth()->user()->level ==='admin_knpi')
                             <a href="{{url('/user')}}" class="btn btn-inverse">Cancel</a>
+                            @else
+                            <a href="{{url('/kegiatan')}}" class="btn btn-inverse">Cancel</a>
+                            @endif
                         </div>
                 </form>
             </div>
