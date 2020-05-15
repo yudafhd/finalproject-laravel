@@ -13,9 +13,16 @@ class OkpController extends Controller
 
     public function index(Request $request)
     {
-        $okps = Okp::all();
+        $okps = [];
         $success_message = $request->session()->get('alert-success');
-        return view('okps.okpList',  ['okps' => $okps, 'success_message' => $success_message]);
+
+        if (auth()->user()->level === 'superadmin' || auth()->user()->level === 'admin_knpi') {
+            $okps = Okp::all();
+            return view('okps.okpList',  ['okps' => $okps, 'success_message' => $success_message]);
+        } else {
+            $okps = Okp::whereUserId(15)->get();
+            return view('okps.okpDetailForAdminOkp',  ['okps' => $okps[0], 'success_message' => $success_message]);
+        }
     }
 
     public function create()

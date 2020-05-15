@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                @if (auth()->user()->level === 'superadmin' || auth()->user()->level === 'admin_knpi')
+
                 @if ($success_message)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>{{$success_message}}
@@ -82,9 +82,7 @@
                 <div class="table-responsive m-t-10">
                     Data belum ada
                 </div>
-                @endif
-                @endif
-               
+                @endif              
             </div>
         </div>
     </div>
