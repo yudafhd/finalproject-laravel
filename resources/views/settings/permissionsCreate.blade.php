@@ -31,12 +31,22 @@
                         @csrf
                         <div class="form-row">
                             <div class="col-md-5 mb-3">
-                                <label for="validationServer01">Nama Permission</label>
-                                <input type="text" name="name" class="form-control" placeholder="Contoh : admin"
+                                <label>Nama Permission</label>
+                                <input type="text" name="name" class="form-control" placeholder="Contoh : melihat data user"
                                     required>
-                                {{-- <div class="valid-feedback">
-                                Looks good!
-                              </div> --}}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="control-label">Parent</label>
+                                    <select class="form-control" name="parent_id" custom-select">
+                                        <option value="">Pilih parent permission</option>
+                                        @foreach ($permissions as $permission)
+                                        <option value="{{$permission->id}}">{{$permission->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <button class="btn btn-primary" type="submit">Kirim</button>

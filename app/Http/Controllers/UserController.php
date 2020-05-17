@@ -9,27 +9,22 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function index($type, Request $request)
     {
         if (!in_array($type, ['admin', 'guru', 'siswa'])) {
             return abort(404);
         }
-        $user = Auth::user();
+
         $userList = User::all()->where('type', $type);;
         $success_message = $request->session()->get('alert-success');
-        return view('users.userList',  ['user' => $user, 'userList' => $userList, 'success_message' => $success_message]);
+        return view('users.userList',  ['userList' => $userList, 'success_message' => $success_message]);
     }
 
     public function create()
     {
-        $user = Auth::user();
         $roles = Role::all();
-        return view('users.userCreate',  ['user' => $user, 'roles' => $roles]);
+        return view('users.userCreate',  ['roles' => $roles]);
     }
 
     public function store(Request $request)
@@ -39,8 +34,7 @@ class UserController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'type' => $request->type_user,
-                'role_id' => $roles->id,
+                'type' => $roles->name,
                 'dob' => $request->dob,
                 'address' => $request->address,
                 'city' => $request->city,
@@ -52,6 +46,7 @@ class UserController extends Controller
                 'password' => bcrypt('Smkn1user'),
 
             ]);
+            $user->syncRoles($roles->name);
             $request->session()->flash('alert-success', "User {$request->name} berhasil di buat!");
             return redirect('/user/admin');
         } catch (\Exception $e) {
@@ -64,10 +59,9 @@ class UserController extends Controller
 
     public function update($id)
     {
-        $user = Auth::user();
         $userDetail = User::find($id);
         $roles = Role::all();
-        return view('users.userUpdate',  ['user' => $user, 'userDetail' => $userDetail, 'roles' => $roles]);
+        return view('users.userUpdate',  ['userDetail' => $userDetail, 'roles' => $roles]);
     }
 
     public function storeUpdate(Request $request)
@@ -77,12 +71,13 @@ class UserController extends Controller
             $userDetail = User::find($request->id);
 
             // assign role to user
-            $userDetail->assignRole($roles->name);
+            if ($roles) {
+                $userDetail->syncRoles([$roles->name]);
+                $userDetail->type = $roles->name;
+            }
 
             $userDetail->name = $request->name;
             $userDetail->email = $request->email;
-            $userDetail->type = $request->type_user;
-            $userDetail->role_id = $roles->id;
             $userDetail->dob = $request->dob;
             $userDetail->address = $request->address;
             $userDetail->city = $request->city;
@@ -91,7 +86,10 @@ class UserController extends Controller
             $userDetail->nis = $request->nis;
             $userDetail->nip = $request->nip;
             $userDetail->parent_name = $request->parent_name;
-            $userDetail->password = bcrypt($request->password);
+
+            if ($request->password) {
+                $userDetail->password = bcrypt($request->password);
+            }
             $userDetail->save();
             $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
             return redirect('/user/' . $request->type_user);
@@ -101,7 +99,6 @@ class UserController extends Controller
         }
     }
 
-    // Keamanan saat menghapus user kurang
     public function delete($id, Request $request)
     {
         try {
@@ -112,7 +109,6 @@ class UserController extends Controller
             $request->session()->flash('alert-success', "User {$user->name} berhasil dihapus!");
             return redirect('/user/' . $user->type);
         } catch (\Exception $e) {
-            dd($e);
             $request->session()->flash('alert-error',  $e->getMessage());
             return redirect('/user/' . $user->type);
         }

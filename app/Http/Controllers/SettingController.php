@@ -119,7 +119,7 @@ class SettingController extends Controller
 
     public function permissionList(Request $request)
     {
-        $permissions = Permission::orderBy('id', 'DESC')->get();
+        $permissions = Permission::orderBy('created_at', 'ASC')->get();
         $user = Auth::user();
         $success_message = $request->session()->get('alert-success');
         return view('settings.pemissionsList',  ['user' => $user, 'permissions' => $permissions, 'success_message' => $success_message]);
@@ -128,22 +128,23 @@ class SettingController extends Controller
 
     public function createPermission(Request $request)
     {
-        $roles = Roles::all();
-        $user = Auth::user();
+        $permissions = Permission::all()->sortByDesc('created_at');
         $error_message = $request->session()->get('alert-error');
-        return view('settings.permissionsCreate',  ['user' => $user, 'roles' => $roles, 'error_message' => $error_message]);
+        return view('settings.permissionsCreate',  ['permissions' => $permissions, 'error_message' => $error_message]);
     }
 
     public function storePermission(Request $request)
     {
-        $user = Auth::user();
+        $parent_id_checker = $request->parent_id ? $request->parent_id : null;
+
+        //kurang keamanan saat input bisa di manipulasi lewat doom
         try {
-            Permission::create(['name' => $request->all()['name'], 'created_by' => $user->id]);
+            Permission::create(['name' => $request->name, 'parent_id' => $parent_id_checker]);
             $request->session()->flash('alert-success', "Permission {$request->name} berhasil dibuat!");
             return redirect()->route('permission.list');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', "Roles " . $request->all()['name'] . " sudah ada!");
-            return redirect()->route('role.create');
+            return redirect()->route('permission.list');
         }
     }
 

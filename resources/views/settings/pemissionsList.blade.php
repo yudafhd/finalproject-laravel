@@ -30,13 +30,14 @@
                     Total Permissions
                     <span class="label label-success label-rounded">{{count($permissions)}}</span>
                 </span>
-                <a href="{{Route('permission.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('permission.create')}}"
+                    class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
                     Create Permission
                 </a>
                 @if(count($permissions) > 0)
                 <div class="table-responsive m-t-10">
-                    <table id="myTable" class="table">
+                    <table id="treetable" class="table">
                         <thead>
                             <tr>
                                 <th>Nama Permission</th>
@@ -45,10 +46,18 @@
                         </thead>
                         <tbody>
                             @foreach ($permissions as $permission)
-                            <tr>
-                                <td>{{ $permission->name }}</td>
+                            @if ($permission->parent_id == NULL)
+                            <tr data-tt-id="{{$permission->id}}">
+                                @else
+                                <tr data-tt-id="{{$permission->id}}" data-tt-parent-id="{{$permission->parent_id}}">
+                            @endif
+                                    @if ($permission->parent_id == NULL)
+                                    <td style="font-weight: bold">{{ $permission->name }}</td>
+                                    @else
+                                    <td>{{ $permission->name }}</td>
+                                    @endif
                                 <td>
-                                    <div class="dropdown">
+                                    <div class="dropdown" style="text-align: center">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">

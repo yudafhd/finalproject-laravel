@@ -23,7 +23,6 @@ class CreateSchedulesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->date('start_at');
             $table->date('end_at');
-            $table->integer('created_by');
             $table->timestamps();
         });
     }

@@ -18,7 +18,6 @@ class CreateSubjectsTable extends Migration
             $table->string('name');
             $table->string('code');
             $table->text('description');
-            $table->integer('created_by');
             $table->timestamps();
         });
     }

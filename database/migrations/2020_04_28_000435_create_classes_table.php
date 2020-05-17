@@ -19,7 +19,6 @@ class CreateClassesTable extends Migration
             $table->integer('grade');
             $table->integer('number');
             $table->text('description');
-            $table->integer('created_by');
             $table->timestamps();
         });
     }

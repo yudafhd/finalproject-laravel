@@ -48,7 +48,7 @@
                             <tr>
                                 <td>{{ $role->name }}</td>
                                 <td>
-                                    <div class="dropdown">
+                                    <div class="dropdown" style="text-align: center">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">

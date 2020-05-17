@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCreatedByToRoles extends Migration
+class AddParentIdToPermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCreatedByToRoles extends Migration
      */
     public function up()
     {
-        Schema::table('roles', function (Blueprint $table) {
-            $table->integer('created_by');
+        Schema::table('permissions', function (Blueprint $table) {
+            $table->integer('parent_id')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddCreatedByToRoles extends Migration
      */
     public function down()
     {
-        Schema::table('roles', function (Blueprint $table) {
-            $table->dropColumn(['created_by']);
+        Schema::table('permissions', function (Blueprint $table) {
+            $table->dropColumn('parent_id');
         });
     }
 }

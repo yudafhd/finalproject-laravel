@@ -21,6 +21,7 @@
 <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
+<script src="{{ asset('assets/plugins/ludo-jquery-treetable/jquery.treetable.js') }}"></script>
 <script>
     $(document).ready(function () {
         var dateNow = new Date();
@@ -48,13 +49,16 @@
 
         //     });
         // });
+
+        $("#treetable").treetable();
     });
 
     function insertModalInfo(data) {
-        $('div.modal-body').append(data.info);
+        $('div.modal-body').text(data.info);
         $('#delete-user').each(function () {
             $(this).attr("href", data.url);
         });
     }
+    
 
 </script>
