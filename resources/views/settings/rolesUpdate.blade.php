@@ -33,8 +33,8 @@
                             <div class="col-md-5 mb-3">
                                 <label for="validationServer01">Nama Role</label>
                                 <input type="hidden" name="id" value="{{$roles->id}}" />
-                                <input type="text" name="name" value="{{$roles->name}}" class="form-control" placeholder="Contoh : edit user"
-                                    required>
+                                <input type="text" name="name" value="{{$roles->name}}" class="form-control"
+                                    placeholder="Contoh : edit user" required>
                                 {{-- <div class="valid-feedback">
                                 Looks good!
                               </div> --}}
@@ -46,28 +46,27 @@
                             <div class="col-md-5 mb-3">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <ul class="icheck-list" style="list-style-type: none; margin-left:-20px">
-                                            @foreach ( $permissions as $key => $permission )
-                                            <li>
-                                            
-                                            <input name="permissions_check[]" 
-                                            value="{{$permission->name}}" 
-                                            type="checkbox" 
-                                            class="check" 
-                                            id="square-checkbox-{{$key}}" 
-                                            data-checkbox="icheckbox_square-red"
-                                            {{in_array($permission->name, $rolesPermission) === true ? 'checked' : ''}}
-                                            >
-                                            <label for="square-checkbox-{{$key}}">{{$permission->name}}</label>
-                                            </li>   
-                                            @endforeach
-                                            
-                                            {{-- <li>
-                                                <input type="checkbox" class="check" id="minimal-checkbox-2" checked>
-                                                <label for="minimal-checkbox-2">Checkbox 2</label>
-                                            </li> --}}
-                                         
-                                        </ul>
+                                        <div class="table-responsive m-t-10">
+                                            <table id="treetable" class="table">
+                                                @foreach ( $permissions as $key => $permission )
+                                                @if ($permission->parent_id == NULL)
+                                                <tr data-tt-id="{{$permission->id}}">
+                                                    @else
+                                                <tr data-tt-id="{{$permission->id}}"
+                                                    data-tt-parent-id="{{$permission->parent_id}}">
+                                                    @endif
+                                                    <td>
+                                                        <input name="permissions_check[]" value="{{$permission->name}}"
+                                                            type="checkbox" class="check" id="square-checkbox-{{$key}}"
+                                                            data-checkbox="icheckbox_square-red"
+                                                            {{in_array($permission->name, $rolesPermission) === true ? 'checked' : ''}}>
+                                                        <label
+                                                            for="square-checkbox-{{$key}}">{{$permission->name}}</label>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

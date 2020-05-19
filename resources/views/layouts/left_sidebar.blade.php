@@ -44,12 +44,12 @@
                         </li>
                        @endif
                         @if (auth()->user()->type ==='superadmin' ||  in_array('menu settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('role.list')}}">
+                        <li> <a href="{{Route('classes.index')}}">
                             <i class="mdi mdi-school"></i><span class="hide-menu">Kelas</span></a>
                         </li>
                        @endif
                         @if (auth()->user()->type ==='superadmin' ||  in_array('menu settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('role.list')}}">
+                        <li> <a href="{{Route('subjects.index')}}">
                             <i class="mdi mdi-book-open"></i><span class="hide-menu">Mata Pelajaran</span></a>
                         </li>
                        @endif
