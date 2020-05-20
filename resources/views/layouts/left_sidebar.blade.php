@@ -54,7 +54,7 @@
                         </li>
                        @endif
                         @if (auth()->user()->type ==='superadmin' ||  in_array('menu settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('role.list')}}">
+                        <li> <a href="{{Route('schedules.index')}}">
                             <i class="mdi mdi-calendar-clock"></i><span class="hide-menu">Jadwal</span></a>
                         </li>
                        @endif

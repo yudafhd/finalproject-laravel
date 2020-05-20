@@ -16,7 +16,6 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <label> * user siswa butuh class_id </label>
                 @if ($success_message)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>{{$success_message}}
@@ -27,8 +26,9 @@
                 @endif
                 <a href="{{Route('user.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
-                    Create
+                    Buat
                 </a>
+                @if(count($userList) > 0)
                 <div class="table-responsive m-t-10">
                     <table
                         id="myTable"
@@ -65,6 +65,9 @@
                         </tbody>
                     </table>
                 </div>
+                @else 
+                <div style="text-align: center;padding:20px">Belum ada data user</div>
+                @endif
             </div>
         </div>
     </div>

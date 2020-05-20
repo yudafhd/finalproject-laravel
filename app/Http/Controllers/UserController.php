@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Classes;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class UserController extends Controller
                 'city' => $request->city,
                 'nis' => $request->nis,
                 'nip' => $request->nip,
+                'class_id' => $request->class_id,
                 'parent_name' => $request->parent_name,
                 'password' => bcrypt('Smkn1user'),
 
@@ -61,7 +63,8 @@ class UserController extends Controller
     {
         $userDetail = User::find($id);
         $roles = Role::all();
-        return view('users.userUpdate',  ['userDetail' => $userDetail, 'roles' => $roles]);
+        $classes = Classes::all();
+        return view('users.userUpdate',  ['userDetail' => $userDetail, 'classes' => $classes, 'roles' => $roles]);
     }
 
     public function storeUpdate(Request $request)
@@ -85,6 +88,7 @@ class UserController extends Controller
             $userDetail->city = $request->city;
             $userDetail->nis = $request->nis;
             $userDetail->nip = $request->nip;
+            $userDetail->class_id = $request->class_id;
             $userDetail->parent_name = $request->parent_name;
 
             if ($request->password) {
@@ -92,10 +96,11 @@ class UserController extends Controller
             }
             $userDetail->save();
             $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
-            return redirect('/user/' . $request->type_user);
+            return redirect('/user/admin');
         } catch (\Exception $e) {
+            dd($e->getMessage());
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect('/user/' . $request->type_user);
+            return redirect('/user/admin/');
         }
     }
 

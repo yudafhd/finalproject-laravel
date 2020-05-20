@@ -20,8 +20,11 @@ Route::resource('absents', 'AbsentsController');
 // Kelas
 Route::resource('classes', 'ClassesController');
 
-// Kelas
+// Mata Pelajaran
 Route::resource('subjects', 'SubjectsController');
+
+// Jadwal Pelajaran
+Route::resource('schedules', 'SchedulesController');
 
 
 //Roles

@@ -21,8 +21,11 @@ class CreateSchedulesTable extends Migration
             $table->foreign('class_id')->references('id')->on('classes');
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->date('start_at');
-            $table->date('end_at');
+            $table->string('start_at')->nullable();
+            $table->string('end_at')->nullable();
+            $table->string('day')->nullable();
+            $table->string('semester')->nullable();
+            $table->string('year')->nullable();
             $table->timestamps();
         });
     }

@@ -29,6 +29,22 @@
             time: false,
             currentDate: dateNow,
         });
+        $('#timePicker1').bootstrapMaterialDatePicker({
+            date: false,
+            shortTime: false,
+            format: 'HH:mm'
+        });
+
+        $('#timePicker2').bootstrapMaterialDatePicker({
+            date: false,
+            shortTime: false,
+            format: 'HH:mm'
+        });
+        $('#timePicker3').bootstrapMaterialDatePicker({
+            date: false,
+            shortTime: false,
+            format: 'HH:mm'
+        });
 
         // $('#mdate').bootstrapMaterialDatePicker({
         //     weekStart: 0,
@@ -59,6 +75,5 @@
             $(this).attr("href", data.url);
         });
     }
-    
 
 </script>
