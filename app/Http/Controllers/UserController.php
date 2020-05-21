@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index($type, Request $request)
     {
         if (!in_array($type, ['admin', 'guru', 'siswa'])) {
@@ -25,7 +30,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('users.userCreate',  ['roles' => $roles]);
+        $classes = Classes::all();
+        return view('users.userCreate',  ['classes' => $classes, 'roles' => $roles]);
     }
 
     public function store(Request $request)
@@ -43,18 +49,18 @@ class UserController extends Controller
                 'city' => $request->city,
                 'nis' => $request->nis,
                 'nip' => $request->nip,
-                'class_id' => $request->class_id,
+                'class_id' => $request->class_id ? $request->class_id : null,
                 'parent_name' => $request->parent_name,
                 'password' => bcrypt('Smkn1user'),
 
             ]);
             $user->syncRoles($roles->name);
             $request->session()->flash('alert-success', "User {$request->name} berhasil di buat!");
-            return redirect('/user/admin');
+            return redirect('/user/' . $request->type_user);
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
             dd($e->getMessage());
-            return redirect('/user/admin');
+            return redirect('/user/' . $request->type_user);
         }
     }
 

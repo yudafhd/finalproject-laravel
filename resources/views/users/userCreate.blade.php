@@ -93,6 +93,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Kelas </label>
                                     <select class="form-control" name="class_id" custom-select">
+                                        <option value=""> silahkan pilih kelas </option>
                                         @foreach ($classes as $class)
                                         <option value="{{$class->id}}">
                                             {{$class->grade}} - {{$class->majors}} {{$class->number}}
