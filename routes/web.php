@@ -14,17 +14,19 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');
 });
 
-// Absensi
-Route::resource('absents', 'AbsentsController');
+Route::middleware(['auth'])->group(function () {
+    // Absensi
+    Route::resource('absents', 'AbsentsController');
 
-// Kelas
-Route::resource('classes', 'ClassesController');
+    // Kelas
+    Route::resource('classes', 'ClassesController');
 
-// Mata Pelajaran
-Route::resource('subjects', 'SubjectsController');
+    // Mata Pelajaran
+    Route::resource('subjects', 'SubjectsController');
 
-// Jadwal Pelajaran
-Route::resource('schedules', 'SchedulesController');
+    // Jadwal Pelajaran
+    Route::resource('schedules', 'SchedulesController');
+});
 
 
 //Roles
