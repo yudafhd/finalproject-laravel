@@ -61,7 +61,7 @@
                                     {{ $absent->schedule->user->name }}
                                 </td>
                                 <td>{{ $absent->reason }}</td>
-                                <td>{{ $absent->date }}</td>
+                                <td>{{ $absent->date_absent }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
