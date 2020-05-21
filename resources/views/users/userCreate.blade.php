@@ -91,6 +91,18 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label">Kelas </label>
+                                    <select class="form-control" name="class_id" custom-select">
+                                        @foreach ($classes as $class)
+                                        <option value="{{$class->id}}">
+                                            {{$class->grade}} - {{$class->majors}} {{$class->number}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label class="control-label">Nama Orang Tua</label>
                                     <input type="text" name="parent_name" class="form-control" value="">
                                 </div>

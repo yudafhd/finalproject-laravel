@@ -109,8 +109,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Type </label>
-
+                                    <label class="control-label">Kelas </label>
                                     <select class="form-control" name="class_id" custom-select">
                                         @foreach ($classes as $class)
                                         <option value="{{$class->id}}"
