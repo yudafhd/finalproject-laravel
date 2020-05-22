@@ -19,20 +19,20 @@ File: scss
 /*Top bar
 *******************/
 .topbar {
-  background: #f4f6f9; }
+  background: #7460ee; }
   .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
     display: none; }
   .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
     display: inline-block;
     color: rgba(255, 255, 255, 0.8); }
+  .topbar .navbar-nav .nav-item > a.nav-link {
+    color: rgba(255, 255, 255, 0.8); }
+    .topbar .navbar-nav .nav-item > a.nav-link:hover, .topbar .navbar-nav .nav-item > a.nav-link:focus {
+      color: #ffffff !important; }
   .topbar .top-navbar .navbar-nav > .nav-item > span {
     color: #ffffff; }
   .topbar .navbar-header {
     background: #272c33; }
-
-@media (max-width: 767px) {
-  .topbar {
-    background: #ffffff; } }
 
 .logo-center .topbar .navbar-header {
   background: transparent;

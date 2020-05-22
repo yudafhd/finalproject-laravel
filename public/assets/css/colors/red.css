@@ -19,16 +19,16 @@ File: scss
 /*Top bar
 *******************/
 .topbar {
-  background: #f4f6f9; }
+  background: #ef5350; }
   .topbar .navbar-header {
     background: #ffffff; }
   .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
     display: none;
     color: rgba(255, 255, 255, 0.8); }
-
-@media (max-width: 767px) {
-  .topbar {
-    background: #ffffff; } }
+  .topbar .navbar-light .navbar-nav .nav-item > a.nav-link {
+    color: #ffffff !important; }
+    .topbar .navbar-light .navbar-nav .nav-item > a.nav-link:hover, .topbar .navbar-light .navbar-nav .nav-item > a.nav-link:focus {
+      color: rgba(255, 255, 255, 0.8) !important; }
 
 .hdr-nav-bar .navbar .navbar-nav > li.active > a {
   border-color: #f62d51; }

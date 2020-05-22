@@ -4,9 +4,10 @@
     <link href="{{ asset('assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/plugins/c3-master/c3.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/plugins/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/pages/dashboard1.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/colors/default.css') }}" id="theme" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/custom.style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/pages/floating-label.css') }}" id="theme" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/plugins/clockpicker/dist/jquery-clockpicker.min.css') }}" />

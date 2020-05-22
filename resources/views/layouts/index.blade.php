@@ -40,11 +40,7 @@
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
                 
-                         <span style="font-size:25px;color:royalblue;font-weight:bold"> SMKN 1
-                         <span style="color: black;">
-                             Absensi
-                         </span>
-                        </span>
+                         <span class="main-logo-text"> SMKN 1 Absensi </span>
                     
                          <!-- Light Logo text -->    
                          <img src="{{ asset('assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage" /></span> </a>

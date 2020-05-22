@@ -1,0 +1,15 @@
+.sidebar-nav>ul>li>a.active {
+    font-weight: 400;
+    background: #ffffff;
+    color: #398bf7;
+}
+
+.topbar .navbar-header {
+    background: none;
+}
+
+.main-logo-text {
+    font-size: 25px;
+    color: white;
+    font-weight: bold
+}
