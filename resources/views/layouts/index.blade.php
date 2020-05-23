@@ -18,7 +18,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Admin Pro</p>
+            <p class="loader__label">SMKN 1 Mojokerto</p>
         </div>
     </div>
 

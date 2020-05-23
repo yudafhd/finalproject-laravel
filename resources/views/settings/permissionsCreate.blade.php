@@ -1,7 +1,7 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h2 class="text-themecolor">CREATE PERMISSION</h2>
+        <h2 class="text-themecolor">BUAT PERMISSION</h2>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">

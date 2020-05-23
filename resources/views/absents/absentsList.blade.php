@@ -27,12 +27,12 @@
                 @endif
 
                 <span>
-                    Total Absensi hari ini 
+                    Total Absensi
                     <span class="label label-success label-rounded">{{count($absents)}}</span>
                 </span>
                 <a href="{{Route('absents.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
-                    <i class="mdi mdi-checkbox-marked-outline"></i>
-                    Buat Absensi
+                    <i class="mdi mdi-plus"></i>
+                    Buat
                 </a>
                 @if(count($absents) > 0)
                 <div class="table-responsive m-t-10">
@@ -63,7 +63,7 @@
                                 <td>{{ $absent->reason }}</td>
                                 <td>{{ $absent->date_absent }}</td>
                                 <td>
-                                    <div class="dropdown">
+                                    <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">

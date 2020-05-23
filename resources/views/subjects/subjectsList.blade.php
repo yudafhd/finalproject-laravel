@@ -56,7 +56,7 @@
                                 <td>{{ $subject->name }}</td>
                                 <td>{{ $subject->code }}</td>
                                 <td style="text-align: center">
-                                    <div class="dropdown">
+                                    <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">

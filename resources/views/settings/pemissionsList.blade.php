@@ -33,7 +33,7 @@
                 <a href="{{Route('permission.create')}}"
                     class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
-                    Create Permission
+                    Buat
                 </a>
                 @if(count($permissions) > 0)
                 <div class="table-responsive m-t-10">
@@ -57,7 +57,7 @@
                                     <td>{{ $permission->name }}</td>
                                     @endif
                                 <td>
-                                    <div class="dropdown" style="text-align: center">
+                                    <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
