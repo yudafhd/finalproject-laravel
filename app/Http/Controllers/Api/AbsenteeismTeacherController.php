@@ -9,7 +9,7 @@ use App\Schedules;
 use App\Absents;
 use App\User;
 
-class AbsenteeismController extends Controller
+class AbsenteeismTeacherController extends Controller
 {
 
     public function index(Request $request)
@@ -44,15 +44,28 @@ class AbsenteeismController extends Controller
     public function submitAbsent(Request $request)
     {
         try {
+            $absent = [];
             if (count($request->user_id)) {
                 foreach ($request->user_id as $key => $value) {
-                    Absents::create([
-                        'schedule_id' => $request->schedule_id,
-                        'user_id' => $value,
-                        'reason' => $request->reasons[$key],
-                        'description' => $request->descriptions[$key],
-                        'date_absent' => $request->date_absent
-                    ]);
+                    $absent = Absents::where('date_absent', '=', $request->date_absent)
+                        ->where('schedule_id', '=', $request->schedule_id)
+                        ->where('user_id', '=', $value)
+                        ->get();
+                    if (count($absent)) {
+                        foreach ($absent as $absent_index) {
+                            $absent_index->reason = $request->reasons[$key];
+                            $absent_index->description = $request->descriptions[$key];
+                            $absent_index->save();
+                        }
+                    } else {
+                        $absent = Absents::create([
+                            'schedule_id' => $request->schedule_id,
+                            'user_id' => $value,
+                            'reason' => $request->reasons[$key],
+                            'description' => $request->descriptions[$key],
+                            'date_absent' => $request->date_absent
+                        ]);
+                    }
                 }
             }
             return response(['status' => 'success', 'message' => 'absent berhasil ditambahkan']);

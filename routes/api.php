@@ -19,7 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/login', 'Api\AuthController@login');
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/home', 'Api\HomeController@index');
-    Route::get('/absenteeism', 'Api\AbsenteeismController@index');
-    Route::post('/absenteeism', 'Api\AbsenteeismController@submitAbsent');
+    Route::get('/home', 'Api\HomeTeacherController@index');
+    Route::get('/absenteeism', 'Api\AbsenteeismTeacherController@index');
+    Route::post('/absenteeism', 'Api\AbsenteeismTeacherController@submitAbsent');
+    Route::get('/teacherprofile', 'Api\ProfileController@index');
+    Route::get('/home_parent', 'Api\HomeParentController@index');
+    Route::get('/home_parent_all_recap', 'Api\HomeParentController@homeParentAllRecap');
+    Route::get('/studentprofile', 'Api\ProfileController@index');
 });

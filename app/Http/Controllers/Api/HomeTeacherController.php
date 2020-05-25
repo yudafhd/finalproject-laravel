@@ -8,7 +8,7 @@ use App\Http\Resources\HomeCollection;
 use App\Absents;
 use App\Schedules;
 
-class HomeController extends Controller
+class HomeTeacherController extends Controller
 {
 
     public function index(Request $request)

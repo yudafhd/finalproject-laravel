@@ -30,7 +30,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{url('/')}}">
                         <!-- Logo icon --><b>
 
                             {{-- <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" /> --}}
@@ -43,7 +43,8 @@
                          <span class="main-logo-text"> SMKN 1 Absensi </span>
                     
                          <!-- Light Logo text -->    
-                         <img src="{{ asset('assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage" /></span> </a>
+                         <img src="{{ asset('assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage" /></span> 
+                        </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
