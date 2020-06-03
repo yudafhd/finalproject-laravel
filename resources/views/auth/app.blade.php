@@ -30,7 +30,7 @@
 </head>
 <body>
     <div id="app">
-            @yield('content2')
+            @yield('content')
     </div>
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/js/popper.min.js') }}"></script>

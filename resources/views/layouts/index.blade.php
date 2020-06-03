@@ -34,7 +34,7 @@
                         <!-- Logo icon --><b>
 
                             {{-- <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" /> --}}
-                            {{-- <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" /> --}}
+                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
