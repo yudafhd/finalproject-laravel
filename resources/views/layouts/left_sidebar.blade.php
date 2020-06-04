@@ -38,23 +38,23 @@
                             </ul>
                         </li>
                         @endif
-                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('absensi', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('rpk', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a href="{{Route('rpk.index')}}">
                             <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">RPK</span></a>
                         </li>
                        @endif
-                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('absensi', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('rpk.index')}}">
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('items', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        <li> <a href="{{Route('item.index')}}">
                             <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Items</span></a>
                         </li>
                        @endif
-                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('absensi', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('rpk.index')}}">
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('pemesanan', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        <li> <a href="{{Route('pemesanan.index')}}">
                             <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Pemesanan</span></a>
                         </li>
                        @endif
-                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('absensi', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('rpk.index')}}">
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('penerimaan', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        <li> <a href="{{Route('penerimaan.index')}}">
                             <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Penerimaan</span></a>
                         </li>
                        @endif

@@ -23,6 +23,15 @@ Route::middleware(['auth'])->group(function () {
 
     // RPK
     Route::resource('rpk', 'RpkController');
+
+    // Item
+    Route::resource('item', 'ItemController');
+
+    // Pemesanan
+    Route::resource('pemesanan', 'PemesananController');
+
+    // Penerimaan
+    Route::resource('penerimaan', 'PenerimaanController');
 });
 
 
