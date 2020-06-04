@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Rpk;
 use Illuminate\Http\Request;
 
 class RpkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         $rpks = Rpk::all();
@@ -20,68 +17,46 @@ class RpkController extends Controller
         return view('rpk.rpkList',  ['rpks' => $rpks, 'alert_error' => $alert_error, 'success_message' => $success_message]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
+        $users = User::all()->where('access_type', 'rpk');
         $error_message = $request->session()->get('alert-error');
-        return view('rpk.rpkCreate',  ['error_message' => $error_message]);
+        return view('rpk.rpkCreate',  ['users' => $users, 'error_message' => $error_message]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $all_request =  $request->all();
+        // $all_request['jam_buka'] = strtotime($request->jam_buka);
+        try {
+            $classes = Rpk::create($all_request);
+            $classes->save();
+            $request->session()->flash('alert-success', "Kios berhasil dibuat!");
+            return redirect()->route('rpk.index');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect()->route('rpk.create');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Rpk  $rpk
-     * @return \Illuminate\Http\Response
-     */
     public function show(Rpk $rpk)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Rpk  $rpk
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Rpk $rpk)
+    public function edit(Request $request, Rpk $rpk)
     {
-        //
+        $users = User::all()->where('access_type', 'rpk');
+        $error_message = $request->session()->get('alert-error');
+        return view('rpk.rpkUpdate', ['rpk' => $rpk, 'users' => $users, 'error_message' => $error_message]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Rpk  $rpk
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Rpk $rpk)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Rpk  $rpk
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Rpk $rpk)
     {
         //

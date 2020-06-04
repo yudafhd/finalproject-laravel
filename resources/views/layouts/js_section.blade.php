@@ -22,7 +22,7 @@
 <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
 <script src="{{ asset('assets/plugins/ludo-jquery-treetable/jquery.treetable.js') }}"></script>
-
+<script src="{{ asset('../assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
 <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1fNYmyPlWrN1HLgWY3K7-IcGafclJhso&libraries=places&callback=initAutocomplete">
 </script>

@@ -33,28 +33,28 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Nama Kios</label>
-                                    <input type="text" name="nama_kios" class="form-control">
+                                <input type="text" name="nama_kios" class="form-control" value="{{$rpk->nama_kios}}">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">lokasi</label>
-                                    <input type="text" name="lokasi" class="form-control" value="">
+                                    <input type="text" name="lokasi" class="form-control" value="{{$rpk->lokasi}}">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Telephone</label>
-                                    <input type="number" name="telp" class="form-control" value="">
+                                    <input type="number" name="telp" class="form-control" value="{{$rpk->telp}}">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Jam Buka</label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" value="{{$rpk->jam_buka}}"
                                         name="jam_buka" id="timePicker1" />
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
@@ -68,7 +68,7 @@
                                     <label class="control-label">User</label>
                                     <select class="form-control" name="user_id" custom-select">
                                         @foreach ($users as $user)
-                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                        <option value="{{$user->id}}" {{$rpk->user_id == $user->id ? 'selected': null}}>{{$user->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -78,12 +78,12 @@
                         <hr>
                         <div class="row" style="margin-bottom:20px">
                             <div class="col-3">
-                                <input type="text" placeholder="langitude" class="form-control" name="langitude"
+                            <input type="text" placeholder="langitude" class="form-control" name="langitude" value="{{$rpk->latitude}}"
                                     id="langitude">
                             </div>
                             <div class="col-3">
 
-                                <input type="text" placeholder="longitude" class="form-control" name="longitude"
+                                <input type="text" placeholder="longitude" class="form-control" name="longitude" value="{{$rpk->longtitude}}"
                                     id="longitude">
                             </div>
                         </div>
@@ -128,8 +128,8 @@
     function initAutocomplete() {
 
         var kediri = {
-            lat: -7.815742,
-            lng: 112.062121
+            lat:{{$rpk->latitude ? $rpk->latitude : '-7.815742'}},
+            lng:{{$rpk->longtitude ? $rpk->longtitude : '112.062121'}} ,
         };
 
         var map = new google.maps.Map(document.getElementById('mapGoogle'), {

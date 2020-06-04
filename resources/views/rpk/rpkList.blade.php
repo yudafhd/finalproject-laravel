@@ -45,7 +45,10 @@
                     <table id="myTable" class="table">
                         <thead>
                             <tr>
-                                <th>Nama kelas</th>
+                                <th>Nama Kios</th>
+                                <th>Pemilik</th>
+                                <th>Telephone</th>
+                                <th>Jam Buka</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -53,6 +56,9 @@
                             @foreach ($rpks as $rpk)
                             <tr>
                                 <td>{{ $rpk->nama_kios }}</td>
+                                <td>{{ $rpk->user->name }}</td>  
+                                <td>{{ $rpk->telp }}</td>  
+                                <td>{{ date('H:i', strtotime($rpk->jam_buka)) }}</td>  
                                 <td style="text-align: center">
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
@@ -62,8 +68,8 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('classes.edit', $rpk->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('classes.destroy', $rpk->id)}}">
+                                                href="{{Route('rpk.edit', $rpk->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('rpk.destroy', $rpk->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>

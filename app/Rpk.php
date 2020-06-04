@@ -9,7 +9,14 @@ class Rpk extends Model
     protected $table = 'rpk';
 
     protected $fillable = [
-        'class_id',
+        'user_id',
+        'telp',
+        'nama_kios',
+        'latitude',
+        'longtitude',
+        'jam_buka',
+        'image_url',
+        'lokasi',
     ];
 
     protected $hidden = [
@@ -19,13 +26,5 @@ class Rpk extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
-    }
-    public function class()
-    {
-        return $this->belongsTo('App\Classes');
-    }
-    public function subject()
-    {
-        return $this->belongsTo('App\Subjects');
     }
 }

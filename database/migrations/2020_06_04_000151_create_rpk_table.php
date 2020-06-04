@@ -15,15 +15,15 @@ class CreateRpkTable extends Migration
     {
         Schema::create('rpk', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('telp');
-            $table->integer('nama_kios');
-            $table->string('latitude');
-            $table->string('longtitude');
-            $table->timestamp('jam_buka');
-            $table->string('image_url');
-            $table->string('lokasi');
+            $table->integer('telp')->nullable();
+            $table->integer('nama_kios')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longtitude')->nullable();
+            $table->timestamp('jam_buka')->nullable();
+            $table->string('image_url')->nullable();
+            $table->string('lokasi')->nullable();
             $table->timestamps();
         });
     }
