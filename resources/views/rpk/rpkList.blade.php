@@ -36,7 +36,7 @@
                     Total RPK 
                     <span class="label label-success label-rounded">{{count($rpks)}}</span>
                 </span>
-                <a href="{{Route('classes.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('rpk.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     Buat
                 </a>

@@ -25,9 +25,10 @@ class RpkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $error_message = $request->session()->get('alert-error');
+        return view('rpk.rpkCreate',  ['error_message' => $error_message]);
     }
 
     /**

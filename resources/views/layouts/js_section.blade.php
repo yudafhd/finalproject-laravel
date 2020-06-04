@@ -22,8 +22,33 @@
 <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
 <script src="{{ asset('assets/plugins/ludo-jquery-treetable/jquery.treetable.js') }}"></script>
+
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1fNYmyPlWrN1HLgWY3K7-IcGafclJhso&libraries=places&callback=initAutocomplete">
+</script>
+<style>
+    #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        margin-top: 14px;
+        padding: 5px;
+        text-overflow: ellipsis;
+        width: 400px;
+    }
+
+    #pac-input:focus {
+        border-color: #4d90fe;
+    }
+
+</style>
+
 <script>
     $(document).ready(function () {
+
+
         var dateNow = new Date();
         $('#mdatepicker').bootstrapMaterialDatePicker({
             time: false,
@@ -45,27 +70,7 @@
             shortTime: false,
             format: 'HH:mm'
         });
-
-        // $('#mdate').bootstrapMaterialDatePicker({
-        //     weekStart: 0,
-        //     time: false
-        // }).on('change', function (e, date) {
-        //     $('#result_booking').append("<p>LOADING...</p>");
-        //     $.get(" http://localhost:8000/api/listbooking/" + date.format('YYYY-MM-DD'), function (
-        //         data) {
-        //         $('#result_booking').html('');
-        //         $('#result_booking').append(
-        //             `Ada <strong>${data.length}</strong> booking tanggal ini <br /><br />`)
-        //         data.forEach(function (item) {
-        //             console.log(item)
-        //             $('#result_booking').append(
-        //                 `<p>Tanggal Booking: ${item.booking_date}, Jam Mulai:  ${item.start_time_at}, Customer: ${item.customer.id_customer} - ${item.customer.name}</p>`
-        //             );
-        //         })
-
-        //     });
-        // });
-
+        $('.dropify').dropify();
         $("#treetable").treetable();
     });
 
