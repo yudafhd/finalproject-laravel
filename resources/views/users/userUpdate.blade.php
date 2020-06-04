@@ -42,15 +42,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Type <small class="form-control-feedback"> user ini
-                                            sekarang <strong>{{$userDetail->type}}</strong></small></label>
+                                            sekarang <strong>{{$userDetail->access_type}}</strong></small></label>
                                     @if($userDetail->type=='admin_default')
                                     <br /> <small class="form-control-feedback">Kamu tidak dapat mengganti tipe
                                         <strong>admin_default</strong> </small>
                                     @else
-                                    <select class="form-control" name="type_user" custom-select">
+                                    <select class="form-control" name="access_type" custom-select">
                                         @foreach ($roles as $role)
                                         <option value="{{$role->name}}"
-                                            {{$userDetail->type == $role->name ? 'selected' :''}}>{{$role->name}}
+                                            {{$userDetail->access_type == $role->name ? 'selected' :''}}>{{$role->name}}
                                         </option>
                                         @endforeach
                                     </select>
@@ -59,9 +59,9 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Tanggal Lahir</label>
-                                    <input type="text" class="form-control" placeholder="2017-06-04" name="dob"
-                                        value="{{$userDetail->dob}}" id="mdatepicker" />
+                                    <label class="control-label">Tanggal Daftar</label>
+                                    <input type="text" class="form-control" placeholder="2017-06-04" name="date_register"
+                                        value="{{$userDetail->date_register}}" id="mdatepicker" />
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -73,61 +73,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Kota</label>
-                                    <input type="text" name="city" class="form-control" value="{{$userDetail->city}}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Bio singkat</label>
-                                    <textarea name="short_info"
-                                        class="form-control"> {{$userDetail->short_info}}   </textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label class="control-label">Password </label>
                                     <input type="text" name="password" class="form-control" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="card-title" style="font-weight: bold">Data Siswa</h3>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">NIS</label>
-                                    <input type="number" name="nis" class="form-control" value="{{$userDetail->nis}}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Nama Orang Tua</label>
-                                    <input type="text" name="parent_name" class="form-control"
-                                        value="{{$userDetail->parent_name}}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Kelas </label>
-                                    <select class="form-control" name="class_id" custom-select">
-                                        @foreach ($classes as $class)
-                                        <option value="{{$class->id}}"
-                                            {{$userDetail->class_id == $class->id ? 'selected' :''}}>
-                                            {{$class->grade}} - {{$class->majors}} {{$class->number}}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="card-title" style="font-weight: bold">Data Guru</h3>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">NIP</label>
-                                    <input type="number" name="nip" class="form-control" value="{{$userDetail->nip}}">
                                 </div>
                             </div>
                         </div>

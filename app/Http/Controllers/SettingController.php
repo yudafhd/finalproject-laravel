@@ -37,7 +37,7 @@ class SettingController extends Controller
     {
         $user = Auth::user();
         try {
-            $roles = Role::create(['name' => $request->all()['name'], 'created_by' => $user->id]);
+            $roles = Role::create(['name' => $request->all()['name']]);
             if ($request->permissions_check) {
                 if (count($request->permissions_check)) {
                     $permission_collection = [];

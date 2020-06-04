@@ -1,14 +1,14 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">ROLES</h3>
+        <h3 class="text-themecolor">RPK</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="javascript:void(0)">Home</a>
             </li>
-            <li class="breadcrumb-item active">Role</li>
+            <li class="breadcrumb-item active">RPK</li>
         </ol>
     </div>
 </div>
@@ -16,7 +16,6 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-
                 @if ($success_message)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>{{$success_message}}
@@ -25,29 +24,36 @@
                         </button>
                 </div>
                 @endif
-
+                @if ($alert_error)
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{$alert_error}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                @endif
                 <span>
-                    Total Roles
-                    <span class="label label-success label-rounded">{{count($roles)}}</span>
+                    Total RPK 
+                    <span class="label label-success label-rounded">{{count($rpks)}}</span>
                 </span>
-                <a href="{{Route('role.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
-                    <i class="mdi mdi-account-plus"></i>
-                   Buat
+                <a href="{{Route('classes.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                    <i class="mdi mdi-plus"></i>
+                    Buat
                 </a>
-                @if(count($roles) > 0)
+                @if(count($rpks) > 0)
                 <div class="table-responsive m-t-10">
                     <table id="myTable" class="table">
                         <thead>
                             <tr>
-                                <th>Nama Role</th>
+                                <th>Nama kelas</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $role)
+                            @foreach ($rpks as $rpk)
                             <tr>
-                                <td>{{ $role->name }}</td>
-                                <td>
+                                <td>{{ $rpk->nama_kios }}</td>
+                                <td style="text-align: center">
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -56,9 +62,13 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('role.delete', $role->name)}}">Delete</a>
-                                            <a class="dropdown-item"
-                                                href="{{Route('role.update', $role->id)}}">Update</a>
+                                                href="{{Route('classes.edit', $rpk->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('classes.destroy', $rpk->id)}}">
+                                                    @csrf
+                                                    {{ method_field('DELETE') }}
+                                                    <button type="submit" class="btn"> Delete </button>
+                                                </form>
+                                                
                                         </div>
                                     </div>
                                 </td>
@@ -67,9 +77,9 @@
                         </tbody>
                     </table>
                 </div>
-                @else 
+                @else
                 <div class="table-responsive m-t-10">
-                    Roles belum ada
+                    belum ada
                 </div>
                 @endif
             </div>

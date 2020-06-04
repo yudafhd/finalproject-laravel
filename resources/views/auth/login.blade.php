@@ -3,7 +3,7 @@
 <div class="preloader">
     <div class="loader">
         <div class="loader__figure"></div>
-        <p class="loader__label">SMKN 1 Mojokerto</p>
+        <p class="loader__label">RKP Bulog</p>
     </div>
 </div>
 <div class="login-register" style="background-image:url(../assets/images/background/login-register.jpg);">
@@ -14,7 +14,7 @@
                 <h3 class="box-title m-b-20">Sign In</h3>
                 <div class="form-group ">
                     <div class="col-xs-12">
-                        <input id="email" type="email" placeholder="Email" value="admin@gmail.com"
+                        <input id="email" type="email" placeholder="Email" value="superadmin@gmail.com"
                             class="form-control @error('email') is-invalid @enderror" name="email"
                             value="{{ old('email') }}" required autocomplete="email" autofocus />
 
@@ -29,7 +29,7 @@
                     <div class="col-xs-12">
                         <input id="password" type="password"
                             class="form-control @error('password') is-invalid @enderror" name="password"
-                            value="admin123" placeholder="Password" required autocomplete="current-password" />
+                             placeholder="Password" required autocomplete="current-password" />
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">

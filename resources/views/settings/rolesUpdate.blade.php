@@ -16,14 +16,6 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-
-                <div>
-                    <a href="{{Route('role.list')}}" class="btn btn-primary waves-effect waves-light m-b-20">
-                        <i class="mdi mdi-keyboard-backspace"></i>
-                        BACK
-                    </a>
-                </div>
-
                 <div class=" m-t-10">
                     <form method="POST" action="{{ Route('role.store.update') }}">
                         @csrf
@@ -71,7 +63,10 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Kirim</button>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                            <a href="{{Route('role.list')}}" class="btn btn-inverse">Cancel</a>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -27,41 +27,38 @@
                         <li> <a href="/">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
-                        @if (auth()->user()->type ==='superadmin' ||  in_array('users', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('users', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-box"></i><span class="hide-menu">Users</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                @if (auth()->user()->type ==='superadmin')<li><a href="{{url('/user/admin')}}">Admin</a></li>@endif
-                                @if (auth()->user()->type ==='superadmin' ||  in_array('guru', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                                <li><a href="{{url('/user/guru')}}">Guru</a></li>@endif
-                                @if (auth()->user()->type ==='superadmin' ||  in_array('siswa', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                                <li><a href="{{url('/user/siswa')}}">Siswa</a></li>@endif
+                                @if (auth()->user()->access_type ==='superadmin')<li><a href="{{url('/user/admin')}}">Admin</a></li>@endif
+                                @if (auth()->user()->access_type ==='superadmin' ||  in_array('guru', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                                <li><a href="{{url('/user/umum')}}">User umum</a></li>@endif
+                                @if (auth()->user()->access_type ==='superadmin' ||  in_array('guru', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                                <li><a href="{{url('/user/rpk')}}">User RPK</a></li>@endif
                             </ul>
                         </li>
                         @endif
-                        @if (auth()->user()->type ==='superadmin' ||  in_array('absensi', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('absents.index')}}">
-                            <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Absensi</span></a>
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('absensi', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        <li> <a href="{{Route('rpk.index')}}">
+                            <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">RPK</span></a>
                         </li>
                        @endif
-                        @if (auth()->user()->type ==='superadmin' ||  in_array('kelas', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('classes.index')}}">
-                            <i class="mdi mdi-school"></i><span class="hide-menu">Kelas</span></a>
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('absensi', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        <li> <a href="{{Route('rpk.index')}}">
+                            <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Items</span></a>
                         </li>
                        @endif
-                        @if (auth()->user()->type ==='superadmin' ||  in_array('mata pelajaran', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('subjects.index')}}">
-                            <i class="mdi mdi-book-open"></i><span class="hide-menu">Mata Pelajaran</span></a>
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('absensi', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        <li> <a href="{{Route('rpk.index')}}">
+                            <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Pemesanan</span></a>
                         </li>
                        @endif
-                        @if (auth()->user()->type ==='superadmin' ||  in_array('jadwal', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('schedules.index')}}">
-                            <i class="mdi mdi-calendar-clock"></i><span class="hide-menu">Jadwal</span></a>
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('absensi', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        <li> <a href="{{Route('rpk.index')}}">
+                            <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Penerimaan</span></a>
                         </li>
                        @endif
-                        <li> <a href="{{Route('schedules.index')}}">
-                            <i class="mdi mdi-file-outline"></i><span class="hide-menu">Laporan</span></a>
-                        </li>
-                        @if (auth()->user()->type ==='superadmin' ||  in_array('settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-settings-box"></i><span class="hide-menu">Settings</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{Route('role.list')}}">Roles</a></li>

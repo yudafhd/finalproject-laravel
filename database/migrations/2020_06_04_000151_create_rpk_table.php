@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAbsentsTable extends Migration
+class CreateRpkTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateAbsentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('absents', function (Blueprint $table) {
+        Schema::create('rpk', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('schedule_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('schedule_id')->references('id')->on('schedules');
-            $table->string('reason');
-            $table->date('date_absent');
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
+            $table->integer('telp');
+            $table->integer('nama_kios');
+            $table->string('latitude');
+            $table->string('longtitude');
+            $table->timestamp('jam_buka');
+            $table->string('image_url');
+            $table->string('lokasi');
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateAbsentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('absents');
+        Schema::dropIfExists('rpk');
     }
 }

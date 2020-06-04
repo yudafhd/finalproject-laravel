@@ -14,15 +14,10 @@ class AddInformationToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('nip')->nullable();
-            $table->bigInteger('nis')->nullable();
-            $table->date('dob')->nullable();
-            $table->string('city')->nullable();
+            $table->string('access_type')->nullable();
+            $table->string('image_url')->nullable();
             $table->string('address')->nullable();
-            $table->string('parent_name')->nullable();
-            $table->string('short_info')->nullable();
-            $table->string('type')->nullable();
-            $table->unsignedInteger('email')->nullable()->change();
+            $table->date('date_register')->nullable();
         });
     }
 
@@ -34,14 +29,10 @@ class AddInformationToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('nis');
-            $table->dropColumn('dob');
-            $table->dropColumn('city');
+            $table->dropColumn('access_type');
+            $table->dropColumn('image_url');
             $table->dropColumn('address');
-            $table->dropColumn('parent_name');
-            $table->dropColumn('short_info');
-            $table->dropColumn('type');
-            $table->unsignedInteger('email')->nullable(false)->change();
+            $table->dropColumn('date_register');
         });
     }
 }

@@ -18,7 +18,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">SMKN 1 Mojokerto</p>
+            <p class="loader__label">RKP Bulog</p>
         </div>
     </div>
 
@@ -40,7 +40,7 @@
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
                 
-                         <span class="main-logo-text"> SMKN 1 Absensi </span>
+                         <span class="main-logo-text"> RKP Bulog </span>
                     
                          <!-- Light Logo text -->    
                          <img src="{{ asset('assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage" /></span> 
@@ -223,7 +223,7 @@
             <div class="container-fluid">
                 @yield('content')
             </div>
-            <footer class="footer"> © 2019 SMKN 1 Absensi </footer>
+            <footer class="footer"> © 2019 RKP Bulog </footer>
         </div>
     </div>
     @include('layouts.js_section') 

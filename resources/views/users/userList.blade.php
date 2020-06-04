@@ -38,7 +38,8 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>Email</th>
-                                <th>Type</th>
+                                <th>Tanggal Daftar</th>
+                                <th>Access</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -47,7 +48,8 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->type }}</td>
+                                <td>{{ $user->date_register }}</td>
+                                <td>{{ $user->access_type }}</td>
                                 <td>
                                 <div class="dropdown" style="float: right">
                                     <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +58,7 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="{{Route('user.update', $user->id)}}">Update</a>
                                         <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter" 
-                                    onclick="insertModalInfo({url:'{{Route('user.delete', $user->id)}}', info:'Nama : {{$user->name}} Tipe: {{$user->type}}'})">Delete</a>
+                                    onclick="insertModalInfo({url:'{{Route('user.delete', $user->id)}}', info:'Nama : {{$user->name}} Tipe: {{$user->access_type}}'})">Delete</a>
                                     </div>
                                   </div>
                             </td>

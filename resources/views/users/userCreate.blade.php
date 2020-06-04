@@ -41,7 +41,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Type</label>
-                                    <select class="form-control" name="type_user" custom-select">
+                                    <select class="form-control" name="access_type" custom-select">
                                         @foreach ($roles as $role)
                                         <option value="{{$role->name}}">{{$role->name}}</option>
                                         @endforeach
@@ -50,8 +50,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Tanggal Lahir</label>
-                                    <input type="text" class="form-control" placeholder="2017-06-04" name="dob"
+                                    <label class="control-label">Tanggal Daftar</label>
+                                    <input type="text" class="form-control" placeholder="2017-06-04" name="date_register"
                                         id="mdatepicker" />
                                 </div>
                             </div>
@@ -63,59 +63,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Kota</label>
-                                    <input type="text" name="city" class="form-control" value="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Bio singkat</label>
-                                    <textarea name="short_info" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label class="control-label p-t-20">Password default: <span
-                                            class="badge badge-info">Smkn1user</span></label>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="card-title" style="font-weight: bold">Data Siswa</h3>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">NIS</label>
-                                    <input type="number" name="nis" class="form-control" value="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Kelas </label>
-                                    <select class="form-control" name="class_id" custom-select">
-                                        <option value=""> silahkan pilih kelas </option>
-                                        @foreach ($classes as $class)
-                                        <option value="{{$class->id}}">
-                                            {{$class->grade}} - {{$class->majors}} {{$class->number}}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Nama Orang Tua</label>
-                                    <input type="text" name="parent_name" class="form-control" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="card-title" style="font-weight: bold">Data Guru</h3>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">NIP</label>
-                                    <input type="number" name="nip" class="form-control" value="">
+                                            class="badge badge-info">Rpkbulog</span></label>
                                 </div>
                             </div>
                         </div>

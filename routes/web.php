@@ -4,28 +4,25 @@ Auth::routes();
 Route::get('/', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-// User
-Route::group(['prefix' => 'user'], function () {
-    Route::get('/create', 'UserController@create')->name('user.create');
-    Route::post('/store', 'UserController@store')->name('user.store');
-    Route::get('/{type}', 'UserController@index')->name('user.list');
-    Route::get('/update/{id}', 'UserController@update')->name('user.update');
-    Route::get('/delete/{id}', 'UserController@delete')->name('user.delete');
-    Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');
-});
+
 
 Route::middleware(['auth'])->group(function () {
-    // Absensi
-    Route::resource('absents', 'AbsentsController');
+
+    // User
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/create', 'UserController@create')->name('user.create');
+        Route::post('/store', 'UserController@store')->name('user.store');
+        Route::get('/{type}', 'UserController@index')->name('user.list');
+        Route::get('/update/{id}', 'UserController@update')->name('user.update');
+        Route::get('/delete/{id}', 'UserController@delete')->name('user.delete');
+        Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');
+    });
 
     // Kelas
     Route::resource('classes', 'ClassesController');
 
-    // Mata Pelajaran
-    Route::resource('subjects', 'SubjectsController');
-
-    // Jadwal Pelajaran
-    Route::resource('schedules', 'SchedulesController');
+    // RPK
+    Route::resource('rpk', 'RpkController');
 });
 
 
