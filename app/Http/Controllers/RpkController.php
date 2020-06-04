@@ -54,11 +54,33 @@ class RpkController extends Controller
 
     public function update(Request $request, Rpk $rpk)
     {
-        //
+        try {
+            $rpk->user_id = $request->user_id;
+            $rpk->telp = $request->telp;
+            $rpk->nama_kios = $request->nama_kios;
+            $rpk->latitude = $request->latitude;
+            $rpk->longitude = $request->longitude;
+            $rpk->jam_buka = $request->jam_buka;
+            $rpk->lokasi = $request->lokasi;
+            $rpk->save();
+            $request->session()->flash('alert-success', "Rpk berhasil di perbarui!");
+            return redirect()->route('rpk.index');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect()->route('rpk.index');
+        }
     }
 
-    public function destroy(Rpk $rpk)
+    public function destroy(Request $request, Rpk $rpk)
     {
-        //
+        try {
+            $rpk->delete();
+            $request->session()->flash('alert-success', "RPK berhasil dihapus!");
+            return redirect()->route('rpk.index');
+        } catch (\Exception $e) {
+            $error_message = $e->getMessage();
+            $request->session()->flash('alert-error', $error_message);
+            return redirect()->route('rpk.index');
+        }
     }
 }

@@ -20,7 +20,7 @@ class CreateRpkTable extends Migration
             $table->integer('telp')->nullable();
             $table->integer('nama_kios')->nullable();
             $table->string('latitude')->nullable();
-            $table->string('longtitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamp('jam_buka')->nullable();
             $table->string('image_url')->nullable();
             $table->string('lokasi')->nullable();

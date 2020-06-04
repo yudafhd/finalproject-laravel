@@ -24,9 +24,10 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('rpk.store') }}" enctype="multipart/form-data"
+                <form method="POST" action="{{ Route('rpk.update', $rpk->id) }}" enctype="multipart/form-data"
                     onkeydown="return event.key != 'Enter';">
                     @csrf
+                    {{ method_field('PUT') }}
                     <div class="form-body">
                         
                         <div class="row">
@@ -78,12 +79,12 @@
                         <hr>
                         <div class="row" style="margin-bottom:20px">
                             <div class="col-3">
-                            <input type="text" placeholder="langitude" class="form-control" name="langitude" value="{{$rpk->latitude}}"
+                            <input type="text" placeholder="langitude" class="form-control" name="latitude" value="{{$rpk->latitude}}"
                                     id="langitude">
                             </div>
                             <div class="col-3">
 
-                                <input type="text" placeholder="longitude" class="form-control" name="longitude" value="{{$rpk->longtitude}}"
+                                <input type="text" placeholder="longitude" class="form-control" name="longitude" value="{{$rpk->longitude}}"
                                     id="longitude">
                             </div>
                         </div>
@@ -129,7 +130,7 @@
 
         var kediri = {
             lat:{{$rpk->latitude ? $rpk->latitude : '-7.815742'}},
-            lng:{{$rpk->longtitude ? $rpk->longtitude : '112.062121'}} ,
+            lng:{{$rpk->longtitude ? $rpk->longitude : '112.062121'}} ,
         };
 
         var map = new google.maps.Map(document.getElementById('mapGoogle'), {
