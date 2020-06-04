@@ -13,14 +13,15 @@
 
 
 Auth::routes();
-Route::get('/', 'OkpController@index')->name('dashboard');
-Route::get('/dashboard', 'OkpController@index')->name('dashboard');
 
-
-Route::resource('okp', 'OkpController');
-Route::resource('kegiatan', 'KegiatanController');
-Route::resource('anggota', 'AnggotaController');
-Route::resource('bidang', 'BidangController');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', 'OkpController@index')->name('dashboard');
+    Route::get('/dashboard', 'OkpController@index')->name('dashboard');
+    Route::resource('okp', 'OkpController');
+    Route::resource('kegiatan', 'KegiatanController');
+    Route::resource('anggota', 'AnggotaController');
+    Route::resource('bidang', 'BidangController');
+});
 
 
 // User
