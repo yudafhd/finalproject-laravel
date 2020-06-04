@@ -17,8 +17,8 @@ class CreateRpkTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('telp')->nullable();
-            $table->integer('nama_kios')->nullable();
+            $table->string('telp')->nullable();
+            $table->string('nama_kios')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->timestamp('jam_buka')->nullable();

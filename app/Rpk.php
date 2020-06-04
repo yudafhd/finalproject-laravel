@@ -13,7 +13,7 @@ class Rpk extends Model
         'telp',
         'nama_kios',
         'latitude',
-        'longtitude',
+        'longitude',
         'jam_buka',
         'image_url',
         'lokasi',

@@ -27,7 +27,6 @@ class RpkController extends Controller
     public function store(Request $request)
     {
         $all_request =  $request->all();
-        // $all_request['jam_buka'] = strtotime($request->jam_buka);
         try {
             $classes = Rpk::create($all_request);
             $classes->save();

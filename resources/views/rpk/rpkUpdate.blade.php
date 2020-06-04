@@ -48,7 +48,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Telephone</label>
-                                    <input type="number" name="telp" class="form-control" value="{{$rpk->telp}}">
+                                    <input type="number" name="telp" class="form-control" value="{{$rpk->telp}}" maxlength="10">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
@@ -128,13 +128,17 @@
 <script>
     function initAutocomplete() {
 
-        var kediri = {
-            lat:{{$rpk->latitude ? $rpk->latitude : '-7.815742'}},
-            lng:{{$rpk->longtitude ? $rpk->longitude : '112.062121'}} ,
+        // var kediri = {
+        //     lat: -7.815742,
+        //     lng: 112.062121
+        // };
+        var location = {
+            lat:{{$rpk->latitude ? $rpk->latitude : -7.815742}},
+            lng:{{$rpk->longitude ? $rpk->longitude : 112.062121}} ,
         };
 
         var map = new google.maps.Map(document.getElementById('mapGoogle'), {
-            center: kediri,
+            center: location,
             zoom: 19,
             mapTypeId: 'roadmap'
         });
