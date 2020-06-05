@@ -1,7 +1,7 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">BUAT ITEM</h3>
+        <h3 class="text-themecolor">EDIT ITEM</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
@@ -24,42 +24,44 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('item.store') }}" enctype="multipart/form-data"
+                <form method="POST" action="{{ Route('item.update', $item->id) }}" enctype="multipart/form-data"
                     onkeydown="return event.key != 'Enter';">
                     @csrf
+                    {{ method_field('PUT') }}
                     <div class="form-body">
-                        
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Nama</label>
-                                    <input type="text" name="nama" class="form-control">
+                                    <input type="text" name="nama" class="form-control" value="{{$item->nama}}">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Deskripsi</label>
-                                    <input type="text" name="deskripsi" class="form-control" value="">
+                                    <input type="text" name="deskripsi" class="form-control"
+                                        value="{{$item->deskripsi}}">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">QTY</label>
-                                    <input type="number" name="qty" class="form-control" value="">
+                                    <input type="number" name="qty" class="form-control" value="{{$item->qty}}">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Harga</label>
-                                    <input type="number" name="harga" class="form-control" value="">
+                                    <input type="number" name="harga" class="form-control" value="{{$item->harga}}">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
                         </div>
-                         <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-success">
                             <i class="fa fa-check"></i> Save</button>
                         <a href="{{url('/item')}}" class="btn btn-inverse">Cancel</a>
                     </div>
