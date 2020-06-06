@@ -67,7 +67,7 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
                                                 href="{{Route('stock.edit', $stock->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('item.destroy', $stock->id)}}">
+                                                <form method="POST" action="{{Route('stock.destroy', $stock->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>
@@ -82,9 +82,9 @@
                     </table>
                 </div>
                 @else
-                <div class="table-responsive m-t-10">
+                <span style="text-align: center;">
                     belum ada
-                </div>
+                </span>
                 @endif
             </div>
         </div>

@@ -80,8 +80,16 @@ class StockController extends Controller
         }
     }
 
-    public function destroy(Stock $stock)
+    public function destroy(Request $request, Stock $stock)
     {
-        //
+        try {
+            $stock->delete();
+            $request->session()->flash('alert-success', "Item berhasil dihapus!");
+            return redirect()->route('stock.index');
+        } catch (\Exception $e) {
+            $error_message = $e->getMessage();
+            $request->session()->flash('alert-error', $error_message);
+            return redirect()->route('stock.index');
+        }
     }
 }

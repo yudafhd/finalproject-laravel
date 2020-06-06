@@ -15,6 +15,7 @@ class CreateNotifikasiTable extends Migration
     {
         Schema::create('notifikasi', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('type');
             $table->string('msg');
             $table->integer('read')->default(0);
             $table->timestamps();

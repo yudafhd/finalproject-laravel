@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">
     <title>{{ config('app.name') }}</title>
-    @include('layouts.css_section') 
+    @include('layouts.css_section')
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -23,14 +23,14 @@
     </div>
 
     <div id="main-wrapper">
-     
+
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                <a class="navbar-brand" href="{{url('/')}}">
+                    <a class="navbar-brand" href="{{url('/')}}">
                         <!-- Logo icon --><b>
 
                             {{-- <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" /> --}}
@@ -38,13 +38,14 @@
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
-                         <!-- dark Logo text -->
-                
-                         <span class="main-logo-text"> RKP Bulog </span>
-                    
-                         <!-- Light Logo text -->    
-                         <img src="{{ asset('assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage" /></span> 
-                        </a>
+                            <!-- dark Logo text -->
+
+                            <span class="main-logo-text"> RKP Bulog </span>
+
+                            <!-- Light Logo text -->
+                            <img src="{{ asset('assets/images/logo-light-text.png') }}" class="light-logo"
+                                alt="homepage" /></span>
+                    </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -55,8 +56,10 @@
                     <!-- ============================================================== -->
                     <ul class="navbar-nav mr-auto">
                         <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark"
+                                href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark"
+                                href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
@@ -73,8 +76,12 @@
                         <!-- Comment -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <i class="mdi  mdi-bell-outline "></i>
+                                <span class="badge badge-light">
+                                    {{$total_notifikasi}}
+                                </span>
                                 {{-- <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div> --}}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
@@ -84,34 +91,30 @@
                                     </li>
                                     <li>
                                         <div class="message-center">
-                                            <!-- Message -->
+                                            @foreach ( $notification_data as $notification )
                                             <a href="#">
-                                                <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span> </div>
+                                                <!-- <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div> -->
+                                                @if ($notification->read == 0)
+                                                <div class="mail-contnet" style="font-weight: bold;">
+                                                    @else
+                                                    <div class="mail-contnet">
+                                                        @endif
+                                                        <h5>{{strtoupper($notification->type)}}</h5>
+                                                        <span class="mail-desc" style="font-size: 15px;">
+                                                            {{$notification->msg}}
+                                                        </span>
+                                                        <span class="time">
+                                                            {{$notification->created_at}}
+                                                        </span>
+                                                    </div>
                                             </a>
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-success btn-circle"><i class="ti-calendar"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Event today</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span> </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Settings</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span> </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-primary btn-circle"><i class="ti-user"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
-                                            </a>
+                                            @endforeach
+
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all
+                                                notifications</strong> <i class="fa fa-angle-right"></i> </a>
                                     </li>
                                 </ul>
                             </div>
@@ -179,18 +182,22 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" 
-                            data-toggle="dropdown" aria-haspopup="true" 
-                            aria-expanded="false">
-                            <img src="{{ asset('assets/images/users/1.jpg') }}" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="{{ asset('assets/images/users/1.jpg') }}" alt="user"
+                                    class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="{{ asset('assets/images/users/1.jpg') }}" alt="user"></div>
+                                            <div class="u-img"><img src="{{ asset('assets/images/users/1.jpg') }}"
+                                                    alt="user"></div>
                                             <div class="u-text">
                                                 <h4>{{auth()->user()->name}}</h4>
-                                                <p class="text-muted">{{auth()->user()->email}}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                                <p class="text-muted">{{auth()->user()->email}}</p><a
+                                                    href="pages-profile.html"
+                                                    class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                            </div>
                                         </div>
                                     </li>
                                     {{-- <li role="separator" class="divider"></li>
@@ -200,15 +207,15 @@
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li> --}}
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
+                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                       document.getElementById('logout-form').submit();">
-                                         <i class="fa fa-power-off"></i> {{ __('Logout') }}
-                                     </a>
+                                            <i class="fa fa-power-off"></i> {{ __('Logout') }}
+                                        </a>
                                     </li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
                                 </ul>
                             </div>
                         </li>
@@ -216,9 +223,9 @@
                 </div>
             </nav>
         </header>
-   
-        @include('layouts.left_sidebar') 
-    
+
+        @include('layouts.left_sidebar')
+
         <div class="page-wrapper">
             <div class="container-fluid">
                 @yield('content')
@@ -226,7 +233,7 @@
             <footer class="footer"> © 2019 RKP Bulog </footer>
         </div>
     </div>
-    @include('layouts.js_section') 
+    @include('layouts.js_section')
 </body>
 
 </html>

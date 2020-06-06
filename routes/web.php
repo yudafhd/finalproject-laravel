@@ -18,14 +18,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');
     });
 
-    // Kelas
-    Route::resource('classes', 'ClassesController');
-
     // RPK
     Route::resource('rpk', 'RpkController');
-
-    // Stock
-    Route::resource('stock', 'StockController');
 
     // RPK
     Route::group(['prefix' => 'rpk'], function () {
@@ -35,14 +29,14 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/active/{rpk}', 'RpkController@active')->name('rpk.actived');
     });
 
+    // Stock
+    Route::resource('stock', 'StockController');
+
     // Item
     Route::resource('item', 'ItemController');
 
     // Pemesanan
     Route::resource('pemesanan', 'PemesananController');
-
-    // Penerimaan
-    Route::resource('penerimaan', 'PenerimaanController');
 });
 
 
