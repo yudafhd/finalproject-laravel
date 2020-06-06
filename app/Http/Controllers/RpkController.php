@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Villages;
+use App\Districts;
 use App\Rpk;
 use Illuminate\Http\Request;
 
@@ -19,9 +21,20 @@ class RpkController extends Controller
 
     public function create(Request $request)
     {
+        $districts = Districts::all()->whereIn('regency_id', [3576, 3516]);
+        $districts_array = $districts->pluck('id');
+        $villages = Villages::all()->whereIn('district_id', $districts_array);
         $users = User::all()->where('access_type', 'rpk');
         $error_message = $request->session()->get('alert-error');
-        return view('rpk.rpkCreate',  ['users' => $users, 'error_message' => $error_message]);
+        return view(
+            'rpk.rpkCreate',
+            [
+                'districts' => $districts,
+                'villages' => $villages,
+                'users' => $users,
+                'error_message' => $error_message
+            ]
+        );
     }
 
     public function store(Request $request)
@@ -45,9 +58,18 @@ class RpkController extends Controller
 
     public function edit(Request $request, Rpk $rpk)
     {
+        $districts = Districts::all()->whereIn('regency_id', [3576, 3516]);
+        $districts_array = $districts->pluck('id');
+        $villages = Villages::all()->whereIn('district_id', $districts_array);
         $users = User::all()->where('access_type', 'rpk');
         $error_message = $request->session()->get('alert-error');
-        return view('rpk.rpkUpdate', ['rpk' => $rpk, 'users' => $users, 'error_message' => $error_message]);
+        return view('rpk.rpkUpdate', [
+            'districts' => $districts,
+            'villages' => $villages,
+            'rpk' => $rpk,
+            'users' => $users,
+            'error_message' => $error_message
+        ]);
     }
 
 
@@ -61,6 +83,8 @@ class RpkController extends Controller
             $rpk->longitude = $request->longitude;
             $rpk->jam_buka = $request->jam_buka;
             $rpk->lokasi = $request->lokasi;
+            $rpk->village_id = $request->village_id;
+            $rpk->district_id = $request->district_id;
             $rpk->save();
             $request->session()->flash('alert-success', "Rpk berhasil di perbarui!");
             return redirect()->route('rpk.index');

@@ -17,6 +17,8 @@ class Rpk extends Model
         'jam_buka',
         'image_url',
         'lokasi',
+        'village_id',
+        'district_id',
     ];
 
     protected $hidden = [

@@ -40,13 +40,6 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">lokasi</label>
-                                    <input type="text" name="lokasi" class="form-control" value="{{$rpk->lokasi}}">
-                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label class="control-label">Telephone</label>
                                     <input type="number" name="telp" class="form-control" value="{{$rpk->telp}}" maxlength="10">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
@@ -75,6 +68,30 @@
                                 </div>
                             </div>
                         </div>
+                        <h3 class="card-title" style="font-weight: bold">Kecamatan dan Kelurahan</h3>
+                        <hr>
+                        <div class="row" style="margin-bottom:20px">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Kecamatan</label>
+                                    <select class="select2 form-control" name="district_id" custom-select">
+                                        @foreach ($districts as $district)
+                                        <option value="{{$district->id}}" {{$rpk->district_id == $district->id ? 'selected':null}}>{{$district->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Kelurahan</label>
+                                    <select class="select2 form-control" name="village_id" custom-select">
+                                        @foreach ($villages as $village)
+                                        <option value="{{$village->id}}" {{$rpk->village_id == $village->id ? 'selected':null}}>{{$village->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <h3 class="card-title" style="font-weight: bold">Maps</h3>
                         <hr>
                         <div class="row" style="margin-bottom:20px">
@@ -83,10 +100,13 @@
                                     id="langitude">
                             </div>
                             <div class="col-3">
-
                                 <input type="text" placeholder="longitude" class="form-control" name="longitude" value="{{$rpk->longitude}}"
-                                    id="longitude">
+                                id="longitude">
                             </div>
+                              <div class="col-6">
+                                                <input type="text" name="lokasi" class="form-control" value="{{$rpk->lokasi}}" placeholder="lokasi">
+                                                {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
@@ -117,29 +137,18 @@
         </div>
     </div>
 </div>
-<style>
-    .dropify-wrapper .dropify-message p {
-        text-align: center;
-    }
-
-</style>
-
 
 <script>
     function initAutocomplete() {
 
-        // var kediri = {
-        //     lat: -7.815742,
-        //     lng: 112.062121
-        // };
         var location = {
-            lat:{{$rpk->latitude ? $rpk->latitude : -7.815742}},
-            lng:{{$rpk->longitude ? $rpk->longitude : 112.062121}} ,
+            lat:{{$rpk->latitude ? $rpk->latitude : 7.4142711}},
+            lng:{{$rpk->longitude ? $rpk->longitude : 112.5304693}} ,
         };
 
         var map = new google.maps.Map(document.getElementById('mapGoogle'), {
             center: location,
-            zoom: 19,
+            zoom: 12,
             mapTypeId: 'roadmap'
         });
 

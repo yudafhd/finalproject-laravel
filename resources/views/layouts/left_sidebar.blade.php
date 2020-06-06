@@ -39,8 +39,12 @@
                         </li>
                         @endif
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('rpk', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('rpk.index')}}">
-                            <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">RPK</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-settings-box"></i>
+                            <span class="hide-menu">Stock</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{Route('rpk.index')}}">RPK list</a></li>
+                                <li><a href="{{Route('rpk.index')}}">RPK Stock</a></li>
+                            </ul>
                         </li>
                        @endif
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('items', auth()->user()->getAllPermissions()->pluck('name')->toArray()))

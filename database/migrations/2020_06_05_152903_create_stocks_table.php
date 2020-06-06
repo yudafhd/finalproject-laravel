@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePenemrimaanTable extends Migration
+class CreateStocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreatePenemrimaanTable extends Migration
      */
     public function up()
     {
-        Schema::create('penemrimaan', function (Blueprint $table) {
+        Schema::create('stocks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('rpk_id');
-            $table->unsignedBigInteger('item_id');
-            $table->foreign('item_id')->references('id')->on('items');
+            $table->unsignedBigInteger('rpk_id')->nullable();
+            $table->unsignedBigInteger('item_id')->nullable();
             $table->foreign('rpk_id')->references('id')->on('rpk');
-            $table->integer('qty');
-            $table->date('date_penerimaan');
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->integer('qty')->nullable();
+            $table->integer('harga')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreatePenemrimaanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penemrimaan');
+        Schema::dropIfExists('stocks');
     }
 }

@@ -37,13 +37,7 @@
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">lokasi</label>
-                                    <input type="text" name="lokasi" class="form-control" value="">
-                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
-                                </div>
-                            </div>
+                     
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Telephone</label>
@@ -74,6 +68,30 @@
                                 </div>
                             </div>
                         </div>
+                        <h3 class="card-title" style="font-weight: bold">Kecamatan dan Kelurahan</h3>
+                        <hr>
+                        <div class="row" style="margin-bottom:20px">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Kecamatan</label>
+                                    <select class="select2 form-control" name="district_id" custom-select">
+                                        @foreach ($districts as $district)
+                                        <option value="{{$district->id}}">{{$district->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Kelurahan</label>
+                                    <select class="select2 form-control" name="village_id" custom-select">
+                                        @foreach ($villages as $village)
+                                        <option value="{{$village->id}}">{{$village->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <h3 class="card-title" style="font-weight: bold">Maps</h3>
                         <hr>
                         <div class="row" style="margin-bottom:20px">
@@ -85,6 +103,9 @@
 
                                 <input type="text" placeholder="longitude" class="form-control" name="longitude"
                                     id="longitude">
+                            </div>
+                            <div class="col-6">
+                                <input type="text" name="lokasi" class="form-control" value="" placeholder="lokasi" id="lokasi">
                             </div>
                         </div>
                         <div class="row">
@@ -116,25 +137,19 @@
         </div>
     </div>
 </div>
-<style>
-    .dropify-wrapper .dropify-message p {
-        text-align: center;
-    }
-
-</style>
 
 
 <script>
     function initAutocomplete() {
 
         var location = {
-            lat: -7.815742,
-            lng: 112.062121
+            lat: -7.4142711,
+            lng: 112.5304693
         };
 
         var map = new google.maps.Map(document.getElementById('mapGoogle'), {
             center: location,
-            zoom: 19,
+            zoom: 12,
             mapTypeId: 'roadmap'
         });
 
@@ -151,8 +166,10 @@
         var markers = [];
         searchBox.addListener('places_changed', function () {
             var places = searchBox.getPlaces();
+            console.log(places[0]);
             document.getElementById("langitude").value = places[0].geometry.location.lat();
             document.getElementById("longitude").value = places[0].geometry.location.lng();
+            document.getElementById("lokasi").value = places[0].formatted_address;
             if (places.length == 0) {
                 return;
             }
