@@ -94,6 +94,58 @@ class RpkController extends Controller
         }
     }
 
+    public function verify(Request $request, Rpk $rpk)
+    {
+        try {
+            $rpk->status = 'ACTIVE';
+            $rpk->save();
+            $request->session()->flash('alert-success', "Rpk berhasil di perbarui!");
+            return redirect()->route('rpk.index');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect()->route('rpk.index');
+        }
+    }
+
+    public function disable(Request $request, Rpk $rpk)
+    {
+        try {
+            $rpk->status = 'DISABLED';
+            $rpk->save();
+            $request->session()->flash('alert-success', "Rpk berhasil di perbarui!");
+            return redirect()->route('rpk.index');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect()->route('rpk.index');
+        }
+    }
+
+    public function reject(Request $request, Rpk $rpk)
+    {
+        try {
+            $rpk->status = 'REJECT';
+            $rpk->save();
+            $request->session()->flash('alert-success', "Rpk berhasil di perbarui!");
+            return redirect()->route('rpk.index');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect()->route('rpk.index');
+        }
+    }
+
+    public function active(Request $request, Rpk $rpk)
+    {
+        try {
+            $rpk->status = 'ACTIVE';
+            $rpk->save();
+            $request->session()->flash('alert-success', "Rpk berhasil di perbarui!");
+            return redirect()->route('rpk.index');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect()->route('rpk.index');
+        }
+    }
+
     public function destroy(Request $request, Rpk $rpk)
     {
         try {

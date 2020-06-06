@@ -9,9 +9,7 @@ class Item extends Model
 
     protected $fillable = [
         'nama',
-        'deskripsi',
-        'qty',
-        'harga',
+        'deskripsi'
     ];
 
     protected $hidden = [

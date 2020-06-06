@@ -19,6 +19,7 @@ class Rpk extends Model
         'lokasi',
         'village_id',
         'district_id',
+        'status',
     ];
 
     protected $hidden = [

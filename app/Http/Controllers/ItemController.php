@@ -51,8 +51,6 @@ class ItemController extends Controller
         try {
             $item->nama = $request->nama;
             $item->deskripsi = $request->deskripsi;
-            $item->qty = $request->qty;
-            $item->harga = $request->harga;
             $item->save();
             $request->session()->flash('alert-success', "Item berhasil di perbarui!");
             return redirect()->route('item.index');

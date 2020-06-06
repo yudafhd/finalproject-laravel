@@ -1,7 +1,7 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">EDIT ITEM</h3>
+        <h3 class="text-themecolor">BUAT ITEM</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
@@ -24,32 +24,48 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('item.update', $item->id) }}" enctype="multipart/form-data"
+                <form method="POST" action="{{ Route('stock.store') }}" enctype="multipart/form-data"
                     onkeydown="return event.key != 'Enter';">
                     @csrf
-                    {{ method_field('PUT') }}
                     <div class="form-body">
-
+                        
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Nama</label>
-                                    <input type="text" name="nama" class="form-control" value="{{$item->nama}}">
-                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+                                    <label class="control-label">RPK Kios</label>
+                                    <select class="form-control" name="rpk_id" custom-select">
+                                        @foreach ($rpks as $rpk)
+                                        <option value="{{$rpk->id}}">{{$rpk->nama_kios}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                            </div>                    
-                        </div>
-                        <div class="row">
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Deskripsi</label>
-                                    <input type="text" name="deskripsi" class="form-control"
-                                        value="{{$item->deskripsi}}">
+                                    <label class="control-label">Item</label>
+                                    <select class="form-control" name="item_id" custom-select">
+                                        @foreach ($items as $item)
+                                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">QTY</label>
+                                    <input type="number" name="qty" class="form-control" value="">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
-                            </div>             
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Harga</label>
+                                    <input type="number" name="harga" class="form-control" value="">
+                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-success">
+                         <button type="submit" class="btn btn-success">
                             <i class="fa fa-check"></i> Save</button>
                         <a href="{{url('/item')}}" class="btn btn-inverse">Cancel</a>
                     </div>

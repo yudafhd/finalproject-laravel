@@ -27,8 +27,7 @@
                 <form method="POST" action="{{ Route('item.store') }}" enctype="multipart/form-data"
                     onkeydown="return event.key != 'Enter';">
                     @csrf
-                    <div class="form-body">
-                        
+                    <div class="form-body">   
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -37,24 +36,12 @@
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Deskripsi</label>
                                     <input type="text" name="deskripsi" class="form-control" value="">
-                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">QTY</label>
-                                    <input type="number" name="qty" class="form-control" value="">
-                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Harga</label>
-                                    <input type="number" name="harga" class="form-control" value="">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>

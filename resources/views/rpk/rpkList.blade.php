@@ -41,7 +41,7 @@
                     Buat
                 </a>
                 @if(count($rpks) > 0)
-                <div class="table-responsive m-t-10">
+                <div class="table-responsive m-t-10 p-b-30 p-t-30">
                     <table id="myTable" class="table">
                         <thead>
                             <tr>
@@ -49,6 +49,7 @@
                                 <th>Pemilik</th>
                                 <th>Telephone</th>
                                 <th>Jam Buka</th>
+                                <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -59,6 +60,15 @@
                                 <td>{{ $rpk->user->name }}</td>  
                                 <td>{{ $rpk->telp }}</td>  
                                 <td>{{ date('H:i', strtotime($rpk->jam_buka)) }}</td>  
+                                @if ($rpk->status == 'PENDING')
+                                <td><span class="badge badge-info">{{ $rpk->status }}</span></td>  
+                                @elseif($rpk->status == 'ACTIVE')
+                                <td><span class="badge badge-success">{{ $rpk->status }}</span></td>  
+                                @elseif ($rpk->status == 'DISABLED')
+                                <td><span class="badge badge-secondary">{{ $rpk->status }}</span></td>
+                                @else
+                                <td><span class="badge badge-danger">{{ $rpk->status }}</span></td>
+                                @endif
                                 <td style="text-align: center">
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
@@ -74,7 +84,34 @@
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>
                                                 </form>
-                                                
+                                                @if ($rpk->status =='PENDING')
+                                                <form method="POST" action="{{Route('rpk.verify', $rpk->id)}}">
+                                                    @csrf
+                                                    {{ method_field('PUT') }}
+                                                    <button type="submit" class="btn"> Verifikasi </button>
+                                                </form>
+                                                @endif   
+                                                @if ($rpk->status =='ACTIVE')
+                                                <form method="POST" action="{{Route('rpk.disable', $rpk->id)}}">
+                                                    @csrf
+                                                    {{ method_field('PUT') }}
+                                                    <button type="submit" class="btn"> Disable </button>
+                                                </form>
+                                                @endif   
+                                                @if ($rpk->status =='PENDING')
+                                                <form method="POST" action="{{Route('rpk.reject', $rpk->id)}}">
+                                                    @csrf
+                                                    {{ method_field('PUT') }}
+                                                    <button type="submit" class="btn"> Reject </button>
+                                                </form>
+                                                @endif   
+                                                @if ($rpk->status =='DISABLED')
+                                                <form method="POST" action="{{Route('rpk.actived', $rpk->id)}}">
+                                                    @csrf
+                                                    {{ method_field('PUT') }}
+                                                    <button type="submit" class="btn"> Active </button>
+                                                </form>
+                                                @endif   
                                         </div>
                                     </div>
                                 </td>

@@ -1,14 +1,14 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">Item</h3>
+        <h3 class="text-themecolor">STOCK</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="javascript:void(0)">Home</a>
             </li>
-            <li class="breadcrumb-item active">Item</li>
+            <li class="breadcrumb-item active">STOCK</li>
         </ol>
     </div>
 </div>
@@ -32,33 +32,31 @@
                         </button>
                 </div>
                 @endif
-                <span>
-                    Total Item 
-                    <span class="label label-success label-rounded">{{count($items)}}</span>
-                </span>
-                <a href="{{Route('item.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('stock.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     Buat
                 </a>
-                @if(count($items) > 0)
+                @if(count($stocks) > 0)
                 <div class="table-responsive m-t-10">
                     <table id="myTable" class="table">
                         <thead>
                             <tr>
+                                <th>Nama Kios</th>
                                 <th>Nama</th>
                                 <th>Deskripsi</th>
-                                {{-- <th>Qty</th>
-                                <th>Harga</th> --}}
+                                <th>Qty</th>
+                                <th>Harga</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($items as $item)
+                            @foreach ($stocks as $stock)
                             <tr>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ $item->deskripsi }}</td>
-                                {{-- <td>{{ $item->qty }}</td>
-                                <td>{{ "Rp " . number_format($item->harga,2,',','.') }}</td> --}}
+                                <td>{{ $stock->rpk->nama_kios }}</td>
+                                <td>{{ $stock->item->nama }}</td>
+                                <td>{{ $stock->item->deskripsi }}</td>
+                                <td>{{ $stock->qty }}</td>
+                                <td>{{ "Rp " . number_format($stock->harga,2,',','.') }}</td>
                                 <td style="text-align: center">
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
@@ -68,8 +66,8 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('item.edit', $item->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('item.destroy', $item->id)}}">
+                                                href="{{Route('stock.edit', $stock->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('item.destroy', $stock->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>

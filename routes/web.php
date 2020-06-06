@@ -24,6 +24,17 @@ Route::middleware(['auth'])->group(function () {
     // RPK
     Route::resource('rpk', 'RpkController');
 
+    // Stock
+    Route::resource('stock', 'StockController');
+
+    // RPK
+    Route::group(['prefix' => 'rpk'], function () {
+        Route::put('/verify/{rpk}', 'RpkController@verify')->name('rpk.verify');
+        Route::put('/disabled/{rpk}', 'RpkController@disable')->name('rpk.disable');
+        Route::put('/reject/{rpk}', 'RpkController@reject')->name('rpk.reject');
+        Route::put('/active/{rpk}', 'RpkController@active')->name('rpk.actived');
+    });
+
     // Item
     Route::resource('item', 'ItemController');
 

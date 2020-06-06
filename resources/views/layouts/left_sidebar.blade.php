@@ -39,11 +39,11 @@
                         </li>
                         @endif
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('rpk', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-settings-box"></i>
-                            <span class="hide-menu">Stock</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi  mdi-checkbox-marked-outline"></i>
+                            <span class="hide-menu">RPK</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{Route('rpk.index')}}">RPK list</a></li>
-                                <li><a href="{{Route('rpk.index')}}">RPK Stock</a></li>
+                                <li><a href="{{Route('stock.index')}}">RPK stock</a></li>
                             </ul>
                         </li>
                        @endif
@@ -55,11 +55,6 @@
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('pemesanan', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a href="{{Route('pemesanan.index')}}">
                             <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Pemesanan</span></a>
-                        </li>
-                       @endif
-                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('penerimaan', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a href="{{Route('penerimaan.index')}}">
-                            <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Penerimaan</span></a>
                         </li>
                        @endif
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
