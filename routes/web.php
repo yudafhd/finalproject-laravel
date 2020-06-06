@@ -16,7 +16,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/update/{id}', 'UserController@update')->name('user.update');
         Route::get('/delete/{id}', 'UserController@delete')->name('user.delete');
         Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');
+        Route::post('/storeUpdateProfile', 'UserController@storeUpdateProfile')->name('user.store.update.profile');
     });
+
+    Route::get('/profile', 'UserController@profile')->name('user.profile');
 
     // RPK
     Route::resource('rpk', 'RpkController');

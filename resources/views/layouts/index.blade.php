@@ -138,7 +138,7 @@
                                         <div class="message-center">
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="user-img"> <img src="../assets/images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                                <div class="user-img"> <img src="../assets/images/users/user.png" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
                                             </a>
@@ -184,18 +184,18 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ asset('assets/images/users/1.jpg') }}" alt="user"
+                                <img src="{{ asset('assets/images/users/user.png') }}" alt="user"
                                     class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="{{ asset('assets/images/users/1.jpg') }}"
+                                            <div class="u-img"><img src="{{ asset('assets/images/users/user.png') }}"
                                                     alt="user"></div>
                                             <div class="u-text">
                                                 <h4>{{auth()->user()->name}}</h4>
-                                                <p class="text-muted">{{auth()->user()->email}}</p><a
-                                                    href="pages-profile.html"
+                                                <p class="text-muted">{{auth()->user()->email}}</p>
+                                                <a href="{{Route('user.profile')}}"
                                                     class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                                             </div>
                                         </div>

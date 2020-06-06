@@ -2,20 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\Pemesanan;
+use App\User;
+use App\Rpk;
 use Illuminate\Http\Request;
 
 class PemesananController extends Controller
 {
 
-    public function index()
+    public function __construct()
     {
-        //
+        parent::__construct();
     }
 
-    public function create()
+
+    public function index(Request $request)
     {
-        //
+        $pemesanans = Pemesanan::all();
+        $success_message = $request->session()->get('alert-success');
+        $alert_error = $request->session()->get('alert-error');
+        return view('pemesanan.pemesananList',  ['pemesanans' => $pemesanans, 'alert_error' => $alert_error, 'success_message' => $success_message]);
+    }
+
+    public function create(Request $request)
+    {
+        $users = User::all()->where('access_type', 'umum');
+        $items = Item::all();
+        $rpks = Rpk::all();
+        $error_message = $request->session()->get('alert-error');
+        return view(
+            'pemesanan.pemesananCreate',
+            [
+                'items' => $items,
+                'rpks' => $rpks,
+                'users' => $users,
+                'error_message' => $error_message
+            ]
+        );
     }
 
     public function store(Request $request)

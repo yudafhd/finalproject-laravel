@@ -14,7 +14,7 @@ class AddStatusToPemesananTable extends Migration
     public function up()
     {
         Schema::table('pemesanan', function (Blueprint $table) {
-            $table->string('status')->nullable();
+            $table->string('status')->default('OPEN');
         });
     }
 

@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class RpkController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     public function index(Request $request)
     {

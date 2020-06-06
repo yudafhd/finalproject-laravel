@@ -1,14 +1,14 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">Item</h3>
+        <h3 class="text-themecolor">Pemesanan</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="javascript:void(0)">Home</a>
             </li>
-            <li class="breadcrumb-item active">Item</li>
+            <li class="breadcrumb-item active">Pemesanan</li>
         </ol>
     </div>
 </div>
@@ -33,33 +33,37 @@
                 </div>
                 @endif
                 <span>
-                    Total Item 
-                    <span class="label label-success label-rounded">{{count($items)}}</span>
+                    Total Pesanan 
+                    <span class="label label-success label-rounded">{{count($pemesanans)}}</span>
                 </span>
-                <a href="{{Route('item.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                {{-- <a href="{{Route('pemesanan.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     Buat
-                </a>
-                @if(count($items) > 0)
+                </a> --}}
+                @if(count($pemesanans) > 0)
                 <div class="table-responsive m-t-10">
                     <table id="myTable" class="table">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Nama Pemesan</th>
+                                <th>Kios</th>
                                 <th>Deskripsi</th>
-                                <th>Qty</th>
-                                <th>Harga</th>
-                                <th></th>
+                                <th>qty</th>
+                                <th>harga</th>
+                                <th>status</th>
+                                {{-- <th></th> --}}
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($items as $item)
+                            @foreach ($pemesanans as $pemesanan)
                             <tr>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ $item->deskripsi }}</td>
-                                <td>{{ $item->qty }}</td>
-                                <td>{{ "Rp " . number_format($item->harga,2,',','.') }}</td>
-                                <td style="text-align: center">
+                                <td>{{ $pemesanan->user->name }}</td>
+                                <td>{{ $pemesanan->rpk->nama_kios}}</td>
+                                <td>{{ $pemesanan->item->nama }}</td>
+                                <td>{{ $pemesanan->qty }}</td>
+                                <td>{{"Rp " . number_format($pemesanan->harga,2,',','.') }}</td>
+                                <td>{{ $pemesanan->status }}</td>
+                                {{-- <td style="text-align: center">
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -68,8 +72,8 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('item.edit', $item->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('item.destroy', $item->id)}}">
+                                                href="{{Route('item.edit', $pemesanan->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('item.destroy', $pemesanan->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>
@@ -77,7 +81,7 @@
                                                 
                                         </div>
                                     </div>
-                                </td>
+                                </td> --}}
                             </tr>
                             @endforeach
                         </tbody>

@@ -13,6 +13,7 @@ class UserController extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('auth');
     }
 
@@ -76,9 +77,12 @@ class UserController extends Controller
                 $userDetail->access_type = $roles->name;
             }
 
+            if ($request->date_register) {
+                $userDetail->date_register = $request->date_register;
+            }
+
             $userDetail->name = $request->name;
             $userDetail->email = $request->email;
-            $userDetail->date_register = $request->date_register;
             $userDetail->address = $request->address;
 
             if ($request->password) {
@@ -93,11 +97,52 @@ class UserController extends Controller
             return redirect('/user/admin/' . $request->access_type);
         }
     }
+    public function storeUpdateProfile(Request $request)
+    {
+        try {
+            $roles = null;
+
+            if ($request->access_type) {
+                $roles = Role::findByName($request->access_type);
+            }
+
+            $userDetail = User::find($request->id);
+
+            // assign role to user
+            if ($roles) {
+                $userDetail->syncRoles([$roles->name]);
+                $userDetail->access_type = $roles->name;
+            }
+
+            if ($request->date_register) {
+                $userDetail->date_register = $request->date_register;
+            }
+
+            $userDetail->name = $request->name;
+            $userDetail->email = $request->email;
+            $userDetail->address = $request->address;
+
+            if ($request->password) {
+                $userDetail->password = bcrypt($request->password);
+            }
+            $userDetail->save();
+            $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
+            return redirect('/profile');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect('/profile');
+        }
+    }
+
+    public function profile()
+    {
+        return view('users.profile',  []);
+    }
 
     public function delete($id, Request $request)
     {
         try {
-
             $user = User::find($id);
             $user->syncRoles();
             $user->delete();
