@@ -120,8 +120,8 @@ class UserController extends Controller
         try {
             $roles = null;
 
-            if ($request->access_type) {
-                $roles = Role::findByName($request->access_type);
+            if ($request->type) {
+                $roles = Role::findByName($request->type);
             }
 
             $userDetail = User::find($request->id);
@@ -129,11 +129,7 @@ class UserController extends Controller
             // assign role to user
             if ($roles) {
                 $userDetail->syncRoles([$roles->name]);
-                $userDetail->access_type = $roles->name;
-            }
-
-            if ($request->date_register) {
-                $userDetail->date_register = $request->date_register;
+                $userDetail->type = $roles->name;
             }
 
             $userDetail->name = $request->name;

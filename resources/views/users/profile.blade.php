@@ -25,7 +25,7 @@
                 <hr> </div>
             <div class="card-body"> 
                 <small class="text-muted">Tanggal Daftar </small>
-                <h6>{{auth()->user()->date_register}}</h6> 
+                <h6>{{auth()->user()->created_at}}</h6> 
                 <small class="text-muted">Email address </small>
                 <h6>{{auth()->user()->email}}</h6> 
                 <small class="text-muted">Address</small>
