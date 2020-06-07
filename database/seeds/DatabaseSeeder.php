@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'superadmin',
             'email' => 'superadmin@gmail.com',
             'password' => Hash::make('Smkn1user'),
-            'level' => 'superadmin',
+            'type' => 'superadmin',
         ]);
 
         DB::table('users')->insert([
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('Smkn1user'),
-            'level' => 'admin',
+            'type' => 'admin',
         ]);
 
         DB::table('roles')->insert([

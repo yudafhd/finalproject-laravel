@@ -22,7 +22,6 @@ class AddInformationToUsersTable extends Migration
             $table->string('parent_name')->nullable();
             $table->string('short_info')->nullable();
             $table->string('type')->nullable();
-            $table->unsignedInteger('email')->nullable()->change();
         });
     }
 
