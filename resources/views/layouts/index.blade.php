@@ -18,7 +18,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">RKP Bulog</p>
+            <p class="loader__label">{{ config('app.name') }}</p>
         </div>
     </div>
 
@@ -40,7 +40,7 @@
                         <!-- Logo text --><span>
                             <!-- dark Logo text -->
 
-                            <span class="main-logo-text"> RKP Bulog </span>
+                            <span class="main-logo-text"> {{ config('app.name') }} </span>
 
                             <!-- Light Logo text -->
                             <img src="{{ asset('assets/images/logo-light-text.png') }}" class="light-logo"
@@ -230,7 +230,7 @@
             <div class="container-fluid">
                 @yield('content')
             </div>
-            <footer class="footer"> © 2019 RKP Bulog </footer>
+            <footer class="footer"> © 2019 {{ config('app.name') }} </footer>
         </div>
     </div>
     @include('layouts.js_section')

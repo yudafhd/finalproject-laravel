@@ -3,7 +3,7 @@
 <div class="preloader">
     <div class="loader">
         <div class="loader__figure"></div>
-        <p class="loader__label">RKP Bulog</p>
+        <p class="loader__label">{{ config('app.name') }}</p>
     </div>
 </div>
 <div class="login-register" style="background-image:url(../assets/images/background/login-register.jpg);">
