@@ -61,7 +61,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tanggal Absent</label>
-                                    <input type="text" class="form-control" name="date" id="mdatepicker" />
+                                    <input type="text" class="form-control" name="date_absent" id="mdatepicker" />
                                 </div>
                             </div>
                             <div class="col-md-6">

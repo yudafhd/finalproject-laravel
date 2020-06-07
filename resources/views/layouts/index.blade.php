@@ -182,12 +182,12 @@
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" 
                             data-toggle="dropdown" aria-haspopup="true" 
                             aria-expanded="false">
-                            <img src="{{ asset('assets/images/users/1.jpg') }}" alt="user" class="profile-pic" /></a>
+                            <img src="{{ asset('assets/images/users/user.png') }}" alt="user" class="profile-pic" style="background: white"/></a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="{{ asset('assets/images/users/1.jpg') }}" alt="user"></div>
+                                            <div class="u-img"><img src="{{ asset('assets/images/users/user.png') }}" alt="user"></div>
                                             <div class="u-text">
                                                 <h4>{{auth()->user()->name}}</h4>
                                                 <p class="text-muted">{{auth()->user()->email}}</p>

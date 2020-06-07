@@ -31,19 +31,18 @@ class AbsentsController extends Controller
     {
 
         try {
-
             $request->validate([
-                'reason' => 'required',
                 'user_id' => 'required',
                 'schedule_id' => 'required',
-                'date' => 'required',
+                'date_absent' => 'required',
+                'reason' => 'required',
             ]);
 
             $absents = new Absents;
             $absents->user_id = $request->user_id;
             $absents->schedule_id = $request->schedule_id;
             $absents->reason = $request->reason;
-            $absents->date = $request->date;
+            $absents->date_absent = $request->date_absent;
             $absents->description = $request->description;
             $absents->save();
 
@@ -75,7 +74,7 @@ class AbsentsController extends Controller
             $absents = Absents::find($id);
             $absents->user_id = $request->user_id;
             $absents->schedule_id = $request->schedule_id;
-            $absents->date = $request->date;
+            $absents->date_absent = $request->date_absent;
             $absents->reason = $request->reason;
             $absents->description = $request->description;
             $absents->save();
