@@ -1,14 +1,14 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">E-Warung</h3>
+        <h3 class="text-themecolor">E-Warong</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="javascript:void(0)">Home</a>
             </li>
-            <li class="breadcrumb-item active">E-Warung</li>
+            <li class="breadcrumb-item active">E-Warong</li>
         </ol>
     </div>
 </div>
@@ -33,10 +33,10 @@
                 </div>
                 @endif
                 <span>
-                    Total E-Warung 
+                    Total E-Warong 
                     <span class="label label-success label-rounded">{{count($rpks)}}</span>
                 </span>
-                <a href="{{Route('ewarung.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('ewarong.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     Buat
                 </a>
@@ -78,35 +78,35 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('ewarung.edit', $rpk->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('ewarung.destroy', $rpk->id)}}">
+                                                href="{{Route('ewarong.edit', $rpk->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('ewarong.destroy', $rpk->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>
                                                 </form>
                                                 @if ($rpk->status =='PENDING')
-                                                <form method="POST" action="{{Route('ewarung.verify', $rpk->id)}}">
+                                                <form method="POST" action="{{Route('ewarong.verify', $rpk->id)}}">
                                                     @csrf
                                                     {{ method_field('PUT') }}
                                                     <button type="submit" class="btn"> Verifikasi </button>
                                                 </form>
                                                 @endif   
                                                 @if ($rpk->status =='ACTIVE')
-                                                <form method="POST" action="{{Route('ewarung.disable', $rpk->id)}}">
+                                                <form method="POST" action="{{Route('ewarong.disable', $rpk->id)}}">
                                                     @csrf
                                                     {{ method_field('PUT') }}
                                                     <button type="submit" class="btn"> Disable </button>
                                                 </form>
                                                 @endif   
                                                 @if ($rpk->status =='PENDING')
-                                                <form method="POST" action="{{Route('ewarung.reject', $rpk->id)}}">
+                                                <form method="POST" action="{{Route('ewarong.reject', $rpk->id)}}">
                                                     @csrf
                                                     {{ method_field('PUT') }}
                                                     <button type="submit" class="btn"> Reject </button>
                                                 </form>
                                                 @endif   
                                                 @if ($rpk->status =='DISABLED')
-                                                <form method="POST" action="{{Route('ewarung.actived', $rpk->id)}}">
+                                                <form method="POST" action="{{Route('ewarong.actived', $rpk->id)}}">
                                                     @csrf
                                                     {{ method_field('PUT') }}
                                                     <button type="submit" class="btn"> Active </button>

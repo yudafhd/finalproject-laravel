@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">E-Warung Kios</label>
+                                    <label class="control-label">E-Warong Kios</label>
                                     <select class="form-control" name="rpk_id" custom-select">
                                         <option >Pilih Kios</option>
                                         @foreach ($rpks as $rpk)

@@ -22,14 +22,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', 'UserController@profile')->name('user.profile');
 
     // RPK
-    Route::resource('ewarung', 'RpkController');
+    Route::resource('ewarong', 'RpkController');
 
     // RPK
-    Route::group(['prefix' => 'ewarung'], function () {
-        Route::put('/verify/{rpk}', 'RpkController@verify')->name('ewarung.verify');
-        Route::put('/disabled/{rpk}', 'RpkController@disable')->name('ewarung.disable');
-        Route::put('/reject/{rpk}', 'RpkController@reject')->name('ewarung.reject');
-        Route::put('/active/{rpk}', 'RpkController@active')->name('ewarung.actived');
+    Route::group(['prefix' => 'ewarong'], function () {
+        Route::put('/verify/{rpk}', 'RpkController@verify')->name('ewarong.verify');
+        Route::put('/disabled/{rpk}', 'RpkController@disable')->name('ewarong.disable');
+        Route::put('/reject/{rpk}', 'RpkController@reject')->name('ewarong.reject');
+        Route::put('/active/{rpk}', 'RpkController@active')->name('ewarong.actived');
     });
 
     // Stock

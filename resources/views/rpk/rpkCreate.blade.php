@@ -1,14 +1,14 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">BUAT E-Warung</h3>
+        <h3 class="text-themecolor">BUAT E-Warong</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="javascript:void(0)">Home</a>
             </li>
-            <li class="breadcrumb-item active">E-Warung</li>
+            <li class="breadcrumb-item active">E-Warong</li>
         </ol>
     </div>
 </div>
@@ -24,7 +24,7 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('ewarung.store') }}" enctype="multipart/form-data"
+                <form method="POST" action="{{ Route('ewarong.store') }}" enctype="multipart/form-data"
                     onkeydown="return event.key != 'Enter';">
                     @csrf
                     <div class="form-body">

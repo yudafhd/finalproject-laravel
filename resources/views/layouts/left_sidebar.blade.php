@@ -34,16 +34,16 @@
                                 @if (auth()->user()->access_type ==='superadmin' ||  in_array('guru', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                                 <li><a href="{{url('/user/umum')}}">User umum</a></li>@endif
                                 @if (auth()->user()->access_type ==='superadmin' ||  in_array('guru', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                                <li><a href="{{url('/user/rpk')}}">User E-Warung</a></li>@endif
+                                <li><a href="{{url('/user/rpk')}}">User E-Warong</a></li>@endif
                             </ul>
                         </li>
                         @endif
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('rpk', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi  mdi-checkbox-marked-outline"></i>
-                            <span class="hide-menu">E-Warung</span></a>
+                            <span class="hide-menu">E-Warong</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{Route('ewarung.index')}}">E-Warung list</a></li>
-                                <li><a href="{{Route('stock.index')}}">E-Warung stock</a></li>
+                                <li><a href="{{Route('ewarong.index')}}">E-Warong list</a></li>
+                                <li><a href="{{Route('stock.index')}}">E-Warong stock</a></li>
                             </ul>
                         </li>
                        @endif
