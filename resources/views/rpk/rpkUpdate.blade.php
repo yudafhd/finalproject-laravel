@@ -130,7 +130,7 @@
                         <div class="form-actions" style="margin-top:20px">
                         </div> <button type="submit" class="btn btn-success">
                             <i class="fa fa-check"></i> Save</button>
-                        <a href="{{url('/rpk')}}" class="btn btn-inverse">Cancel</a>
+                        <a href="{{url('/ewarong')}}" class="btn btn-inverse">Cancel</a>
                     </div>
                 </form>
             </div>

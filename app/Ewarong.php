@@ -30,4 +30,8 @@ class Ewarong extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function pemesanan()
+    {
+        return $this->hasMany('App\Pemesanan');
+    }
 }
