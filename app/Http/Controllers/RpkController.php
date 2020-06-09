@@ -20,7 +20,7 @@ class RpkController extends Controller
         $rpks = Ewarong::all();
         $success_message = $request->session()->get('alert-success');
         $alert_error = $request->session()->get('alert-error');
-        return view('ewarongrpkList',  ['rpks' => $rpks, 'alert_error' => $alert_error, 'success_message' => $success_message]);
+        return view('rpkList',  ['rpks' => $rpks, 'alert_error' => $alert_error, 'success_message' => $success_message]);
     }
 
     public function create(Request $request)
