@@ -20,7 +20,7 @@ class StockController extends Controller
         $stocks = Stock::all();
         $success_message = $request->session()->get('alert-success');
         $alert_error = $request->session()->get('alert-error');
-        return view('rpk.stockList',  ['stocks' => $stocks, 'alert_error' => $alert_error, 'success_message' => $success_message]);
+        return view('ewarongstockList',  ['stocks' => $stocks, 'alert_error' => $alert_error, 'success_message' => $success_message]);
     }
 
     public function create(Request $request)
@@ -29,7 +29,7 @@ class StockController extends Controller
         $rpks = Ewarong::all();
         $error_message = $request->session()->get('alert-error');
         return view(
-            'rpk.stockCreate',
+            'ewarongstockCreate',
             [
                 'items' => $items,
                 'rpks' => $rpks,
@@ -61,7 +61,7 @@ class StockController extends Controller
         $items = Item::all();
         $rpks = Ewarong::all();
         $error_message = $request->session()->get('alert-error');
-        return view('rpk.stockUpdate', [
+        return view('ewarongstockUpdate', [
             'stock' => $stock,
             'items' => $items,
             'rpks' => $rpks,
