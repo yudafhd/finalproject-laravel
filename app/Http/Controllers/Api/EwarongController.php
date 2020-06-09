@@ -39,7 +39,6 @@ class EwarongController extends Controller
                 $value->absenteeism = $this->getReasonById($value->id, $absent_today);
             } else {
                 if ($value->end_at <= $hours) {
-
                     $value->absenteeism = 'hadir';
                 } else {
                     $value->absenteeism = 'belum terjadwal';
@@ -55,9 +54,6 @@ class EwarongController extends Controller
     public function allEwarong()
     {
         $all_warong = Ewarong::all();
-        return response(['data' => [
-            'all_warong' => $all_warong,
-
-        ]]);
+        return response(['data' => $all_warong]);
     }
 }
