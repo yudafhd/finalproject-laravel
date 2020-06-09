@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Stock;
-use App\Rpk;
+use App\Ewarong;
 use App\Item;
 use Illuminate\Http\Request;
 
@@ -26,7 +26,7 @@ class StockController extends Controller
     public function create(Request $request)
     {
         $items = Item::all();
-        $rpks = Rpk::all();
+        $rpks = Ewarong::all();
         $error_message = $request->session()->get('alert-error');
         return view(
             'rpk.stockCreate',
@@ -59,7 +59,7 @@ class StockController extends Controller
     public function edit(Request $request, Stock $stock)
     {
         $items = Item::all();
-        $rpks = Rpk::all();
+        $rpks = Ewarong::all();
         $error_message = $request->session()->get('alert-error');
         return view('rpk.stockUpdate', [
             'stock' => $stock,

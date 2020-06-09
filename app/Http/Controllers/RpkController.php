@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Villages;
 use App\Districts;
-use App\Rpk;
+use App\Ewarong;
 use Illuminate\Http\Request;
 
 class RpkController extends Controller
@@ -17,7 +17,7 @@ class RpkController extends Controller
 
     public function index(Request $request)
     {
-        $rpks = Rpk::all();
+        $rpks = Ewarong::all();
         $success_message = $request->session()->get('alert-success');
         $alert_error = $request->session()->get('alert-error');
         return view('rpk.rpkList',  ['rpks' => $rpks, 'alert_error' => $alert_error, 'success_message' => $success_message]);
@@ -45,7 +45,7 @@ class RpkController extends Controller
     {
         $all_request =  $request->all();
         try {
-            $classes = Rpk::create($all_request);
+            $classes = Ewarong::create($all_request);
             $classes->save();
             $request->session()->flash('alert-success', "Kios berhasil dibuat!");
             return redirect()->route('rpk.index');
@@ -55,12 +55,12 @@ class RpkController extends Controller
         }
     }
 
-    public function show(Rpk $rpk)
+    public function show(Ewarong $rpk)
     {
         //
     }
 
-    public function edit(Request $request, Rpk $rpk)
+    public function edit(Request $request, Ewarong $rpk)
     {
         $districts = Districts::all()->whereIn('regency_id', [3576, 3516]);
         $districts_array = $districts->pluck('id');
@@ -77,7 +77,7 @@ class RpkController extends Controller
     }
 
 
-    public function update(Request $request, Rpk $rpk)
+    public function update(Request $request, Ewarong $rpk)
     {
         try {
             $rpk->user_id = $request->user_id;
@@ -90,7 +90,7 @@ class RpkController extends Controller
             $rpk->village_id = $request->village_id;
             $rpk->district_id = $request->district_id;
             $rpk->save();
-            $request->session()->flash('alert-success', "Rpk berhasil di perbarui!");
+            $request->session()->flash('alert-success', "Ewarong berhasil di perbarui!");
             return redirect()->route('rpk.index');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
@@ -98,12 +98,12 @@ class RpkController extends Controller
         }
     }
 
-    public function verify(Request $request, Rpk $rpk)
+    public function verify(Request $request, Ewarong $rpk)
     {
         try {
             $rpk->status = 'ACTIVE';
             $rpk->save();
-            $request->session()->flash('alert-success', "Rpk berhasil di perbarui!");
+            $request->session()->flash('alert-success', "Ewarong berhasil di perbarui!");
             return redirect()->route('rpk.index');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
@@ -111,12 +111,12 @@ class RpkController extends Controller
         }
     }
 
-    public function disable(Request $request, Rpk $rpk)
+    public function disable(Request $request, Ewarong $rpk)
     {
         try {
             $rpk->status = 'DISABLED';
             $rpk->save();
-            $request->session()->flash('alert-success', "Rpk berhasil di perbarui!");
+            $request->session()->flash('alert-success', "Ewarong berhasil di perbarui!");
             return redirect()->route('rpk.index');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
@@ -124,12 +124,12 @@ class RpkController extends Controller
         }
     }
 
-    public function reject(Request $request, Rpk $rpk)
+    public function reject(Request $request, Ewarong $rpk)
     {
         try {
             $rpk->status = 'REJECT';
             $rpk->save();
-            $request->session()->flash('alert-success', "Rpk berhasil di perbarui!");
+            $request->session()->flash('alert-success', "Ewarong berhasil di perbarui!");
             return redirect()->route('rpk.index');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
@@ -137,12 +137,12 @@ class RpkController extends Controller
         }
     }
 
-    public function active(Request $request, Rpk $rpk)
+    public function active(Request $request, Ewarong $rpk)
     {
         try {
             $rpk->status = 'ACTIVE';
             $rpk->save();
-            $request->session()->flash('alert-success', "Rpk berhasil di perbarui!");
+            $request->session()->flash('alert-success', "Ewarong berhasil di perbarui!");
             return redirect()->route('rpk.index');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
@@ -150,7 +150,7 @@ class RpkController extends Controller
         }
     }
 
-    public function destroy(Request $request, Rpk $rpk)
+    public function destroy(Request $request, Ewarong $rpk)
     {
         try {
             $rpk->delete();

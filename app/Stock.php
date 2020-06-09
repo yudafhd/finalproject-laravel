@@ -20,7 +20,7 @@ class Stock extends Model
 
     public function rpk()
     {
-        return $this->belongsTo('App\Rpk');
+        return $this->belongsTo('App\Ewarong');
     }
     public function item()
     {

@@ -29,6 +29,6 @@ class Pemesanan extends Model
     }
     public function rpk()
     {
-        return $this->belongsTo('App\Rpk');
+        return $this->belongsTo('App\Ewarong');
     }
 }

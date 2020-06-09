@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Item;
 use App\Pemesanan;
 use App\User;
-use App\Rpk;
+use App\Ewarong;
 use Illuminate\Http\Request;
 
 class PemesananController extends Controller
@@ -15,7 +15,6 @@ class PemesananController extends Controller
     {
         parent::__construct();
     }
-
 
     public function index(Request $request)
     {
@@ -29,7 +28,7 @@ class PemesananController extends Controller
     {
         $users = User::all()->where('access_type', 'umum');
         $items = Item::all();
-        $rpks = Rpk::all();
+        $rpks = Ewarong::all();
         $error_message = $request->session()->get('alert-error');
         return view(
             'pemesanan.pemesananCreate',
