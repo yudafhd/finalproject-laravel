@@ -34,4 +34,8 @@ class Ewarong extends Model
     {
         return $this->hasMany('App\Pemesanan');
     }
+    public function stock()
+    {
+        return $this->hasMany('App\Stock');
+    }
 }

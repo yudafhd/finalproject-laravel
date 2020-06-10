@@ -53,7 +53,7 @@ class EwarongController extends Controller
 
     public function allEwarong()
     {
-        $all_warong = Ewarong::with('pemesanan')->get();
+        $all_warong = Ewarong::with(['pemesanan','stock'])->get();
         return response(['data' => $all_warong]);
     }
 }
