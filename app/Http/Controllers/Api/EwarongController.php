@@ -54,11 +54,13 @@ class EwarongController extends Controller
         ]]);
     }
 
-    public function allEwarong()
+    public function allEwarong(Request $request)
     {
-        $all_warong = Ewarong::with('pemesanan', 'stock', 'stock.item')->get();
-        return response(['data' => $all_warong]);
+        $all_warong = Ewarong::with('pemesanan', 'stock', 'stock.item');
+        $after = $all_warong->where('jam_buka', '<', $request->time)->get();
+        return response(['data' => $after]);
     }
+
     public function allVillagesAndDistrics()
     {
         $districts = Districts::all()->whereIn('regency_id', [3576, 3516]);
