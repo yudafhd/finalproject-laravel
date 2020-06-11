@@ -56,8 +56,13 @@ class EwarongController extends Controller
 
     public function allEwarong(Request $request)
     {
+        $after = [];
         $all_warong = Ewarong::with('pemesanan', 'stock', 'stock.item');
-        $after = $all_warong->where('jam_buka', '<', $request->time)->get();
+        if ($request->time) {
+            $after = $all_warong->where('jam_buka', '<', $request->time);
+        } else {
+            $after = $all_warong->get();
+        }
         return response(['data' => $after]);
     }
 
