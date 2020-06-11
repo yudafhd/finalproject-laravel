@@ -8,6 +8,8 @@ use App\Absents;
 use App\Schedules;
 use App\Subjects;
 use App\Ewarong;
+use App\Villages;
+use App\Districts;
 
 class EwarongController extends Controller
 {
@@ -53,7 +55,17 @@ class EwarongController extends Controller
 
     public function allEwarong()
     {
-        $all_warong = Ewarong::with('pemesanan','stock','stock.item')->get();
+        $all_warong = Ewarong::with('pemesanan', 'stock', 'stock.item')->get();
         return response(['data' => $all_warong]);
+    }
+    public function allVillagesAndDistrics()
+    {
+        $districts = Districts::all()->whereIn('regency_id', [3576, 3516]);
+        $districts_array = $districts->pluck('id');
+        $villages = Villages::all()->whereIn('district_id', $districts_array);
+        return response(['data' => [
+            'districts' => $districts,
+            'villages' => $villages
+        ]]);
     }
 }
