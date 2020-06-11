@@ -59,7 +59,7 @@ class EwarongController extends Controller
         $after = [];
         $all_warong = Ewarong::with('pemesanan', 'stock', 'stock.item');
         if ($request->time) {
-            $after = $all_warong->where('jam_buka', '<', $request->time);
+            $after = $all_warong->where('jam_buka', '<', $request->time)->get();
         } else {
             $after = $all_warong->get();
         }
