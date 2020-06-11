@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/login', 'Api\AuthController@login');
 Route::get('/ewarong', 'Api\EwarongController@allEwarong');
 Route::get('/allvillagesanddistrics', 'Api\EwarongController@allVillagesAndDistrics');
+Route::get('/allitems', 'Api\EwarongController@allItems');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/home', 'Api\HomeTeacherController@index');
