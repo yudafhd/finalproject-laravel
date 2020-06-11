@@ -10,6 +10,7 @@ use App\Subjects;
 use App\Ewarong;
 use App\Villages;
 use App\Districts;
+use App\Item;
 
 class EwarongController extends Controller
 {
@@ -67,5 +68,10 @@ class EwarongController extends Controller
             'districts' => $districts,
             'villages' => $villages
         ]]);
+    }
+    public function allItems()
+    {
+        $items = Item::all();
+        return response(['data' => $items]);
     }
 }
