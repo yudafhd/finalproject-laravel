@@ -64,10 +64,10 @@ class EwarongController extends Controller
         }, 'stock.item']);
 
         if ($request->district_id) {
-            $all_warong->where('district_id', '<=', $request->district_id);
+            $all_warong->where('district_id', $request->district_id);
         }
         if ($request->village_id) {
-            $all_warong->where('village_id', '<=', $request->village_id);
+            $all_warong->where('village_id', $request->village_id);
         }
         if ($request->time) {
             $all_warong->where('jam_buka', '<=', $request->time);
