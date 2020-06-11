@@ -63,11 +63,18 @@ class EwarongController extends Controller
             }
         }, 'stock.item']);
 
-        if ($request->time) {
-            $after = $all_warong->where('jam_buka', '<=', $request->time)->get();
-        } else {
-            $after = $all_warong->get();
+        if ($request->district_id) {
+            $all_warong->where('district_id', '<=', $request->district_id);
         }
+        if ($request->village_id) {
+            $all_warong->where('village_id', '<=', $request->village_id);
+        }
+        if ($request->time) {
+            $all_warong->where('jam_buka', '<=', $request->time);
+        }
+
+        $after = $all_warong->get();
+
         if ($request->items) {
             if (count($after)) {
                 $data = [];
@@ -78,6 +85,18 @@ class EwarongController extends Controller
                 }
                 $after = $data;
             }
+        }
+        if ($request->usemylocation) {
+            $cLat = $request->latitude;
+            $clng = $request->longitude;
+            $km = $request->km;
+            $data = [];
+            foreach ($after as $warong) {
+                if ($this->checkRadius($cLat, $clng, $warong->latitude, $warong->longitude, $km)) {
+                    array_push($data, $warong);
+                }
+            }
+            $after = $data;
         }
         return response(['data' => $after]);
     }
@@ -96,5 +115,29 @@ class EwarongController extends Controller
     {
         $items = Item::all();
         return response(['data' => $items]);
+    }
+
+    public function checkRadius($cLat, $clng, $chckLat, $chcklng, $km = 1)
+    {
+        $ky = 40000 / 360;
+        $kx = cos(pi() * $cLat / 180.0) * $ky;
+        $dx = abs($clng - $chcklng) * $kx;
+        $dy = abs($cLat - $chckLat) * $ky;
+        return sqrt($dx * $dx + $dy * $dy) <= $km;
+    }
+    public function getFromMyRadius(Request $request)
+    {
+        $data = [];
+        $cLat = $request->latitude;
+        $clng = $request->longitude;
+        $km = $request->km;
+        $ewarongs = Ewarong::all();
+
+        foreach ($ewarongs as $warong) {
+            if ($this->checkRadius($cLat, $clng, $warong->latitude, $warong->longitude, $km)) {
+                array_push($data, $warong);
+            }
+        }
+        return response(['data' => $data]);
     }
 }
