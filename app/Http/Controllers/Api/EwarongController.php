@@ -102,7 +102,7 @@ class EwarongController extends Controller
 
     public function allVillagesAndDistrics()
     {
-        $districts = Districts::all()->whereIn('regency_id', [3576, 3516]);
+        $districts = Districts::all()->whereIn('regency_id', [3515]);
         $districts_array = $districts->pluck('id');
         $villages = Villages::all()->whereIn('district_id', $districts_array);
         return response(['data' => [
