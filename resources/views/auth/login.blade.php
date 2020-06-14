@@ -6,7 +6,7 @@
         <p class="loader__label">{{ config('app.name') }}</p>
     </div>
 </div>
-<div class="login-register" style="background-image:url(../assets/images/background/login-register.png);">
+<div class="login-register" style="background-image:url({{url('/assets/images/background/login-register.png')}});">
     <div class="login-box card">
         <div class="card-body">
             <form class="form-horizontal form-material" id="loginform" method="POST" action="{{ route('login') }}">
