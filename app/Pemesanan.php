@@ -11,6 +11,9 @@ class Pemesanan extends Model
     protected $fillable = [
         'user_id',
         'item_id',
+        'ewarong_id',
+        'harga',
+        'qty',
         'date_pemesanan',
         'status',
     ];

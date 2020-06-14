@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Absents;
-use App\Schedules;
-use App\Subjects;
 use App\Ewarong;
 use App\Villages;
 use App\Districts;
 use App\Item;
+use App\Pemesanan;
+use App\Stock;
 
 class EwarongController extends Controller
 {
@@ -125,6 +124,7 @@ class EwarongController extends Controller
         $dy = abs($cLat - $chckLat) * $ky;
         return sqrt($dx * $dx + $dy * $dy) <= $km;
     }
+
     public function getFromMyRadius(Request $request)
     {
         $data = [];
@@ -139,5 +139,40 @@ class EwarongController extends Controller
             }
         }
         return response(['data' => $data]);
+    }
+
+    public function getOrderByUser(Request $request)
+    {
+        $user = auth()->user();
+        $data = Pemesanan::where('user_id', $user->id)->get();
+        return response(['data' => $data]);
+    }
+    public function orderUser(Request $request)
+    {
+        try {
+            $user = auth()->user();
+            $ewarong_id = $request->ewarong_id;
+            $items = $request->items;
+            foreach ($items as $item) {
+                Pemesanan::create([
+                    'user_id' => $user->id,
+                    'ewarong_id' => $ewarong_id,
+                    'item_id' => $item['id'],
+                    'qty' => $item['qty'],
+                    'harga' => $item['harga'],
+                    'status' => 'OPEN',
+                    'date_pemesanan' => date('Y-m-d')
+                ]);
+
+                $stockdata = Stock::where('ewarong_id', $ewarong_id)
+                    ->where('item_id', $item['id'])->get()->first();
+                $updateStock = Stock::where('ewarong_id', $ewarong_id)
+                    ->where('item_id', $item['id']);
+                $updateStock->update(['qty' => $stockdata->qty - $item['qty']]);
+            }
+            return response(['status' => 'success', 'message' => 'pesanan berhasil ditambahkan']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()], 422);
+        }
     }
 }

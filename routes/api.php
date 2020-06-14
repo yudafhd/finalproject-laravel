@@ -26,11 +26,6 @@ Route::get('/allitems', 'Api\EwarongController@allItems');
 Route::get('/getfromradius', 'Api\EwarongController@getFromMyRadius');
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/home', 'Api\HomeTeacherController@index');
-    Route::get('/absenteeism', 'Api\AbsenteeismTeacherController@index');
-    Route::post('/absenteeism', 'Api\AbsenteeismTeacherController@submitAbsent');
-    Route::get('/teacherprofile', 'Api\ProfileController@index');
-    Route::get('/home_parent', 'Api\HomeParentController@index');
-    Route::get('/home_parent_all_recap', 'Api\HomeParentController@homeParentAllRecap');
-    Route::get('/studentprofile', 'Api\ProfileController@index');
+    Route::get('/getorderbyuser', 'Api\EwarongController@getOrderByUser');
+    Route::post('/orderuser', 'Api\EwarongController@orderUser');
 });
