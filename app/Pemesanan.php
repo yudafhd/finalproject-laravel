@@ -30,7 +30,7 @@ class Pemesanan extends Model
     {
         return $this->belongsTo('App\Item');
     }
-    public function rpk()
+    public function ewarong()
     {
         return $this->belongsTo('App\Ewarong');
     }

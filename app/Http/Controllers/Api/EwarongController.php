@@ -144,7 +144,7 @@ class EwarongController extends Controller
     public function getOrderByUser(Request $request)
     {
         $user = auth()->user();
-        $data = Pemesanan::where('user_id', $user->id)->get();
+        $data = Pemesanan::with(['ewarong', 'item'])->where('user_id', $user->id)->get();
         return response(['data' => $data]);
     }
     public function orderUser(Request $request)
