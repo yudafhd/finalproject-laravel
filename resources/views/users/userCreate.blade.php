@@ -16,7 +16,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="{{ Route('user.store') }}">
+                <form method="POST" action="{{ Route('user.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-body">
                         <h3 class="card-title" style="font-weight: bold">Personal Info</h3>
@@ -87,7 +87,12 @@
                                             class="badge badge-info">adminadmin</span></label>
                                 </div>
                             </div>
-                        </div>
+                                <div class="col-lg-6 col-md-6 m-b-20">
+                                    <input type="file" name="foto" id="input-file-now" class="dropify" />
+                            </div>
+                            
+                    </div>
+
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                             <a href="{{url('/user/admin')}}" class="btn btn-inverse">Cancel</a>

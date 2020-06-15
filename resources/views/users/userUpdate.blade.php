@@ -16,7 +16,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="{{ Route('user.store.update') }}">
+                <form method="POST" action="{{ Route('user.store.update') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id" class="form-control" value="{{$userDetail->id}}">
                     <div class="form-body">
@@ -101,6 +101,9 @@
                                     <input type="text" name="password" class="form-control" value="">
                                 </div>
                             </div>
+                            <div class="col-lg-6 col-md-6 m-b-20">
+                                <input type="file" name="foto" id="input-file-now" class="dropify" />
+                        </div>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>

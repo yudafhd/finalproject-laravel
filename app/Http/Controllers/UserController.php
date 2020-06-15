@@ -6,6 +6,7 @@ use App\User;
 use App\Villages;
 use App\Districts;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -40,6 +41,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try {
+            $imagename = null;
+            if ($request->file('foto')) {
+                $storage = Storage::putFile('public/user/photo', $request->file('foto'));
+                if ($storage) {
+                    $imagename = basename($storage);
+                }
+            }
             $roles = Role::findByName($request->access_type);
             $user = User::create([
                 'name' => $request->name,
@@ -50,6 +58,7 @@ class UserController extends Controller
                 'district_id' => $request->district_id,
                 'village_id' => $request->village_id,
                 'password' => bcrypt('adminadmin'),
+                'image_url' => $imagename,
 
             ]);
             $user->syncRoles($roles->name);
@@ -76,6 +85,14 @@ class UserController extends Controller
     public function storeUpdate(Request $request)
     {
         try {
+            $imagename = null;
+            if ($request->file('foto')) {
+                $storage = Storage::putFile('public/user/photo', $request->file('foto'));
+                if ($storage) {
+                    $imagename = basename($storage);
+                }
+            }
+
             $roles = Role::findByName($request->access_type);
             $userDetail = User::find($request->id);
 
@@ -94,6 +111,8 @@ class UserController extends Controller
             $userDetail->address = $request->address;
             $userDetail->district_id = $request->district_id;
             $userDetail->village_id = $request->village_id;
+            $userDetail->image_url = $request->village_id;
+
 
             if ($request->password) {
                 $userDetail->password = bcrypt($request->password);
