@@ -9,11 +9,11 @@ class Pemesanan extends Model
     protected $table = 'pemesanan';
 
     protected $fillable = [
+        'nomor_pemesanan',
         'user_id',
-        'item_id',
         'ewarong_id',
-        'harga',
-        'qty',
+        'qty_total',
+        'harga_total',
         'date_pemesanan',
         'status',
     ];
@@ -33,5 +33,9 @@ class Pemesanan extends Model
     public function ewarong()
     {
         return $this->belongsTo('App\Ewarong');
+    }
+    public function detail()
+    {
+        return $this->hasMany('App\PemesananDetail');
     }
 }

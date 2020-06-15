@@ -43,12 +43,16 @@ class PemesananController extends Controller
 
     public function store(Request $request)
     {
-        //
     }
 
-    public function show(Pemesanan $pemesanan)
+    public function show(Pemesanan $pemesanan, Request $request)
     {
-        //
+        $success_message = $request->session()->get('alert-success');
+        $alert_error = $request->session()->get('alert-error');
+        return view(
+            'pemesanan.pemesananDetail',
+            compact('pemesanan', 'success_message', 'alert_error')
+        );
     }
 
     public function edit(Pemesanan $pemesanan)
@@ -58,7 +62,15 @@ class PemesananController extends Controller
 
     public function update(Request $request, Pemesanan $pemesanan)
     {
-        //
+        try {
+            $pemesanan->status = $request->status;
+            $pemesanan->save();
+            $request->session()->flash('alert-success', "Berhasil di update!");
+            return redirect()->route('pemesanan.show', $pemesanan->id);
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect()->route('pemesanan.show', $pemesanan->id);
+        }
     }
 
     public function destroy(Pemesanan $pemesanan)

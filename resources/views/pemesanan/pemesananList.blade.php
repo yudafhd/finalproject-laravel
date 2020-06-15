@@ -45,25 +45,25 @@
                     <table id="myTable" class="table">
                         <thead>
                             <tr>
+                                <th>No Pesanan</th>
                                 <th>Nama Pemesan</th>
                                 <th>Kios</th>
-                                <th>Deskripsi</th>
-                                <th>qty</th>
-                                <th>harga</th>
-                                <th>status</th>
-                                {{-- <th></th> --}}
+                                <th>Qty Total</th>
+                                <th>Harga Total</th>
+                                <th>Status</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($pemesanans as $pemesanan)
                             <tr>
+                                <td>{{ $pemesanan->nomor_pemesanan }}</td>
                                 <td>{{ $pemesanan->user->name }}</td>
-                                <td>{{ $pemesanan->rpk->nama_kios}}</td>
-                                <td>{{ $pemesanan->item->nama }}</td>
-                                <td>{{ $pemesanan->qty }}</td>
-                                <td>{{"Rp " . number_format($pemesanan->harga,2,',','.') }}</td>
+                                <td>{{ $pemesanan->ewarong->nama_kios}}</td>
+                                <td>{{ $pemesanan->qty_total }}</td>
+                                <td>{{"Rp " . number_format($pemesanan->harga_total,2,',','.') }}</td>
                                 <td>{{ $pemesanan->status }}</td>
-                                {{-- <td style="text-align: center">
+                                <td style="text-align: center">
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -72,16 +72,16 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('item.edit', $pemesanan->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('item.destroy', $pemesanan->id)}}">
+                                                href="{{Route('pemesanan.show', $pemesanan->id)}}">Detail</a>
+                                                {{-- <form method="POST" action="{{Route('item.destroy', $pemesanan->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
-                                                    <button type="submit" class="btn"> Delete </button>
-                                                </form>
+                                                    <button type="submit" class="btn"> Reject </button>
+                                                </form> --}}
                                                 
                                         </div>
                                     </div>
-                                </td> --}}
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
