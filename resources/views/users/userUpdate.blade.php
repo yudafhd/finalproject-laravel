@@ -66,6 +66,30 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label">Kecamatan</label>
+                                    <select class="form-control" name="district_id" custom-select">
+                                        @foreach ($districts as $district)
+                                        <option value="{{$district->id}}"
+                                            {{$userDetail->district_id == $district->id ? 'selected': null}}
+                                            >{{$district->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Desa</label>
+                                    <select class="form-control" name="village_id" custom-select">
+                                        @foreach ($villages as $village)
+                                        <option value="{{$village->id}}"
+                                            {{$userDetail->village_id == $village->id ? 'selected': null}}
+                                            >{{$village->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label class="control-label">Alamat</label>
                                     <input type="text" name="address" class="form-control"
                                         value="{{$userDetail->address}}">

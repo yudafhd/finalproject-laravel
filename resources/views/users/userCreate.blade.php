@@ -57,6 +57,26 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label">Kecamatan</label>
+                                    <select class="form-control" name="district_id" custom-select">
+                                        @foreach ($districts as $district)
+                                        <option value="{{$district->id}}">{{$district->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Desa</label>
+                                    <select class="form-control" name="village_id" custom-select">
+                                        @foreach ($villages as $village)
+                                        <option value="{{$village->id}}">{{$village->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label class="control-label">Alamat</label>
                                     <input type="text" name="address" class="form-control" value="">
                                 </div>
@@ -64,7 +84,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label p-t-20">Password default: <span
-                                            class="badge badge-info">Rpkbulog</span></label>
+                                            class="badge badge-info">adminadmin</span></label>
                                 </div>
                             </div>
                         </div>

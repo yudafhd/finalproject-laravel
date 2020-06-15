@@ -15,7 +15,15 @@ class User extends Authenticatable
     use HasApiTokens;
 
     protected $fillable = [
-        'name', 'email', 'password', 'date_register', 'address', 'access_type', 'image_url'
+        'name',
+        'email',
+        'password',
+        'date_register',
+        'address',
+        'access_type',
+        'image_url',
+        'village_id',
+        'district_id'
     ];
 
     protected $hidden = [

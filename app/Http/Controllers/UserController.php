@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Classes;
-use Illuminate\Support\Facades\Auth;
+use App\Villages;
+use App\Districts;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 
@@ -30,8 +30,11 @@ class UserController extends Controller
 
     public function create()
     {
+        $districts = Districts::all()->whereIn('regency_id', [3515]);
+        $districts_array = $districts->pluck('id');
+        $villages = Villages::all()->whereIn('district_id', $districts_array);
         $roles = Role::all();
-        return view('users.userCreate',  ['roles' => $roles]);
+        return view('users.userCreate',  compact('roles', 'districts', 'villages'));
     }
 
     public function store(Request $request)
@@ -44,7 +47,9 @@ class UserController extends Controller
                 'access_type' => $roles->name,
                 'date_register' => $request->date_register,
                 'address' => $request->address,
-                'password' => bcrypt('Rpkbulog'),
+                'district_id' => $request->district_id,
+                'village_id' => $request->village_id,
+                'password' => bcrypt('adminadmin'),
 
             ]);
             $user->syncRoles($roles->name);
@@ -60,9 +65,12 @@ class UserController extends Controller
 
     public function update($id)
     {
+        $districts = Districts::all()->whereIn('regency_id', [3515]);
+        $districts_array = $districts->pluck('id');
+        $villages = Villages::all()->whereIn('district_id', $districts_array);
         $userDetail = User::find($id);
         $roles = Role::all();
-        return view('users.userUpdate',  ['userDetail' => $userDetail, 'roles' => $roles]);
+        return view('users.userUpdate',  compact('userDetail', 'roles', 'districts', 'villages'));
     }
 
     public function storeUpdate(Request $request)
@@ -84,6 +92,8 @@ class UserController extends Controller
             $userDetail->name = $request->name;
             $userDetail->email = $request->email;
             $userDetail->address = $request->address;
+            $userDetail->district_id = $request->district_id;
+            $userDetail->village_id = $request->village_id;
 
             if ($request->password) {
                 $userDetail->password = bcrypt($request->password);
