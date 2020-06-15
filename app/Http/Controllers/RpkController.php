@@ -52,7 +52,7 @@ class RpkController extends Controller
             return redirect()->route('ewarong.index');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect()->route('ewarongcreate');
+            return redirect()->route('ewarong.create');
         }
     }
 

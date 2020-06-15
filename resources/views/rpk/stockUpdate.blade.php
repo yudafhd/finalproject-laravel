@@ -34,7 +34,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">RPK Kios</label>
-                                    <select class="form-control" name="rpk_id" custom-select">
+                                    <select class="form-control" name="ewarong_id" custom-select">
                                         @foreach ($rpks as $rpk)
                                         <option 
                                             value="{{$rpk->id}}" 

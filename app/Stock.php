@@ -8,7 +8,7 @@ class Stock extends Model
 {
     protected $table = "stocks";
     protected $fillable = [
-        'rpk_id',
+        'ewarong_id',
         'item_id',
         'qty',
         'harga',
@@ -19,7 +19,7 @@ class Stock extends Model
     ];
 
 
-    public function rpk()
+    public function ewarong()
     {
         return $this->belongsTo('App\Ewarong');
     }
