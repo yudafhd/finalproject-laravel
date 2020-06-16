@@ -9,6 +9,7 @@ use App\Villages;
 use App\Districts;
 use App\Item;
 use App\Pemesanan;
+use App\PemesananDetail;
 use App\Stock;
 
 class EwarongController extends Controller
@@ -144,7 +145,7 @@ class EwarongController extends Controller
     public function getOrderByUser(Request $request)
     {
         $user = auth()->user();
-        $data = Pemesanan::with(['ewarong', 'item'])->where('user_id', $user->id)->get();
+        $data = Pemesanan::with(['ewarong', 'detail', 'detail.item'])->where('user_id', $user->id)->get();
         return response(['data' => $data]);
     }
     public function orderUser(Request $request)
@@ -153,15 +154,29 @@ class EwarongController extends Controller
             $user = auth()->user();
             $ewarong_id = $request->ewarong_id;
             $items = $request->items;
+            $qty_total = 0;
+            $harga_total = 0;
             foreach ($items as $item) {
-                Pemesanan::create([
-                    'user_id' => $user->id,
-                    'ewarong_id' => $ewarong_id,
+                $qty_total = $qty_total + $item['qty'];
+                $harga_total = $harga_total + $item['harga'];
+            }
+
+            $result = Pemesanan::create([
+                'nomor_pemesanan' => $user->id,
+                'user_id' => $user->id,
+                'ewarong_id' => $ewarong_id,
+                'qty_total' => $qty_total,
+                'harga_total' => $harga_total,
+                'status' => 'OPEN',
+                'date_pemesanan' => date('Y-m-d')
+            ]);
+
+            foreach ($items as $item) {
+                PemesananDetail::create([
+                    'pemesanan_id' => $result->id,
                     'item_id' => $item['id'],
                     'qty' => $item['qty'],
                     'harga' => $item['harga'],
-                    'status' => 'OPEN',
-                    'date_pemesanan' => date('Y-m-d')
                 ]);
 
                 $stockdata = Stock::where('ewarong_id', $ewarong_id)

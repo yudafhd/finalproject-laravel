@@ -7,6 +7,7 @@ use App\Villages;
 use App\Districts;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -41,13 +42,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try {
+
             $imagename = null;
             if ($request->file('foto')) {
-                $storage = Storage::putFile('public/user/photo', $request->file('foto'));
-                if ($storage) {
-                    $imagename = basename($storage);
+                if (!file_exists(public_path() . '/user/profile/')) {
+                    mkdir(public_path() . '/user/profile/', 666, true);
                 }
+                $imagename = date('YmdHis-') . uniqid() . '.jpg';
+                $oriPath = public_path() . '/user/profile/' . $imagename;
+                $image = Image::make($request->file('foto'))->resize(300, 200)->save($oriPath);
             }
+
             $roles = Role::findByName($request->access_type);
             $user = User::create([
                 'name' => $request->name,
@@ -78,23 +83,32 @@ class UserController extends Controller
         $districts_array = $districts->pluck('id');
         $villages = Villages::all()->whereIn('district_id', $districts_array);
         $userDetail = User::find($id);
+        $url = Storage::url($userDetail->image_url);
         $roles = Role::all();
-        return view('users.userUpdate',  compact('userDetail', 'roles', 'districts', 'villages'));
+        return view('users.userUpdate',  compact('userDetail', 'roles', 'districts', 'villages', 'url'));
     }
 
     public function storeUpdate(Request $request)
     {
         try {
+            $userDetail = User::find($request->id);
+            $roles = Role::findByName($request->access_type);
+
+
             $imagename = null;
             if ($request->file('foto')) {
-                $storage = Storage::putFile('public/user/photo', $request->file('foto'));
-                if ($storage) {
-                    $imagename = basename($storage);
+                if (!file_exists(public_path() . '/user/profile/')) {
+                    mkdir(public_path() . '/user/profile/', 666, true);
                 }
-            }
 
-            $roles = Role::findByName($request->access_type);
-            $userDetail = User::find($request->id);
+                if (file_exists(public_path() . '/user/profile/' . $userDetail->image_url)) {
+                    unlink(public_path() . '/user/profile/' . $userDetail->image_url);
+                }
+
+                $imagename = date('YmdHis-') . uniqid() . '.jpg';
+                $oriPath = public_path() . '/user/profile/' . $imagename;
+                Image::make($request->file('foto'))->fit(300, 300)->save($oriPath);
+            }
 
             // assign role to user
             if ($roles) {
@@ -111,7 +125,10 @@ class UserController extends Controller
             $userDetail->address = $request->address;
             $userDetail->district_id = $request->district_id;
             $userDetail->village_id = $request->village_id;
-            $userDetail->image_url = $request->village_id;
+
+            if ($request->file('foto')) {
+                $userDetail->image_url = $imagename;
+            }
 
 
             if ($request->password) {
@@ -130,12 +147,29 @@ class UserController extends Controller
     {
         try {
             $roles = null;
+            $userDetail = User::find($request->id);
+
+            $imagename = null;
+            if ($request->file('foto')) {
+                if (!file_exists(public_path() . '/user/profile/')) {
+                    mkdir(public_path() . '/user/profile/', 666, true);
+                }
+
+                $verifynull_image = $userDetail->image_url ? $userDetail->image_url : 'null.jpg';
+
+                if (file_exists(public_path() . '/user/profile/' . $verifynull_image)) {
+                    unlink(public_path() . '/user/profile/' . $userDetail->image_url);
+                }
+
+                $imagename = date('YmdHis-') . uniqid() . '.jpg';
+                $oriPath = public_path() . '/user/profile/' . $imagename;
+                Image::make($request->file('foto'))->fit(300, 300)->save($oriPath);
+            }
+
 
             if ($request->access_type) {
                 $roles = Role::findByName($request->access_type);
             }
-
-            $userDetail = User::find($request->id);
 
             // assign role to user
             if ($roles) {
@@ -150,6 +184,9 @@ class UserController extends Controller
             $userDetail->name = $request->name;
             $userDetail->email = $request->email;
             $userDetail->address = $request->address;
+            if ($request->file('foto')) {
+                $userDetail->image_url = $imagename;
+            }
 
             if ($request->password) {
                 $userDetail->password = bcrypt($request->password);

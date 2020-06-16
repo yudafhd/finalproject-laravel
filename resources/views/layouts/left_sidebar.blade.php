@@ -24,7 +24,7 @@
                             </ul>
                         </li>
                         @endif --}}
-                        <li> <a href="/">
+                    <li> <a href="{{Url('/')}}">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('users', auth()->user()->getAllPermissions()->pluck('name')->toArray()))

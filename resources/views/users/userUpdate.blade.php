@@ -104,6 +104,10 @@
                             <div class="col-lg-6 col-md-6 m-b-20">
                                 <input type="file" name="foto" id="input-file-now" class="dropify" />
                         </div>
+                        <div class="col-md-6">
+                        <img src="{{Url('user/profile/'.$userDetail->image_url)}}"
+                            style="width: 250px;float: left;margin-bottom: 30px;" />
+                        </div>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>

@@ -16,7 +16,13 @@
     <div class="col-lg-4 col-xlg-3 col-md-5">
         <div class="card">
             <div class="card-body">
-                <center class="m-t-30"> <img src="../assets/images/users/user.png" class="img-circle" width="150" />
+                <center class="m-t-30"> 
+                    @if (auth()->user()->image_url)
+                    <img src="{{Url('user/profile/'.auth()->user()->image_url)}}"
+                    class="img-circle" width="150" />
+                    @else                        
+                    <img src="{{Url('assets/images/users/user.png')}}" class="img-circle" width="150" />
+                    @endif
                 <h4 class="card-title m-t-10">{{auth()->user()->name}}</h4>
                     <h6 class="card-subtitle">{{auth()->user()->access_type}}</h6>
                 </center>
@@ -43,7 +49,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="settings" role="tabpanel">
                     <div class="card-body">
-                        <form class="form-horizontal form-material" method="POST" 
+                        <form class="form-horizontal form-material" method="POST" enctype="multipart/form-data"
                         action="{{ Route('user.store.update.profile') }}">
                                 @csrf
                             <input type="hidden" name="id" value="{{auth()->user()->id}}">
@@ -69,6 +75,12 @@
                                 <label class="col-md-12">Address</label>
                                 <div class="col-md-12">
                                     <input name="address" type="text" value="{{auth()->user()->address}}" class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Profile Image</label>
+                                <div class="col-md-12">
+                                    <input type="file" name="foto"/>
                                 </div>
                             </div>
                             <div class="form-group">
