@@ -11,6 +11,7 @@ use App\Item;
 use App\Pemesanan;
 use App\PemesananDetail;
 use App\Stock;
+use Illuminate\Support\Str;
 
 class EwarongController extends Controller
 {
@@ -162,7 +163,7 @@ class EwarongController extends Controller
             }
 
             $result = Pemesanan::create([
-                'nomor_pemesanan' => $user->id,
+                'nomor_pemesanan' =>  strtoupper(Str::random(10) . rand(0, date('mm'))),
                 'user_id' => $user->id,
                 'ewarong_id' => $ewarong_id,
                 'qty_total' => $qty_total,
