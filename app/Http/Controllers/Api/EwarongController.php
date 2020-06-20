@@ -64,6 +64,10 @@ class EwarongController extends Controller
             }
         }, 'stock.item']);
 
+        if ($request->searchname) {
+            $all_warong->where('nama_kios', 'like', '%' . $request->searchname . '%');
+        }
+
         if ($request->district_id) {
             $all_warong->where('district_id', $request->district_id);
         }
@@ -102,15 +106,16 @@ class EwarongController extends Controller
         return response(['data' => $after]);
     }
 
-    public function allVillagesAndDistrics()
+    public function allDistrics()
     {
         $districts = Districts::all()->whereIn('regency_id', [3515]);
-        $districts_array = $districts->pluck('id');
-        $villages = Villages::all()->whereIn('district_id', $districts_array);
-        return response(['data' => [
-            'districts' => $districts,
-            'villages' => $villages
-        ]]);
+        return response(['data' => $districts]);
+    }
+    public function allVillages(Request $request)
+    {
+        $district_id = $request->district_id;
+        $villages = Villages::all()->where('district_id', $district_id);
+        return response(['data' => $villages]);
     }
     public function allItems()
     {

@@ -21,7 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/login', 'Api\AuthController@login');
 Route::post('/register', 'Api\AuthController@register');
 Route::get('/ewarong', 'Api\EwarongController@allEwarong');
-Route::get('/allvillagesanddistrics', 'Api\EwarongController@allVillagesAndDistrics');
+Route::get('/alldistrics', 'Api\EwarongController@allDistrics');
+Route::get('/allvillages', 'Api\EwarongController@allVillages');
 Route::get('/allitems', 'Api\EwarongController@allItems');
 Route::get('/getfromradius', 'Api\EwarongController@getFromMyRadius');
 
