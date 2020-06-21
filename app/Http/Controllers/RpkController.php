@@ -18,7 +18,14 @@ class RpkController extends Controller
 
     public function index(Request $request)
     {
+        $user_id = auth()->user()->id;
+        $user_access = auth()->user()->access_type;
         $rpks = Ewarong::all();
+
+        if ($user_access != 'superadmin') {
+            $rpks = $rpks->where('user_id', $user_id);
+        }
+
         $success_message = $request->session()->get('alert-success');
         $alert_error = $request->session()->get('alert-error');
         return view('rpk.rpkList',  ['rpks' => $rpks, 'alert_error' => $alert_error, 'success_message' => $success_message]);
@@ -26,7 +33,7 @@ class RpkController extends Controller
 
     public function create(Request $request)
     {
-        $districts = Districts::all()->whereIn('regency_id', [3576, 3516]);
+        $districts = Districts::all()->whereIn('regency_id', [3515]);
         $districts_array = $districts->pluck('id');
         $villages = Villages::all()->whereIn('district_id', $districts_array);
         $users = User::all()->where('access_type', 'rpk');
@@ -63,7 +70,7 @@ class RpkController extends Controller
 
     public function edit(Request $request, Ewarong $ewarong)
     {
-        $districts = Districts::all()->whereIn('regency_id', [3576, 3516]);
+        $districts = Districts::all()->whereIn('regency_id', [3515]);
         $districts_array = $districts->pluck('id');
         $villages = Villages::all()->whereIn('district_id', $districts_array);
         $users = User::all()->where('access_type', 'rpk');

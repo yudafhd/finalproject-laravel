@@ -17,7 +17,16 @@ class StockController extends Controller
 
     public function index(Request $request)
     {
+        $user_id = auth()->user()->id;
+        $user_access = auth()->user()->access_type;
         $stocks = Stock::all();
+
+        if ($user_access != 'superadmin') {
+            $rpks = Ewarong::where('user_id', $user_id)->get()->first();
+            $stocks = $stocks->where('ewarong_id', $rpks->id);
+        }
+
+
         $success_message = $request->session()->get('alert-success');
         $alert_error = $request->session()->get('alert-error');
         return view('rpk.stockList',  ['stocks' => $stocks, 'alert_error' => $alert_error, 'success_message' => $success_message]);
@@ -25,8 +34,18 @@ class StockController extends Controller
 
     public function create(Request $request)
     {
-        $items = Item::all();
+
+        $user_id = auth()->user()->id;
+        $user_access = auth()->user()->access_type;
+        $stocks = Stock::all();
         $rpks = Ewarong::all();
+        $items = Item::all();
+
+        if ($user_access != 'superadmin') {
+            $rpks = $rpks->where('user_id',  $user_id)->first();
+            $stocks = $stocks->where('ewarong_id', $rpks->id);
+        }
+
         $error_message = $request->session()->get('alert-error');
         return view(
             'rpk.stockCreate',
@@ -58,8 +77,17 @@ class StockController extends Controller
 
     public function edit(Request $request, Stock $stock)
     {
-        $items = Item::all();
+        $user_id = auth()->user()->id;
+        $user_access = auth()->user()->access_type;
+        $stocks = Stock::all();
         $rpks = Ewarong::all();
+        $items = Item::all();
+
+        if ($user_access != 'superadmin') {
+            $rpks = $rpks->where('user_id',  $user_id)->first();
+            $stocks = $stocks->where('ewarong_id', $rpks->id);
+        }
+
         $error_message = $request->session()->get('alert-error');
         return view('rpk.stockUpdate', [
             'stock' => $stock,

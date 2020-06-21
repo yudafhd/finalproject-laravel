@@ -1,14 +1,14 @@
 @extends('layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">BUAT ITEM</h3>
+        <h3 class="text-themecolor">BUAT STOCK</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="javascript:void(0)">Home</a>
             </li>
-            <li class="breadcrumb-item active">Item</li>
+            <li class="breadcrumb-item active">Stock</li>
         </ol>
     </div>
 </div>
@@ -30,6 +30,7 @@
                     <div class="form-body">
                         
                         <div class="row">
+                            @if (auth()->user()->access_type ==='superadmin')
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">RPK Kios</label>
@@ -40,6 +41,11 @@
                                     </select>
                                 </div>
                             </div>
+                                @else
+                                <input type="hidden" name="ewarong_id" value="{{$rpks->id}}" />
+                                @endif
+                            
+                           
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Item</label>

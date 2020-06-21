@@ -31,6 +31,7 @@
                     <div class="form-body">
                         
                         <div class="row">
+                            @if (auth()->user()->access_type ==='superadmin')
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">RPK Kios</label>
@@ -45,6 +46,10 @@
                                     </select>
                                 </div>
                             </div>
+                            @else 
+                            <input type="hidden" name="ewarong_id" value="{{$rpks->id}}" />
+                            @endif
+                         
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Item</label>

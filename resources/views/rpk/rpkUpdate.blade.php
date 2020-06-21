@@ -54,6 +54,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if (auth()->user()->access_type ==='superadmin')
                         <h3 class="card-title" style="font-weight: bold">Pemilik Kios</h3>
                         <hr>
                         <div class="row" style="margin-bottom:20px">
@@ -68,6 +69,9 @@
                                 </div>
                             </div>
                         </div>
+                        @else 
+                        <input type="hidden" name="user_id" value="{{$rpk->user_id}}" />
+                        @endif
                         <h3 class="card-title" style="font-weight: bold">Kecamatan dan Kelurahan</h3>
                         <hr>
                         <div class="row" style="margin-bottom:20px">

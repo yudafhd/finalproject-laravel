@@ -36,10 +36,14 @@
                     Total E-Warong 
                     <span class="label label-success label-rounded">{{count($rpks)}}</span>
                 </span>
+                @if (auth()->user()->access_type ==='superadmin')
                 <a href="{{Route('ewarong.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     Buat
                 </a>
+                @endif
+
+
                 @if(count($rpks) > 0)
                 <div class="table-responsive m-t-10 p-b-30 p-t-30">
                     <table id="myTable" class="table">
@@ -79,6 +83,8 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
                                                 href="{{Route('ewarong.edit', $rpk->id)}}">Update</a>
+                                               
+                                                @if (auth()->user()->access_type ==='superadmin')
                                                 <form method="POST" action="{{Route('ewarong.destroy', $rpk->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
@@ -112,6 +118,8 @@
                                                     <button type="submit" class="btn"> Active </button>
                                                 </form>
                                                 @endif   
+                                                @endif
+                                             
                                         </div>
                                     </div>
                                 </td>
