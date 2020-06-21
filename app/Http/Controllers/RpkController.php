@@ -154,7 +154,7 @@ class RpkController extends Controller
     public function destroy(Request $request, Ewarong $ewarong)
     {
         try {
-            $pemesanan = Pemesanan::where('rpk_id', $ewarong->id);
+            $pemesanan = Pemesanan::where('ewarong_id', $ewarong->id);
             $pemesanan->delete();
             $ewarong->delete();
             $request->session()->flash('alert-success', "RPK berhasil dihapus!");

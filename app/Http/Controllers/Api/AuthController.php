@@ -52,6 +52,8 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'access_type' => $request->type,
                 'address' => $request->address,
+                'village_id' => $request->village_id,
+                'district_id' => $request->district_id,
                 'date_register' =>  date('Y-m-d'),
                 'password' => Hash::make($request->password),
             ]);
@@ -65,8 +67,8 @@ class AuthController extends Controller
                     'longitude' => $request->longitude,
                     'jam_buka' => $request->jam_buka,
                     'lokasi' => $request->lokasi,
-                    'village_id' => $request->village_id,
-                    'district_id' => $request->district_id,
+                    'village_id' => $request->evillage_id,
+                    'district_id' => $request->edistrict_id,
                     'status' => 'PENDING',
                 ]);
             }
