@@ -33,6 +33,6 @@ class Pemesanan extends Model
     }
     public function detail()
     {
-        return $this->belongsTo('App\PemesananDetail');
+        return $this->hasMany('App\PemesananDetail');
     }
 }

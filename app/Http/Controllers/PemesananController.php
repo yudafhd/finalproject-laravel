@@ -48,11 +48,16 @@ class PemesananController extends Controller
 
     public function show(Pemesanan $pemesanan, Request $request)
     {
+
         $success_message = $request->session()->get('alert-success');
         $alert_error = $request->session()->get('alert-error');
         return view(
             'pemesanan.pemesananDetail',
-            compact('pemesanan', 'success_message', 'alert_error')
+            [
+                'pemesanan' => $pemesanan,
+                'success_message' => $success_message,
+                'alert_error' => $alert_error
+            ]
         );
     }
 
