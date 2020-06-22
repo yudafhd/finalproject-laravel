@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use App\Pemesanan;
+use App\PemesananDetail;
 use App\User;
 use App\Ewarong;
 use Illuminate\Http\Request;
@@ -73,8 +74,18 @@ class PemesananController extends Controller
         }
     }
 
-    public function destroy(Pemesanan $pemesanan)
+    public function destroy(Pemesanan $pemesanan, Request $request)
     {
-        //
+        try {
+            $all_detail = PemesananDetail::where('pemesanan_id', $pemesanan->id);
+            $all_detail->delete();
+            $pemesanan->delete();
+            $request->session()->flash('alert-success', "Pemesamam berhasil dihapus!");
+            return redirect()->route('pemesanan.index');
+        } catch (\Exception $e) {
+            $error_message = $e->getMessage();
+            $request->session()->flash('alert-error', $error_message);
+            return redirect()->route('pemesanan.index');
+        }
     }
 }

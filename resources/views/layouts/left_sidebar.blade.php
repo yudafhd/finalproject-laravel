@@ -38,7 +38,7 @@
                             </ul>
                         </li>
                         @endif
-                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('rpk', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('ewarong', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi  mdi-checkbox-marked-outline"></i>
                             <span class="hide-menu">E-Warong</span></a>
                             <ul aria-expanded="false" class="collapse">

@@ -26,16 +26,13 @@ class Pemesanan extends Model
     {
         return $this->belongsTo('App\User');
     }
-    public function item()
-    {
-        return $this->belongsTo('App\Item');
-    }
+
     public function ewarong()
     {
         return $this->belongsTo('App\Ewarong');
     }
     public function detail()
     {
-        return $this->hasMany('App\PemesananDetail');
+        return $this->belongsTo('App\PemesananDetail');
     }
 }

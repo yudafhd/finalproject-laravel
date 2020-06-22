@@ -73,12 +73,13 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
                                                 href="{{Route('pemesanan.show', $pemesanan->id)}}">Detail</a>
-                                                {{-- <form method="POST" action="{{Route('item.destroy', $pemesanan->id)}}">
+                                                @if (auth()->user()->access_type ==='superadmin')
+                                                <form method="POST" action="{{Route('pemesanan.destroy', $pemesanan->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
-                                                    <button type="submit" class="btn"> Reject </button>
-                                                </form> --}}
-                                                
+                                                    <button type="submit" class="btn"> Delete </button>
+                                                </form>
+                                                @endif
                                         </div>
                                     </div>
                                 </td>
