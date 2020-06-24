@@ -138,7 +138,7 @@
     </div>
 </div>
 
-
+{{-- 
 <script>
     function initAutocomplete() {
 
@@ -212,5 +212,5 @@
             map.fitBounds(bounds);
         });
     }
-</script>
+</script> --}}
 @endsection

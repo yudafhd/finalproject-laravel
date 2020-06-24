@@ -39,7 +39,7 @@
                         </li>
                         @endif
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('ewarong', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi  mdi-checkbox-marked-outline"></i>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi  mdi-home"></i>
                             <span class="hide-menu">E-Warong</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{Route('ewarong.index')}}">E-Warong list</a></li>
@@ -49,12 +49,12 @@
                        @endif
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('items', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a href="{{Route('item.index')}}">
-                            <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Items</span></a>
+                            <i class="mdi mdi-food"></i><span class="hide-menu">Items</span></a>
                         </li>
                        @endif
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('pemesanan', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a href="{{Route('pemesanan.index')}}">
-                            <i class="mdi mdi-checkbox-marked-outline"></i><span class="hide-menu">Pemesanan</span></a>
+                            <i class="mdi mdi-basket"></i><span class="hide-menu">Pemesanan</span></a>
                         </li>
                        @endif
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))

@@ -236,7 +236,7 @@
         </header>
 
         @include('layouts.left_sidebar')
-
+        @include('layouts.js_section')
         <div class="page-wrapper">
             <div class="container-fluid">
                 @yield('content')
@@ -244,7 +244,7 @@
             <footer class="footer"> © 2019 {{ config('app.name') }} </footer>
         </div>
     </div>
-    @include('layouts.js_section')
+  
 </body>
 
 </html>
