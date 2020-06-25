@@ -94,7 +94,6 @@ class UserController extends Controller
             $userDetail = User::find($request->id);
             $roles = Role::findByName($request->access_type);
 
-
             $imagename = null;
             if ($request->file('foto')) {
                 if (!file_exists(public_path() . '/user/profile/')) {
