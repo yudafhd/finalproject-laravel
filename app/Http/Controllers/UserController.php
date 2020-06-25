@@ -97,7 +97,7 @@ class UserController extends Controller
             $imagename = null;
             if ($request->file('foto')) {
                 if (!file_exists(public_path() . '/user/profile/')) {
-                    mkdir(public_path() . '/user/profile/', 666, true);
+                    mkdir(public_path() . '/user/profile/', 777, true);
                 }
 
                 if (file_exists(public_path() . '/user/profile/' . $userDetail->image_url)) {
@@ -151,14 +151,13 @@ class UserController extends Controller
             $imagename = null;
             if ($request->file('foto')) {
                 if (!file_exists(public_path() . '/user/profile/')) {
-                    mkdir(public_path() . '/user/profile/', 755, true);
+                    mkdir(public_path() . '/user/profile/', 777, true);
                 }
 
                 $verifynull_image = $userDetail->image_url ? $userDetail->image_url : 'null.jpg';
 
                 if (file_exists(public_path() . '/user/profile/' . $verifynull_image)) {
                     Storage::delete(public_path() . '/user/profile/' . $userDetail->image_url);
-                    // unlink(public_path() . '/user/profile/' . $userDetail->image_url);
                 }
 
                 $imagename = date('YmdHis-') . uniqid() . '.jpg';
