@@ -158,7 +158,7 @@ class UserController extends Controller
                 $verifynull_image = $userDetail->image_url ? $userDetail->image_url : 'null.jpg';
 
                 if (file_exists(public_path() . '/user/profile/' . $verifynull_image)) {
-                    unlink(public_path() . '/user/profile/' . $userDetail->image_url);
+                    unlink(public_path() . '/user/profile/' . $userDetail->image_url, 0777);
                 }
 
                 $imagename = date('YmdHis-') . uniqid() . '.jpg';
