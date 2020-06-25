@@ -102,8 +102,8 @@ class UserController extends Controller
                 }
 
                 if (file_exists(public_path() . '/user/profile/' . $userDetail->image_url)) {
-                    Storage::delete(public_path() . '/user/profile/' . $userDetail->image_url);
-                    // unlink(public_path() . '/user/profile/' . $userDetail->image_url);
+                    // Storage::delete(public_path() . '/user/profile/' . $userDetail->image_url);
+                    unlink(public_path() . '/user/profile/' . $userDetail->image_url, 0777);
                 }
 
                 $imagename = date('YmdHis-') . uniqid() . '.jpg';
