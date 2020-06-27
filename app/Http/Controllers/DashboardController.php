@@ -64,17 +64,6 @@ class DashboardController extends Controller
         $total_days = 31;
 
         $penjualan_bulan_chart_convert = [];
-        // for ($i = 1; $i <= $total_days; $i++) {
-        //     foreach ($penjualan_bulan_chart as $penjualan_bulan_chart) {
-        //         // dd($penjualan_bulan_chart['day_number']);
-        //         $days =  $penjualan_bulan_chart['day_number'];
-        //         if ($i == $days) {
-        //             $penjualan_bulan_chart_convert[$i] = $penjualan_bulan_chart;
-        //         } else {
-        //             $penjualan_bulan_chart_convert[$i] = 0;
-        //         }
-        //     }
-        // }
         for ($i = 1; $i <= $total_days; $i++) {
             for ($j = 0; $j < count($penjualan_bulan_chart); $j++) {
                 if ($i == (int) $penjualan_bulan_chart[$j]['day_number']) {

@@ -29,4 +29,5 @@ Route::get('/getfromradius', 'Api\EwarongController@getFromMyRadius');
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/getorderbyuser', 'Api\EwarongController@getOrderByUser');
     Route::post('/orderuser', 'Api\EwarongController@orderUser');
+    Route::get('/todaychartuser', 'Api\ReportController@todayChartUser');
 });
