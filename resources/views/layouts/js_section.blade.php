@@ -9,7 +9,7 @@
 <script src="{{ asset('assets/js/dashboard1.js') }}"></script>
 {{-- <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script> --}}
 <script src="{{ asset('assets/plugins/clockpicker/dist/jquery-clockpicker.min.js') }}"></script>
-<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
 <script src="{{ asset('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}">
 </script>
 <script src="{{ asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
