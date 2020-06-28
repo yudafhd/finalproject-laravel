@@ -8,7 +8,7 @@
 <section
     id="wrapper"
     class="login-register login-sidebar"
-    style="background-image:url(../assets/images/background/login-register.jpg);"
+    style="background-image:url({{url('/assets/images/background/login-register.png')}})"
 >
     <div class="login-box card">
         <div class="card-body">
@@ -26,9 +26,9 @@
                 font-size: 31px;
             "
                 >
-                    Canvas
+                    Surya
                     <span style="color: black;">
-                        Studio
+                        Capture
                     </span>
                 </a>
                 <div class="form-group m-t-40">
