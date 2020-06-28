@@ -70,13 +70,20 @@ class UserController extends Controller
                 'image_url' => $imagename,
 
             ]);
+
+            $url_type = $request->access_type;
+
+            if ($url_type == 'rpk') {
+                $url_type = 'ewarong';
+            }
+
             $user->syncRoles($roles->name);
             $request->session()->flash('alert-success', "User {$request->name} berhasil di buat!");
-            return redirect('/user/' . $request->access_type);
+            return redirect('/user/' . $url_type);
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
             dd($e->getMessage());
-            return redirect('/user/' . $request->access_type);
+            return redirect('/user/' . $url_type);
         }
     }
 
@@ -137,13 +144,19 @@ class UserController extends Controller
             if ($request->password) {
                 $userDetail->password = bcrypt($request->password);
             }
+
+            $url_type = $request->access_type;
+            if ($url_type == 'rpk') {
+                $url_type = 'ewarong';
+            }
+
             $userDetail->save();
             $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
-            return redirect('/user/' . $request->access_type);
+            return redirect('/user/' . $url_type);
         } catch (\Exception $e) {
             dd($e->getMessage());
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect('/user/admin/' . $request->access_type);
+            return redirect('/user/admin');
         }
     }
     public function storeUpdateProfile(Request $request)

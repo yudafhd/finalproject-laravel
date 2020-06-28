@@ -43,7 +43,7 @@
                                     <label class="control-label">Type</label>
                                     <select class="form-control" name="access_type" custom-select">
                                         @foreach ($roles as $role)
-                                        <option value="{{$role->name}}">{{$role->name}}</option>
+                                        <option value="{{$role->name}}">{{$role->name == 'rpk' ? 'ewarong' : $role->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

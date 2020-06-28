@@ -42,7 +42,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Type <small class="form-control-feedback"> user ini
-                                            sekarang <strong>{{$userDetail->access_type}}</strong></small></label>
+                                            sekarang <strong> {{$userDetail->access_type == 'rpk' ? 'ewarong' : $userDetail->access_type}}</strong></small></label>
                                     @if($userDetail->type=='admin_default')
                                     <br /> <small class="form-control-feedback">Kamu tidak dapat mengganti tipe
                                         <strong>admin_default</strong> </small>
@@ -50,7 +50,9 @@
                                     <select class="form-control" name="access_type" custom-select">
                                         @foreach ($roles as $role)
                                         <option value="{{$role->name}}"
-                                            {{$userDetail->access_type == $role->name ? 'selected' :''}}>{{$role->name}}
+                                            {{$userDetail->access_type == $role->name ? 'selected' :''}}>
+                                                 {{$role->name== 'rpk' ? 'ewarong' : $role->name}}
+                                                
                                         </option>
                                         @endforeach
                                     </select>

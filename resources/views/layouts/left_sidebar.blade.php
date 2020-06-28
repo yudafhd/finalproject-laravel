@@ -34,7 +34,7 @@
                                 @if (auth()->user()->access_type ==='superadmin' ||  in_array('guru', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                                 <li><a href="{{url('/user/umum')}}">User umum</a></li>@endif
                                 @if (auth()->user()->access_type ==='superadmin' ||  in_array('guru', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                                <li><a href="{{url('/user/rpk')}}">User E-Warong</a></li>@endif
+                                <li><a href="{{url('/user/ewarong')}}">User E-Warong</a></li>@endif
                             </ul>
                         </li>
                         @endif

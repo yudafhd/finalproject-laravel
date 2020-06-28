@@ -49,7 +49,7 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->date_register }}</td>
-                                <td>{{ $user->access_type }}</td>
+                                <td>{{ $user->access_type == 'rpk' ? 'ewarong' : $user->access_type }}</td>
                                 <td>
                                 <div class="dropdown" style="float: right">
                                     <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
