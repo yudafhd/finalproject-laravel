@@ -21,8 +21,12 @@ class UserController extends Controller
 
     public function index($type, Request $request)
     {
-        if (!in_array($type, ['admin', 'umum', 'rpk'])) {
+        if (!in_array($type, ['admin', 'umum', 'ewarong'])) {
             return abort(404);
+        }
+
+        if ($type == 'ewarong') {
+            $type = 'rpk';
         }
 
         $userList = User::all()->where('access_type', $type);;
