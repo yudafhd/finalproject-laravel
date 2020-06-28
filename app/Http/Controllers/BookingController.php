@@ -13,17 +13,17 @@ class BookingController extends Controller
 
     public function index()
     {
-        $booking = Booking::with('customer','bookingPackage')->where('status', 1)->get();
-        $user = Auth::user(); 
-        return view('booking.list',  ['user' => $user,'bookingList' => $booking]);
+        $booking = Booking::with('customer', 'bookingPackage')->where('status', 1)->get();
+        $user = Auth::user();
+        return view('booking.list',  ['user' => $user, 'bookingList' => $booking]);
     }
 
     public function cancelList()
     {
 
-        $booking = Booking::with('customer','bookingPackage')->where('status', 0)->get();
-        $user = Auth::user(); 
-        return view('booking.cancel',  ['user' => $user,'bookingList' => $booking]);
+        $booking = Booking::with('customer', 'bookingPackage')->where('status', 0)->get();
+        $user = Auth::user();
+        return view('booking.cancel',  ['user' => $user, 'bookingList' => $booking]);
     }
 
     public function create()
@@ -31,7 +31,7 @@ class BookingController extends Controller
         $user = Auth::user();
         $customerList = Customer::all();
         $packageList = BookingPackages::all();
-        return view('booking.create',  ['user' => $user,'customerList' => $customerList, 'packageList'=>$packageList]);
+        return view('booking.create',  ['user' => $user, 'customerList' => $customerList, 'packageList' => $packageList]);
     }
 
     public function store(Request $request)
@@ -53,8 +53,8 @@ class BookingController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-        $bookingDetail = Booking::with('customer','bookingPackage')->where('id', $id)->get();
-        return view('booking.detail',  ['user' => $user,'bookingDetail'=> $bookingDetail[0]]);
+        $bookingDetail = Booking::with('customer', 'bookingPackage')->where('id', $id)->get();
+        return view('booking.detail',  ['user' => $user, 'bookingDetail' => $bookingDetail[0]]);
     }
 
     public function edit(Booking $booking)
@@ -62,7 +62,7 @@ class BookingController extends Controller
         $user = Auth::user();
         $customerList = Customer::all();
         $packageList = BookingPackages::all();
-        return view('booking.edit',  ['user' => $user, 'booking'=> $booking,'customerList'=> $customerList,'packageList'=>$packageList]);
+        return view('booking.edit',  ['user' => $user, 'booking' => $booking, 'customerList' => $customerList, 'packageList' => $packageList]);
     }
 
     public function update(Request $request, Booking $booking)
@@ -77,12 +77,14 @@ class BookingController extends Controller
     {
         $booking->delete();
         return redirect()->route('booking.index')
-                        ->with('success','Booking deleted successfully');
+            ->with('success', 'Booking deleted successfully');
     }
 
     // API LIST
-    public function listbooking($date) {
-        $bookingDetail = Booking::with('customer','bookingPackage')->where('booking_date', $date)->get();
+    public function listbooking($date)
+    {
+        dd(123);
+        $bookingDetail = Booking::with('customer', 'bookingPackage')->where('booking_date', $date)->get();
         $filterData = count($bookingDetail) > 0 ? $bookingDetail : [];
         return response()->json($filterData, 200);
     }

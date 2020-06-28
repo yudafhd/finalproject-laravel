@@ -39,9 +39,9 @@
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
                 
-                         <span style="font-size:27px;color:royalblue;font-weight:bold"> Canvas
+                         <span style="font-size:27px;color:royalblue;font-weight:bold"> Surya
                          <span style="color: black;">
-                             Studio
+                             Capture
                          </span>
                         </span>
                     
