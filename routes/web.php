@@ -15,7 +15,7 @@
 Auth::routes();
 Route::get('/', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::get('/user', 'UserController@index')->name('user');
+Route::get('/users', 'UserController@index')->name('user');
 Route::get('/booking/cancel', 'BookingController@cancelList')->name('booking.cancel');
 
 Route::resource('customers', 'CustomerController');
