@@ -45,6 +45,11 @@
                             <li><a href="{{Route('booking.cancel')}}">Cancel</a></li>
                             </ul>
                         </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-box"></i><span class="hide-menu">Keuangan</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                            <li><a href="{{Route('pembayaran.list')}}">List</a></li>
+                            </ul>
+                        </li>
                        
                     </ul>
                 </nav>
