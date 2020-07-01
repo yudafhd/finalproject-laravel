@@ -16,9 +16,9 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $all_notifikasi = Notifikasi::all();
-        $count_notifkasi = Notifikasi::all()->where('read', '=', 0);
-        View::share('notification_data', $all_notifikasi);
-        View::share('total_notifikasi', count($count_notifkasi));
+        // $all_notifikasi = Notifikasi::all();
+        // $count_notifkasi = Notifikasi::all()->where('read', '=', 0);
+        // View::share('notification_data', $all_notifikasi);
+        // View::share('total_notifikasi', count($count_notifkasi));
     }
 }
