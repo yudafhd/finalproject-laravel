@@ -24,14 +24,18 @@ class ReportController extends Controller
 
         $penjualan_bulan_chart_convert = [];
         for ($i = 1; $i <= $total_days; $i++) {
-            for ($j = 0; $j < count($pemesanan_detail); $j++) {
-                if ($i == (int) $pemesanan_detail[$j]['day_number']) {
-                    $penjualan_bulan_chart_convert[$i] = (int) $pemesanan_detail[$j]['total_harga'];
-                } else {
-                    if (!array_key_exists($i, $penjualan_bulan_chart_convert)) {
-                        $penjualan_bulan_chart_convert[$i] = 0;
+            if (count($pemesanan_detail) > 0) {
+                for ($j = 0; $j < count($pemesanan_detail); $j++) {
+                    if ($i == (int) $pemesanan_detail[$j]['day_number']) {
+                        $penjualan_bulan_chart_convert[$i] = (int) $pemesanan_detail[$j]['total_harga'];
+                    } else {
+                        if (!array_key_exists($i, $penjualan_bulan_chart_convert)) {
+                            $penjualan_bulan_chart_convert[$i] = 0;
+                        }
                     }
                 }
+            } else {
+                $penjualan_bulan_chart_convert[$i] = 0;
             }
         }
         return response(['data' => $penjualan_bulan_chart_convert]);
