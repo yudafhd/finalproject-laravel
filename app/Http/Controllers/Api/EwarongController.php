@@ -24,21 +24,22 @@ class EwarongController extends Controller
             }
         }, 'stock.item']);
 
-        if ($request->searchname) {
-            $all_warong->where('nama_kios', 'like', '%' . $request->searchname . '%');
+        if(!$request->isAll) {
+            if ($request->searchname) {
+                $all_warong->where('nama_kios', 'like', '%' . $request->searchname . '%');
+            }
+    
+            if ($request->district_id) {
+                $all_warong->where('district_id', $request->district_id);
+            }
+            if ($request->village_id) {
+                $all_warong->where('village_id', $request->village_id);
+            }
+            if ($request->time) {
+                $all_warong->where('jam_buka', '<=', $request->time);
+            }
+            $all_warong->where('status', 'ACTIVE');
         }
-
-        if ($request->district_id) {
-            $all_warong->where('district_id', $request->district_id);
-        }
-        if ($request->village_id) {
-            $all_warong->where('village_id', $request->village_id);
-        }
-        if ($request->time) {
-            $all_warong->where('jam_buka', '<=', $request->time);
-        }
-
-        $all_warong->where('status', 'ACTIVE');
 
         $after = $all_warong->get();
 
@@ -122,9 +123,18 @@ class EwarongController extends Controller
     public function getOrderByUser(Request $request)
     {
         $user = auth()->user();
-        $data = Pemesanan::with(['ewarong', 'detail', 'detail.item'])->where('user_id', $user->id)->get();
+        $access = $user->access_type;
+        $ewarong = Ewarong::where('user_id', $user->id)->get()->first();
+
+        if($access =='umum' OR $access == 'superadmin') {
+            $data = Pemesanan::with(['ewarong', 'detail', 'detail.item'])->where('user_id', $user->id)->get();
+        }
+        if($access =='rpk') {
+            $data = Pemesanan::with(['ewarong', 'detail', 'detail.item'])->where('ewarong_id', $ewarong->id)->get();
+        }
         return response(['data' => $data]);
     }
+
     public function orderUser(Request $request)
     {
         try {
@@ -163,6 +173,18 @@ class EwarongController extends Controller
                 $updateStock->update(['qty' => $stockdata->qty - $item['qty']]);
             }
             return response(['status' => 'success', 'message' => 'pesanan berhasil ditambahkan']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()], 422);
+        }
+    }
+    public function confirmOrder(Request $request)
+    {
+        try {
+            $user = auth()->user();
+            $pemesanan = Pemesanan::find($request->pemesanan_id);
+            $status = $request->status;
+            $pemesanan->update(['status' => $status]);
+            return response(['status' => 'success', 'message' => 'Pesanan berhasil '.$status]);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()], 422);
         }
