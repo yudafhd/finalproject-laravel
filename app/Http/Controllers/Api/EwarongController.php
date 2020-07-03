@@ -24,11 +24,11 @@ class EwarongController extends Controller
             }
         }, 'stock.item']);
 
-        if(!$request->isAll) {
+        if (!$request->isAll) {
             if ($request->searchname) {
                 $all_warong->where('nama_kios', 'like', '%' . $request->searchname . '%');
             }
-    
+
             if ($request->district_id) {
                 $all_warong->where('district_id', $request->district_id);
             }
@@ -126,10 +126,10 @@ class EwarongController extends Controller
         $access = $user->access_type;
         $ewarong = Ewarong::where('user_id', $user->id)->get()->first();
 
-        if($access =='umum' OR $access == 'superadmin') {
+        if ($access == 'umum' or $access == 'superadmin') {
             $data = Pemesanan::with(['ewarong', 'detail', 'detail.item'])->where('user_id', $user->id)->get();
         }
-        if($access =='rpk') {
+        if ($access == 'rpk') {
             $data = Pemesanan::with(['ewarong', 'detail', 'detail.item'])->where('ewarong_id', $ewarong->id)->get();
         }
         return response(['data' => $data]);
@@ -184,7 +184,18 @@ class EwarongController extends Controller
             $pemesanan = Pemesanan::find($request->pemesanan_id);
             $status = $request->status;
             $pemesanan->update(['status' => $status]);
-            return response(['status' => 'success', 'message' => 'Pesanan berhasil '.$status]);
+            return response(['status' => 'success', 'message' => 'Pesanan berhasil ' . $status]);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()], 422);
+        }
+    }
+    public function confirmEwarong(Request $request)
+    {
+        try {
+            $ewarong = Ewarong::find($request->ewarong_id);
+            $status = $request->status;
+            $ewarong->update(['status' => $status]);
+            return response(['status' => 'success', 'message' => 'Ewarong berhasil ' . $status]);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()], 422);
         }

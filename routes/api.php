@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/getorderbyuser', 'Api\EwarongController@getOrderByUser');
     Route::post('/orderuser', 'Api\EwarongController@orderUser');
     Route::post('/confirmorder', 'Api\EwarongController@confirmOrder');
+    Route::post('/confirmewarong', 'Api\EwarongController@confirmEwarong');
     Route::get('/todaychartuser', 'Api\ReportController@todayChartUser');
     Route::get('/adminreport', 'Api\ReportController@reportAdmin');
 });
