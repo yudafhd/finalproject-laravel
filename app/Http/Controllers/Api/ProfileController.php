@@ -39,8 +39,10 @@ class ProfileController extends Controller
                 $userDetail->password = bcrypt($request->password);
             }
 
+            $accessToken = auth()->user()->createToken('authToken')->accessToken;
+
             $userDetail->save();
-            return response(['status' => 'success', 'data' => User::find($user->id)]);
+            return response(['status' => 'success', 'data' => ['user' => User::find($user->id), 'token' => $accessToken]]);
         } catch (\Exception $e) {
             return response(['status' => 'error', $e->getMessage()], 422);
         }
