@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\User;
 
 class ProfileController extends Controller
@@ -16,5 +17,28 @@ class ProfileController extends Controller
             $user->class = auth()->user()->class;
         }
         return response(['status' => 'success', 'data' => $user]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        try {
+            $user = auth()->user();
+            $userDetail = User::find($user->id);
+            $userDetail->name = $request->name;
+            $userDetail->address = $request->address;
+
+            if ($request->email) {
+                $userDetail->email = $request->email;
+            }
+
+            if ($request->password) {
+                $userDetail->password = bcrypt($request->password);
+            }
+
+            $userDetail->save();
+            return response(['status' => 'success', 'data' => 'Berhasil update profile']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', $e->getMessage()], 422);
+        }
     }
 }
