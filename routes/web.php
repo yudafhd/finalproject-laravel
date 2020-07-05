@@ -1,13 +1,13 @@
 <?php
 
-Auth::routes();
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/{username}', 'General\HomeController@profile')->name('home');
+Route::get('/', 'General\HomeController@index')->name('home');
 
+Auth::routes();
 Route::middleware(['auth'])->group(function () {
     // User office
     Route::group(['prefix' => 'backoffice'], function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-
         Route::group(['prefix' => 'user'], function () {
             Route::get('/create', 'UserController@create')->name('user.create');
             Route::post('/store', 'UserController@store')->name('user.store');

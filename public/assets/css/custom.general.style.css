@@ -1,0 +1,155 @@
+.topbar {
+    background: #fd6a00;
+}
+
+.sidebar-nav > ul > li > a.active {
+    font-weight: 400;
+    background: #ffffff;
+    color: #99abb4;
+}
+
+.text-themecolor {
+    color: #99abb4 !important;
+}
+
+a:hover {
+    color: #99abb4 !important;
+    text-decoration: underline;
+}
+
+a {
+    color: #99abb4;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.sidebar-nav > ul > li.active > a i {
+    color: #99abb4;
+}
+
+.sidebar-nav ul li a.active i,
+.sidebar-nav ul li a:hover i {
+    color: #99abb4;
+}
+
+.sidebar-nav > ul > li.active > a {
+    color: #99abb4;
+    font-weight: 500;
+}
+
+.topbar .navbar-header {
+    background: none;
+}
+
+.main-logo-text {
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+}
+
+/* ---------------------- Button Custom ------------------------------- */
+
+.btn-primary,
+.btn-primary.disabled {
+    background: #0062cc;
+}
+
+.btn-primary.active.focus,
+.btn-primary.active:focus,
+.btn-primary.active:hover,
+.btn-primary.focus,
+.btn-primary.focus:active,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary.focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary:hover,
+.show > .btn-primary.dropdown-toggle {
+    background-color: #0062cc;
+    border: 1px solid #0062cc;
+}
+
+.btn-primary.disabled:hover,
+.btn-primary:hover {
+    background-color: #0062cc;
+}
+
+.btn-info,
+.btn-info.disabled {
+    background: #5bc0de;
+}
+
+/* ---------------------- Button Custom ------------------------------- */
+
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    margin-top: 14px;
+    padding: 5px;
+    text-overflow: ellipsis;
+    width: 400px;
+}
+
+#pac-input:focus {
+    border-color: #4d90fe;
+}
+
+.page-titles {
+    background: none !important;
+}
+
+.navbar-light .navbar-toggler {
+    border-color: #ffffff;
+}
+
+.profile-image {
+    max-width: 7rem;
+    max-height: 7rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-username {
+    font-weight: bold;
+    margin: 1rem;
+}
+
+.profile-user-menu .list-group-item {
+    background: #61cff0;
+    font-weight: bold;
+}
+
+.profile-status {
+    margin: 1rem;
+    margin-top: -1rem;
+    font-size: 14px;
+}
+
+.wrapper-content {
+    width: 100%;
+}
+
+.body-for-username {
+    background: #5bc0de;
+    color: #ffffff;
+    padding: 0 0 60px;
+    margin: 0;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+.footer-for-username {
+    border-top: none;
+    background: #5bc0de;
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+}
+.footer-for-username a {
+    font-weight: bold;
+    color: #ffffff;
+}
