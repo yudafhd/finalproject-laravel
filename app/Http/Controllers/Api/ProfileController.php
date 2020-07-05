@@ -24,9 +24,13 @@ class ProfileController extends Controller
         try {
             $user = auth()->user();
             $userDetail = User::find($user->id);
-            $userDetail->name = $request->name;
-            $userDetail->address = $request->address;
 
+            if ($request->name) {
+                $userDetail->name = $request->name;
+            }
+            if ($request->address) {
+                $userDetail->address = $request->address;
+            }
             if ($request->email) {
                 $userDetail->email = $request->email;
             }
