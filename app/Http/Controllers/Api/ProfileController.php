@@ -40,7 +40,7 @@ class ProfileController extends Controller
             }
 
             $userDetail->save();
-            return response(['status' => 'success', 'data' => 'Berhasil update profile']);
+            return response(['status' => 'success', 'data' => User::find($user->id)]);
         } catch (\Exception $e) {
             return response(['status' => 'error', $e->getMessage()], 422);
         }
