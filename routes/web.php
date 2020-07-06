@@ -1,9 +1,9 @@
 <?php
 
-Route::get('/{username}', 'General\HomeController@profile')->name('home');
 Route::get('/', 'General\HomeController@index')->name('home');
-
 Auth::routes();
+Route::get('/{username}', 'General\HomeController@profile')->name('username');
+
 Route::middleware(['auth'])->group(function () {
     // User office
     Route::group(['prefix' => 'backoffice'], function () {

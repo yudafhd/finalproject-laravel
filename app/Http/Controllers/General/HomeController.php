@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('general.home', ['username' => null]);
+        return view('general.home', ['username' => '']);
     }
 
     public function profile($username)

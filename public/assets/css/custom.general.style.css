@@ -153,3 +153,15 @@ a {
     font-weight: bold;
     color: #ffffff;
 }
+
+.login-register {
+    padding: 2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+.section-wrapper {
+    min-height: 100%; /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+    display: flex;
+    align-items: center;
+}

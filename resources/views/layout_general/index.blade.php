@@ -21,13 +21,16 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
+    @if(isset($username))
     @if(!$username)
     <body class="fix-header">
     @else 
     <body class="fix-header body-for-username">
     @endif
+    @endif
     <body class="fix-header">
         <div id="main-wrapper">
+            @if (isset($username))
             @if (!$username)
             <header class="topheader" id="top">
                 <div class="fix-width">
@@ -93,7 +96,7 @@
                                 <li class="nav-item">
                                     <a
                                         class="btn btn-info font-13"
-                                        href="https://wrappixel.com/templates/adminpro/"
+                                        href="{{Route('register')}}"
                                         style="width: 120px;"
                                         >Daftar</a
                                     >
@@ -104,19 +107,21 @@
                 </div>
             </header>
             @endif
-            
+            @endif
             <div class="body-content container">
                 @yield('content')
             </div>
             @include('layout_general.js_section')
+            @if (isset($username))
             @if (!$username)
-                <footer class="footer container">
-                    © 2019 {{ config("app.name") }}
-                </footer>
+            <footer class="footer container">
+                © 2019 {{ config("app.name") }}
+            </footer>
             @else
             <footer class="footer container footer-for-username">
-            Made by Love <a href="{{url('/')}}"> Pinter.link</a>
+                Made by Love <a href="{{url('/')}}"> Pinter.link</a>
             </footer>
+            @endif
             @endif
         </div>
     </body>
