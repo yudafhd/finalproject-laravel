@@ -23,7 +23,11 @@ class StockController extends Controller
 
         if ($user_access != 'superadmin') {
             $rpks = Ewarong::where('user_id', $user_id)->get()->first();
-            $stocks = $stocks->where('ewarong_id', $rpks->id);
+            if($rpks){
+                $stocks = $stocks->where('ewarong_id', $rpks->id);
+            }else{
+                $stocks = [];
+            }
         }
 
 

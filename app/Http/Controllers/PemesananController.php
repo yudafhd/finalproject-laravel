@@ -19,7 +19,23 @@ class PemesananController extends Controller
 
     public function index(Request $request)
     {
+        $user_id = auth()->user()->id;
+        $user_access = auth()->user()->access_type;
         $pemesanans = Pemesanan::all();
+        $rpks = Ewarong::all();
+
+        if ($user_access != 'superadmin') {
+            $rpks = $rpks->where('user_id', $user_id);
+        }
+
+        if ($user_access != 'superadmin') {
+            if($rpks->first()) {
+                $pemesanans = $pemesanans->where('ewarong_id', $rpks->first()->id);
+            }else {
+                 $pemesanans = [];
+            }
+        }
+        
         $success_message = $request->session()->get('alert-success');
         $alert_error = $request->session()->get('alert-error');
         return view('pemesanan.pemesananList',  ['pemesanans' => $pemesanans, 'alert_error' => $alert_error, 'success_message' => $success_message]);
