@@ -18,6 +18,9 @@ Route::get('/visi', 'HomeController@visi')->name('visi');
 Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', 'OkpController@index')->name('dashboard');
+    Route::get('/anggota/reportdownload', 'AnggotaController@downloadReport')->name('anggota.report');
+    Route::get('/kegiatan/reportdownload', 'KegiatanController@downloadReport')->name('kegiatan.report');
+    Route::get('/okp/reportdownload', 'OkpController@downloadReport')->name('okp.report');
     Route::resource('okp', 'OkpController');
     Route::resource('kegiatan', 'KegiatanController');
     Route::resource('anggota', 'AnggotaController');

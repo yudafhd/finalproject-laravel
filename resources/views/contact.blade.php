@@ -6,9 +6,9 @@
                 CONTACT
             </h3>
             <br />
-            Sekretariat DPD KNPI Kota Bandung
+            Sekretariat DPD KNPI Kota Kediri
             <br />
-            Jl. H. Kurdi 1 No.104, Pelindung Hewan, Kec. Astanaanyar, Kota Bandung, Jawa Barat 40275 
+            Jl. H. Kurdi 1 No.104, Pelindung Hewan, Kec. Astanaanyar, Kota Kediri, Jawa Timur 40275 
             <br />
              Telp : (022) 5205618
         </div>

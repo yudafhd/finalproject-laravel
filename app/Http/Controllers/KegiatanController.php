@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Kegiatan;
 use App\Okp;
+use App\Exports\KegiatanExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KegiatanController extends Controller
 {
@@ -131,5 +133,10 @@ class KegiatanController extends Controller
             dd($e->getMessage());
             return redirect('/kegiatan/create');
         }
+    }
+
+    public function downloadReport()
+    {
+        return Excel::download(new KegiatanExport(), 'kegiatan.xlsx');
     }
 }

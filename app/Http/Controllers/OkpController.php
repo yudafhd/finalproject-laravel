@@ -7,7 +7,9 @@ use App\User;
 use App\Bidang;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Storage;;
+use Illuminate\Support\Facades\Storage;
+use App\Exports\OkpExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OkpController extends Controller
 {
@@ -142,5 +144,10 @@ class OkpController extends Controller
             dd($e->getMessage());
             return redirect('/okp/create');
         }
+    }
+
+    public function downloadReport()
+    {
+        return Excel::download(new OkpExport(), 'okps.xlsx');
     }
 }

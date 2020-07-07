@@ -34,6 +34,10 @@
                     <i class="mdi mdi-plus"></i>
                     Buat OKP
                 </a>
+                <a href="{{Route('okp.report')}}" class="btn btn-success waves-effect waves-light m-b-20 m-r-20 float-right">
+                    <i class="mdi mdi-chart"></i>
+                    Download Reports
+                </a>
                 @if(count($okps) > 0)
                 <div class="table-responsive m-t-10">
                     <table id="myTable" class="table">

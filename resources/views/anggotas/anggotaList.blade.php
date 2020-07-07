@@ -34,6 +34,10 @@
                     <i class="mdi mdi-plus"></i>
                     Buat Anggota
                 </a>
+                <a href="{{Route('anggota.report')}}" class="btn btn-success waves-effect waves-light m-b-20 m-r-20 float-right">
+                    <i class="mdi mdi-chart"></i>
+                    Download Reports
+                </a>
                 @if(count($anggotas) > 0)
                 <div class="table-responsive m-t-10">
                     <table id="myTable" class="table">

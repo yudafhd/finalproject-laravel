@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Anggota;
 use App\Okp;
+use App\Exports\AnggotaExport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AnggotaController extends Controller
 {
@@ -109,5 +111,10 @@ class AnggotaController extends Controller
             dd($e->getMessage());
             return redirect('/anggota/create');
         }
+    }
+    
+    public function downloadReport()
+    {
+        return Excel::download(new AnggotaExport(), 'anggota.xlsx');
     }
 }
