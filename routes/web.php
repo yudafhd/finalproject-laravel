@@ -13,9 +13,10 @@
 
 
 Auth::routes();
-
+Route::get('/', 'HomeController@index')->name('homes');
+Route::get('/visi', 'HomeController@visi')->name('visi');
+Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', 'OkpController@index')->name('dashboard');
     Route::get('/dashboard', 'OkpController@index')->name('dashboard');
     Route::resource('okp', 'OkpController');
     Route::resource('kegiatan', 'KegiatanController');

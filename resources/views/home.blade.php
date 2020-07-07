@@ -1,23 +1,33 @@
-@extends('layouts.app')
+@extends('layouts_home.index')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<div class="container m-t-40">
+    <div class="row">
+        @foreach ($kegiatans as $kegiatan )
+        <div class="col-md-4">
             <div class="card">
-                <div class="card-header">Dashboard</div>
-
+            <img class="card-img-top" src="{{asset('storage/kegiatan/photo/'.$kegiatan->foto)}}" alt="Card image cap">
+            <div class="card-header">
+                <h3>
+                    {{$kegiatan->okp->nama}}
+                </h3>
+            </div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+                    <div style="font-weight: bold">
+                        {{$kegiatan->judul}}       
+                    </div>
+                    <br />
+                   {{$kegiatan->detail_anggaran}}
+                   <br />
+                   <br />
+                   <br />
+                   <div style="font-size:14px;">
+                    {{$kegiatan->tempat}}
+                    </div>
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
 </div>
 @endsection

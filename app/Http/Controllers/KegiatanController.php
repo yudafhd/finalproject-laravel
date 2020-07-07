@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Storage;;
 class KegiatanController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
         $data_kegiatan = [];

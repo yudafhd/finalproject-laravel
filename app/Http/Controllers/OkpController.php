@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Okp;
 use App\User;
+use App\Bidang;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Storage;;
 
 class OkpController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index(Request $request)
     {
@@ -20,7 +26,7 @@ class OkpController extends Controller
             $okps = Okp::all();
             return view('okps.okpList',  ['okps' => $okps, 'success_message' => $success_message]);
         } else {
-            $okps = Okp::whereUserId(15)->get();
+            $okps = Okp::whereUserId(auth()->user()->id)->get();
             return view('okps.okpDetailForAdminOkp',  ['okps' => $okps[0], 'success_message' => $success_message]);
         }
     }
@@ -28,7 +34,8 @@ class OkpController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('okps.okpCreate', ['roles' => $roles]);
+        $bidangs = Bidang::all();
+        return view('okps.okpCreate', ['roles' => $roles, 'bidangs' => $bidangs]);
     }
 
     public function store(Request $request)
@@ -76,7 +83,8 @@ class OkpController extends Controller
     public function edit(okp $okp)
     {
         $roles = Role::all();
-        return view('okps.okpUpdate', ['okp' => $okp, 'roles' => $roles]);
+        $bidangs = Bidang::all();
+        return view('okps.okpUpdate', ['bidangs' => $bidangs, 'okp' => $okp, 'roles' => $roles]);
     }
 
     public function update(Request $request, okp $okp)

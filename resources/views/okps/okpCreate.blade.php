@@ -33,8 +33,12 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Bidang</label>
-                                    <input type="text" name="bidang" class="form-control" value="">
-                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+                                    <select class="form-control" name="bidang" custom-select">
+                                        @foreach ($bidangs as $bidang)
+                                        <option value="{{$bidang->nama}}">{{$bidang->nama}}
+                                        </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
