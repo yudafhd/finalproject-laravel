@@ -189,6 +189,46 @@ class EwarongController extends Controller
             return response(['status' => 'error', 'message' => $e->getMessage()], 422);
         }
     }
+
+    public function finishOrder(Request $request)
+    {
+        try {
+            $user = auth()->user();
+            $pemesanan = Pemesanan::find($request->pemesanan_id);
+            $status = $request->status;
+            $pemesanan->update(['status' => $status]);
+            return response(['status' => 'success', 'message' => 'Pesanan berhasil ' . $status]);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()], 422);
+        }
+    }
+
+    public function rejectedOrder(Request $request)
+    {
+        try {
+            $user = auth()->user();
+            
+            $pemesanans = Pemesanan::find($request->pemesanan_id);
+            $pemesananDetail = PemesananDetail::all()->where('pemesanan_id', $request->pemesanan_id);
+            $status = $request->status;
+            
+            foreach($pemesananDetail as $pemesanan) {
+                $item_id = $pemesanan->item_id;
+                $qty = $pemesanan->qty;
+                $stocks = Stock::where('ewarong_id', $pemesanans->ewarong_id)->where('item_id', $item_id)->get()->first();
+                $stock_id = $stocks->id;
+                $stocks_now = $stocks->qty;
+                $stocks_after = (int) $stocks_now + (int) $qty;
+                Stock::find($stock_id)->update(['qty'=>$stocks_after]);
+            }
+
+            $pemesanans->update(['status' => $status]);
+            return response(['status' => 'success', 'message' => 'Pesanan berhasil '.$status]);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()], 422);
+        }
+    }
+
     public function confirmEwarong(Request $request)
     {
         try {

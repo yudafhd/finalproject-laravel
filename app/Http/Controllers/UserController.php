@@ -226,13 +226,19 @@ class UserController extends Controller
     {
         try {
             $user = User::find($id);
+            $acces_type = $user->access_type;
             $user->syncRoles();
             $user->delete();
+            
+            $url_type = $acces_type;
+            if ($url_type == 'rpk') {
+                $url_type = 'ewarong';
+            }
             $request->session()->flash('alert-success', "User {$user->name} berhasil dihapus!");
-            return redirect('/user/' . $user->access_type);
+            return redirect('/user/' . $url_type);
         } catch (\Exception $e) {
             $request->session()->flash('alert-error',  $e->getMessage());
-            return redirect('/user/' . $user->access_type);
+            return redirect('/user/' . $url_type);
         }
     }
 }
