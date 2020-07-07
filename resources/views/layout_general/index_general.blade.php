@@ -21,17 +21,8 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    @if(isset($username))
-    @if(!$username)
-    <body class="fix-header">
-    @else 
-    <body class="fix-header body-for-username">
-    @endif
-    @endif
-    <body class="fix-header">
+    <body class="fix-header body-for-general bg-white">
         <div id="main-wrapper">
-            @if (isset($username))
-            @if (!$username)
             <header class="topheader" id="top">
                 <div class="fix-width">
                     <nav class="navbar navbar-expand-md navbar-light">
@@ -49,7 +40,8 @@
                         <!-- Logo will be here -->
                         <a class="navbar-brand" href="index.html"
                             ><img
-                                src="https://s1.bukalapak.com/ast/sigil/bukalapak-logo-primary.svg"
+                                width="30px"
+                                src="https://s2.bukalapak.com/marketplace/images/logo/bukalapak-icon-secondary@3x.png"
                                 alt="logo"
                             />
                         </a>
@@ -64,7 +56,7 @@
                                         class="nav-link"
                                         href="../Documentation/document.html"
                                         target="_blank"
-                                        >Price</a
+                                        >General</a
                                     >
                                 </li>
                                 <li class="nav-item">
@@ -72,15 +64,7 @@
                                         class="nav-link"
                                         href="../Documentation/document.html"
                                         target="_blank"
-                                        >Info</a
-                                    >
-                                </li>
-                                <li class="nav-item">
-                                    <a
-                                        class="nav-link"
-                                        href="../Documentation/document.html"
-                                        target="_blank"
-                                        >FAQ</a
+                                        >Tema</a
                                     >
                                 </li>
                             </ul>
@@ -102,12 +86,12 @@
                                     >
                                 </li>
                                 @else 
-                                <span style="margin-right: 10px"> Selamat datang  </span>
                                 <div class="dropdown">
                                     <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{auth()->user()->name}}
+                                    {{auth()->user()->name}}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="{{Route('general')}}" >Dashboard</a>
                                     <a class="dropdown-item" href="{{Route('general')}}" >Akun saya</a>
                                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">Keluar</a>
@@ -117,30 +101,23 @@
                                         @csrf
                                     </form>
                                   </div>
-                                
                                 @endif
                             </ul>
                         </div>
                     </nav>
                 </div>
             </header>
-            @endif
-            @endif
             <div class="body-content container">
                 @yield('content')
             </div>
             @include('layout_general.js_section')
-            @if (isset($username))
-            @if (!$username)
             <footer class="footer container">
                 © 2019 {{ config("app.name") }}
+                <span style="width: 200px" class="mr-auto ml-auto">
+                    fb
+                </span>
             </footer>
-            @else
-            <footer class="footer container footer-for-username">
-                Made by Love <a href="{{url('/')}}"> Pinter.link</a>
-            </footer>
-            @endif
-            @endif
+
         </div>
     </body>
 </html>

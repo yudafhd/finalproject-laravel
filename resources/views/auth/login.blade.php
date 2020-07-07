@@ -45,8 +45,9 @@
                         <div class="checkbox checkbox-info float-left">
                             <input id="checkbox-signup" type="checkbox" class="filled-in chk-col-light-blue">
                             <label for="checkbox-signup"> Remember me </label>
-                        </div> <a href="javascript:void(0)" class="text-muted float-right"><i
-                                class="fa fa-lock m-r-5"></i> Forgot pwd?</a>
+                        </div> 
+                        {{-- <a href="javascript:void(0)" class="text-muted float-right"><i
+                                class="fa fa-lock m-r-5"></i> Forgot pwd?</a> --}}
                     </div>
                 </div>
                 <div class="form-group text-center">
@@ -54,7 +55,7 @@
                         <button class="btn btn-block btn-lg btn-info" type="submit">Masuk</button>
                     </div>
                 </div>
-                <div class="row m-t-0">
+                {{-- <div class="row m-t-0">
                     <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
                         <div class="social">
                             <a href="javascript:void(0)" class="btn  btn-facebook" data-toggle="tooltip"
@@ -65,7 +66,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="form-group m-b-0">
                     <div class="col-sm-12 text-center">
                         Tidak punya akun? <a class="text-info m-l-5">

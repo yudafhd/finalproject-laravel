@@ -10,7 +10,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/';
+    protected $redirectTo = '/general';
 
     public function __construct()
     {

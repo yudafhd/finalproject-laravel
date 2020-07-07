@@ -13,8 +13,8 @@ class HomeController extends Controller
         return view('general.home', ['username' => '']);
     }
 
-    public function profile($username)
+    public function usernameProfile($username)
     {
-        return view('general.profile', ['username' => $username]);
+        return view('general.username', ['username' => $username]);
     }
 }

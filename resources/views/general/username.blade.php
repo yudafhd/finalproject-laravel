@@ -1,4 +1,5 @@
-@extends('layout_general.index') @section('content')
+@extends('layout_general.index') 
+@section('content')
 <div class="row page-titles m-t-40">
     <div class="col-sm col-md text-center">
         <div class="wrapper-content">

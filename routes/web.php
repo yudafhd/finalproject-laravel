@@ -1,10 +1,18 @@
 <?php
 
-Route::get('/', 'General\HomeController@index')->name('home');
 Auth::routes();
-Route::get('/{username}', 'General\HomeController@profile')->name('username');
+Route::get('/', 'General\HomeController@index')->name('home');
+Route::get('/user/{username}', 'General\HomeController@usernameProfile')->name('username');
+Route::get('/sendemail', 'EmailController@testEmail')->name('test.email');
+
 
 Route::middleware(['auth'])->group(function () {
+    // User general
+    Route::group(['prefix' => 'general'], function () {
+        Route::get('/', 'General\GeneralController@index')->name('general');
+        Route::post('/', 'General\GeneralController@saveLinks')->name('general.save.links');
+    });
+
     // User office
     Route::group(['prefix' => 'backoffice'], function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

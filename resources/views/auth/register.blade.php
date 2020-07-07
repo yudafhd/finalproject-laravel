@@ -41,6 +41,25 @@
                 <div class="form-group">
                     <div class="col-xs-12">
                         <input
+                            id="name"
+                            type="text"
+                            placeholder="{{ __('Username') }}"
+                            class="form-control @error('username') is-invalid @enderror"
+                            name="name"
+                            value="{{ old('username') }}"
+                            required
+                        />
+
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input
                             id="email"
                             type="email"
                             placeholder="{{ __('E-Mail Address') }}"
@@ -153,7 +172,7 @@
                 </div>
                 <div class="form-group m-b-0">
                     <div class="col-sm-12 text-center">
-                        have an account?
+                        Sudah punya akun?
                         <a href="login" class="text-primary m-l-5"
                             ><b>Masuk</b></a
                         >

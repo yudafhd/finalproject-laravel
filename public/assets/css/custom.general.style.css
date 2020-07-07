@@ -1,3 +1,21 @@
+body {
+    font-family: "Josefin Sans", sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    color: #2b3b44;
+    font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #2b3b44;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 400;
+}
 .topbar {
     background: #fd6a00;
 }
@@ -78,6 +96,10 @@ a {
 .btn-info,
 .btn-info.disabled {
     background: #5bc0de;
+}
+.btn {
+    padding: 4px 7px !important;
+    cursor: pointer;
 }
 
 /* ---------------------- Button Custom ------------------------------- */
