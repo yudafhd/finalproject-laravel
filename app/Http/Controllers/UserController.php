@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -29,9 +28,10 @@ class UserController extends Controller
             $type = 'rpk';
         }
 
-        $userList = User::all()->where('access_type', $type);;
+        $userList = User::all()->where('access_type', $type);
+        // dd($userList);
         $success_message = $request->session()->get('alert-success');
-        return view('users.userList',  ['userList' => $userList, 'success_message' => $success_message]);
+        return view('users.userList', ['userList' => $userList, 'success_message' => $success_message]);
     }
 
     public function create()
@@ -40,13 +40,12 @@ class UserController extends Controller
         $districts_array = $districts->pluck('id');
         $villages = Villages::all()->whereIn('district_id', $districts_array);
         $roles = Role::all();
-        return view('users.userCreate',  compact('roles', 'districts', 'villages'));
+        return view('users.userCreate', compact('roles', 'districts', 'villages'));
     }
 
     public function store(Request $request)
     {
         try {
-
             $imagename = null;
             if ($request->file('foto')) {
                 if (!file_exists(public_path() . '/user/profile/')) {
@@ -96,7 +95,7 @@ class UserController extends Controller
         $userDetail = User::find($id);
         $url = Storage::url($userDetail->image_url);
         $roles = Role::all();
-        return view('users.userUpdate',  compact('userDetail', 'roles', 'districts', 'villages', 'url'));
+        return view('users.userUpdate', compact('userDetail', 'roles', 'districts', 'villages', 'url'));
     }
 
     public function storeUpdate(Request $request)
@@ -219,7 +218,7 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('users.profile',  []);
+        return view('users.profile', []);
     }
 
     public function delete($id, Request $request)
@@ -229,7 +228,7 @@ class UserController extends Controller
             $acces_type = $user->access_type;
             $user->syncRoles();
             $user->delete();
-            
+
             $url_type = $acces_type;
             if ($url_type == 'rpk') {
                 $url_type = 'ewarong';
@@ -237,7 +236,7 @@ class UserController extends Controller
             $request->session()->flash('alert-success', "User {$user->name} berhasil dihapus!");
             return redirect('/user/' . $url_type);
         } catch (\Exception $e) {
-            $request->session()->flash('alert-error',  $e->getMessage());
+            $request->session()->flash('alert-error', $e->getMessage());
             return redirect('/user/' . $url_type);
         }
     }
