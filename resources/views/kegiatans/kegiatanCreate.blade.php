@@ -70,7 +70,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">OKP</label>
-                                    <select class="form-control" name="okp_id" custom-select">
+                                    <select class="form-control custom-select" name="okp_id">
                                         @foreach ($okps as $okp)
                                         <option value="{{$okp->id}}">{{$okp->nama}}</option>
                                         @endforeach
