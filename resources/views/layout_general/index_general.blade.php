@@ -38,7 +38,7 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <!-- Logo will be here -->
-                        <a class="navbar-brand" href="index.html"
+                        <a class="navbar-brand" href="{{ url('') }}"
                             ><img
                                 width="30px"
                                 src="https://s2.bukalapak.com/marketplace/images/logo/bukalapak-icon-secondary@3x.png"

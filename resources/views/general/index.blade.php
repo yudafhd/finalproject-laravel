@@ -1,5 +1,9 @@
 @extends('layout_general.index_general') @section('content')
-<div class="row page-titles m-t-40" style="margin-bottom: 100px">
+<div class="row page-titles m-t-40" style="margin-bottom: 20vh">
+    <div class="link-when-mobile text-center m-b-20 d-sm-none text-center" style="width: 100vw">
+        <a target="_blank"
+            href="{{ Route("username", "pinterus") }}">{{ Route("username", "pinterus") }}</a>
+    </div>
     <div class="col-sm col-md">
         <form method="POST" action="{{ Route('general.save.links') }}" enctype="multipart/form-data">
             @csrf
@@ -46,13 +50,13 @@
                     </div>
 
                     {{-- THIS IS FOR DATA ONLY --}}
-
-                    @foreach($links as $key => $link )
+                    @foreach($links as $key => $link)
                         <div id="first-your-link-data{{ $key }}" class="m-b-20 row">
                             <div class="col-md input-group ">
                                 <div class="input-group-prepend">
-                                    <button id="dropdown-type-button{{ $key }}" class="btn btn-outline-secondary dropdown-toggle"
-                                        type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button id="dropdown-type-button{{ $key }}"
+                                        class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         @if($link->type == 'youtube')
                                             <i id="youtube" class="mdi mdi-youtube-play"></i>
                                         @else
@@ -60,12 +64,11 @@
                                         @endif
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a  class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="#">
                                             <i id="gmail" class="mdi mdi-gmail"></i>
                                             Email</a>
                                         <a class="dropdown-item" href="#">
-                                            <i id="youtube"
-                                                class="mdi mdi-youtube-play"></i>
+                                            <i id="youtube" class="mdi mdi-youtube-play"></i>
                                             Youtube</a>
                                         <a class="dropdown-item" href="#">
                                             <i id="whatsapp" class="mdi mdi-whatsapp"></i>
@@ -96,26 +99,29 @@
                         class="mdi mdi-content-save"></i> Simpan</button>
             </section>
         </form>
-        <div class="link-when-mobile m-t-40 text-center d-block d-sm-none">
-            <a target="_blank"
-                href="{{ Route("username", "pinterus") }}">{{ Route("username", "pinterus") }}</a>
-        </div>
+     
     </div>
     <div class="col-sm col-md text-center d-none d-sm-block">
         <span>
             <a target="_blank"
                 href="{{ Route("username", "pinterus") }}">{{ Route("username", "pinterus") }}</a>
         </span>
-        <div class=" mr-auto ml-auto m-t-20 rounded-top p-10"
-            style="width: 20vw; height:40vh; color:#ffffff; background: #5bc0de">
-            {{ '@'.$user->username }}
-            <br />
-            {{ $tweet }}
-            <br />
-            <ul class="list-group list-group-flush">
+        <div class=" mr-auto ml-auto m-t-20 rounded-top p-10" 
+            style="width: 25vw; height:70vh; color:#ffffff; 
+            background-repeat: no-repeat;
+            background-size: 25vw;
+            background-image:url('{{ asset('assets/images/phonebg.png') }}');">
+            <p class="username-front" style="margin-top: 10vh">
+                {{ '@'.$user->username }}               
+            </p>
+            <p class="tweet">
+                {{ $tweet }}
+            </p>
+            <ul class="list-group list-group-flush" style="padding: 50px; padding-top:0px">
                 @foreach($links as $link)
-                    <li class="list-group-item p-10" style="background: #61cff0;
-                 font-size:12px">
+                    <li class="list-group-item p-15" style="
+                    background:none;
+                    font-size:12px">
                         @if($link->type == 'youtube')
                             <i id="youtube" class="mdi mdi-youtube-play"></i>
                         @else
@@ -135,21 +141,21 @@
 <script>
     $(document).ready(function () {
 
-        @foreach($links as $key => $link)
+        @foreach($links as $key => $link )
             $('#close-link-data{{ $key }}').on('click', function () {
                 $('#first-your-link-data{{ $key }}').remove();
             });
 
-            $('#first-your-link-data{{ $key }}').find('.dropdown-item{{ $key }}').each(function (index) {
+        $('#first-your-link-data{{ $key }}').find('.dropdown-item').each(function (index) {
                 $(this).on("click", function () {
                     const element = '<i class="' + $(this).find('i').attr('class') +
                         '"></i>';
-                        console.log($(this));
-                        $(document).find("#dropdown-type-button{{ $key }}").html(element);
-                        $('#first-your-link-data{{ $key }}').find('#social-links').val($(this).find('i').attr('id'));
+                    $(document).find("#dropdown-type-button{{ $key }}").html(element);
+                    $(document).find('#first-your-link-data{{ $key }}').find('#social-links').val($(
+                        this).find('i').attr('id'));
                 })
-            })
-        @endforeach
+            });
+            @endforeach
 
         $("#add-btn-link").click(function () {
             // defining DOM
