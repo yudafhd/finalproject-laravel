@@ -5,7 +5,7 @@
             href="{{ Route("username", "pinterus") }}">{{ Route("username", "pinterus") }}</a>
     </div>
     <div class="col-sm col-md">
-        <form method="POST" action="{{ Route('general.save.links') }}" enctype="multipart/form-data">
+        <form id="general-info" method="POST" action="{{ Route('general.save.links') }}" enctype="multipart/form-data">
             @csrf
             <section class="add-upload-photo d-flex">
                 <img width="70px" src="{{ asset('assets/images/user.svg') }}" class="m-r-20" />
@@ -59,6 +59,8 @@
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         @if($link->type == 'youtube')
                                             <i id="youtube" class="mdi mdi-youtube-play"></i>
+                                        @elseif($link->type == 'other')
+                                            <i id="{{ $link->type }}" class="mdi mdi-link"></i>
                                         @else
                                             <i id="{{ $link->type }}" class="mdi mdi-{{ $link->type }}"></i>
                                         @endif
@@ -114,7 +116,7 @@
             <p class="username-front" style="margin-top: 10vh">
                 {{ '@'.$user->username }}               
             </p>
-            <p class="tweet">
+            <p class="tweet m-b-0" style="font-size:12px">
                 {{ $tweet }}
             </p>
             <ul class="list-group list-group-flush" style="padding: 50px; padding-top:0px">
@@ -140,6 +142,21 @@
 
 <script>
     $(document).ready(function () {
+
+        $("#general-info").submit(function(e){
+        e.preventDefault();
+        Swal.fire({
+            icon: 'info',
+            title: 'Tunggu',
+            text: 'Sedang memperbarui data kamu.',
+            footer: '<a href="{{ Route('general') }}">tekan ini jika macet</a>',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            allowEscapeKey:false,
+            allowEnterKey: false,
+        });
+        setTimeout(function() { $('#general-info').off('submit').submit();}, 3000);
+        });
 
         @foreach($links as $key => $link )
             $('#close-link-data{{ $key }}').on('click', function () {

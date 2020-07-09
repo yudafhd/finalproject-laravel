@@ -79,10 +79,12 @@
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item"
-                                                    href="{{ Route('general') }}">Akun saya</a>
+                                                    href="{{ Route('general') }}"><i class="mdi mdi-settings"></i>
+                                                    Pengaturan</a>
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">Keluar</a>
+                                      document.getElementById('logout-form').submit();">
+                                      <i class="mdi mdi-logout m-r-5"></i>Keluar</a>
                                             </div>
                                             <form id="logout-form" action="{{ route('logout') }}"
                                                 method="POST" style="display: none;">

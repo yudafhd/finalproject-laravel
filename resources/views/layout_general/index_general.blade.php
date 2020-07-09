@@ -70,7 +70,9 @@
                                         class="nav-link"
                                         href="../Documentation/document.html"
                                         target="_blank"
-                                        >Tema</a
+                                        >
+                                        <i class="mdi mdi-format-paint"></i>
+                                        Tema</a
                                     >
                                 </li>
                             </ul>
@@ -80,9 +82,13 @@
                                     {{auth()->user()->name}}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="{{Route('general')}}" >Akun saya</a>
+                                    <a class="dropdown-item" href="{{Route('general')}}" >
+                                        <i id="youtube" class="mdi mdi-account"></i>
+                                        Akun saya</a>
                                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">Keluar</a>
+                                      document.getElementById('logout-form').submit();">
+                                       <i class="mdi mdi-logout"></i>
+                                      Keluar</a>
                                     </div>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         style="display: none;">
