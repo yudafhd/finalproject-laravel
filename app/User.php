@@ -29,8 +29,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function class()
+    
+    public function generals()
     {
-        return $this->belongsTo('App\Classes');
+        return $this->hasOne('App\General');
     }
 }

@@ -4,14 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class General extends Model
 {
-
     protected $fillable = [
-        'nama',
-        'deskripsi'
+        'membership', 'tweet', 'photo', 'user_id','theme_id'
     ];
-
     protected $hidden = [
         'created_at', 'updated_at'
     ];

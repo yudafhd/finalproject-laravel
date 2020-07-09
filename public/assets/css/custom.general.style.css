@@ -16,11 +16,12 @@ h6 {
     font-family: "Josefin Sans", sans-serif;
     font-weight: 400;
 }
+
 .topbar {
     background: #fd6a00;
 }
 
-.sidebar-nav > ul > li > a.active {
+.sidebar-nav>ul>li>a.active {
     font-weight: 400;
     background: #ffffff;
     color: #99abb4;
@@ -41,7 +42,7 @@ a {
     background-color: transparent;
 }
 
-.sidebar-nav > ul > li.active > a i {
+.sidebar-nav>ul>li.active>a i {
     color: #99abb4;
 }
 
@@ -50,7 +51,7 @@ a {
     color: #99abb4;
 }
 
-.sidebar-nav > ul > li.active > a {
+.sidebar-nav>ul>li.active>a {
     color: #99abb4;
     font-weight: 500;
 }
@@ -80,10 +81,10 @@ a {
 .btn-primary:active:focus,
 .btn-primary:active:hover,
 .btn-primary:focus,
-.open > .dropdown-toggle.btn-primary.focus,
-.open > .dropdown-toggle.btn-primary:focus,
-.open > .dropdown-toggle.btn-primary:hover,
-.show > .btn-primary.dropdown-toggle {
+.open>.dropdown-toggle.btn-primary.focus,
+.open>.dropdown-toggle.btn-primary:focus,
+.open>.dropdown-toggle.btn-primary:hover,
+.show>.btn-primary.dropdown-toggle {
     background-color: #0062cc;
     border: 1px solid #0062cc;
 }
@@ -97,6 +98,7 @@ a {
 .btn-info.disabled {
     background: #5bc0de;
 }
+
 .btn {
     padding: 4px 7px !important;
     cursor: pointer;
@@ -147,7 +149,6 @@ a {
 
 .profile-status {
     margin: 1rem;
-    margin-top: -1rem;
     font-size: 14px;
 }
 
@@ -171,6 +172,7 @@ a {
     font-size: 13px;
     text-align: center;
 }
+
 .footer-for-username a {
     font-weight: bold;
     color: #ffffff;
@@ -181,9 +183,12 @@ a {
     margin-left: auto;
     margin-right: auto;
 }
+
 .section-wrapper {
-    min-height: 100%; /* Fallback for browsers do NOT support vh unit */
-    min-height: 100vh; /* These two lines are counted as one :-)       */
+    min-height: 100%;
+    /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh;
+    /* These two lines are counted as one :-)       */
     display: flex;
     align-items: center;
 }

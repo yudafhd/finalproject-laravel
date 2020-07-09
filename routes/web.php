@@ -11,6 +11,8 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'general'], function () {
         Route::get('/', 'General\GeneralController@index')->name('general');
         Route::post('/', 'General\GeneralController@saveLinks')->name('general.save.links');
+        Route::get('/dashboard', 'General\DashboardController@index')->name('general.dashboard');
+        Route::get('/theme', 'General\GeneralController@index')->name('general.theme');
     });
 
     // User office

@@ -9,28 +9,22 @@
                     src="{{ asset('assets/images/user.svg') }}"
                 />
             </div>
-            <div class="profile-username">@pinterusmedia</div>
-            <div class="profile-status">Situs media, software aplikasi</div>
+            <div class="profile-username">{{ '@'.$username }}</div>
+            <div class="profile-status">{{ $tweet }}</div>
             <div class="profile-user-menu">
                 <ul class="list-group list-group-flush">
+                    @foreach ($links as $link )
                     <li class="list-group-item">
-                        <!-- <img
-                            style="width: 2rem;"
-                            class="float-left"
-                            src="{{
-                                asset(
-                                    'assets/images/icon/social-media-1/svg/034-instagram.svg'
-                                )
-                            }}"
-                        /> -->
-                        Whatsapp
+                    @if($link->type == 'youtube')
+                        <i id="youtube" class="mdi mdi-youtube-play"></i>
+                    @else
+                        <i id="youtube" class="mdi mdi-{{ $link->type }}"></i>
+                    @endif 
+                    <a href="{{ 'https://'.$link->url }}" class="text-white">
+                        {{ $link->title }}
+                    </a>
                     </li>
-                    <li class="list-group-item">
-                        Youtube
-                    </li>
-                    <li class="list-group-item">
-                        Instagram
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

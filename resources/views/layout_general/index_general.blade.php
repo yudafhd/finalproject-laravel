@@ -54,8 +54,14 @@
                                 <li class="nav-item">
                                     <a
                                         class="nav-link"
-                                        href="../Documentation/document.html"
-                                        target="_blank"
+                                        href="{{ Route('general.dashboard') }}"
+                                        >Dashboard</a
+                                    >
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href="{{ Route('general') }}"
                                         >General</a
                                     >
                                 </li>
@@ -69,29 +75,11 @@
                                 </li>
                             </ul>
                             <ul class="navbar-nav ml-auto stylish-nav">
-                                @if (!auth()->check())
-                                <li class="nav-item">
-                                    <a
-                                        class="nav-link"
-                                        href="{{Route('login')}}"
-                                        >Masuk</a
-                                    >
-                                </li>
-                                <li class="nav-item">
-                                    <a
-                                        class="btn btn-info font-13"
-                                        href="{{Route('register')}}"
-                                        style="width: 120px;"
-                                        >Daftar</a
-                                    >
-                                </li>
-                                @else 
                                 <div class="dropdown">
                                     <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{auth()->user()->name}}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="{{Route('general')}}" >Dashboard</a>
                                     <a class="dropdown-item" href="{{Route('general')}}" >Akun saya</a>
                                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">Keluar</a>
@@ -101,7 +89,7 @@
                                         @csrf
                                     </form>
                                   </div>
-                                @endif
+                                
                             </ul>
                         </div>
                     </nav>
@@ -112,12 +100,28 @@
             </div>
             @include('layout_general.js_section')
             <footer class="footer container">
-                © 2019 {{ config("app.name") }}
-                <span style="width: 200px" class="mr-auto ml-auto">
-                    fb
-                </span>
+                <ul class="list-unstyled list-inline d-flex">
+                    <span class="d-block  ml-auto mr-auto">
+                        <li class="list-inline-item">
+                            <a href="#!">Hubungi Saya</a>
+                          </li>
+                        <li class="list-inline-item">
+                            <a href="#!">Whatsapp</a>
+                          </li>
+                        <li class="list-inline-item">
+                            <a href="#!">Terms & Condition</a>
+                          </li>
+                    </span>
+                  </ul>
+                <div class="d-flex">
+                    <span class="ml-auto mr-auto">
+                        ©2019 {{ config("app.name") }}
+                        <i id="youtube" class="m-l-40 mdi mdi-instagram"></i>
+                        <i id="youtube" class="mdi mdi-facebook"></i>
+                        <i id="youtube" class="mdi mdi-gmail"></i>
+                    </span>
+                </div>
             </footer>
-
         </div>
     </body>
 </html>

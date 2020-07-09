@@ -45,7 +45,7 @@
                             type="text"
                             placeholder="{{ __('Username') }}"
                             class="form-control @error('username') is-invalid @enderror"
-                            name="name"
+                            name="username"
                             value="{{ old('username') }}"
                             required
                         />
