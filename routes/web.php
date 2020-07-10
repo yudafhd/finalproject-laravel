@@ -3,8 +3,6 @@
 Auth::routes();
 Route::get('/', 'General\HomeController@index')->name('home');
 // Route::get('/sendemail', 'EmailController@testEmail')->name('test.email');
-Route::get('/{username}', 'General\HomeController@usernameProfile')->name('username');
-
 
 Route::middleware(['auth'])->group(function () {
     // User general
@@ -47,3 +45,5 @@ Route::middleware(['auth'])->group(function () {
         });
     });
 });
+
+Route::get('/{username}', 'General\HomeController@usernameProfile')->name('username');
