@@ -113,7 +113,8 @@
             background-repeat: no-repeat;
             background-size: 25vw;
             background-image:url('{{ asset('assets/images/phonebg.png') }}');">
-            <p class="username-front" style="margin-top: 10vh">
+             <img width="70px" src="{{ asset('assets/images/user.svg') }}"  style="margin-top: 10vh" />
+            <p class="username-front m-t-10">
                 {{ '@'.$user->username }}               
             </p>
             <p class="tweet m-b-0" style="font-size:12px">

@@ -6,6 +6,7 @@ body {
     font-weight: 300;
 }
 
+
 h1,
 h2,
 h3,
@@ -200,4 +201,101 @@ a {
     /* These two lines are counted as one :-)       */
     display: flex;
     align-items: center;
+}
+
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+    .navbar-brand {
+        font-size: 2em;
+    }
+
+    .welcome-text {
+        font-size: 5em;
+        line-height: 1em;
+    }
+}
+
+/* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .navbar-brand {
+        font-size: 2em;
+    }
+
+    .welcome-text {
+        font-size: 4.2em;
+        line-height: 1em;
+    }
+}
+
+/* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .navbar-brand {
+        font-size: 2em;
+    }
+
+    .welcome-text {
+        font-size: 3em;
+        line-height: 1em;
+    }
+}
+
+/* 
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
+
+/* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .navbar-brand {
+        font-size: 1.2em;
+    }
+
+    .welcome-text {
+        font-size: 4em;
+        line-height: 1em;
+    }
+
+    .home-phone {
+        margin-left: 15vw !important;
+    }
+
+}
+
+/* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .navbar-brand {
+        font-size: 1.2em;
+    }
+
+    .welcome-text {
+        font-size: 4em;
+        line-height: 1em;
+    }
+
+    .home-phone {
+        margin-left: 15vw !important;
+    }
 }

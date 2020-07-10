@@ -40,8 +40,8 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <!-- Logo will be here -->
-                            <a class="navbar-brand" href="index.html"><img
-                                    src="https://s1.bukalapak.com/ast/sigil/bukalapak-logo-primary.svg" alt="logo" />
+                            <a class="navbar-brand" href="{{ url('') }}">
+                                Pinterlink
                             </a>
                             <!-- This is the navigation menu -->
                             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -79,12 +79,13 @@
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item"
-                                                    href="{{ Route('general') }}"><i class="mdi mdi-settings"></i>
+                                                    href="{{ Route('general') }}"><i
+                                                        class="mdi mdi-settings"></i>
                                                     Pengaturan</a>
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
-                                      <i class="mdi mdi-logout m-r-5"></i>Keluar</a>
+                                                    <i class="mdi mdi-logout m-r-5"></i>Keluar</a>
                                             </div>
                                             <form id="logout-form" action="{{ route('logout') }}"
                                                 method="POST" style="display: none;">

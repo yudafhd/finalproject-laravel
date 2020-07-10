@@ -38,12 +38,8 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <!-- Logo will be here -->
-                        <a class="navbar-brand" href="{{ url('') }}"
-                            ><img
-                                width="30px"
-                                src="https://s2.bukalapak.com/marketplace/images/logo/bukalapak-icon-secondary@3x.png"
-                                alt="logo"
-                            />
+                        <a class="navbar-brand" href="{{ url('') }}">
+                            Pinterlink
                         </a>
                         <!-- This is the navigation menu -->
                         <div
