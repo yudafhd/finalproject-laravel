@@ -2,8 +2,8 @@
 
 Auth::routes();
 Route::get('/', 'General\HomeController@index')->name('home');
-Route::get('/user/{username}', 'General\HomeController@usernameProfile')->name('username');
-Route::get('/sendemail', 'EmailController@testEmail')->name('test.email');
+// Route::get('/sendemail', 'EmailController@testEmail')->name('test.email');
+Route::get('/{username}', 'General\HomeController@usernameProfile')->name('username');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -46,7 +46,4 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/permissions/storeUpdate', 'SettingController@storeUpdatePermission')->name('permission.store.update');
         });
     });
-
-    // Pemesanan
-    // Route::resource('pemesanan', 'PemesananController');
 });

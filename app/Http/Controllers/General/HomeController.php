@@ -4,7 +4,6 @@
 namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\User;
 use App\Link;
 class HomeController extends Controller
@@ -16,9 +15,17 @@ class HomeController extends Controller
 
     public function usernameProfile($username)
     {
-        $user = User::with('generals')->where('username', $username)->get()->first();
-        $tweet = $user->generals['tweet'];
-        $links = Link::where('user_id', $user->id)->get();
-        return view('general.username', ['username' => $username, 'tweet' => $tweet, 'links' => $links]);
+        $exception_uri = ['general','backoffice'];
+        if(!in_array($username, $exception_uri)) {
+            $user = User::with('generals')->where('username', $username)->get()->first();
+            if(!$user) {
+                abort(404);
+            }else{
+                $tweet = $user->generals['tweet'];
+                $links = Link::where('user_id', $user->id)->get();
+                return view('general.username', ['username' => $username, 'tweet' => $tweet, 'links' => $links]);
+            }
+
+        }
     }
 }
