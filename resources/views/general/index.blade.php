@@ -130,8 +130,7 @@
                         @else
                             <i id="youtube" class="mdi mdi-{{ $link->type }}"></i>
                         @endif
-                        <a href="{{ 'https://'.$link->url ? $link->url : 'pinterus.link' }}"
-                            class="text-white">
+                        <a class="text-white">
                             {{ $link->title }}
                         </a>
                     </li>
@@ -144,6 +143,15 @@
 <script>
     $(document).ready(function () {
 
+        @if($message) 
+        Swal.fire({
+            icon: 'info',
+            title: 'Error',
+            text: '{{ $message }}',
+        });
+        @endif
+
+        let linktotal = {{ count($links) + 1 }};
         $("#general-info").submit(function(e){
         e.preventDefault();
         Swal.fire({
@@ -176,6 +184,11 @@
             @endforeach
 
         $("#add-btn-link").click(function () {
+            console.log(linktotal);
+            if(linktotal <= 5 ) {
+                console.log('inside', linktotal);
+            linktotal = linktotal+1;
+
             // defining DOM
             const el = $("#first-your-link").clone().css('display', 'block');
             // insert clone element
@@ -194,6 +207,13 @@
                     el.find('#social-links').val($(this).find('i').attr('id'));
                 })
             })
+            }else{
+                Swal.fire({
+            icon: 'info',
+            title: 'Batas maximal link adalah 5',
+            text: 'Mohon maaf ya, server mimin masih kecil jadi belum bisa kasih banyak, tapi mimin janji bakal berkembang lagi :)',
+        });
+            }
         });
     });
 

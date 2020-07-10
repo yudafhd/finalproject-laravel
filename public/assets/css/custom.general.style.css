@@ -278,6 +278,10 @@ a {
         margin-left: 15vw !important;
     }
 
+    .dashboard-mobile {
+        margin-top: 20vh;
+    }
+
 }
 
 /* 
@@ -297,5 +301,9 @@ a {
 
     .home-phone {
         margin-left: 15vw !important;
+    }
+
+    .dashboard-mobile {
+        margin-top: 20vh;
     }
 }

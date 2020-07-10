@@ -1,6 +1,6 @@
 @extends('layout_general.index_general') @section('content')
 <div class="row page-titles" style="height: 80vh">
-    <div class="col-sm col-md d-flex text-center">
+    <div class="col-sm col-md d-flex text-center dashboard-mobile">
        <h1 class="mt-auto mb-auto mr-auto ml-auto d-none d-sm-block">
         Masih dalam perbaikan<br /> monmaap (⁎˃ᆺ˂)
        </h1>

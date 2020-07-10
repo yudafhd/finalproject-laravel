@@ -6,8 +6,8 @@
             <h1 class="text-themecolor welcome-text">Mau Link Bio <br />Kamu Keren ?</h1>
             <h3 class="text-themecolor d-none d-sm-block"> (👍≖‿‿≖)👉</h3>
             <form method="GET" action="{{ Route('register') }}">
-                <button class="btn btn-success m-t-20" href="https://wrappixel.com/templates/adminpro/">BUAT
-                    GRATIS SEKARANG</button>
+                <button class="btn btn-success m-t-20" style="padding:10px !important" href="https://wrappixel.com/templates/adminpro/">
+                    BUAT GRATIS SEKARANG</button>
             </form><br />
             Sudah punya akun ? <a href="{{ Route('login') }}">Masuk</a>
         </div>
