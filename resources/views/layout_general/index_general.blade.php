@@ -64,8 +64,7 @@
                                 <li class="nav-item">
                                     <a
                                         class="nav-link"
-                                        href="../Documentation/document.html"
-                                        target="_blank"
+                                        href="{{ Route('general.theme') }}"
                                         >
                                         <i class="mdi mdi-format-paint"></i>
                                         Tema</a
