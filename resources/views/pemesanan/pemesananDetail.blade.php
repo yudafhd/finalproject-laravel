@@ -79,7 +79,7 @@
                     </table>
                     <div class="form-actions" style="margin-top:20px">
                         <span>
-                            @if ($pemesanan->status != 'CONFIRM' && $pemesanan->status != 'REJECTED' )
+                            @if ($pemesanan->status != 'CONFIRM' && $pemesanan->status != 'REJECTED' && $pemesanan->status != 'FINISH' )
                             <form style="float:left; margin-right: 10px;" method="POST" 
                             action="{{ Route('pemesanan.update', $pemesanan->id) }}" 
                             onkeydown="return event.key != 'Enter';">
@@ -92,7 +92,20 @@
                             @endif
                         </span>
                         <span>
-                            @if ($pemesanan->status != 'REJECTED' && $pemesanan->status != 'CONFIRM' )
+                            @if ($pemesanan->status != 'REJECTED' && $pemesanan->status != 'FINISH' )
+                            <form style="float:left; margin-right: 10px;" method="POST" 
+                            action="{{ Route('pemesanan.update', $pemesanan->id) }}" 
+                            onkeydown="return event.key != 'Enter';">
+                            @csrf
+                            {{ method_field('PUT') }}
+                            <input type="hidden" name="status" value="FINISH" >
+                                <button type="submit" class="btn btn-info">
+                                    <i class="fa fa-check"></i> Finish</button>
+                            </form>
+                            @endif
+                        </span>
+                        <span>
+                            @if ($pemesanan->status != 'REJECTED' && $pemesanan->status != 'FINISH' )
                             <form method="POST" style="float:left; margin-right: 10px;" action="{{ Route('pemesanan.update', $pemesanan->id) }}" enctype="multipart/form-data"
                                 onkeydown="return event.key != 'Enter';">
                                 @csrf

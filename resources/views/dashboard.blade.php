@@ -17,51 +17,57 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="card bg-success">
-                            <div class="card-body">
-                                <div class="d-flex no-block">
-                                    <div class="m-r-20 align-self-center">
-                                        <i
-                                            class="mdi mdi-home text-white"
-                                            style="font-size: 2em;"
-                                        ></i>
-                                    </div>
-                                    <div class="align-self-center">
-                                        <h6 class="text-white m-t-10 m-b-0">
-                                            Total Ewarong Registered
-                                        </h6>
-                                        <h2 class="m-t-0 text-white">
-                                            {{ $ewarong_total }}
-                                        </h2>
-                                    </div>
+                  @if (auth()->user()->access_type == 'superadmin')
+                  <div class="col-lg-3">
+                    <div class="card bg-success">
+                        <div class="card-body">
+                            <div class="d-flex no-block">
+                                <div class="m-r-20 align-self-center">
+                                    <i
+                                        class="mdi mdi-home text-white"
+                                        style="font-size: 2em;"
+                                    ></i>
+                                </div>
+                                <div class="align-self-center">
+                                    <h6 class="text-white m-t-10 m-b-0">
+                                        Total Ewarong Registered
+                                    </h6>
+                                    <h2 class="m-t-0 text-white">
+                                        {{ $ewarong_total }}
+                                    </h2>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="card bg-info">
-                            <div class="card-body">
-                                <div class="d-flex no-block">
-                                    <div class="m-r-20 align-self-center">
-                                        <i
-                                            class="mdi mdi-account text-white"
-                                            style="font-size: 2em;"
-                                        ></i>
-                                    </div>
-                                    <div class="align-self-center">
-                                        <h6 class="text-white m-t-10 m-b-0">
-                                            Total Member Registered
-                                        </h6>
-                                        <h2 class="m-t-0 text-white">
-                                            {{ $user_total }}
-                                        </h2>
-                                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card bg-info">
+                        <div class="card-body">
+                            <div class="d-flex no-block">
+                                <div class="m-r-20 align-self-center">
+                                    <i
+                                        class="mdi mdi-account text-white"
+                                        style="font-size: 2em;"
+                                    ></i>
+                                </div>
+                                <div class="align-self-center">
+                                    <h6 class="text-white m-t-10 m-b-0">
+                                        Total Member Registered
+                                    </h6>
+                                    <h2 class="m-t-0 text-white">
+                                        {{ $user_total }}
+                                    </h2>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3">
+                </div>
+                  @endif
+                  @if (auth()->user()->access_type == 'superadmin')
+                  <div class="col-lg-3">
+                      @else
+                    <div class="col-lg-6">
+                  @endif
                         <div class="card bg-primary">
                             <div class="card-body">
                                 <div class="d-flex no-block">
@@ -83,7 +89,11 @@
                             </div>
                         </div>
                     </div>
+                    @if (auth()->user()->access_type == 'superadmin')
                     <div class="col-lg-3">
+                        @else
+                    <div class="col-lg-6">
+                    @endif
                         <div class="card bg-warning">
                             <div class="card-body">
                                 <div class="d-flex no-block">

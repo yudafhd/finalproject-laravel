@@ -53,6 +53,14 @@
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Jam Tutup</label>
+                                    <input type="text" class="form-control"
+                                        name="jam_tutup" id="timePicker4" />
+                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+                                </div>
+                            </div>
                         </div>
                         <h3 class="card-title" style="font-weight: bold">Pemilik Kios</h3>
                         <hr>

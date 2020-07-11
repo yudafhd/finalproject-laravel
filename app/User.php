@@ -37,4 +37,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Classes');
     }
+    
+    public function ewarong()
+    {
+        return $this->hasOne('App\Ewarong');
+    }
 }

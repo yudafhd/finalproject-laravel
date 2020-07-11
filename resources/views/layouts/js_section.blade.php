@@ -50,6 +50,11 @@
             shortTime: false,
             format: 'HH:mm'
         });
+        $('#timePicker4').bootstrapMaterialDatePicker({
+            date: false,
+            shortTime: false,
+            format: 'HH:mm'
+        });
         $('.dropify').dropify();
         $("#treetable").treetable();
 

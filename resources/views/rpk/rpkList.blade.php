@@ -52,7 +52,6 @@
                                 <th>Nama Kios</th>
                                 <th>Pemilik</th>
                                 <th>Telephone</th>
-                                <th>Jam Buka</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
@@ -63,7 +62,6 @@
                                 <td>{{ $rpk->nama_kios }}</td>
                                 <td>{{ $rpk->user->name }}</td>  
                                 <td>{{ $rpk->telp }}</td>  
-                                <td>{{ date('H:i', strtotime($rpk->jam_buka)) }}</td>  
                                 @if ($rpk->status == 'PENDING')
                                 <td><span class="badge badge-info">{{ $rpk->status }}</span></td>  
                                 @elseif($rpk->status == 'ACTIVE')

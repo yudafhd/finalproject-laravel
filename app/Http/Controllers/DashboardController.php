@@ -33,34 +33,53 @@ class DashboardController extends Controller
     {
         $ewarong_total = count(Ewarong::where('status', 'ACTIVE')->get());
         $user_total = count(User::where('access_type', 'umum')->get());
-        $order_total = count(Pemesanan::where('status', '!=', 'REJECTED')->get());
         $items_total = count(Item::all());
         $popular_items =   DB::table('items')
-            ->leftJoin('pemesanan_detail', 'pemesanan_detail.item_id', '=', 'items.id')
-            ->leftJoin('pemesanan', 'pemesanan.id', '=', 'pemesanan_detail.pemesanan_id')
-            ->selectRaw('sum(pemesanan_detail.qty) as total_terjual, items.nama, items.deskripsi')
-            ->groupBy(['items.id', 'items.nama', 'items.deskripsi'])
-            ->where('pemesanan.status', '!=', 'REJECTED')
-            ->orderBy('total_terjual', 'DESC')
-            ->get();
-        $penjualan_bulan_ini =  Pemesanan::where('pemesanan.status', '!=', 'REJECTED')
-            ->leftJoin('pemesanan_detail', 'pemesanan_detail.pemesanan_id', '=', 'pemesanan.id')
+        ->leftJoin('pemesanan_detail', 'pemesanan_detail.item_id', '=', 'items.id')
+        ->leftJoin('pemesanan', 'pemesanan.id', '=', 'pemesanan_detail.pemesanan_id')
+        ->selectRaw('sum(pemesanan_detail.qty) as total_terjual, items.nama, items.deskripsi')
+        ->groupBy(['items.id', 'items.nama', 'items.deskripsi'])
+        ->where('pemesanan.status', '!=', 'REJECTED')
+        ->orderBy('total_terjual', 'DESC')
+        ->get();
+    if(auth()->user()->access_type == 'rpk') {
+        $order_total = count(Pemesanan::where('status', '!=', 'REJECTED')->where('ewarong_id', auth()->user()->ewarong->id)->get());
+        $penjualan_bulan_ini =  PemesananDetail::leftjoin('pemesanan', 'pemesanan.id', '=', 'pemesanan_detail.pemesanan_id')
+        ->where('pemesanan.status', '=', 'FINISH')
+        ->whereMonth('pemesanan.created_at', date('m'))
+        ->where('pemesanan.ewarong_id', auth()->user()->ewarong->id)
+        ->get()
+        ->pluck('harga');
+        
+        $penjualan_bulan_chart =  PemesananDetail::join('pemesanan', 'pemesanan.id', '=', 'pemesanan_detail.pemesanan_id')
+        ->where('pemesanan.status', '=', 'FINISH')
+        ->whereMonth('pemesanan.created_at', date('m'))
+        ->where('pemesanan.ewarong_id', auth()->user()->ewarong->id)
+        ->selectRaw('sum(pemesanan_detail.harga) as total_harga, DATE_FORMAT(pemesanan.date_pemesanan, "%d") as day_number')
+        ->groupBy('pemesanan.date_pemesanan')
+        ->get()
+        ->toArray();
+    }else {
+        $order_total = count(Pemesanan::where('status', '!=', 'REJECTED')->get());
+        $penjualan_bulan_ini =  PemesananDetail::leftjoin('pemesanan', 'pemesanan.id', '=', 'pemesanan_detail.pemesanan_id')
+            ->where('pemesanan.status', '=', 'FINISH')
             ->whereMonth('pemesanan.created_at', date('m'))
             ->get()
             ->pluck('harga');
 
         $penjualan_bulan_chart =  PemesananDetail::join('pemesanan', 'pemesanan.id', '=', 'pemesanan_detail.pemesanan_id')
-            ->where('pemesanan.status', '!=', 'REJECTED')
+            ->where('pemesanan.status', '=', 'FINISH')
+            ->whereMonth('pemesanan.created_at', date('m'))
             ->selectRaw('sum(pemesanan_detail.harga) as total_harga, DATE_FORMAT(pemesanan.date_pemesanan, "%d") as day_number')
             ->groupBy('pemesanan.date_pemesanan')
             ->get()
             ->toArray();
-
-        $penjualan_bulan_ini_total = 0;
-        foreach ($penjualan_bulan_ini as $penjualan_bulan_ini) {
-            $penjualan_bulan_ini_total = $penjualan_bulan_ini_total + $penjualan_bulan_ini;
-        }
-
+    }
+            $penjualan_bulan_ini_total = 0;
+            foreach ($penjualan_bulan_ini as $penjualan_bulan_ini) {
+                $penjualan_bulan_ini_total = $penjualan_bulan_ini_total + (int) $penjualan_bulan_ini;
+            }
+           
         $total_days = 31;
 
         $penjualan_bulan_chart_convert = [];
@@ -75,6 +94,7 @@ class DashboardController extends Controller
                 }
             }
         };
+
 
         return view('dashboard', compact(
             'user_total',

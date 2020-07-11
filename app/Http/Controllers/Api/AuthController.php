@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\User;
 use App\Ewarong;
+use App\Rolw;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -46,11 +48,12 @@ class AuthController extends Controller
             if ($validator->fails()) {
                 return response(['status' => 'error', 'message' => $validator->messages()], 422);
             }
-
+            
+            $roles = Role::findByName($request->type);
             $user =  User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'access_type' => $request->type,
+                'access_type' => $roles->name,
                 'address' => $request->address,
                 'village_id' => $request->village_id,
                 'district_id' => $request->district_id,
@@ -72,6 +75,7 @@ class AuthController extends Controller
                     'status' => 'PENDING',
                 ]);
             }
+            $user->syncRoles($roles->name);
             return response(['data' => $user]);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()], 422);

@@ -38,6 +38,9 @@ Route::middleware(['auth'])->group(function () {
     // Item
     Route::resource('item', 'ItemController');
 
+    // Item
+    Route::resource('satuan', 'SatuanController');
+
     // Pemesanan
     Route::resource('pemesanan', 'PemesananController');
 });

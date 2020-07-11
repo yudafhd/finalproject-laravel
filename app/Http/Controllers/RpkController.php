@@ -20,8 +20,7 @@ class RpkController extends Controller
     {
         $user_id = auth()->user()->id;
         $user_access = auth()->user()->access_type;
-        $rpks = Ewarong::all();
-
+        $rpks = Ewarong::all()->sortByDesc('id');
         if ($user_access != 'superadmin') {
             $rpks = $rpks->where('user_id', $user_id);
         }

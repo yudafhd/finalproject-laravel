@@ -15,6 +15,7 @@ class Ewarong extends Model
         'latitude',
         'longitude',
         'jam_buka',
+        'jam_tutup',
         'image_url',
         'lokasi',
         'village_id',
