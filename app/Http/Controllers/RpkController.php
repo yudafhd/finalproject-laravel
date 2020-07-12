@@ -93,6 +93,7 @@ class RpkController extends Controller
             $ewarong->latitude = $request->latitude;
             $ewarong->longitude = $request->longitude;
             $ewarong->jam_buka = $request->jam_buka;
+            $ewarong->jam_tutup = $request->jam_tutup;
             $ewarong->lokasi = $request->lokasi;
             $ewarong->village_id = $request->village_id;
             $ewarong->district_id = $request->district_id;
