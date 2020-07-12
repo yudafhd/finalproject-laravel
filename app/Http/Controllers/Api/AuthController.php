@@ -37,7 +37,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-
         try {
             $validator = Validator::make($request->all(), [
                 'name' => ['required', 'string', 'max:255'],
@@ -69,6 +68,7 @@ class AuthController extends Controller
                     'latitude' => $request->latitude,
                     'longitude' => $request->longitude,
                     'jam_buka' => $request->jam_buka,
+                    'jam_tutup' => $request->jam_tutup,
                     'lokasi' => $request->lokasi,
                     'village_id' => $request->evillage_id,
                     'district_id' => $request->edistrict_id,

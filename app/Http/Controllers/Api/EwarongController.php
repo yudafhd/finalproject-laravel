@@ -36,10 +36,10 @@ class EwarongController extends Controller
                 $all_warong->where('village_id', $request->village_id);
             }
             if ($request->time) {
-                $all_warong->where('jam_buka', '>=', $request->time);
+                $all_warong->where('jam_buka', '<=', $request->time);
             }
             if ($request->time_close) {
-                $all_warong->where('jam_tutup', '<=', $request->time_close);
+                $all_warong->where('jam_tutup', '>=', $request->time_close);
             }
             $all_warong->where('status', 'ACTIVE');
         }
