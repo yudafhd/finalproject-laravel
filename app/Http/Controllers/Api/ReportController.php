@@ -22,6 +22,7 @@ class ReportController extends Controller
         if ($access == 'umum' or $access == 'superadmin') {
             $pemesanan_detail = PemesananDetail::join('pemesanan', 'pemesanan.id', '=', 'pemesanan_detail.pemesanan_id')
                 ->where('user_id', $user->id)
+                ->where('pemesanan.status', '=', 'FINISH')
                 ->whereMonth('pemesanan_detail.created_at',  $month)
                 ->whereYear('pemesanan_detail.created_at', $year)
                 ->selectRaw('sum(pemesanan_detail.harga) as total_harga, DATE_FORMAT(pemesanan.date_pemesanan, "%d") as day_number')
@@ -32,6 +33,7 @@ class ReportController extends Controller
         if ($access == 'rpk') {
             $pemesanan_detail = PemesananDetail::join('pemesanan', 'pemesanan.id', '=', 'pemesanan_detail.pemesanan_id')
                 ->where('ewarong_id', $ewarong->id)
+                ->where('pemesanan.status', '=', 'FINISH')
                 ->whereMonth('pemesanan_detail.created_at',  $month)
                 ->whereYear('pemesanan_detail.created_at', $year)
                 ->selectRaw('sum(pemesanan_detail.harga) as total_harga, DATE_FORMAT(pemesanan.date_pemesanan, "%d") as day_number')

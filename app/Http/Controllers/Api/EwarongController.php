@@ -164,12 +164,19 @@ class EwarongController extends Controller
                     'item_id' => $item['id'],
                     'qty' => $item['qty'],
                     'harga' => $item['harga'],
+                    'satuan_id' => $item['satuan_id'],
+                    'satuan_number' => $item['satuan_number'],
                 ]);
 
                 $stockdata = Stock::where('ewarong_id', $ewarong_id)
-                    ->where('item_id', $item['id'])->get()->first();
+                    ->where('item_id', $item['id'])
+                    ->where('satuan_id', $item['satuan_id'])
+                    ->where('satuan_number', $item['satuan_number'])
+                    ->get()->first();
                 $updateStock = Stock::where('ewarong_id', $ewarong_id)
-                    ->where('item_id', $item['id']);
+                    ->where('item_id', $item['id'])
+                    ->where('satuan_id', $item['satuan_id'])
+                    ->where('satuan_number', $item['satuan_number']);
                 $updateStock->update(['qty' => $stockdata->qty - $item['qty']]);
             }
             return response(['status' => 'success', 'message' => 'pesanan berhasil ditambahkan']);
@@ -209,9 +216,9 @@ class EwarongController extends Controller
             $user = auth()->user();
             
             $pemesanans = Pemesanan::find($request->pemesanan_id);
-            $pemesananDetail = PemesananDetail::all()->where('pemesanan_id', $request->pemesanan_id);
+            $pemesananDetail = PemesananDetail::all()->where('pemesanan_id', $pemesanans->id);
             $status = $request->status;
-            
+
             foreach($pemesananDetail as $pemesanan) {
                 $item_id = $pemesanan->item_id;
                 $qty = $pemesanan->qty;

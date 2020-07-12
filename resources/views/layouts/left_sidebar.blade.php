@@ -52,11 +52,11 @@
                             <i class="mdi mdi-food"></i><span class="hide-menu">Items</span></a>
                         </li>
                        @endif
-                        {{-- @if (auth()->user()->access_type ==='superadmin' ||  in_array('items', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('items', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a href="{{Route('satuan.index')}}">
                             <i class="mdi mdi-sitemap"></i><span class="hide-menu">Satuan</span></a>
                         </li>
-                       @endif --}}
+                       @endif
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('pemesanan', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a href="{{Route('pemesanan.index')}}">
                             <i class="mdi mdi-basket"></i><span class="hide-menu">Pemesanan</span></a>

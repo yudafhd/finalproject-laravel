@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Stock;
 use App\Ewarong;
 use App\Item;
+use App\Satuan;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
@@ -44,6 +45,7 @@ class StockController extends Controller
         $stocks = Stock::all();
         $rpks = Ewarong::all();
         $items = Item::all();
+        $satuans = Satuan::all();
 
         if ($user_access != 'superadmin') {
             $rpks = $rpks->where('user_id',  $user_id)->first();
@@ -56,6 +58,7 @@ class StockController extends Controller
             [
                 'items' => $items,
                 'rpks' => $rpks,
+                'satuans' => $satuans,
                 'error_message' => $error_message
             ]
         );
@@ -86,6 +89,8 @@ class StockController extends Controller
         $stocks = Stock::all();
         $rpks = Ewarong::all();
         $items = Item::all();
+        $satuans = Satuan::all();
+
 
         if ($user_access != 'superadmin') {
             $rpks = $rpks->where('user_id',  $user_id)->first();
@@ -97,6 +102,7 @@ class StockController extends Controller
             'stock' => $stock,
             'items' => $items,
             'rpks' => $rpks,
+            'satuans' => $satuans,
             'error_message' => $error_message
         ]);
     }
@@ -108,6 +114,8 @@ class StockController extends Controller
             $stock->item_id = $request->item_id;
             $stock->qty = $request->qty;
             $stock->harga = $request->harga;
+            $stock->satuan_id = $request->satuan_id;
+            $stock->satuan_number = $request->satuan_number;
             $stock->save();
             $request->session()->flash('alert-success', "Stock berhasil di perbarui!");
             return redirect()->route('stock.index');

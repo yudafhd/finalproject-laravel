@@ -32,7 +32,7 @@ class SatuanController extends Controller
         try {
             $items = Satuan::create($request->all());
             $items->save();
-            $request->session()->flash('alert-success', "Item berhasil dibuat!");
+            $request->session()->flash('alert-success', "Berhasil dibuat!");
             return redirect()->route('satuan.index');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
@@ -54,9 +54,9 @@ class SatuanController extends Controller
     public function update(Request $request, Satuan $satuan)
     {
         try {
-            $item->satuan = $request->nama;
-            $item->save();
-            $request->session()->flash('alert-success', "Item berhasil di perbarui!");
+            $satuan->nama = $request->nama;
+            $satuan->save();
+            $request->session()->flash('alert-success', "Berhasil di perbarui!");
             return redirect()->route('satuan.index');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
@@ -68,7 +68,7 @@ class SatuanController extends Controller
     {
         try {
             $item->delete();
-            $request->session()->flash('alert-success', "Item berhasil dihapus!");
+            $request->session()->flash('alert-success', "Berhasil dihapus!");
             return redirect()->route('item.index');
         } catch (\Exception $e) {
             $error_message = $e->getMessage();

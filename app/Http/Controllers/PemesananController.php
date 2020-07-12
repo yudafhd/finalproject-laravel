@@ -6,6 +6,7 @@ use App\Item;
 use App\Pemesanan;
 use App\PemesananDetail;
 use App\User;
+use App\Stock;
 use App\Ewarong;
 use Illuminate\Http\Request;
 
@@ -86,6 +87,22 @@ class PemesananController extends Controller
     {
         try {
             $pemesanan->status = $request->status;
+
+            if($request->status == 'REJECTED') {
+            $pemesananDetail = PemesananDetail::all()->where('pemesanan_id', $pemesanan->id);
+                foreach($pemesananDetail as $pemesanans) {
+                $stocks = Stock::where('ewarong_id', $pemesanan->ewarong_id)
+                ->where('item_id', $pemesanans->item_id)
+                ->where('satuan_id', $pemesanans->satuan_id)
+                ->where('satuan_number', $pemesanans->satuan_number)
+                ->get()->first();
+                $stock_id = $stocks->id;
+                $stocks_now = $stocks->qty;
+                $stocks_after = (int) $stocks_now + (int) $pemesanans->qty;
+                Stock::find($stock_id)->update(['qty'=>$stocks_after]);
+                }
+            }
+            
             $pemesanan->save();
             $request->session()->flash('alert-success', "Berhasil di update!");
             return redirect()->route('pemesanan.show', $pemesanan->id);

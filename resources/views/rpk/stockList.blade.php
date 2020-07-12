@@ -54,7 +54,7 @@
                             <tr>
                                 <td>{{ $stock->ewarong->nama_kios}}</td>
                                 <td>{{ $stock->item->nama }}</td>
-                                <td>{{ $stock->item->deskripsi }}</td>
+                                <td>{{ $stock->satuan ? $stock->satuan_number.' '.$stock->satuan->nama : '' }}</td>
                                 <td>{{ $stock->qty }}</td>
                                 <td>{{ "Rp " . number_format($stock->harga,2,',','.') }}</td>
                                 <td style="text-align: center">

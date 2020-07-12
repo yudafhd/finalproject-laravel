@@ -58,6 +58,23 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label">Nomer Satuan</label>
+                                    <input type="number" name="satuan_number" class="form-control" value="">
+                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Satuan</label>
+                                    <select class="form-control" name="satuan_id" custom-select">
+                                        @foreach ($satuans as $satuan)
+                                        <option value="{{$satuan->id}}">{{$satuan->nama}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label class="control-label">QTY</label>
                                     <input type="number" name="qty" class="form-control" value="">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
@@ -73,7 +90,7 @@
                         </div>
                          <button type="submit" class="btn btn-success">
                             <i class="fa fa-check"></i> Save</button>
-                        <a href="{{url('/item')}}" class="btn btn-inverse">Cancel</a>
+                        <a href="{{url('/stock')}}" class="btn btn-inverse">Cancel</a>
                     </div>
                 </form>
             </div>

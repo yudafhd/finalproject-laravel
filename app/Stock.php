@@ -10,6 +10,8 @@ class Stock extends Model
     protected $fillable = [
         'ewarong_id',
         'item_id',
+        'satuan_id',
+        'satuan_number',
         'qty',
         'harga',
     ];
@@ -26,5 +28,9 @@ class Stock extends Model
     public function item()
     {
         return $this->belongsTo('App\Item');
+    }
+    public function satuan()
+    {
+        return $this->belongsTo('App\Satuan');
     }
 }

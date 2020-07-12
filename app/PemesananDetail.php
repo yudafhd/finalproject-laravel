@@ -9,7 +9,7 @@ class PemesananDetail extends Model
     protected $table = 'pemesanan_detail';
 
     protected $fillable = [
-        'qty', 'harga', 'pemesanan_id', 'item_id'
+        'qty', 'harga', 'pemesanan_id', 'item_id', 'satuan_id', 'satuan_number'
     ];
 
     protected $hidden = [

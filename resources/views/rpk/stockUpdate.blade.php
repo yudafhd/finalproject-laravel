@@ -49,7 +49,6 @@
                             @else 
                             <input type="hidden" name="ewarong_id" value="{{$rpks->id}}" />
                             @endif
-                         
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Item</label>
@@ -59,6 +58,25 @@
                                             value="{{$item->id}}"
                                             {{$stock->id == $item->id ? 'selected':null}}>
                                             {{$item->nama}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Nomer Satuan</label>
+                                    <input type="number" name="satuan_number" class="form-control" value="{{ $stock->satuan_number }}">
+                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Satuan</label>
+                                    <select class="form-control" name="satuan_id" custom-select">
+                                        @foreach ($satuans as $satuan)
+                                        <option value="{{$satuan->id}}"
+                                            {{$stock->satuan_id == $satuan->id ? 'selected':null}}
+                                            >{{$satuan->nama}}</option>
                                         @endforeach
                                     </select>
                                 </div>
