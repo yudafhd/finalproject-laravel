@@ -22,7 +22,7 @@ class EwarongController extends Controller
             if ($request->items) {
                 $query->whereIn('item_id', $request->items);
             }
-        }, 'stock.item']);
+        }, 'stock.item', 'stock.satuan']);
 
         if (!$request->isAll) {
             if ($request->searchname) {
