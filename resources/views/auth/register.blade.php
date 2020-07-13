@@ -11,7 +11,7 @@
             <form
                 class="form-horizontal form-material"
                 method="POST"
-                action="{{ route('register') }}"
+                action="{{ route('home') }}"
             >
                 @csrf
                 <div class="form-group m-t-40">
