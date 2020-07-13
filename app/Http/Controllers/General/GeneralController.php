@@ -6,9 +6,10 @@ namespace App\Http\Controllers\General;
 use App\General;
 use App\User;
 use App\Link;
-use App\Http\Controllers\Controller;
 use App\Links;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class GeneralController extends Controller
 {
@@ -22,6 +23,23 @@ class GeneralController extends Controller
         return view('general.index', compact('tweet', 'links', 'user', 'message'));
     }
 
+    public function validEmail($links) {
+        $error =  Validator::make(['email' => $links], [
+            'email' => 'email|max:100',
+        ]);
+        return $error->fails();
+    }
+    
+    private function saveDecicion($links_id, $links, $title, $social_links, $general_id, $user_id) {
+        if ($links_id) {
+            Link::find($links_id)->update([
+            'title' => $title,
+            'url' => $links,
+            'type' => $social_links ]);
+        } else {
+            Link::create(['title' => $title, 'url' => $links, 'type' => $social_links, 'user_id' => $user_id, 'general_id' => $general_id]);
+        }
+    }
 
     public function saveLinks(Request $request)
     {
@@ -30,7 +48,8 @@ class GeneralController extends Controller
             $user_id = $user->id;
             $general_id = $user->generals->id;
             $all_request = $request->all();
-            
+            $error_link = [];
+
             // Update general
             $tweet = isset($all_request['tweet']) ? $all_request['tweet'] : null;
             General::find($general_id)->update(['tweet' => $tweet]);
@@ -58,7 +77,7 @@ class GeneralController extends Controller
                         }
                     }
                 }
-
+                
                 // Recursive insert link
                 if (count($all_request['titles']) > 0) {
                     foreach ($all_request['titles'] as $key => $value) {
@@ -66,15 +85,43 @@ class GeneralController extends Controller
                         $links = $all_request['links'][$key];
                         $links_id = $all_request['link_id'][$key];
                         $social_links = $all_request['social_links'][$key];
-                        if ($links_id) {
-                            Link::find($links_id)->update([
-                 'title' => $title,
-                 'url' => $links,
-                 'type' => $social_links,
-             ]);
-                        } else {
-                            Link::create(['title' => $title, 'url' => $links, 'type' => $social_links, 'user_id' => $user_id, 'general_id' => $general_id]);
+
+                        if($social_links == 'gmail') {
+                            if(!$this->validEmail($links)) {
+                                $this->saveDecicion($links_id, $links, $title, $social_links, $general_id, $user_id);
+                            }else {
+                                $error_link[$key] = [
+                                    'isEmail' => true,
+                                    'link' =>$links
+                                ];
+                            }
+                        }else {
+                            if(@get_headers($links)) {
+                                $this->saveDecicion($links_id, $links, $title, $social_links, $general_id, $user_id);
+                            }else {
+                                $error_link[$key] = [
+                                    'isEmail' => false,
+                                    'link' =>$links
+                                ];
+                            }
                         }
+
+                
+                    }
+                    if(count($error_link) > 0) {
+                       if($error_link[0]['isEmail']) {
+                        $request->session()->flash('alert', 
+                        'Saya rasa ada beberapa email yg tidak sesuai'
+                    .'<br>Pastikan email anda benar seperti ini'
+                .'<br><a style="font-weight:bold">pinterlink@gmail.com</a> tanpa tambahan apa-apa'
+            .'<br>salah satu email anda yang salah<br> <a style="font-weight:bold">'.$error_link[0]['link'].'</a>');
+                       }else {
+                        $request->session()->flash('alert', 
+                        'Saya rasa ada beberapa link yg tidak sesuai'
+                    .'<br>Pastikan url anda benar seperti ini'
+                .'<br><a style="font-weight:bold" href="https://pinter.link">https://pinter.link</a> atau <a style="font-weight:bold"  href="http://pinter.link">http://pinter.link</a>'
+            .'<br>salah satu url anda yang salah<br> <a style="font-weight:bold">'.$error_link[0].'</a>');
+                       }
                     }
                 }
             }
