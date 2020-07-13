@@ -147,7 +147,7 @@
         Swal.fire({
             icon: 'info',
             title: 'Error',
-            text: '{{ $message }}',
+            html: '<div style="font-size: 16px;line-height: 25px;">{!! $message !!}</div>',
         });
         @endif
 
@@ -164,7 +164,7 @@
             allowEscapeKey:false,
             allowEnterKey: false,
         });
-        setTimeout(function() { $('#general-info').off('submit').submit();}, 3000);
+        setTimeout(function() { $('#general-info').off('submit').submit();}, 200);
         });
 
         @foreach($links as $key => $link )

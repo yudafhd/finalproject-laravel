@@ -5,7 +5,18 @@
             href="{{ Route("username", "pinterus") }}">{{ Route("username", "pinterus") }}</a>
     </div>
     <div class="col-sm col-md">
-        Tema
+        <div class="form-check">
+            <div class="wrap-theme default">
+                <div class="" style="width: 100%;height:100px;background:blue;margin:10px"></div>
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">default</label>
+        </div>   
+            <div class="wrap-theme default">
+                <div class="" style="width: 100%;height:100px;background:blue;margin:10px"></div>
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">default</label>
+        </div>   
+          </div>
     </div>
     <div class="col-sm col-md text-center d-none d-sm-block">
         <span>

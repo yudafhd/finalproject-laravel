@@ -20,9 +20,15 @@
                     @else
                         <i id="youtube" class="mdi mdi-{{ $link->type }}"></i>
                     @endif 
-                    <a href="{{ 'https://'.$link->url }}" class="text-white">
-                        {{ $link->title }}
-                    </a>
+                        @if ($link->type=='gmail')
+                        <a href="{{ 'mailto://'.$link->url }}" class="text-white">
+                            {{ $link->title }}
+                        </a>
+                            @else
+                            <a href="{{ $link->url }}" class="text-white">
+                                {{ $link->title }}
+                            </a>
+                        @endif
                     </li>
                     @endforeach
                 </ul>

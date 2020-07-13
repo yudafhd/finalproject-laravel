@@ -150,37 +150,12 @@ a {
 
 .profile-status {
     margin: 1rem;
+    margin-bottom: 0em;
     font-size: 14px;
 }
 
 .wrapper-content {
     width: 100%;
-}
-
-.body-for-username {
-    /* background: #46A6E2; */
-    background-image: linear-gradient(to bottom, #46A6E2 0%, #46A6E2 40%, #D267C4 100%);
-    color: #ffffff;
-    padding: 0 0 60px;
-    margin: 0;
-    max-width: 100%;
-    min-height: 100vh;
-}
-
-.body-for-username list-group {
-    padding: 50px;
-}
-
-.body-for-username .list-group .list-group-item {
-    background: none;
-}
-
-.footer-for-username {
-    border-top: none;
-    background: none;
-    color: #fff;
-    font-size: 13px;
-    text-align: center;
 }
 
 .footer-for-username a {
@@ -282,6 +257,10 @@ a {
         margin-top: 20vh;
     }
 
+    .mt-20-xs {
+        margin-top: 20px !important;
+    }
+
 }
 
 /* 
@@ -305,5 +284,9 @@ a {
 
     .dashboard-mobile {
         margin-top: 20vh;
+    }
+
+    .mt-20-xs {
+        margin-top: 20px !important;
     }
 }

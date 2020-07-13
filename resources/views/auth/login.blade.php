@@ -5,12 +5,9 @@
 >
 <div class="card shadow-none login-register">
     <div class="card-body">
-        <a href="{{Route('home')}}">
-            <img
-            src="https://s1.bukalapak.com/ast/sigil/bukalapak-logo-primary.svg"
-            alt="logo"
-        />
-    </a>
+        <a href="{{Route('home')}}" style="font-size: 35px; text-decoration:none">
+            Pinterlink
+        </a>
         <form class="form-horizontal form-material"
          method="POST" 
          action="{{ route('login') }}">

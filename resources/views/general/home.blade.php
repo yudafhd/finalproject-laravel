@@ -3,8 +3,7 @@
 <div class="row page-titles m-t-40">
     <div class="col-sm col-md d-flex align-items-center text-center">
         <div>
-            <h1 class="text-themecolor welcome-text">Mau Link Bio <br />Kamu Keren ?</h1>
-            <h3 class="text-themecolor d-none d-sm-block"> (👍≖‿‿≖)👉</h3>
+            <h1 class="text-themecolor welcome-text">Mau Link Bio Keren ?</h1>
             <form method="GET" action="{{ Route('register') }}">
                 <button class="btn btn-success m-t-20" style="padding:10px !important" href="https://wrappixel.com/templates/adminpro/">
                     BUAT GRATIS SEKARANG</button>
