@@ -10,7 +10,7 @@
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="../assets/images/favicon.png"
+            href="{{ asset('favicon.png') }}"
         />
         <title>{{ config("app.name") }}</title>
         @include('layout_general.css_section')

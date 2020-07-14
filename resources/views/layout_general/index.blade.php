@@ -7,7 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png" />
+    <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="{{ asset('favicon.png') }}"
+        />
     <title>{{ config("app.name") }}</title>
     @include('layout_general.css_section')
     <link href="{{ asset('assets/css/theme/default.css') }}" rel="stylesheet" />

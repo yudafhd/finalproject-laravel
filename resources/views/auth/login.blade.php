@@ -10,7 +10,7 @@
         </a>
         <form class="form-horizontal form-material"
          method="POST" 
-         action="{{ route('home') }}">
+         action="{{ route('login') }}">
             @csrf
             <div class="form-group m-t-40">
                 <div class="col-xs-12">
