@@ -20,8 +20,13 @@ class PemesananDetail extends Model
     {
         return $this->belongsTo('App\Item');
     }
+    
     public function pemesanan()
     {
         return $this->belongsTo('App\Pemesanan');
+    }
+    public function satuan()
+    {
+        return $this->belongsTo('App\Satuan');
     }
 }
