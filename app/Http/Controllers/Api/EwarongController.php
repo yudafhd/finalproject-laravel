@@ -18,7 +18,7 @@ class EwarongController extends Controller
     public function allEwarong(Request $request)
     {
         $after = [];
-        $all_warong = Ewarong::with(['pemesanan', 'stock' => function ($query)  use ($request) {
+        $all_warong = Ewarong::with(['pemesanan', 'stock','pemesanan.user' => function ($query)  use ($request) {
             if ($request->items) {
                 $query->whereIn('item_id', $request->items);
             }
@@ -130,10 +130,10 @@ class EwarongController extends Controller
         $ewarong = Ewarong::where('user_id', $user->id)->get()->first();
 
         if ($access == 'umum' or $access == 'superadmin') {
-            $data = Pemesanan::with(['ewarong', 'detail', 'detail.item', 'detail.satuan'])->where('user_id', $user->id)->get();
+            $data = Pemesanan::with(['ewarong', 'detail', 'detail.item', 'detail.satuan','user'])->where('user_id', $user->id)->get();
         }
         if ($access == 'rpk') {
-            $data = Pemesanan::with(['ewarong', 'detail', 'detail.item', 'detail.satuan'])->where('ewarong_id', $ewarong->id)->get();
+            $data = Pemesanan::with(['ewarong', 'detail', 'detail.item', 'detail.satuan','user'])->where('ewarong_id', $ewarong->id)->get();
         }
         return response(['data' => $data]);
     }
