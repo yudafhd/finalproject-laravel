@@ -16,10 +16,10 @@ class ThemeController extends Controller
     {
         $user = auth()->user();
         $general_id = $user->generals->id;
+        $theme_id = $user->generals->theme_id;
         $tweet = $user->generals->tweet;
         $links = [];
         $message = $request->session()->get('alert');
-        return view('general.theme', compact('tweet', 'links', 'user', 'message'));
+        return view('general.theme', compact('tweet', 'links', 'user', 'message', 'theme_id'));
     }
-
 }

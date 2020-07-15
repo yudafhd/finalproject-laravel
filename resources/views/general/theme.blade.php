@@ -5,32 +5,80 @@
             href="{{ Route("username", "pinterus") }}">{{ Route("username", "pinterus") }}</a>
     </div>
     <div class="col-sm col-md">
-        <div class="form-check">
-            <div class="wrap-theme default">
-                <div class="" style="width: 100%;height:100px;background:blue;margin:10px"></div>
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-            <label class="form-check-label" for="inlineRadio1">default</label>
-        </div>   
-            <div class="wrap-theme default">
-                <div class="" style="width: 100%;height:100px;background:blue;margin:10px"></div>
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-            <label class="form-check-label" for="inlineRadio1">default</label>
-        </div>   
-          </div>
+        <div class="theme-section-free m-b-20">
+            <div class="form-check form-check-inline">
+                <div class="" style="width: 70px;height:70px; border-radius:20px;
+                background-image: linear-gradient(to bottom, #46A6E2 0%, #46A6E2 40%, #D267C4 100%);margin:10px"></div>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" 
+                {{ !$theme_id ? 'checked': '' }}
+                >
+                <label class="form-check-label" for="inlineRadio1">default</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <div class="" style="width: 70px;height:70px; border-radius:20px;
+                background-image: linear-gradient(to bottom, #FDE13F 0%, #FDE13F 40%, #FA818C 100%);margin:10px"></div>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option1">
+                <label class="form-check-label" for="inlineRadio2">default 2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <div class="" style="width: 70px;height:70px; border-radius:20px;
+                background-image: linear-gradient(to bottom, #2EED8F 0%, #2EED8F 40%, #447CBD 100%);margin:10px"></div>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1">
+                <label class="form-check-label" for="inlineRadio3">default 3</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <div class="" style="width: 70px;height:70px; border-radius:20px;
+                background-image: linear-gradient(to bottom, #AFA7CD 0%, #AFA7CD 40%, #D854C4 100%);margin:10px"></div>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option1">
+                <label class="form-check-label" for="inlineRadio4">default 4</label>
+            </div>
+        </div>
+        <div class="theme-section-free m-b-20">
+            <p style="font-size: 14px; text-align:center">
+                Gunakan tema ini secara gratis dengan menjadi<br> member donasi kak :)
+            </p>
+            <div class="form-check form-check-inline">
+                <div class="" style="width: 70px;height:70px; border-radius:20px;
+                background-image: linear-gradient(to bottom, #46A6E2 0%, #46A6E2 40%, #D267C4 100%);margin:10px"></div>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" 
+                >
+                <label class="form-check-label" for="inlineRadio1">default</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <div class="" style="width: 70px;height:70px; border-radius:20px;
+                background-image: linear-gradient(to bottom, #FDE13F 0%, #FDE13F 40%, #FA818C 100%);margin:10px"></div>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option1">
+                <label class="form-check-label" for="inlineRadio2">default 2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <div class="" style="width: 70px;height:70px; border-radius:20px;
+                background-image: linear-gradient(to bottom, #2EED8F 0%, #2EED8F 40%, #447CBD 100%);margin:10px"></div>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1">
+                <label class="form-check-label" for="inlineRadio3">default 3</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <div class="" style="width: 70px;height:70px; border-radius:20px;
+                background-image: linear-gradient(to bottom, #AFA7CD 0%, #AFA7CD 40%, #D854C4 100%);margin:10px"></div>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option1">
+                <label class="form-check-label" for="inlineRadio4">default 4</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-instagram m-t-5 m-b-10 text-white" style="width: 100%;"><i
+            class="mdi mdi-content-save"></i> Simpan</button>
     </div>
     <div class="col-sm col-md text-center d-none d-sm-block">
         <span>
             <a target="_blank"
                 href="{{ Route("username", "pinterus") }}">{{ Route("username", "pinterus") }}</a>
         </span>
-        <div class=" mr-auto ml-auto m-t-20 rounded-top p-10" 
-            style="width: 25vw; height:70vh; color:#ffffff; 
+        <div class=" mr-auto ml-auto m-t-20 rounded-top p-10" style="width: 25vw; height:70vh; color:#ffffff; 
             background-repeat: no-repeat;
             background-size: 25vw;
             background-image:url('{{ asset('assets/images/phonebg.png') }}');">
-             <img width="70px" src="{{ asset('assets/images/user.svg') }}"  style="margin-top: 10vh" />
+            <img width="70px" src="{{ asset('assets/images/user.svg') }}"
+                style="margin-top: 10vh" />
             <p class="username-front m-t-10">
-                {{ '@'.$user->username }}               
+                {{ '@'.$user->username }}
             </p>
             <p class="tweet m-b-0" style="font-size:12px">
                 {{ $tweet }}
@@ -56,81 +104,7 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-
-        @if($message) 
-        Swal.fire({
-            icon: 'info',
-            title: 'Error',
-            text: '{{ $message }}',
-        });
-        @endif
-
-        let linktotal = {{ count($links) + 1 }};
-        $("#general-info").submit(function(e){
-        e.preventDefault();
-        Swal.fire({
-            icon: 'info',
-            title: 'Tunggu',
-            text: 'Sedang memperbarui data kamu.',
-            footer: '<a href="{{ Route('general') }}">tekan ini jika macet</a>',
-            showConfirmButton: false,
-            allowOutsideClick: false,
-            allowEscapeKey:false,
-            allowEnterKey: false,
-        });
-        setTimeout(function() { $('#general-info').off('submit').submit();}, 3000);
-        });
-
-        @foreach($links as $key => $link )
-            $('#close-link-data{{ $key }}').on('click', function () {
-                $('#first-your-link-data{{ $key }}').remove();
-            });
-
-        $('#first-your-link-data{{ $key }}').find('.dropdown-item').each(function (index) {
-                $(this).on("click", function () {
-                    const element = '<i class="' + $(this).find('i').attr('class') +
-                        '"></i>';
-                    $(document).find("#dropdown-type-button{{ $key }}").html(element);
-                    $(document).find('#first-your-link-data{{ $key }}').find('#social-links').val($(
-                        this).find('i').attr('id'));
-                })
-            });
-            @endforeach
-
-        $("#add-btn-link").click(function () {
-            console.log(linktotal);
-            if(linktotal <= 5 ) {
-                console.log('inside', linktotal);
-            linktotal = linktotal+1;
-
-            // defining DOM
-            const el = $("#first-your-link").clone().css('display', 'block');
-            // insert clone element
-            $('#linklist').append(el);
-            // delete element
-            el.find('#close-link').on("click", function () {
-                el.remove();
-            });
-
-            //each dropdown click
-            el.find('.dropdown-item').each(function (index) {
-                $(this).on("click", function () {
-                    const element = '<i class="' + $(this).find('i').attr('class') +
-                        '"></i>';
-                    el.find("#dropdown-type-button").html(element);
-                    el.find('#social-links').val($(this).find('i').attr('id'));
-                })
-            })
-            }else{
-                Swal.fire({
-            icon: 'info',
-            title: 'Batas maximal link adalah 5',
-            text: 'Mohon maaf ya, server mimin masih kecil jadi belum bisa kasih banyak, tapi mimin janji bakal berkembang lagi :)',
-        });
-            }
-        });
-    });
+    $(document).ready(function () {});
 
 </script>
 
