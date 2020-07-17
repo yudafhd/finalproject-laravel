@@ -51,5 +51,5 @@
 <script 
 type="text/javascript"
 src="https://app.sandbox.midtrans.com/snap/snap.js"
-data-client-key="SB-Mid-client-c6Z9qTSrL35sqDwQ"
+data-client-key="{{ env('MIDTRANS_CLIENTKEY') }}"
 ></script>

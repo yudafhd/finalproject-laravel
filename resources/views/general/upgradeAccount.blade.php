@@ -1,6 +1,6 @@
 @extends('layout_general.index_general') @section('content')
 
-<div class="row m-t-40">
+<div class="row m-t-40" style="margin-bottom: 20vh">
     <div class="col-lg-4 col-xlg-3 col-md-5">
         <div class="card">
             <div class="card-body">
@@ -50,11 +50,20 @@
 </div>
 
 <script type="text/javascript">
-    var payButton = document.getElementById('pay-button');
-    // For example trigger on button clicked, or any time you need
-    payButton.addEventListener('click', function () {
-      snap.pay('{{ $snapToken }}'); // Replace it with your transaction token
+$(document).ready(function() {
+    const payButton = $('#pay-button');
+    const finish = `{{ Route('order.finish') }}`;
+    const pending = `{{ Route('order.finish') }}`;
+    const error = `{{ Route('order.error') }}`;
+    payButton.on('click', function () {
+      snap.pay('{{ $snapToken }}',{
+        onSuccess: function(result){console.log(result);$(location).attr('href',finish);},
+        onPending: function(result){console.log(result);$(location).attr('href',pending);},
+        onError: function(result){console.log(result);$(location).attr('href',error);}
+      });
     });
+})
+
   </script>
 
 @endsection
