@@ -47,13 +47,7 @@
                             id="navbarNavDropdown"
                         >
                             <ul class="navbar-nav mr-auto stylish-nav">
-                                <li class="nav-item">
-                                    <a
-                                        class="nav-link"
-                                        href="{{ Route('general.dashboard') }}"
-                                        >Dashboard</a
-                                    >
-                                </li>
+                              
                                 <li class="nav-item">
                                     <a
                                         class="nav-link"
@@ -70,6 +64,22 @@
                                         Tema</a
                                     >
                                 </li>
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href="{{ Route('general.dashboard') }}"
+                                        >Dashboard</a
+                                    >
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href="{{ Route('account.upgrade') }}"
+                                        ><span class="badge badge-success p-1">
+                                            <img src="{{ asset('gold.png') }}" />
+                                            Upgrade Akun</span></a
+                                    >
+                                </li>
                             </ul>
                             <ul class="navbar-nav ml-auto stylish-nav">
                                 <div class="dropdown">
@@ -77,7 +87,7 @@
                                     {{auth()->user()->name}}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="{{Route('general')}}" >
+                                    <a class="dropdown-item" href="{{Route('account')}}" >
                                         <i id="youtube" class="mdi mdi-account"></i>
                                         Akun saya</a>
                                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

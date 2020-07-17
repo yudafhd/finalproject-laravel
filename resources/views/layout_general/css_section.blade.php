@@ -48,3 +48,8 @@
 ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
+<script 
+type="text/javascript"
+src="https://app.sandbox.midtrans.com/snap/snap.js"
+data-client-key="SB-Mid-client-c6Z9qTSrL35sqDwQ"
+></script>

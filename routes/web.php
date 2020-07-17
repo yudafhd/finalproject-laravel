@@ -1,6 +1,8 @@
 <?php
 
 Auth::routes();
+Auth::routes(['verify' => true]);
+
 Route::get('/', 'General\HomeController@index')->name('home');
 // Route::get('/sendemail', 'EmailController@testEmail')->name('test.email');
 
@@ -11,6 +13,19 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', 'General\GeneralController@saveLinks')->name('general.save.links');
         Route::get('/dashboard', 'General\DashboardController@index')->name('general.dashboard');
         Route::get('/theme', 'General\ThemeController@index')->name('general.theme');
+        Route::get('/account', 'General\AccountController@index')->name('account');
+        Route::get('/account/upgrade', 'General\AccountController@upgradeAccount')->name('account.upgrade');
+    });
+    
+    // Order views
+    Route::group(['prefix' => 'order'], function () {
+        Route::get('/finish', 'General\OrderController@finish')->name('order.finish');
+        Route::get('/error', 'General\OrderController@error')->name('order.error');
+    });
+
+    // Midtrans Notification
+    Route::group(['prefix' => 'notification'], function () {
+        Route::post('/handling', 'General\MidtransNotificationController@index')->name('notification.handling');
     });
 
     // User office
@@ -47,3 +62,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/{username}', 'General\HomeController@usernameProfile')->name('username');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
