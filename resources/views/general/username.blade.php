@@ -21,7 +21,7 @@
                         <i id="youtube" class="mdi mdi-{{ $link->type }}"></i>
                     @endif 
                         @if ($link->type=='gmail')
-                        <a href="{{ 'mailto://'.$link->url }}" class="text-white">
+                        <a href="{{ 'mailto:'.$link->url }}" class="text-white">
                             {{ $link->title }}
                         </a>
                             @else

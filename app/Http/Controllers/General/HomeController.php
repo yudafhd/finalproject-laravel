@@ -17,11 +17,11 @@ class HomeController extends Controller
     {
         $exception_uri = ['general','backoffice'];
         if(!in_array($username, $exception_uri)) {
-            $user = User::with('generals')->where('username', $username)->get()->first();
+            $user = User::with('general')->where('username', $username)->get()->first();
             if(!$user) {
                 abort(404);
             }else{
-                $tweet = $user->generals['tweet'];
+                $tweet = $user->general->tweet;
                 $links = Link::where('user_id', $user->id)->get();
                 return view('general.username', ['username' => $username, 'tweet' => $tweet, 'links' => $links]);
             }

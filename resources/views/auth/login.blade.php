@@ -73,6 +73,14 @@
                                 </a> 
                             </b>
                     </div>
+                    <div class="col-sm-12 text-center">
+                        Lupa Password ? <a class="text-info m-l-5">
+                            <b>
+                                <a href="{{Route('password.request')}}">    
+                                    Klik
+                                </a> 
+                            </b>
+                    </div>
                 </div>
         </form>
     </div>

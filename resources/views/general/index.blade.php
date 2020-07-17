@@ -2,7 +2,7 @@
 <div class="row page-titles m-t-40" style="margin-bottom: 20vh">
     <div class="link-when-mobile text-center m-b-20 d-sm-none text-center" style="width: 100vw">
         <a target="_blank"
-            href="{{ Route("username", "pinterus") }}">{{ Route("username", "pinterus") }}</a>
+            href="{{ Route("username", "pinterus") }}">{{ Route("username", auth()->user()->username) }}</a>  
     </div>
     <div class="col-sm col-md">
         <form id="general-info" method="POST" action="{{ Route('general.save.links') }}" enctype="multipart/form-data">
@@ -33,7 +33,7 @@
                                         Youtube</a>
                                     <a class="dropdown-item" href="#"><i id="whatsapp" class="mdi mdi-whatsapp"></i>
                                         Whatsapp</a>
-                                    <a class="dropdown-item" href="#"><i id="gmail" class="mdi mdi-link"></i>
+                                    <a class="dropdown-item" href="#"><i id="other" class="mdi mdi-link"></i>
                                         Lainnya</a>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                             <input type="text" name="titles[]" class="form-control" placeholder="Judul"
                                 aria-label="Tautan">
                             <input type="hidden" id="social-links" name="social_links[]" value="other">
-                            <input type="text" name="links[]" class="form-control" placeholder="https://"
+                            <input type="text" name="links[]" class="form-control" placeholder="link atau email anda"
                                 aria-label="Tautan">
                             <div class="input-group-append">
                                 <span id="close-link" class="input-group-text"><i class="mdi mdi-close"></i></span>
@@ -106,7 +106,7 @@
     <div class="col-sm col-md text-center d-none d-sm-block">
         <span>
             <a target="_blank"
-                href="{{ Route("username", "pinterus") }}">{{ Route("username", "pinterus") }}</a>
+                href="{{ Route("username", "pinterus") }}">{{ Route("username", auth()->user()->username) }}</a>
         </span>
         <div class=" mr-auto ml-auto m-t-20 rounded-top p-10" 
             style="width: 25vw; height:70vh; color:#ffffff; 
@@ -164,7 +164,7 @@
             allowEscapeKey:false,
             allowEnterKey: false,
         });
-        setTimeout(function() { $('#general-info').off('submit').submit();}, 200);
+        setTimeout(function() { $('#general-info').off('submit').submit();}, 0);
         });
 
         @foreach($links as $key => $link )

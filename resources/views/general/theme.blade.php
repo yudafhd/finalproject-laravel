@@ -2,7 +2,7 @@
 <div class="row page-titles m-t-40" style="margin-bottom: 20vh">
     <div class="link-when-mobile text-center m-b-20 d-sm-none text-center" style="width: 100vw">
         <a target="_blank"
-            href="{{ Route("username", "pinterus") }}">{{ Route("username", "pinterus") }}</a>
+            href="{{ Route("username", "pinterus") }}">{{ Route("username", auth()->user()->username) }}</a>
     </div>
     <div class="col-sm col-md">
         <div class="theme-section-free m-b-20">
@@ -69,7 +69,7 @@
     <div class="col-sm col-md text-center d-none d-sm-block">
         <span>
             <a target="_blank"
-                href="{{ Route("username", "pinterus") }}">{{ Route("username", "pinterus") }}</a>
+                href="{{ Route("username", "pinterus") }}">{{ Route("username", auth()->user()->username) }}</a>
         </span>
         <div class=" mr-auto ml-auto m-t-20 rounded-top p-10" style="width: 25vw; height:70vh; color:#ffffff; 
             background-repeat: no-repeat;

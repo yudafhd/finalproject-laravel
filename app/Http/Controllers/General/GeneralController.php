@@ -16,8 +16,8 @@ class GeneralController extends Controller
     public function index(Request $request)
     {
         $user = auth()->user();
-        $general_id = $user->generals->id;
-        $tweet = $user->generals->tweet;
+        $general_id = $user->general->id;
+        $tweet = $user->general->tweet;
         $message = $request->session()->get('alert');
         $links = Link::where('general_id', $general_id)->get();
         return view('general.index', compact('tweet', 'links', 'user', 'message'));
@@ -27,13 +27,21 @@ class GeneralController extends Controller
         $error =  Validator::make(['email' => $links], [
             'email' => 'email|max:100',
         ]);
-        return $error->fails();
+        return !$error->fails();
+    }
+    
+    public function validURL($links) {
+        if (filter_var($links, FILTER_VALIDATE_URL)) {
+            return true;
+          } else {
+            return false;
+          }
     }
     
     private function saveDecicion($links_id, $links, $title, $social_links, $general_id, $user_id) {
         if ($links_id) {
             Link::find($links_id)->update([
-            'title' => $title,
+            'title' => $title ? $title : '( Judul Kosong )',
             'url' => $links,
             'type' => $social_links ]);
         } else {
@@ -46,7 +54,7 @@ class GeneralController extends Controller
         try {
             $user = auth()->user();
             $user_id = $user->id;
-            $general_id = $user->generals->id;
+            $general_id = $user->general->id;
             $all_request = $request->all();
             $error_link = [];
 
@@ -60,6 +68,7 @@ class GeneralController extends Controller
             array_shift($all_request['social_links']);
             array_shift($all_request['link_id']);
             
+            // Collecting to variable
             $counttitles = count($all_request['titles']);
             $countlinks = count($all_request['links']);
             $countsocial_links = count($all_request['social_links']);
@@ -85,31 +94,37 @@ class GeneralController extends Controller
                         $links = $all_request['links'][$key];
                         $links_id = $all_request['link_id'][$key];
                         $social_links = $all_request['social_links'][$key];
-
                         if($social_links == 'gmail') {
-                            if(!$this->validEmail($links)) {
+                            if($this->validEmail($links)) {                                
                                 $this->saveDecicion($links_id, $links, $title, $social_links, $general_id, $user_id);
                             }else {
-                                $error_link[$key] = [
+                                array_push($error_link, [
                                     'isEmail' => true,
                                     'link' =>$links
-                                ];
+                                ]);
                             }
-                        }else {
-                            if(@get_headers($links)) {
-                                $this->saveDecicion($links_id, $links, $title, $social_links, $general_id, $user_id);
-                            }else {
-                                $error_link[$key] = [
+                        } else {
+                            if($this->validURL($links)) {
+                                if(@get_headers($links)) {
+                                    $this->saveDecicion($links_id, $links, $title, $social_links, $general_id, $user_id);
+                                } else {
+                                    array_push($error_link, [
+                                        'isEmail' => false,
+                                        'link' =>$links
+                                    ]);
+                                }
+                            }else{
+                                array_push($error_link, [
                                     'isEmail' => false,
                                     'link' =>$links
-                                ];
+                                ]);
                             }
-                        }
-
-                
-                    }
+                        
+                        }            
+                    }                    
+                    
                     if(count($error_link) > 0) {
-                       if($error_link[0]['isEmail']) {
+                        if($error_link[0]['isEmail']) {
                         $request->session()->flash('alert', 
                         'Saya rasa ada beberapa email yg tidak sesuai'
                     .'<br>Pastikan email anda benar seperti ini'
@@ -118,9 +133,9 @@ class GeneralController extends Controller
                        }else {
                         $request->session()->flash('alert', 
                         'Saya rasa ada beberapa link yg tidak sesuai'
-                    .'<br>Pastikan url anda benar seperti ini'
+                    .'<br>Pastikan link anda benar seperti ini'
                 .'<br><a style="font-weight:bold" href="https://pinter.link">https://pinter.link</a> atau <a style="font-weight:bold"  href="http://pinter.link">http://pinter.link</a>'
-            .'<br>salah satu url anda yang salah<br> <a style="font-weight:bold">'.$error_link[0].'</a>');
+            .'<br>salah satu url anda yang salah<br> <a style="font-weight:bold">'.$error_link[0]['link'].'</a>');
                        }
                     }
                 }

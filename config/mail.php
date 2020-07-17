@@ -10,8 +10,8 @@ return [
     'port' => env('MAIL_PORT', 587),
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'pinterusindonesia@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'PinterLink'),
     ],
 
     'encryption' => env('MAIL_ENCRYPTION', 'tls'),
