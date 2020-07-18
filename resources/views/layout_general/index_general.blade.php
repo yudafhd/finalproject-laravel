@@ -90,6 +90,9 @@
                                     <a class="dropdown-item" href="{{Route('account')}}" >
                                         <i id="youtube" class="mdi mdi-account"></i>
                                         Akun saya</a>
+                                    <a class="dropdown-item" href="{{Route('transaction')}}" >
+                                        <i id="youtube" class="mdi mdi-diamond"></i>
+                                        Transaksi</a>
                                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
                                        <i class="mdi mdi-logout"></i>

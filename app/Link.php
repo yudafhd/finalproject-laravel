@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Link extends Model
 {
-
     use SoftDeletes;
 
     protected $fillable = [

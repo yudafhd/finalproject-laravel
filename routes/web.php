@@ -18,7 +18,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', 'General\DashboardController@index')->name('general.dashboard');
         Route::get('/theme', 'General\ThemeController@index')->name('general.theme');
         Route::get('/account', 'General\AccountController@index')->name('account');
-        Route::get('/account/upgrade', 'General\MidtransTransactionController@upgradeAccount')->name('account.upgrade');
+        Route::get('/transaction', 'General\AccountController@transaction')->name('transaction');
+        Route::get('/account/upgrade', 'General\MidtransTransactionController@upgradeAccountViews')->name('account.upgrade');
+        Route::post('/account/upgrade', 'General\MidtransTransactionController@upgradeAccount')->name('account.upgrade.agreement');
     });
     
     // Order views

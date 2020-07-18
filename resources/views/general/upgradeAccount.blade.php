@@ -40,8 +40,21 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="info" role="tabpanel">
                     <div class="card-body">
-                        <button id="pay-button" class="btn btn-instagram m-t-5 m-b-10 text-white"
+                        <form class="form-horizontal form-material" method="POST" enctype="multipart/form-data"
+                        action="{{ Route('account.upgrade.agreement') }}">
+                        @csrf
+                        @if($snapToken)
+                        <p class="text-muted" style="text-align: center">Persiapan pembayaran berhasil</p>
+                        <p class="text-muted" style="text-align: center">Order ID : {{ $order_id_data }}</p>
+                        <p class="text-muted" style="text-align: center">Harga Beli : {{ $purchase_price }}</p>
+                        <p class="text-muted" style="text-align: center">Status : {{ $status }}</p>
+                        <button type="submit" id="pay-button" class="btn btn-youtube m-t-5 m-b-10 text-white"
+                        style="width: 100%;">Lakukan Pembayaran Sekarang</button>
+                        @else 
+                        <button type="submit" id="pay-button" class="btn btn-instagram m-t-5 m-b-10 text-white"
                         style="width: 100%;">Upgrade ke Akun Membership</button>
+                        @endif
+                        </form>
                     </div>
                 </div>
             </div>
@@ -50,6 +63,7 @@
 </div>
 
 <script type="text/javascript">
+@if($snapToken)
 $(document).ready(function() {
     const payButton = $('#pay-button');
     const finish = `{{ Route('order.finish') }}`;
@@ -64,6 +78,7 @@ $(document).ready(function() {
     });
 })
 
-  </script>
+@endif
+</script>
 
 @endsection

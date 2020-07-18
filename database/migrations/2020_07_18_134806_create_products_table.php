@@ -16,11 +16,12 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('SKU')->unique();
-            $table->string('code', 50)->unique();
+            $table->string('SKU')->unique()->nullable();
+            $table->string('code', 50)->unique()->nullable();
             $table->string('type', 20);
-            $table->integer('price', 20);
-            $table->integer('subscription_period_number', 10)->nullable();
+            $table->bigInteger('price');
+            $table->text('description');
+            $table->tinyInteger('subscription_period_number')->nullable();
             $table->string('subscription_period_date', 50)->nullable();
             $table->string('status',15)->nullable()->default('DRAFT');
             $table->softDeletes();
