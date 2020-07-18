@@ -4,8 +4,6 @@ Auth::routes();
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'General\HomeController@index')->name('home');
-// Route::get('/sendemail', 'EmailController@testEmail')->name('test.email');
-
 
 // Midtrans Notification
    Route::group(['prefix' => 'notification'], function () {
