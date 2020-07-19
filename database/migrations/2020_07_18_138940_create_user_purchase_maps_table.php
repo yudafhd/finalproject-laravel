@@ -21,6 +21,8 @@ class CreateUserPurchaseMapsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('transaction_id');
             $table->foreign('transaction_id')->references('id')->on('transactions');
+            $table->dateTime('expired_purchase_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

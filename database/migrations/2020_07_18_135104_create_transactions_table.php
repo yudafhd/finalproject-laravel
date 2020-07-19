@@ -22,7 +22,6 @@ class CreateTransactionsTable extends Migration
             $table->bigInteger('purchase_price');
             $table->tinyInteger('purchase_subscription_period_number')->nullable();
             $table->string('purchase_subscription_period_date', 50)->nullable(); $table->string('order_id', 50)->nullable();
-            $table->string('masked_card', 50)->nullable();
             $table->string('transaction_id', 50)->nullable();
             $table->string('status_message')->nullable();
             $table->string('payment_type', 50)->nullable();
@@ -31,7 +30,7 @@ class CreateTransactionsTable extends Migration
             $table->dateTime('transaction_time')->nullable();
             $table->string('snap_token', 100)->nullable();
             $table->string('status', 15)->nullable();
-            $table->dateTime('expired_purchase_at')->nullable();
+            $table->json('record_json_response')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

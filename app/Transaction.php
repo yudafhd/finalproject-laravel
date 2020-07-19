@@ -28,6 +28,11 @@ class Transaction extends Model
         'status',
     ];
     
+    public function product()
+    {
+        return $this->belongsTo('App\Product');
+    }
+    
     protected $hidden = [
         'created_at', 'updated_at'
     ];

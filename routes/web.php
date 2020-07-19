@@ -8,6 +8,7 @@ Route::get('/', 'General\HomeController@index')->name('home');
 // Midtrans Notification
    Route::group(['prefix' => 'notification'], function () {
     Route::post('/handling', 'General\MidtransNotificationController@index')->name('notification.handling');
+    Route::get('/handling/test', 'General\MidtransNotificationController@test')->name('notification.handling.test');
 });
 
 Route::middleware(['auth'])->group(function () {

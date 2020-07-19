@@ -43,18 +43,27 @@
                         <form class="form-horizontal form-material" method="POST" enctype="multipart/form-data"
                         action="{{ Route('account.upgrade.agreement') }}">
                         @csrf
-                        @if($snapToken)
-                        <p class="text-muted" style="text-align: center">Persiapan pembayaran berhasil</p>
-                        <p class="text-muted" style="text-align: center">Order ID : {{ $order_id_data }}</p>
-                        <p class="text-muted" style="text-align: center">Harga Beli : {{ $purchase_price }}</p>
-                        <p class="text-muted" style="text-align: center">Status : {{ $status }}</p>
-                        <button type="submit" id="pay-button" class="btn btn-youtube m-t-5 m-b-10 text-white"
-                        style="width: 100%;">Lakukan Pembayaran Sekarang</button>
+                        @if(!$snapToken)
+                        @if ($currentTransaction)
+                        <p class="text-muted" style="text-align: center">Transaksi Anda Terakhir</p>
+                        <p class="text-muted" style="text-align: center">Order ID : {{ $currentTransaction->order_id }}</p>
+                        <p class="text-muted" style="text-align: center">Harga Beli : {{ $currentTransaction->purchase_price }}</p>
+                        <p class="text-muted" style="text-align: center">Status : {{ $currentTransaction->status }}</p>
                         @else 
                         <button type="submit" id="pay-button" class="btn btn-instagram m-t-5 m-b-10 text-white"
                         style="width: 100%;">Upgrade ke Akun Membership</button>
                         @endif
                         </form>
+                        @else 
+                        </form>
+                        <p class="text-muted" style="text-align: center">Persiapan pembayaran berhasil</p>
+                        <p class="text-muted" style="text-align: center">Order ID : {{ $order_id }}</p>
+                        <p class="text-muted" style="text-align: center">Harga Beli : {{ $purchase_price }}</p>
+                        <p class="text-muted" style="text-align: center">Status : {{ $status }}</p>
+                        <button type="submit" id="pay-button" class="btn btn-youtube m-t-5 m-b-10 text-white"
+                        style="width: 100%;">Lakukan Pembayaran Sekarang</button>
+                        @endif
+                        
                     </div>
                 </div>
             </div>
