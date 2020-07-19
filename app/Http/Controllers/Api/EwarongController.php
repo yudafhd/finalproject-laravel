@@ -22,7 +22,7 @@ class EwarongController extends Controller
         $now = \Carbon\Carbon::now()->format('Y-m-d');
         $all_warong = Ewarong::with(['pemesanan' => function ($query) use ($now) {
             $query->where('date_pemesanan', $now);
-        }, 'stock','pemesanan.user' => function ($query)  use ($request) {
+        }, 'pemesanan.user','stock' => function ($query)  use ($request) {
             if ($request->items) {
                 $query->whereIn('item_id', $request->items);
             }
