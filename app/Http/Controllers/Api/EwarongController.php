@@ -13,12 +13,16 @@ use App\PemesananDetail;
 use App\Stock;
 use Illuminate\Support\Str;
 
+
 class EwarongController extends Controller
 {
     public function allEwarong(Request $request)
     {
         $after = [];
-        $all_warong = Ewarong::with(['pemesanan', 'stock','pemesanan.user' => function ($query)  use ($request) {
+        $now = \Carbon\Carbon::now()->format('Y-m-d');
+        $all_warong = Ewarong::with(['pemesanan' => function ($query) use ($now) {
+            $query->where('date_pemesanan', $now);
+        }, 'stock','pemesanan.user' => function ($query)  use ($request) {
             if ($request->items) {
                 $query->whereIn('item_id', $request->items);
             }
@@ -221,6 +225,7 @@ class EwarongController extends Controller
             $pemesanans = Pemesanan::find($request->pemesanan_id);
             $pemesananDetail = PemesananDetail::all()->where('pemesanan_id', $pemesanans->id);
             $status = $request->status;
+            $notes = $request->notes;
 
             foreach($pemesananDetail as $pemesanan) {
                 $item_id = $pemesanan->item_id;
@@ -232,7 +237,7 @@ class EwarongController extends Controller
                 Stock::find($stock_id)->update(['qty'=>$stocks_after]);
             }
 
-            $pemesanans->update(['status' => $status]);
+            $pemesanans->update(['status' => $status, 'notes' => $notes]);
             return response(['status' => 'success', 'message' => 'Pesanan berhasil '.$status]);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()], 422);

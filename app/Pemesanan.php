@@ -16,6 +16,7 @@ class Pemesanan extends Model
         'harga_total',
         'date_pemesanan',
         'status',
+        'notes',
     ];
 
     protected $hidden = [
