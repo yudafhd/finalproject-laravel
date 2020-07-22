@@ -71,6 +71,7 @@
                                         >Dashboard</a
                                     >
                                 </li>
+                                @if (!auth()->user()->userPurchaseMapNotExpired()->first())
                                 <li class="nav-item">
                                     <a
                                         class="nav-link"
@@ -80,6 +81,7 @@
                                             Upgrade Akun</span></a
                                     >
                                 </li>
+                                @endif
                             </ul>
                             <ul class="navbar-nav ml-auto stylish-nav">
                                 <div class="dropdown">

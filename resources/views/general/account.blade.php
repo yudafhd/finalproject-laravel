@@ -13,7 +13,7 @@
                             width="150" />
                     @endif
                     <h4 class="card-title m-t-10">{{ '@'.auth()->user()->username }}</h4>
-                    <span class="badge badge-light">{{ auth()->user()->general->membership }}</span>
+                    <span class="badge badge-light">{{ $membershipName ? $membershipName : auth()->user()->general->membership }}</span>
                 </center>
             </div>
             <div>

@@ -3,17 +3,23 @@
 namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Transaction;
 use App\UserPurchaseMap;
+use Illuminate\Http\Request;
 
 class MidtransNotificationController extends Controller
 {
-    public function test(Request $request) {
-        $transactionData = Transaction::where('order_id', 'MBRSHP-K31KF240')->firstOrFail();
-        if($transactionData->product->type == 'subscription') {
-            $mapPurchase = UserPurchaseMap::where('transaction_id', $transactionData->id)->firstOrFail();
-        }
+    public function test(Request $request)
+    {
+        // $transactionData = Transaction::where('order_id', 'MBRSHPDNT-XO1NH85')->firstOrFail();
+        // if ($transactionData->product->type == 'subscription' &&
+        //     $transactionData->purchase_subscription_period_date == 'day') {
+        //     $start = new \Carbon\Carbon($transactionData->transaction_time);
+        //     $expired_transaction = $start->addDays($transactionData->purchase_subscription_period_number)->format('Y-m-d h:m:s');
+        //     $purchaseMap = UserPurchaseMap::whereTransaction_id($transactionData->id)->firstOrFail();
+        //     $purchaseMap->expired_purchase_at = $expired_transaction;
+        //     $purchaseMap->save();
+        // }
     }
 
     public function index(Request $request)
@@ -79,8 +85,33 @@ class MidtransNotificationController extends Controller
                     }
                 }
             } elseif ($transaction == 'success') {
+
+                if ($transactionData->product->type == 'subscription' &&
+                    $transactionData->purchase_subscription_period_date == 'day') {
+                    // Get transaction time
+                    $start = new \Carbon\Carbon($transactionData->transaction_time);
+
+                    // Calculating expired date
+                    $expired_transaction = $start->addDays($transactionData->purchase_subscription_period_number)->format('Y-m-d h:m:s');
+
+                    // Setting transaction
+                    $purchaseMap = UserPurchaseMap::whereTransaction_id($transactionData->id)->firstOrFail();
+                    $purchaseMap->expired_purchase_at = $expired_transaction;
+                    $purchaseMap->save();
+                }
+
                 $transactionData->status = 'success';
             } elseif ($transaction == 'settlement') {
+
+                if ($transactionData->product->type == 'subscription' &&
+                    $transactionData->purchase_subscription_period_date == 'day') {
+                    $start = new \Carbon\Carbon($transactionData->transaction_time);
+                    $expired_transaction = $start->addDays($transactionData->purchase_subscription_period_number)->format('Y-m-d h:m:s');
+                    $purchaseMap = UserPurchaseMap::whereTransaction_id($transactionData->id)->firstOrFail();
+                    $purchaseMap->expired_purchase_at = $expired_transaction;
+                    $purchaseMap->save();
+                }
+
                 $transactionData->status = 'settlement';
             } elseif ($transaction == 'pending') {
                 $transactionData->status = 'pending';

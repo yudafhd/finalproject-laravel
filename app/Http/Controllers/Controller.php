@@ -14,5 +14,19 @@ class Controller extends BaseController
 
     public function __construct()
     {
+
+    }
+
+    public function checkIsMembership()
+    {
+        $userMapTransaction = auth()->user()->userPurchaseMap;
+
+        $justSubscription = [];
+        foreach ($userMapTransaction as $key => $item) {
+            if ($item->product->type == 'subscription') {
+                $justSubscription[$key] = $item;
+            }
+        }
+        dd($justSubscription);
     }
 }

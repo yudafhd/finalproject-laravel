@@ -10,9 +10,9 @@ class Transaction extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'product_id', 
-        'user_id', 
-        'purchase_price', 
+        'product_id',
+        'user_id',
+        'purchase_price',
         'purchase_subscription_period_number',
         'purchase_subscription_period_date',
         'expired_purchase_at',
@@ -27,15 +27,16 @@ class Transaction extends Model
         'snap_token',
         'status',
     ];
-    
+
+    protected $hidden = [
+        'created_at', 'updated_at',
+    ];
+
+    protected $dates = ['deleted_at'];
+
     public function product()
     {
         return $this->belongsTo('App\Product');
     }
-    
-    protected $hidden = [
-        'created_at', 'updated_at'
-    ];
-    
-    protected $dates = ['deleted_at'];
+
 }
