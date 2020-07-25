@@ -14,7 +14,7 @@
             href="{{ asset('favicon.png') }}"
         />
     <title>{{ config("app.name") }}</title>
-    @include('layout_general.css_section')
+    @include('layout_general.css_javascript_section')
     <link href="{{ asset('assets/css/theme/default.css') }}" rel="stylesheet" />
 
 </head>
@@ -72,7 +72,7 @@
                                             </form>
                                         </li>
                                     @else
-                                        <span style="margin-right: 10px"> Selamat datang </span>
+                                        {{-- <span style="margin-right: 10px"> Selamat datang </span> --}}
                                         <div class="dropdown">
                                             <a class="dropdown-toggle" type="button" id="dropdownMenuButton"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -105,7 +105,6 @@
         <div class="body-content container">
             @yield('content')
         </div>
-        @include('layout_general.js_section')
         @if(isset($username))
             @if(!$username)
                 <footer class="footer container">

@@ -24,12 +24,8 @@ class AccountController extends Controller
     public function transaction(Request $request)
     {
         $user = auth()->user();
-        $general_id = $user->general->id;
-        $theme_id = $user->general->theme_id;
-        $tweet = $user->general->tweet;
-        $links = [];
-        $message = $request->session()->get('alert');
-        return view('general.transaction', compact('tweet', 'links', 'user', 'message', 'theme_id'));
+        $allTransaction = auth()->user()->userPurchaseMap()->get();
+        return view('general.transaction', compact('user', 'allTransaction'));
     }
 
 }

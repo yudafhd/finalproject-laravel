@@ -37,7 +37,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function userPurchaseMap()
     {
-        return $this->hasMany('App\UserPurchaseMap');
+        return $this->hasMany('App\UserPurchaseMap')
+            ->orderBy('id', 'desc');
     }
 
     public function userPurchaseMapNotExpired()

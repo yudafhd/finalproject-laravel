@@ -6,14 +6,19 @@
             <div class="card-body">
                 <center class="m-t-30">
                     @if(auth()->user()->image_url)
-                        <img src="{{ Url('user/profile/'.auth()->user()->image_url) }}"
-                            class="img-circle" width="150" />
+                    <img src="{{ Url('user/profile/'.auth()->user()->image_url) }}" class="img-circle" width="150" />
                     @else
-                        <img src="{{ Url('assets/images/users/user.png') }}" class="img-circle"
-                            width="150" />
+                    <img src="{{ Url('assets/images/users/user.png') }}" class="img-circle" width="150" />
                     @endif
                     <h4 class="card-title m-t-10">{{ '@'.auth()->user()->username }}</h4>
-                    <span class="badge badge-light">{{ $membershipName ? $membershipName : auth()->user()->general->membership }}</span>
+                    @if ($membershipName)
+                    <span class="badge badge-light">
+                        <i class="mdi mdi-check"></i>
+                        {{ $membershipName }}
+                    </span>
+                    @else
+                    <span class="badge badge-light">{{ auth()->user()->general->membership }}</span>
+                    @endif
                 </center>
             </div>
             <div>
@@ -47,17 +52,42 @@
                             <div class="form-group">
                                 <label class="col-md-12">Nama Lengkap</label>
                                 <div class="col-md-12">
-                                    <input name="name" type="text" value="{{ auth()->user()->name }}"
-                                        placeholder="nama" class="form-control form-control-line">
+                                    <input name="name" type="text" value="{{ auth()->user()->name }}" placeholder="nama"
+                                        class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Nomer telepon</label>
+                                <div class="col-md-12">
+                                    <input name="name" type="text" value="{{ auth()->user()->phone_number }}"
+                                        placeholder="telepon" class="form-control form-control-line">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Username</label>
                                 <div class="col-md-12">
+                                    @if ($membershipName)
                                     <input name="name" type="text" value="{{ auth()->user()->username }}"
-                                        {{ auth()->user()->general->membership != 'free' ? '' : 'disabled' }}
                                         placeholder="username" class="form-control form-control-line">
-                                        <small class="text-muted"> {{ auth()->user()->general->membership != 'free' ? '' : 'upgrade ke member donasi untuk ganti username sepuasnya' }} </small>
+
+                                    @else
+                                    <span class="badge badge-light">{{ auth()->user()->general->membership }}</span>
+                                    <div class="email text-muted">
+                                        {{ auth()->user()->general->membership }}
+                                    </div>
+                                    <small class="text-muted">
+                                        {{ auth()->user()->general->membership != 'free' ? '' : 'upgrade ke member donasi untuk ganti username sepuasnya' }}
+                                    </small>
+
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Email</label>
+                                <div class="col-md-12">
+                                    <div class="email text-muted">
+                                        {{  auth()->user()->email }}
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -73,7 +103,7 @@
 </div>
 
 <script>
-    $(document).ready(function () {});
+    $(document).ready(function () { });
 
 </script>
 

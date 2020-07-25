@@ -13,7 +13,7 @@
             href="{{ asset('favicon.png') }}"
         />
         <title>{{ config("app.name") }}</title>
-        @include('layout_general.css_section')
+        @include('layout_general.css_javascript_section')
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -114,7 +114,6 @@
             <div class="body-content container">
                 @yield('content')
             </div>
-            @include('layout_general.js_section')
             <footer class="footer container">
                 <ul class="list-unstyled list-inline d-flex">
                     <span class="d-block  ml-auto mr-auto">
