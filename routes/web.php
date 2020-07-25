@@ -6,7 +6,7 @@ Auth::routes(['verify' => true]);
 Route::get('/', 'General\HomeController@index')->name('home');
 
 // Midtrans Notification
-   Route::group(['prefix' => 'notification'], function () {
+Route::group(['prefix' => 'notification'], function () {
     Route::post('/handling', 'General\MidtransNotificationController@index')->name('notification.handling');
     Route::get('/handling/test', 'General\MidtransNotificationController@test')->name('notification.handling.test');
 });
@@ -22,8 +22,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/transaction', 'General\AccountController@transaction')->name('transaction');
         Route::get('/account/upgrade', 'General\MidtransTransactionController@upgradeAccountViews')->name('account.upgrade');
         Route::post('/account/upgrade', 'General\MidtransTransactionController@upgradeAccount')->name('account.upgrade.agreement');
+        Route::post('/account/update', 'General\AccountController@accountUpdate')->name('account.update');
     });
-    
+
     // Order views
     Route::group(['prefix' => 'order'], function () {
         Route::get('/finish', 'General\OrderController@finish')->name('order.finish');

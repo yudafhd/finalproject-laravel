@@ -46,7 +46,7 @@
                 <div class="tab-pane active" id="info" role="tabpanel">
                     <div class="card-body">
                         <form class="form-horizontal form-material" method="POST" enctype="multipart/form-data"
-                            action="{{ Route('user.store.update.profile') }}">
+                            action="{{ Route('account.update') }}">
                             @csrf
                             <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                             <div class="form-group">

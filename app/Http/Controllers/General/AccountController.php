@@ -28,4 +28,9 @@ class AccountController extends Controller
         return view('general.transaction', compact('user', 'allTransaction'));
     }
 
+    public function accountUpdate(Request $request)
+    {
+        dd($request->all());
+    }
+
 }
