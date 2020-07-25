@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Bidang;
+use App\Exports\OkpExport;
 use App\Okp;
 use App\User;
-use App\Bidang;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Storage;
-use App\Exports\OkpExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Spatie\Permission\Models\Role;
 
 class OkpController extends Controller
 {
@@ -26,18 +26,19 @@ class OkpController extends Controller
 
         if (auth()->user()->level === 'superadmin' || auth()->user()->level === 'admin_knpi') {
             $okps = Okp::all();
-            return view('okps.okpList',  ['okps' => $okps, 'success_message' => $success_message]);
+            return view('okps.okpList', ['okps' => $okps, 'success_message' => $success_message]);
         } else {
             $okps = Okp::whereUserId(auth()->user()->id)->get();
-            return view('okps.okpDetailForAdminOkp',  ['okps' => $okps[0], 'success_message' => $success_message]);
+            return view('okps.okpDetailForAdminOkp', ['okps' => $okps[0], 'success_message' => $success_message]);
         }
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $roles = Role::all();
         $bidangs = Bidang::all();
-        return view('okps.okpCreate', ['roles' => $roles, 'bidangs' => $bidangs]);
+        $error_message = $request->session()->get('alert-error');
+        return view('okps.okpCreate', ['roles' => $roles, 'bidangs' => $bidangs, 'error_message' => $error_message]);
     }
 
     public function store(Request $request)
@@ -51,12 +52,22 @@ class OkpController extends Controller
             ]);
             $user->syncRoles($request->level);
 
-            $storage = Storage::putFile('public/okp/photo', $request->file('foto'));
+            $berkas = null;
+            $storage = null;
+
+            if ($request->file('berkas')) {
+                $berkas = Storage::putFile('public/okp/file', $request->file('berkas'));
+            }
+            if ($request->file('foto')) {
+                $storage = Storage::putFile('public/okp/file', $request->file('foto'));
+            }
+
             Okp::create([
                 'nama' => $request->nama,
                 'bidang' => $request->bidang,
                 'alamat' => $request->alamat,
                 'no_okp' => $request->no_okp,
+                'telephone' => $request->telephone,
                 'status' => $request->status,
                 'tanggal_daftar' => $request->tanggal_daftar,
                 'visi' => $request->visi,
@@ -66,7 +77,8 @@ class OkpController extends Controller
                 'latar_belakang' => $request->latar_belakang,
                 'long' => $request->langitude,
                 'lat' => $request->longitude,
-                'foto' => basename($storage),
+                'foto' => $storage ? basename($storage) : null,
+                'berkas' => $berkas ? basename($berkas) : null,
                 'user_id' => $user->id,
             ]);
             $request->session()->flash('alert-success', "Berhasil di buat!");
@@ -101,6 +113,7 @@ class OkpController extends Controller
             $okp->tanggal_daftar = $request->tanggal_daftar;
             $okp->visi = $request->visi;
             $okp->misi = $request->misi;
+            $okp->telephone = $request->telephone;
             $okp->tanggal_berdiri = $request->tanggal_berdiri;
             $okp->pendiri = $request->pendiri;
             $okp->latar_belakang = $request->latar_belakang;
@@ -112,6 +125,11 @@ class OkpController extends Controller
                 Storage::delete('public/okp/photo/' . $okp->foto);
                 $storage = Storage::putFile('public/okp/photo', $request->file('foto'));
                 $okp->foto = basename($storage);
+            }
+            if ($request->file('berkas')) {
+                Storage::delete('public/okp/file/' . $okp->berkas);
+                $storage = Storage::putFile('public/okp/file', $request->file('berkas'));
+                $okp->berkas = basename($storage);
             }
             $okp->save();
             $request->session()->flash('alert-success', "Berhasil di update!");

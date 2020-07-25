@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Okp extends Model
 {
     protected $fillable = [
-        'nama', 'bidang', 'alamat', 'long', 'lat', 'tanggal_daftar', 'no_okp', 'status', 'foto', 'visi', 'misi', 'latar_belakang', 'tanggal_berdiri', 'pendiri', 'user_id'
+        'nama', 'bidang', 'alamat', 'long', 'lat', 'tanggal_daftar', 
+        'no_okp', 'status', 'foto', 'visi', 'misi', 'latar_belakang', 
+        'tanggal_berdiri', 'pendiri', 'user_id','telephone',
     ];
 
     public function user()

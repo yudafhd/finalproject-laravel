@@ -16,6 +16,9 @@ class Kegiatan extends Model
         'hasil',
         'tempat',
         'foto',
+        'foto_acara1',
+        'foto_acara2',
+        'foto_acara3',
         'okp_id',
     ];
 

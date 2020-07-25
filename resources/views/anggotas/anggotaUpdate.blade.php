@@ -66,10 +66,19 @@
                                 </div>
                             </div>
                             @endif
+                             <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Status</label>
+                                    <select class="form-control" name="status" custom-select">
+                                       <option value="ACTIVE" {{ $anggota->status == 'ACTIVE' ? 'selected':null }}>ACTIVE</option>
+                                       <option value="DISABLED" {{ $anggota->status == 'DISABLED' ? 'selected':null }}>DISABLED</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-success" style="margin-right: 5px">
                             <i class="fa fa-check"></i> Save</button>
-                        <a href="{{url('/kegiatan')}}" class="btn btn-inverse">Cancel</a>
+                        <a href="{{url('/anggota')}}" class="btn btn-inverse">Cancel</a>
                     
                     </div>
                 </form>

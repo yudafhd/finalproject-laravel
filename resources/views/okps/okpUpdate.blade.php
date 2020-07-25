@@ -59,8 +59,10 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Status</label>
-                                    <input type="text" name="status" class="form-control" value="{{$okp->status}}">
-                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+                                      <select class="form-control" name="status" custom-select">
+                                        <option value="ACTIVE" {{$okp->status == 'ACTIVE' ? 'selected':null}}>ACTIVE</option>
+                                        <option value="DISABLED" {{$okp->status == 'DISABLED' ? 'selected':null}}>DISABLED</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -68,6 +70,13 @@
                                     <label class="control-label">Tanggal Daftar</label>
                                     <input type="text" class="form-control" placeholder="2017-06-04"
                                         value="{{$okp->tanggal_daftar}}" name="tanggal_daftar" id="mdatepicker2" />
+                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+                                </div>
+                            </div>
+                             <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Telephone</label>
+                                    <input type="text" name="telephone" class="form-control" value="{{$okp->telephone}}">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
@@ -166,7 +175,20 @@
                                 </div>
                             </div>
                         </div>
-
+                        <h3 class="card-title" style="font-weight: bold; margin-top: 20px;">Berkas</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <span  style="margin-bottom:20px">
+                                    <a href="{{ asset('storage/okp/file/'.$okp->berkas) }}">{{ $okp->berkas }}</a><br><br>
+                                    </span>
+                                        <input type="file" name="berkas" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-actions" style="margin-top:20px">
                         </div> <button type="submit" class="btn btn-success">

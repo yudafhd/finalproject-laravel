@@ -27,7 +27,7 @@ class KegiatanController extends Controller
         }
 
         if (auth()->user()->level == 'superadmin' || auth()->user()->level == 'admin_knpi') {
-            $data_kegiatan = Kegiatan::all();
+            $data_kegiatan = Kegiatan::orderBy('id', 'desc')->get();
         }
 
         $success_message = $request->session()->get('alert-success');
@@ -51,10 +51,22 @@ class KegiatanController extends Controller
         try {
 
             $kegiatan = Kegiatan::create($request->all());
-
+        
             if ($request->file('foto')) {
                 $storage = Storage::putFile('public/kegiatan/photo', $request->file('foto'));
                 $kegiatan->foto = basename($storage);
+            }
+            if ($request->file('foto_acara1')) {
+                $storage1 = Storage::putFile('public/kegiatan/acara', $request->file('foto_acara1'));
+                $kegiatan->foto_acara1 = basename($storage1);
+            }
+            if ($request->file('foto_acara2')) {
+                $storage2 = Storage::putFile('public/kegiatan/acara', $request->file('foto_acara2'));
+                $kegiatan->foto_acara2 = basename($storage2);
+            }
+            if ($request->file('foto_acara3')) {
+                $storage3 = Storage::putFile('public/kegiatan/acara', $request->file('foto_acara3'));
+                $kegiatan->foto_acara3 = basename($storage3);
             }
 
             if ($request->okp_id) {
@@ -111,12 +123,29 @@ class KegiatanController extends Controller
                 $storage = Storage::putFile('public/kegiatan/photo', $request->file('foto'));
                 $kegiatan->foto = basename($storage);
             }
+
+            if ($request->file('foto_acara1')) {
+                Storage::delete('public/kegiatan/acara/' . $kegiatan->foto_acara1);
+                $storage1 = Storage::putFile('public/kegiatan/acara', $request->file('foto_acara1'));
+                $kegiatan->foto_acara1 = basename($storage1);
+            }
+            if ($request->file('foto_acara2')) {
+                Storage::delete('public/kegiatan/acara/' . $kegiatan->foto_acara2);
+                $storage2 = Storage::putFile('public/kegiatan/acara', $request->file('foto_acara2'));
+                $kegiatan->foto_acara2 = basename($storage2);
+            }
+            if ($request->file('foto_acara3')) {
+                Storage::delete('public/kegiatan/acara/' . $kegiatan->foto_acara3);
+                $storage3 = Storage::putFile('public/kegiatan/acara', $request->file('foto_acara3'));
+                $kegiatan->foto_acara3 = basename($storage3);
+            }
+
             $kegiatan->save();
             $request->session()->flash('alert-success', "Berhasil di update!");
             return redirect('/kegiatan');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect('/kegiatan/' . $kegiatan->id . 'edit');
+            return redirect('/kegiatan/' . $kegiatan->id. '/edit');
         }
     }
 

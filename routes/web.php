@@ -14,6 +14,7 @@
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('homes');
+Route::get('/detail/{id}', 'HomeController@detail')->name('detail');
 Route::get('/visi', 'HomeController@visi')->name('visi');
 Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::middleware(['auth'])->group(function () {

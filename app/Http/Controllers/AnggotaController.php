@@ -87,6 +87,7 @@ class AnggotaController extends Controller
             $anggota->jabatan = $request->jabatan;
             $anggota->tanggal_masuk = $request->tanggal_masuk;
             $anggota->alamat = $request->alamat;
+            $anggota->status = $request->status;
             if ($request->okp_id) {
                 $anggota->okp_id = $request->okp_id;
             }

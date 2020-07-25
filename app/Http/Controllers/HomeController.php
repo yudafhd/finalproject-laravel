@@ -13,6 +13,11 @@ class HomeController extends Controller
         $kegiatans = Kegiatan::all();
         return view('home', ['kegiatans' => $kegiatans]);
     }
+    public function detail($id)
+    {
+        $kegiatans = Kegiatan::findOrFail($id);
+        return view('detail', ['kegiatans' => $kegiatans]);
+    }
 
     public function visi()
     {

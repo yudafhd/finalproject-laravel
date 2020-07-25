@@ -64,6 +64,15 @@
                                 </div>
                             </div>
                             @endif
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Status</label>
+                                    <select class="form-control" name="status" custom-select">
+                                       <option value="ACTIVE">ACTIVE</option>
+                                       <option value="DISABLED">DISABLED</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-success" style="margin-right: 5px">
                             <i class="fa fa-check"></i> Save</button>

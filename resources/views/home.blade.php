@@ -6,25 +6,28 @@
         @foreach ($kegiatans as $kegiatan )
         <div class="col-md-4">
             <div class="card">
-            <img class="card-img-top" src="{{asset('storage/kegiatan/photo/'.$kegiatan->foto)}}" alt="Card image cap">
+            <div style="height:200px; background:#f3f1f1;
+              background-position: center;
+            background-size: 400px auto;
+             background-image: url('{{ asset('storage/kegiatan/photo/'.$kegiatan->foto) }}');"></div>
             <div class="card-header">
                 <h3>
-                    {{$kegiatan->okp->nama}}
+                   <a href="{{ Route('detail', $kegiatan->id) }}">{{$kegiatan->judul}}</a>
                 </h3>
             </div>
                 <div class="card-body">
                     <div style="font-weight: bold">
-                        {{$kegiatan->judul}}       
+                              {{$kegiatan->okp->nama}}
                     </div>
                     <br />
-                   {{$kegiatan->detail_anggaran}}
+                   {{$kegiatan->detail_kegiatan}}
                    <br />
                    <br />
                    <br />
-                   <div style="font-size:14px;">
-                    {{$kegiatan->tempat}}
-                    </div>
                 </div>
+                  <div class="card-footer" style="font-size:14px; background:#f3f1f1; padding:20px">
+                      <i class="mdi mdi-pin"></i> {{$kegiatan->tempat}}
+                    </div>
             </div>
         </div>
         @endforeach

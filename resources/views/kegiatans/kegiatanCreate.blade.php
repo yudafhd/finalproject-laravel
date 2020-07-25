@@ -106,6 +106,31 @@
                                 </div>
                             </div>
                         </div>
+                          <h3 class="card-title" style="font-weight: bold; margin-top: 20px;">Berkas Acara</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <input type="file" name="foto_acara1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <input type="file" name="foto_acara2" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <input type="file" name="foto_acara3" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-actions" style="margin-top:20px">
                         </div> <button type="submit" class="btn btn-success">
                             <i class="fa fa-check"></i> Save</button>

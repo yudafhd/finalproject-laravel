@@ -13,6 +13,7 @@ class Anggota extends Model
         'tanggal_masuk',
         'alamat',
         'okp_id',
+        'status',
     ];
 
     public function okp()
