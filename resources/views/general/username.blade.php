@@ -4,8 +4,8 @@
     <div class="col-sm col-md text-center">
         <div class="wrapper-content">
             <div class="profile-image">
-                @if(auth()->user()->general->photo)
-                <img class="img-fluid rounded-circle" src="{{ Url('storage/user/profile/'.auth()->user()->general->photo) }}" />
+                @if($photo)
+                <img class="img-fluid rounded-circle" src="{{ Url('storage/user/profile/'. $photo) }}" />
                 @else
                 <img class="img-fluid rounded-circle" src="{{ asset('assets/images/user.svg') }}" />
                 @endif

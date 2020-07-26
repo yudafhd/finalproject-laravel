@@ -107,30 +107,29 @@
         </div>
         @if(isset($username))
             @if(!$username)
-                <footer class="footer container">
-                    <ul class="list-unstyled list-inline d-flex">
-                        <span class="d-block  ml-auto mr-auto">
-                            <li class="list-inline-item">
-                                <a href="#!">Hubungi Saya</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">Whatsapp</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">Terms & Condition</a>
-                            </li>
-                        </span>
-                    </ul>
-                    <div class="d-flex">
-                        <span class="ml-auto mr-auto">
-                            ©2019 {{ config("app.name") }}
-                            <i id="youtube" class="m-l-40 mdi mdi-instagram"></i>
-                            <i id="youtube" class="mdi mdi-facebook"></i>
-                            <i id="youtube" class="mdi mdi-gmail"></i>
-                        </span>
-                    </div>
-                </footer>
-
+                  <footer class="footer container">
+                <ul class="list-unstyled list-inline d-flex">
+                    <span class="d-block  ml-auto mr-auto">
+                        <li class="list-inline-item">
+                            <a href="#! ">Hubungi Saya</a>
+                          </li>
+                        <li class="list-inline-item">
+                            <a href="https://wa.me/6281357778874?text=Halo%20min%20saya%20dari%20pinterlink">Whatsapp</a>
+                          </li>
+                        <li class="list-inline-item">
+                            <a href="#!">Terms & Condition</a>
+                          </li>
+                    </span>
+                  </ul>
+                <div class="d-flex">
+                    <span class="ml-auto mr-auto">
+                        ©2019 {{ config("app.name") }}
+                        <a href="https://www.instagram.com/pinterusmedia/"><i class="m-l-40 mdi mdi-instagram"></i></a>
+                        <a href="https://www.facebook.com/pinterusmedia"><i id="youtube" class="mdi mdi-facebook"></i></a>
+                        <a href="mailto:pinterusindonesia@gmail.com"><i id="youtube" class="mdi mdi-gmail"></i></a>
+                    </span>
+                </div>
+            </footer>
             @else
                 <footer class="footer container footer-for-username">
                     Made by Love <a href="{{ url('/') }}"> Pinter.link</a>

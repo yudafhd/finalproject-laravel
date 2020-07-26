@@ -3,7 +3,9 @@
 Auth::routes();
 Auth::routes(['verify' => true]);
 
+Auth::routes();
 Route::get('/', 'General\HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 // Midtrans Notification
 Route::group(['prefix' => 'notification'], function () {
@@ -65,7 +67,4 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-Route::get('/{username}', 'General\HomeController@usernameProfile')->name('username');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/{username}', 'General\UsernameController@index')->name('username');

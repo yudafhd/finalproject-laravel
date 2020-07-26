@@ -121,7 +121,7 @@
                             <a href="#!">Hubungi Saya</a>
                           </li>
                         <li class="list-inline-item">
-                            <a href="#!">Whatsapp</a>
+                            <a href="https://wa.me/6281357778874?text=Halo%20min%20saya%20dari%20pinterlink">Whatsapp</a>
                           </li>
                         <li class="list-inline-item">
                             <a href="#!">Terms & Condition</a>
