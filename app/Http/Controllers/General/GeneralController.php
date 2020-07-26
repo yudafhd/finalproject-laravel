@@ -69,17 +69,20 @@ class GeneralController extends Controller
             // Upload image
             $imagename = null;
             if ($request->file('foto')) {
-                if (!file_exists(public_path() . '/user/profile/')) {
-                    mkdir(public_path() . '/user/profile/', 776, true);
+
+                $ifExist = Storage::exists('public/user/profile/' . $user->general->photo);
+
+                if ($ifExist) {
+                    Storage::delete('public/user/profile/' . $user->general->photo);
                 }
 
-                if (file_exists(public_path() . '/user/profile/' . $user->image_url)) {
-                    Storage::delete(public_path() . '/user/profile/' . $user->image_url);
-                }
-
+                // Decode image
                 $imagename = date('YmdHis-') . uniqid() . '.jpg';
-                $oriPath = public_path() . '/user/profile/' . $imagename;
-                Image::make($request->file('foto'))->fit(300, 300)->save($oriPath);
+                $path = '/user/profile/' . $imagename;
+                $imagesBatch = Image::make($request->file('foto'))->fit(300, 300)->encode('jpg');
+
+                // Save proccess
+                Storage::disk('public')->put($path, $imagesBatch);
             }
 
             if ($imagename) {

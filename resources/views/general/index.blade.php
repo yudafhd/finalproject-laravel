@@ -9,7 +9,7 @@
             @csrf
             <section class="add-upload-photo d-flex">
                 @if(auth()->user()->general->photo)
-                <img src="{{ Url('user/profile/'.auth()->user()->general->photo) }}" class="img-circle m-r-20 m-b-10"
+                <img src="{{ Url('storage/user/profile/'.auth()->user()->general->photo) }}" class="img-circle m-r-20 m-b-10"
                     width="70" />
                 @else
                 <img width="70" src="{{ asset('assets/images/user.svg') }}" class="m-r-20 m-b-10" />
