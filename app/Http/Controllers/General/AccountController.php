@@ -90,17 +90,20 @@ class AccountController extends Controller
 
             $imagename = null;
             if ($request->file('foto')) {
-                if (!file_exists(public_path() . '/user/profile/')) {
-                    mkdir(public_path() . '/user/profile/', 776, true);
+
+                $ifExist = Storage::exists('public/user/profile/' . $general->photo);
+
+                if ($ifExist) {
+                    Storage::delete('public/user/profile/' . $general->photo);
                 }
 
-                if (file_exists(public_path() . '/user/profile/' . $user->image_url)) {
-                    Storage::delete(public_path() . '/user/profile/' . $user->image_url);
-                }
-
+                // Decode image
                 $imagename = date('YmdHis-') . uniqid() . '.jpg';
-                $oriPath = public_path() . '/user/profile/' . $imagename;
-                Image::make($request->file('foto'))->fit(300, 300)->save($oriPath);
+                $path = '/user/profile/' . $imagename;
+                $imagesBatch = Image::make($request->file('foto'))->fit(300, 300)->encode('jpg');
+
+                // Save proccess
+                Storage::disk('public')->put($path, $imagesBatch);
             }
 
             // assign role to user
@@ -110,21 +113,22 @@ class AccountController extends Controller
             // }
 
             $user->name = $request->name;
-            $user->telepon = $request->telepon;
+            $user->phone_number = $request->telepon;
 
             if ($request->file('foto')) {
                 $general->photo = $imagename;
             }
 
-            if ($request->password) {
-                $user->password = bcrypt($request->password);
-            }
+            // if ($request->password) {
+            //     $user->password = bcrypt($request->password);
+            // }
 
             $user->save();
             $general->save();
             $request->session()->flash('alert-success', "Berhasil di update!");
             return redirect()->route('account');
         } catch (\Exception $e) {
+            dd($e->getMessage());
             $request->session()->flash('alert-error', $this->beautyBag($e->validator->messages()->all()));
             return redirect()->route('account');
         }

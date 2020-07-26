@@ -6,7 +6,7 @@
             <div class="card-body">
                 <center class="m-t-30">
                     @if(auth()->user()->general->photo)
-                    <img src="{{ Url('user/profile/'.auth()->user()->general->photo) }}" class="img-circle" width="150" />
+                    <img src="{{ Url('storage/user/profile/'.auth()->user()->general->photo) }}" class="img-circle" width="150" />
                     @else
                     <img src="{{ asset('assets/images/user.svg') }}" class="img-circle" width="150" />
                     @endif
