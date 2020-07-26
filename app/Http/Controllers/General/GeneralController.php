@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Link;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class GeneralController extends Controller
 {
@@ -57,11 +59,34 @@ class GeneralController extends Controller
             $user_id = $user->id;
             $general_id = $user->general->id;
             $all_request = $request->all();
+            $general_update = [];
             $error_link = [];
 
             // Update general
             $tweet = isset($all_request['tweet']) ? $all_request['tweet'] : null;
-            General::find($general_id)->update(['tweet' => $tweet]);
+            $general_update = array_merge($general_update, ['tweet' => $tweet]);
+
+            // Upload image
+            $imagename = null;
+            if ($request->file('foto')) {
+                if (!file_exists(public_path() . '/user/profile/')) {
+                    mkdir(public_path() . '/user/profile/', 776, true);
+                }
+
+                if (file_exists(public_path() . '/user/profile/' . $user->image_url)) {
+                    Storage::delete(public_path() . '/user/profile/' . $user->image_url);
+                }
+
+                $imagename = date('YmdHis-') . uniqid() . '.jpg';
+                $oriPath = public_path() . '/user/profile/' . $imagename;
+                Image::make($request->file('foto'))->fit(300, 300)->save($oriPath);
+            }
+
+            if ($imagename) {
+                $general_update = array_merge($general_update, ['photo' => $imagename]);
+            }
+
+            General::find($general_id)->update($general_update);
 
             // Collection links
             array_shift($all_request['titles']);
@@ -144,7 +169,6 @@ class GeneralController extends Controller
 
             return redirect()->route('general');
         } catch (\Exception $e) {
-            dd($e->getMessage());
             $request->session()->flash('alert-error', $e->getMessage());
             return redirect()->route('general');
         }

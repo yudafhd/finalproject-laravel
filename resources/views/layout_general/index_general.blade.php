@@ -131,9 +131,9 @@
                 <div class="d-flex">
                     <span class="ml-auto mr-auto">
                         ©2019 {{ config("app.name") }}
-                        <i id="youtube" class="m-l-40 mdi mdi-instagram"></i>
-                        <i id="youtube" class="mdi mdi-facebook"></i>
-                        <i id="youtube" class="mdi mdi-gmail"></i>
+                        <a href="https://www.instagram.com/pinterusmedia/"><i class="m-l-40 mdi mdi-instagram"></i></a>
+                        <a href="https://www.facebook.com/pinterusmedia"><i id="youtube" class="mdi mdi-facebook"></i></a>
+                        <a href="mailto:pinterusindonesia@gmail.com"><i id="youtube" class="mdi mdi-gmail"></i></a>
                     </span>
                 </div>
             </footer>

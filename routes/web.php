@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/account/upgrade', 'General\MidtransTransactionController@upgradeAccountViews')->name('account.upgrade');
         Route::post('/account/upgrade', 'General\MidtransTransactionController@upgradeAccount')->name('account.upgrade.agreement');
         Route::post('/account/update', 'General\AccountController@accountUpdate')->name('account.update');
+        Route::post('/account/update/username', 'General\AccountController@accountUsername')->name('account.update.username');
     });
 
     // Order views
