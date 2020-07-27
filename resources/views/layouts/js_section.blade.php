@@ -24,7 +24,7 @@
 <script src="{{ asset('assets/plugins/d3/d3.min.js')}}"></script>
 <script src="{{ asset('assets/plugins/c3-master/c3.min.js')}}"></script>
 <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1fNYmyPlWrN1HLgWY3K7-IcGafclJhso&libraries=places&callback=initAutocomplete">
+    src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API') }}&libraries=places&callback=initAutocomplete">
 </script>
 
 <script>

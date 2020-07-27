@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Ewarong;
-use App\Villages;
 use App\Districts;
+use App\Ewarong;
+use App\Http\Controllers\Controller;
 use App\Item;
 use App\Pemesanan;
 use App\PemesananDetail;
 use App\Stock;
+use App\Villages;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
 
 class EwarongController extends Controller
 {
@@ -22,7 +21,7 @@ class EwarongController extends Controller
         $now = \Carbon\Carbon::now()->format('Y-m-d');
         $all_warong = Ewarong::with(['pemesanan' => function ($query) use ($now) {
             $query->where('date_pemesanan', $now);
-        }, 'pemesanan.user','stock' => function ($query)  use ($request) {
+        }, 'pemesanan.user', 'stock' => function ($query) use ($request) {
             if ($request->items) {
                 $query->whereIn('item_id', $request->items);
             }
@@ -47,6 +46,18 @@ class EwarongController extends Controller
             }
             $all_warong->where('status', 'ACTIVE');
         }
+
+        $query = "SELECT ewarong.* from ewarong
+        left join pemesanan on pemesanan.ewarong_id = ewarong.id
+        left join stocks on stocks.ewarong_id = ewarong.id
+        join items on items.id = stocks.item_id
+        join satuans on satuans.id = stocks.satuan_id
+         WHERE stocks.item_id IN (1,2,3)
+         AND ewarong.nama_kios LIKE '%Toko%'
+         AND ewarong.jam_buka >= '06:00:00'
+         AND ewarong.jam_tutup <= '21:00:00'
+         AND ewarong.status = 'ACTIVE'
+         GROUP BY ewarong.nama_kios";
 
         $after = $all_warong->get();
 
@@ -134,10 +145,10 @@ class EwarongController extends Controller
         $ewarong = Ewarong::where('user_id', $user->id)->get()->first();
 
         if ($access == 'umum' or $access == 'superadmin') {
-            $data = Pemesanan::with(['ewarong', 'detail', 'detail.item', 'detail.satuan','user'])->where('user_id', $user->id)->get();
+            $data = Pemesanan::with(['ewarong', 'detail', 'detail.item', 'detail.satuan', 'user'])->where('user_id', $user->id)->get();
         }
         if ($access == 'rpk') {
-            $data = Pemesanan::with(['ewarong', 'detail', 'detail.item', 'detail.satuan','user'])->where('ewarong_id', $ewarong->id)->get();
+            $data = Pemesanan::with(['ewarong', 'detail', 'detail.item', 'detail.satuan', 'user'])->where('ewarong_id', $ewarong->id)->get();
         }
         return response(['data' => $data]);
     }
@@ -156,13 +167,13 @@ class EwarongController extends Controller
             }
 
             $result = Pemesanan::create([
-                'nomor_pemesanan' =>  strtoupper(Str::random(10) . rand(0, date('mm'))),
+                'nomor_pemesanan' => strtoupper(Str::random(10) . rand(0, date('mm'))),
                 'user_id' => $user->id,
                 'ewarong_id' => $ewarong_id,
                 'qty_total' => $qty_total,
                 'harga_total' => $harga_total,
                 'status' => 'OPEN',
-                'date_pemesanan' => date('Y-m-d')
+                'date_pemesanan' => date('Y-m-d'),
             ]);
 
             foreach ($items as $item) {
@@ -221,24 +232,24 @@ class EwarongController extends Controller
     {
         try {
             $user = auth()->user();
-            
+
             $pemesanans = Pemesanan::find($request->pemesanan_id);
             $pemesananDetail = PemesananDetail::all()->where('pemesanan_id', $pemesanans->id);
             $status = $request->status;
             $notes = $request->notes;
 
-            foreach($pemesananDetail as $pemesanan) {
+            foreach ($pemesananDetail as $pemesanan) {
                 $item_id = $pemesanan->item_id;
                 $qty = $pemesanan->qty;
                 $stocks = Stock::where('ewarong_id', $pemesanans->ewarong_id)->where('item_id', $item_id)->get()->first();
                 $stock_id = $stocks->id;
                 $stocks_now = $stocks->qty;
                 $stocks_after = (int) $stocks_now + (int) $qty;
-                Stock::find($stock_id)->update(['qty'=>$stocks_after]);
+                Stock::find($stock_id)->update(['qty' => $stocks_after]);
             }
 
             $pemesanans->update(['status' => $status, 'notes' => $notes]);
-            return response(['status' => 'success', 'message' => 'Pesanan berhasil '.$status]);
+            return response(['status' => 'success', 'message' => 'Pesanan berhasil ' . $status]);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()], 422);
         }
