@@ -1,4 +1,4 @@
-@extends('layout_general.index_general') @section('content')
+@extends('general_layout.index_general') @section('content')
 <div class="row page-titles m-t-40" style="margin-bottom: 20vh">
     <div class="link-when-mobile text-center m-b-20 d-sm-none text-center" style="width: 100vw">
         <a target="_blank"

@@ -1,4 +1,4 @@
-@extends('layout_general.index')
+@extends('general_layout.index')
 @section('content')
 <div class="row page-titles m-t-40">
     <div class="col-sm col-md text-center">

@@ -1,4 +1,4 @@
-@extends('layout_general.index_general') @section('content')
+@extends('general_layout.index_general') @section('content')
 
 <div class="row m-t-40">
     <div class="col-lg-12 col-xlg-12 col-md-12">

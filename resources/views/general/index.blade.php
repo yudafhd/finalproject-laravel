@@ -1,4 +1,4 @@
-@extends('layout_general.index_general') @section('content')
+@extends('general_layout.index_general') @section('content')
 <div class="row page-titles m-t-40" style="margin-bottom: 20vh">
     <div class="link-when-mobile text-center m-b-20 d-sm-none text-center" style="width: 100vw">
         <a target="_blank"
@@ -113,7 +113,10 @@
             <a target="_blank"
                 href="{{ Route("username", auth()->user()->username) }}">{{ Route("username", auth()->user()->username) }}</a>
         </span>
-        <div class=" mr-auto ml-auto m-t-20 rounded-top p-10" style="width: 25vw; height:70vh; color:#ffffff; 
+        <div class="mr-auto ml-auto m-t-20 rounded-top p-10" style="
+            width: 25vw; 
+            height:70vh; 
+            color:#ffffff; 
             background-repeat: no-repeat;
             background-size: 25vw;
             background-image:url('{{ asset('assets/images/phonebg.png') }}');">
@@ -121,7 +124,7 @@
             <p class="username-front m-t-10">
                 {{ '@'.$user->username }}
             </p>
-            <p class="tweet m-b-0" style="font-size:12px">
+            <p class="tweet m-b-0" style="padding:0 30px 0 30px;font-size:12px;word-wrap: break-all;">
                 {{ $tweet }}
             </p>
             <ul class="list-group list-group-flush" style="padding: 50px; padding-top:0px">

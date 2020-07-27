@@ -13,7 +13,7 @@
             href="{{ asset('favicon.png') }}"
         />
         <title>{{ config("app.name") }}</title>
-        @include('layout_general.css_javascript_section')
+        @include('general_layout.css_javascript_section')
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -131,7 +131,7 @@
                 <div class="d-flex">
                     <span class="ml-auto mr-auto">
                         ©2019 {{ config("app.name") }}
-                        <a href="https://www.instagram.com/pinterusmedia/"><i class="m-l-40 mdi mdi-instagram"></i></a>
+                        <a href="https://www.instagram.com/pinterusmedia"><i class="m-l-40 mdi mdi-instagram"></i></a>
                         <a href="https://www.facebook.com/pinterusmedia"><i id="youtube" class="mdi mdi-facebook"></i></a>
                         <a href="mailto:pinterusindonesia@gmail.com"><i id="youtube" class="mdi mdi-gmail"></i></a>
                     </span>

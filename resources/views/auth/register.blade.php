@@ -1,4 +1,4 @@
-@extends('layout_general.index') 
+@extends('general_layout.index') 
 @section('content')
 
 <section  class="section-wrapper"

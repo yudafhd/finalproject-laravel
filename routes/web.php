@@ -2,8 +2,6 @@
 
 Auth::routes();
 Auth::routes(['verify' => true]);
-
-Auth::routes();
 Route::get('/', 'General\HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -34,9 +32,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/error', 'General\OrderController@error')->name('order.error');
     });
 
-    // User office
-    Route::group(['prefix' => 'backoffice'], function () {
-        Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+});
+
+Route::group(['prefix' => 'backoffice'], function () {
+    Route::get('/login', 'AuthAdmin\LoginAdminController@showLoginForm')->name('admin.login');
+    Route::middleware(['auth:admin'])->group(function () {
+        // User office
+        Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+        Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
         Route::group(['prefix' => 'user'], function () {
             Route::get('/create', 'UserController@create')->name('user.create');
             Route::post('/store', 'UserController@store')->name('user.store');
@@ -66,5 +69,4 @@ Route::middleware(['auth'])->group(function () {
         });
     });
 });
-
 Route::get('/{username}', 'General\UsernameController@index')->name('username');

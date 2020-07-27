@@ -14,7 +14,7 @@
             href="{{ asset('favicon.png') }}"
         />
     <title>{{ config("app.name") }}</title>
-    @include('layout_general.css_javascript_section')
+    @include('general_layout.css_javascript_section')
     <link href="{{ asset('assets/css/theme/default.css') }}" rel="stylesheet" />
 
 </head>
@@ -48,17 +48,13 @@
                             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                                 <ul class="navbar-nav mr-auto stylish-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="../Documentation/document.html"
-                                            target="_blank">Price</a>
+                                        <a class="nav-link" href="../Documentation/document.html">Harga</a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link" href="../Documentation/document.html"
                                             target="_blank">Info</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="../Documentation/document.html"
-                                            target="_blank">FAQ</a>
-                                    </li>
+                                 --}}
                                 </ul>
                                 <ul class="navbar-nav ml-auto stylish-nav">
                                     @if(!auth()->check())
@@ -124,7 +120,7 @@
                 <div class="d-flex">
                     <span class="ml-auto mr-auto">
                         ©2019 {{ config("app.name") }}
-                        <a href="https://www.instagram.com/pinterusmedia/"><i class="m-l-40 mdi mdi-instagram"></i></a>
+                        <a href="https://www.instagram.com/pinterusmedia"><i class="m-l-40 mdi mdi-instagram"></i></a>
                         <a href="https://www.facebook.com/pinterusmedia"><i id="youtube" class="mdi mdi-facebook"></i></a>
                         <a href="mailto:pinterusindonesia@gmail.com"><i id="youtube" class="mdi mdi-gmail"></i></a>
                     </span>
