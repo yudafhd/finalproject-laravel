@@ -24,7 +24,7 @@
 <script src="{{ asset('assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1fNYmyPlWrN1HLgWY3K7-IcGafclJhso&libraries=places&callback=initAutocomplete">
+    src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API') }}&libraries=places&callback=initAutocomplete">
 </script>
 <style>
     #pac-input {
