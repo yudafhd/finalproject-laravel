@@ -1,4 +1,4 @@
-@extends('layouts.index') @section('content')
+@extends('backoffice_layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
         <h2 class="text-themecolor">CREATE ROLES</h2>
@@ -27,18 +27,26 @@
 
 
                 <div class=" m-t-10">
-                    <form method="POST" action="{{ Route('role.store') }}">
+                    <form method="POST" action="{{ Route('admin.role.store') }}">
                         @csrf
                         <h3 class="card-title">Info</h3>
                         <hr>
                         <div class="form-row">
                             <div class="col-md-5 mb-3">
                                 <label for="validationServer01">Nama Role</label>
-                                <input type="text" name="name" class="form-control" placeholder="Contoh : edit user"
+                                <input type="text" name="name" class="form-control" placeholder="example edit user"
                                     required>
-                                {{-- <div class="valid-feedback">
-                                Looks good!
-                              </div> --}}
+                            </div>
+                        </div>
+                            <div class="form-row">
+                            <div class="col-md-5 mb-3">
+                                <div class="form-group">
+                                    <label class="control-label">Guard Name</label>
+                                    <select class="form-control" name="guard_name" custom-select">
+                                        <option value="web">web</option>
+                                        <option value="admin">admin</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <h3 class="card-title">Permission</h3>
@@ -70,7 +78,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                            <a href="{{Route('role.list')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{Route('admin.role.list')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                     </form>
                 </div>

@@ -1,4 +1,4 @@
-@extends('layouts.index') @section('content')
+@extends('backoffice_layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
         <h3 class="text-themecolor">ROLES</h3>
@@ -30,7 +30,7 @@
                     Total Roles
                     <span class="label label-success label-rounded">{{count($roles)}}</span>
                 </span>
-                <a href="{{Route('role.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('admin.role.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
                    Buat
                 </a>
@@ -56,9 +56,9 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('role.delete', $role->name)}}">Delete</a>
+                                                href="{{Route('admin.role.delete', $role->id)}}">Delete</a>
                                             <a class="dropdown-item"
-                                                href="{{Route('role.update', $role->id)}}">Update</a>
+                                                href="{{Route('admin.role.update', $role->id)}}">Update</a>
                                         </div>
                                     </div>
                                 </td>

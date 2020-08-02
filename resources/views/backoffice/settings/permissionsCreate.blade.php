@@ -1,4 +1,4 @@
-@extends('layouts.index') @section('content')
+@extends('backoffice_layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
         <h2 class="text-themecolor">BUAT PERMISSION</h2>
@@ -27,12 +27,12 @@
 
 
                 <div class=" m-t-10">
-                    <form method="POST" action="{{ Route('permission.store') }}">
+                    <form method="POST" action="{{ Route('admin.permission.store') }}">
                         @csrf
                         <div class="form-row">
                             <div class="col-md-5 mb-3">
                                 <label>Nama Permission</label>
-                                <input type="text" name="name" class="form-control" placeholder="Contoh : melihat data user"
+                                <input type="text" name="name" class="form-control" placeholder="Contoh show data user"
                                     required>
                             </div>
                         </div>

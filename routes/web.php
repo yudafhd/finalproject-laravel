@@ -36,36 +36,38 @@ Route::middleware(['auth'])->group(function () {
 
 Route::group(['prefix' => 'backoffice'], function () {
     Route::get('/login', 'AuthAdmin\LoginAdminController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'AuthAdmin\LoginAdminController@login')->name('admin.login.auth');
     Route::middleware(['auth:admin'])->group(function () {
+        // Auth logout
+        Route::post('/logout', 'AuthAdmin\LoginAdminController@logout')->name('admin.logout.auth');
         // User office
-        Route::get('/', 'DashboardController@index')->name('admin.dashboard');
-        Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
+        Route::get('/', 'Backoffice\DashboardController@index')->name('admin.dashboard');
+        Route::get('/dashboard', 'Backoffice\DashboardController@index')->name('admin.dashboard');
         Route::group(['prefix' => 'user'], function () {
-            Route::get('/create', 'UserController@create')->name('user.create');
-            Route::post('/store', 'UserController@store')->name('user.store');
-            Route::get('/{type}', 'UserController@index')->name('user.list');
-            Route::get('/update/{id}', 'UserController@update')->name('user.update');
-            Route::get('/delete/{id}', 'UserController@delete')->name('user.delete');
-            Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');
-            Route::post('/storeUpdateProfile', 'UserController@storeUpdateProfile')->name('user.store.update.profile');
-            Route::get('/profile', 'UserController@profile')->name('user.profile');
+            Route::get('/create', 'UserController@create')->name('admin.user.create');
+            Route::post('/store', 'UserController@store')->name('admin.user.store');
+            Route::get('/{type}', 'Backoffice\UserController@index')->name('admin.user.list');
+            Route::get('/update/{id}', 'UserController@update')->name('admin.user.update');
+            Route::get('/delete/{id}', 'UserController@delete')->name('admin.user.delete');
+            Route::post('/storeUpdate', 'UserController@storeUpdate')->name('admin.user.store.update');
+            Route::post('/storeUpdateProfile', 'UserController@storeUpdateProfile')->name('admin.user.store.update.profile');
+            Route::get('/profile', 'UserController@profile')->name('admin.user.profile');
         });
 
         //Roles office
         Route::group(['prefix' => 'setting'], function () {
-            Route::get('/roles', 'SettingController@roleList')->name('role.list');
-            Route::get('/roles/create', 'SettingController@createRole')->name('role.create');
-            Route::post('/roles/store', 'SettingController@storeRole')->name('role.store');
-            Route::get('/roles/delete/{name}', 'SettingController@deleteRole')->name('role.delete');
-            Route::get('/roles/update/{id}', 'SettingController@updateRole')->name('role.update');
-            Route::post('/roles/storeUpdate', 'SettingController@storeUpdateRole')->name('role.store.update');
-
-            Route::get('/permissions', 'SettingController@permissionList')->name('permission.list');
-            Route::get('/permissions/create', 'SettingController@createPermission')->name('permission.create');
-            Route::post('/permissions/store', 'SettingController@storePermission')->name('permission.store');
-            Route::get('/permissions/delete/{name}', 'SettingController@deletePermission')->name('permission.delete');
-            Route::get('/permissions/update/{id}', 'SettingController@updatePermission')->name('permission.update');
-            Route::post('/permissions/storeUpdate', 'SettingController@storeUpdatePermission')->name('permission.store.update');
+            Route::get('/roles', 'Backoffice\SettingController@roleList')->name('admin.role.list');
+            Route::get('/roles/create', 'Backoffice\SettingController@createRole')->name('admin.role.create');
+            Route::post('/roles/store', 'Backoffice\SettingController@storeRole')->name('admin.role.store');
+            Route::get('/roles/delete/{id}', 'Backoffice\SettingController@deleteRole')->name('admin.role.delete');
+            Route::get('/roles/update/{id}', 'Backoffice\SettingController@updateRole')->name('admin.role.update');
+            Route::post('/roles/storeUpdate', 'Backoffice\SettingController@storeUpdateRole')->name('admin.role.store.update');
+            Route::get('/permissions', 'Backoffice\SettingController@permissionList')->name('admin.permission.list');
+            Route::get('/permissions/create', 'Backoffice\SettingController@createPermission')->name('admin.permission.create');
+            Route::post('/permissions/store', 'Backoffice\SettingController@storePermission')->name('admin.permission.store');
+            Route::get('/permissions/delete/{name}', 'Backoffice\SettingController@deletePermission')->name('admin.permission.delete');
+            Route::get('/permissions/update/{id}', 'Backoffice\SettingController@updatePermission')->name('admin.permission.update');
+            Route::post('/permissions/storeUpdate', 'BackofficeSettingController@storeUpdatePermission')->name('admin.permission.store.update');
         });
     });
 });

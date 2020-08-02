@@ -1,4 +1,4 @@
-@extends('layouts.index') @section('content')
+@extends('backoffice_layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
         <h2 class="text-themecolor">UPDATE ROLES</h2>
@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-body">
                 <div class=" m-t-10">
-                    <form method="POST" action="{{ Route('role.store.update') }}">
+                    <form method="POST" action="{{ Route('admin.role.store.update') }}">
                         @csrf
                         <h3 class="card-title">Info</h3>
                         <hr>
@@ -25,11 +25,9 @@
                             <div class="col-md-5 mb-3">
                                 <label for="validationServer01">Nama Role</label>
                                 <input type="hidden" name="id" value="{{$roles->id}}" />
+                                <input type="hidden" name="guard_name" value="{{$roles->guard_name}}" />
                                 <input type="text" name="name" value="{{$roles->name}}" class="form-control"
                                     placeholder="Contoh : edit user" required>
-                                {{-- <div class="valid-feedback">
-                                Looks good!
-                              </div> --}}
                             </div>
                         </div>
                         <h3 class="card-title">Permissions</h3>
@@ -65,7 +63,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                            <a href="{{Route('role.list')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{Route('admin.role.list')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                     </form>
                 </div>

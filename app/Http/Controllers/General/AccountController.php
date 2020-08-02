@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\General;
 
-use App\General;
-use App\Http\Controllers\Controller;
-use App\Product;
 use App\User;
+use App\General;
+use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AuthAdmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginAdminController extends Controller
 {
@@ -30,10 +31,16 @@ class LoginAdminController extends Controller
 
     public function login(Request $request)
     {
-        if (auth()->guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (auth()->guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
             return redirect()->route('admin.dashboard');
         }
 
-        return back()->withErrors(['email' => 'Email or password are wrong.']);
+        return back()->withErrors(['username' => 'Email or password are wrong.']);
+    }
+
+    public function logout()
+    {
+        auth()->guard('admin')->logout();
+        return redirect()->route('home');
     }
 }

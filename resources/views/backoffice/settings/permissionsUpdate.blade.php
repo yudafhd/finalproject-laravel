@@ -1,4 +1,4 @@
-@extends('layouts.index') @section('content')
+@extends('backoffice_layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
         <h2 class="text-themecolor">UPDATE PERMISSIONS</h2>
@@ -19,7 +19,7 @@
                
                 <div class=" m-t-10">
                     
-                    <form method="POST" action="{{ Route('permission.store.update') }}">
+                    <form method="POST" action="{{ Route('admin.permission.store.update') }}">
                         @csrf
                         <div class="form-row">
                             <div class="col-md-5 mb-3">

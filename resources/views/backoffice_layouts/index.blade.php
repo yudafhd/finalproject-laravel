@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">
     <title>{{ config('app.name') }}</title>
-    @include('layouts.css_section')
+    @include('backoffice_layouts.css_section')
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -206,7 +205,7 @@
                                             <div class="u-text">
                                                 <h4>{{auth()->user()->name}}</h4>
                                                 <p class="text-muted">{{auth()->user()->email}}</p>
-                                                <a href="{{Route('user.profile')}}"
+                                                <a href="{{Route('admin.user.profile')}}"
                                                     class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                                             </div>
                                         </div>
@@ -218,7 +217,7 @@
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li> --}}
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    <li><a href="{{ route('admin.logout.auth') }}" onclick="event.preventDefault();
                                                       document.getElementById('logout-form').submit();">
                                             <i class="fa fa-power-off"></i> {{ __('Logout') }}
                                         </a>
@@ -234,9 +233,8 @@
                 </div>
             </nav>
         </header>
-
-        @include('layouts.left_sidebar')
-        @include('layouts.js_section')
+        @include('backoffice_layouts.left_sidebar')
+        @include('backoffice_layouts.js_section')
         <div class="page-wrapper">
             <div class="container-fluid">
                 @yield('content')

@@ -1,4 +1,4 @@
-@extends('layouts.index') @section('content')
+@extends('backoffice_layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
         <h3 class="text-themecolor">USER</h3>
@@ -24,7 +24,7 @@
                         </button>
                 </div>
                 @endif
-                <a href="{{Route('user.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('admin.user.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
                     Buat
                 </a>
@@ -56,9 +56,9 @@
                                         aksi
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{{Route('user.update', $user->id)}}">Update</a>
+                                        <a class="dropdown-item" href="{{Route('admin.user.update', $user->id)}}">Update</a>
                                         <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter" 
-                                    onclick="insertModalInfo({url:'{{Route('user.delete', $user->id)}}', info:'Nama : {{$user->name}} Tipe: {{$user->access_type}}'})">Delete</a>
+                                    onclick="insertModalInfo({url:'{{Route('admin.user.delete', $user->id)}}', info:'Nama : {{$user->name}} Tipe: {{$user->access_type}}'})">Delete</a>
                                     </div>
                                   </div>
                             </td>

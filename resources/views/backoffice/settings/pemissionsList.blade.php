@@ -1,4 +1,4 @@
-@extends('layouts.index') @section('content')
+@extends('backoffice_layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
         <h3 class="text-themecolor">PERMISSIONS</h3>
@@ -30,7 +30,7 @@
                     Total Permissions
                     <span class="label label-success label-rounded">{{count($permissions)}}</span>
                 </span>
-                <a href="{{Route('permission.create')}}"
+                <a href="{{Route('admin.permission.create')}}"
                     class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
                     Buat
@@ -65,9 +65,9 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('permission.delete', $permission->name)}}">Delete</a>
+                                                href="{{Route('admin.permission.delete', $permission->name)}}">Delete</a>
                                             <a class="dropdown-item"
-                                                href="{{Route('permission.update', $permission->id)}}">Update</a>
+                                                href="{{Route('admin.permission.update', $permission->id)}}">Update</a>
                                         </div>
                                     </div>
                                 </td>
