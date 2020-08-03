@@ -38,23 +38,26 @@ Route::group(['prefix' => 'backoffice'], function () {
     Route::get('/login', 'AuthAdmin\LoginAdminController@showLoginForm')->name('admin.login');
     Route::post('/login', 'AuthAdmin\LoginAdminController@login')->name('admin.login.auth');
     Route::middleware(['auth:admin'])->group(function () {
-        // Auth logout
+
+        // Auth backoffice
         Route::post('/logout', 'AuthAdmin\LoginAdminController@logout')->name('admin.logout.auth');
-        // User office
+
+        // User backoffice
         Route::get('/', 'Backoffice\DashboardController@index')->name('admin.dashboard');
         Route::get('/dashboard', 'Backoffice\DashboardController@index')->name('admin.dashboard');
         Route::group(['prefix' => 'user'], function () {
-            Route::get('/create', 'UserController@create')->name('admin.user.create');
-            Route::post('/store', 'UserController@store')->name('admin.user.store');
+            Route::get('/create', 'Backoffice\UserController@create')->name('admin.user.create');
+            Route::post('/store', 'Backoffice\UserController@store')->name('admin.user.store');
             Route::get('/{type}', 'Backoffice\UserController@index')->name('admin.user.list');
-            Route::get('/update/{id}', 'UserController@update')->name('admin.user.update');
-            Route::get('/delete/{id}', 'UserController@delete')->name('admin.user.delete');
-            Route::post('/storeUpdate', 'UserController@storeUpdate')->name('admin.user.store.update');
-            Route::post('/storeUpdateProfile', 'UserController@storeUpdateProfile')->name('admin.user.store.update.profile');
-            Route::get('/profile', 'UserController@profile')->name('admin.user.profile');
+            Route::get('/update/{id}', 'Backoffice\UserController@update')->name('admin.user.update');
+            Route::get('/delete/{id}', 'Backoffice\UserController@delete')->name('admin.user.delete');
+            Route::post('/storeGeneralUpdate', 'Backoffice\UserController@storeGeneralUpdate')->name('admin.user.general.store.update');
+            Route::post('/storeUpdate', 'Backoffice\UserController@storeUpdate')->name('admin.user.store.update');
+            Route::post('/storeUpdateProfile', 'Backoffice\UserController@storeUpdateProfile')->name('admin.user.store.update.profile');
+            Route::get('/profile', 'Backoffice\UserController@profile')->name('admin.user.profile');
         });
 
-        //Roles office
+        //Roles backoffice
         Route::group(['prefix' => 'setting'], function () {
             Route::get('/roles', 'Backoffice\SettingController@roleList')->name('admin.role.list');
             Route::get('/roles/create', 'Backoffice\SettingController@createRole')->name('admin.role.create');
@@ -67,7 +70,12 @@ Route::group(['prefix' => 'backoffice'], function () {
             Route::post('/permissions/store', 'Backoffice\SettingController@storePermission')->name('admin.permission.store');
             Route::get('/permissions/delete/{name}', 'Backoffice\SettingController@deletePermission')->name('admin.permission.delete');
             Route::get('/permissions/update/{id}', 'Backoffice\SettingController@updatePermission')->name('admin.permission.update');
-            Route::post('/permissions/storeUpdate', 'BackofficeSettingController@storeUpdatePermission')->name('admin.permission.store.update');
+            Route::post('/permissions/storeUpdate', 'Backoffice\SettingController@storeUpdatePermission')->name('admin.permission.store.update');
+        });
+
+        //Product backoffice
+        Route::group(['prefix' => 'product', 'as' => 'admin.product.'], function () {
+            Route::resource('/', 'Backoffice\ProductController');
         });
     });
 });

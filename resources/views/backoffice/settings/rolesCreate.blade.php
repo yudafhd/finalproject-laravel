@@ -16,15 +16,24 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                @if ($error_message)
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>{{$error_message}}
+                
+                @if (session('alert-success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{session('alert-success')}}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 @endif
 
+                @if (session('alert-error'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{session('alert-error')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                @endif
 
                 <div class=" m-t-10">
                     <form method="POST" action="{{ Route('admin.role.store') }}">
@@ -38,7 +47,7 @@
                                     required>
                             </div>
                         </div>
-                            <div class="form-row">
+                        <!-- <div class="form-row">
                             <div class="col-md-5 mb-3">
                                 <div class="form-group">
                                     <label class="control-label">Guard Name</label>
@@ -48,7 +57,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <h3 class="card-title">Permission</h3>
                         <hr>
                         <div class="form-row">
@@ -56,23 +65,19 @@
                                 <ul class="icheck-list" style="list-style-type: none; margin-left:-20px">
                                     @foreach ( $permissions as $key => $permission )
                                     <li>
-                                    
-                                    <input name="permissions_check[]" 
-                                    value="{{$permission->name}}" 
-                                    type="checkbox" 
-                                    class="check" 
-                                    id="square-checkbox-{{$key}}" 
-                                    data-checkbox="icheckbox_square-red"
-                                    >
-                                    <label for="square-checkbox-{{$key}}">{{$permission->name}}</label>
-                                    </li>   
+
+                                        <input name="permissions_check[]" value="{{$permission->name}}" type="checkbox"
+                                            class="check" id="square-checkbox-{{$key}}"
+                                            data-checkbox="icheckbox_square-red">
+                                        <label for="square-checkbox-{{$key}}">{{$permission->name}}</label>
+                                    </li>
                                     @endforeach
-                                    
+
                                     {{-- <li>
                                         <input type="checkbox" class="check" id="minimal-checkbox-2" checked>
                                         <label for="minimal-checkbox-2">Checkbox 2</label>
                                     </li> --}}
-                                 
+
                                 </ul>
                             </div>
                         </div>

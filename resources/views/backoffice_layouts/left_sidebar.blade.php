@@ -13,29 +13,26 @@
                                 @if (auth()->user()->access_type ==='superadmin')
                                 <li><a href="{{Route('admin.user.list', 'admin')}}">Admin</a></li>
                                 @endif
-                                @if (auth()->user()->access_type ==='superadmin' ||  in_array('guru', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                                @if (auth()->user()->access_type ==='superadmin' ||  in_array('users', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                                 <li><a href="{{Route('admin.user.list', 'general')}}">General</a></li>
                                 @endif
                             </ul>
                         </li>
                         @endif
-                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                        <i class="mdi mdi-settings-box"></i><span class="hide-menu">Product</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{Route('admin.dashboard')}}">Roles</a></li>
-                            </ul>
+                        {{-- @if (auth()->user()->access_type ==='superadmin' ||  in_array('product', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                            <li> <a href="{{Route('admin.product.index')}}">
+                            <i class="mdi mdi-settings-box"></i><span class="hide-menu">Product</span></a>
                         </li>
                        @endif
-                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('theme', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                         <i class="mdi mdi-settings-box"></i><span class="hide-menu">Theme</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{Route('admin.dashboard')}}">Roles</a></li>
+                                <li><a href="{{Route('admin.dashboard')}}">general</a></li>
                             </ul>
                         </li>
                        @endif
-                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('transaction', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                         <i class="mdi mdi-settings-box"></i><span class="hide-menu">Transaction</span></a>
                             <ul aria-expanded="false" class="collapse">
@@ -44,7 +41,7 @@
                             </ul>
                         </li>
                        @endif
-                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
+                        @if (auth()->user()->access_type ==='superadmin' ||  in_array('master', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                         <i class="mdi mdi-settings-box"></i><span class="hide-menu">Master</span></a>
                             <ul aria-expanded="false" class="collapse">
@@ -52,7 +49,7 @@
                                 <li><a href="{{Route('admin.dashboard')}}">content setting</a></li>
                             </ul>
                         </li>
-                       @endif
+                       @endif --}}
                         @if (auth()->user()->access_type ==='superadmin' ||  in_array('settings', auth()->user()->getAllPermissions()->pluck('name')->toArray()))
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-settings-box"></i><span class="hide-menu">Settings</span></a>
                             <ul aria-expanded="false" class="collapse">

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Backoffice;
 
-use App\Districts;
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Villages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -27,17 +25,13 @@ class UserController extends Controller
         }
 
         $userList = User::all()->where('access_type', $type);
-        $success_message = $request->session()->get('alert-success');
-        return view('backoffice.users.userList', ['userList' => $userList, 'success_message' => $success_message]);
+        return view('backoffice.users.userList', compact('userList'));
     }
 
     public function create()
     {
-        $districts = Districts::all()->whereIn('regency_id', [3515]);
-        $districts_array = $districts->pluck('id');
-        $villages = Villages::all()->whereIn('district_id', $districts_array);
         $roles = Role::all();
-        return view('users.userCreate', compact('roles', 'districts', 'villages'));
+        return view('backoffice.users.userCreate', compact('roles'));
     }
 
     public function store(Request $request)
@@ -58,23 +52,19 @@ class UserController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'username' => $request->username,
                 'access_type' => $roles->name,
-                'date_register' => $request->date_register,
-                'address' => $request->address,
-                'district_id' => $request->district_id,
-                'village_id' => $request->village_id,
                 'password' => bcrypt('adminadmin'),
-                'image_url' => $imagename,
 
             ]);
 
             $url_type = $request->access_type;
 
-            if ($url_type == 'rpk') {
-                $url_type = 'ewarong';
+            if ($url_type != 'general') {
+                $url_type = 'admin';
             }
 
-            $user->syncRoles($roles->name);
+            // $user->syncRoles($roles->name,'admin');
             $request->session()->flash('alert-success', "User {$request->name} berhasil di buat!");
             return redirect('/user/' . $url_type);
         } catch (\Exception $e) {
@@ -86,13 +76,10 @@ class UserController extends Controller
 
     public function update($id)
     {
-        $districts = Districts::all()->whereIn('regency_id', [3515]);
-        $districts_array = $districts->pluck('id');
-        $villages = Villages::all()->whereIn('district_id', $districts_array);
-        $userDetail = User::find($id);
-        $url = Storage::url($userDetail->image_url);
         $roles = Role::all();
-        return view('users.userUpdate', compact('userDetail', 'roles', 'districts', 'villages', 'url'));
+        $userDetail = User::findOrFail($id);
+        $isHasGeneral = $userDetail->general ? true : false;
+        return view('backoffice.users.userUpdate', compact('userDetail', 'roles', 'isHasGeneral'));
     }
 
     public function storeUpdate(Request $request)
@@ -154,6 +141,67 @@ class UserController extends Controller
             return redirect('/user/admin');
         }
     }
+
+    public function storeGeneralUpdate(Request $request)
+    {
+        try {
+            $userDetail = User::find($request->id);
+            $roles = Role::findByName($request->access_type);
+
+            $imagename = null;
+            if ($request->file('foto')) {
+                if (!file_exists(public_path() . '/user/profile/')) {
+                    mkdir(public_path() . '/user/profile/', 777, true);
+                }
+
+                if (file_exists(public_path() . '/user/profile/' . $userDetail->image_url)) {
+                    Storage::delete(public_path() . '/user/profile/' . $userDetail->image_url);
+                }
+
+                $imagename = date('YmdHis-') . uniqid() . '.jpg';
+                $oriPath = public_path() . '/user/profile/' . $imagename;
+                Image::make($request->file('foto'))->fit(300, 300)->save($oriPath);
+            }
+
+            // assign role to user
+            if ($roles) {
+                $userDetail->syncRoles([$roles->name]);
+                $userDetail->access_type = $roles->name;
+            }
+
+            if ($request->date_register) {
+                $userDetail->date_register = $request->date_register;
+            }
+
+            $userDetail->name = $request->name;
+            $userDetail->email = $request->email;
+            $userDetail->address = $request->address;
+            $userDetail->district_id = $request->district_id;
+            $userDetail->village_id = $request->village_id;
+
+            if ($request->file('foto')) {
+                $userDetail->image_url = $imagename;
+            }
+
+            if ($request->password) {
+                $userDetail->password = bcrypt($request->password);
+            }
+
+            $url_type = $request->access_type;
+            if ($url_type == 'rpk') {
+                $url_type = 'ewarong';
+            }
+
+            $userDetail->save();
+            $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
+            return redirect('/user/' . $url_type);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect('/user/admin');
+        }
+    }
+
     public function storeUpdateProfile(Request $request)
     {
         try {
@@ -213,20 +261,20 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('users.profile', []);
+        return view('users.profile');
     }
 
     public function delete($id, Request $request)
     {
         try {
-            $user = User::find($id);
+            $user = User::findOrFail($id);
             $user->syncRoles();
             $user->delete();
             $request->session()->flash('alert-success', "User {$user->name} berhasil dihapus!");
-            return redirect('/user/' . $user->access_type);
+            return redirect()->route('admin.user.list', $user->access_type);
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect('/user/' . $user->access_type);
+            return redirect()->route('admin.user.list', $user->access_type);
         }
     }
 }

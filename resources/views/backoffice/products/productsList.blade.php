@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                @if ($success_message)
+                {{-- @if ($success_message)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>{{$success_message}}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -24,27 +24,28 @@
                         </button>
                 </div>
                 @endif
-                @if ($alert_error)
+                @if ($error_message)
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <strong>{{$alert_error}}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
-                @endif
+                @endif --}}
                 <span>
-                    Total Item 
-                    <span class="label label-success label-rounded">{{count($items)}}</span>
+                    Total Products 
+                    <span class="label label-success label-rounded">{{count($products)}}</span>
                 </span>
-                <a href="{{Route('item.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('admin.product.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     Buat
                 </a>
-                @if(count($items) > 0)
+                @if(count($products) > 0)
                 <div class="table-responsive m-t-10">
                     <table id="myTable" class="table">
                         <thead>
                             <tr>
+                                <th>SKU</th>
                                 <th>Nama</th>
                                 <th>Deskripsi</th>
                                 {{-- <th>Qty</th>
@@ -53,12 +54,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($items as $item)
+                            @foreach ($products as $product)
                             <tr>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ $item->deskripsi }}</td>
-                                {{-- <td>{{ $item->qty }}</td>
-                                <td>{{ "Rp " . number_format($item->harga,2,',','.') }}</td> --}}
+                                <td>{{ $product->SKU }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>{!! $product->description !!}</td>
+                                <td>{{ number_format($product->price,2,',','.') }}</td>
                                 <td style="text-align: center">
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
@@ -68,8 +69,8 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('item.edit', $item->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('item.destroy', $item->id)}}">
+                                                href="{{Route('admin.product.edit', $product->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('admin.product.destroy', $product->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>

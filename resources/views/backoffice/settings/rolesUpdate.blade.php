@@ -16,6 +16,25 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+               
+                @if (session('alert-success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{session('alert-success')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                @endif
+
+                @if (session('alert-error'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{session('alert-error')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                @endif
+                
                 <div class=" m-t-10">
                     <form method="POST" action="{{ Route('admin.role.store.update') }}">
                         @csrf

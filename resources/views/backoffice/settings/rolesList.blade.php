@@ -17,9 +17,18 @@
         <div class="card">
             <div class="card-body">
 
-                @if ($success_message)
+                @if (session('alert-success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{$success_message}}
+                    {{session('alert-success')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                @endif
+
+                @if (session('alert-error'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{session('alert-error')}}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -36,7 +45,7 @@
                 </a>
                 @if(count($roles) > 0)
                 <div class="table-responsive m-t-10">
-                    <table id="myTable" class="table">
+                    <table id="searchTable" class="table table-sm table-bordered">
                         <thead>
                             <tr>
                                 <th>Nama Role</th>

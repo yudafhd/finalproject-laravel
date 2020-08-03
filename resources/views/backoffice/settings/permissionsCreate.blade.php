@@ -16,23 +16,30 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                @if ($error_message)
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>{{$error_message}}
+                @if (session('alert-success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{session('alert-success')}}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 @endif
 
-
+                @if (session('alert-error'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{session('alert-error')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                @endif
                 <div class=" m-t-10">
                     <form method="POST" action="{{ Route('admin.permission.store') }}">
                         @csrf
                         <div class="form-row">
                             <div class="col-md-5 mb-3">
                                 <label>Nama Permission</label>
-                                <input type="text" name="name" class="form-control" placeholder="Contoh show data user"
+                                <input type="text" name="name" class="form-control" placeholder="example show data user"
                                     required>
                             </div>
                         </div>
@@ -41,7 +48,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Parent</label>
                                     <select class="form-control" name="parent_id" custom-select">
-                                        <option value="">Pilih parent permission</option>
+                                        <option value="">Chose parent permission</option>
                                         @foreach ($permissions as $permission)
                                         <option value="{{$permission->id}}">{{$permission->name}}</option>
                                         @endforeach

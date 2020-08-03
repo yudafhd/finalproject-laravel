@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AuthAdmin;
 
+use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -31,11 +32,19 @@ class LoginAdminController extends Controller
 
     public function login(Request $request)
     {
-        if (auth()->guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
-            return redirect()->route('admin.dashboard');
+        try {
+            $userChecker = Admin::whereUsername($request->username)->firstOrFail();
+            if ($userChecker->access_type != 'general') {
+                if (auth()->guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
+                    return redirect()->route('admin.dashboard');
+                }
+                return back()->withErrors(['username' => 'Email or password are wrong.']);
+            }
+            return redirect()->route('home');
+        } catch (\Exception $e) {
+            return redirect()->route('home');
         }
 
-        return back()->withErrors(['username' => 'Email or password are wrong.']);
     }
 
     public function logout()

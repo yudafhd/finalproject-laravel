@@ -12,113 +12,140 @@
         </ol>
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
-                <form method="POST" action="{{ Route('user.store.update') }}" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="id" class="form-control" value="{{$userDetail->id}}">
-                    <div class="form-body">
-                        <h3 class="card-title" style="font-weight: bold">Personal Info</h3>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Nama</label>
-                                    <input type="text" name="name" class="form-control" value="{{$userDetail->name}}">
-                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+@if($isHasGeneral)
+<form method="POST" action="{{ Route('admin.user.general.store.update') }}" enctype="multipart/form-data">
+    @endif
+    @if(!$isHasGeneral)
+    <form method="POST" action="{{ Route('admin.user.store.update') }}" enctype="multipart/form-data">
+        @endif
+        @csrf
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <input type="hidden" name="id" class="form-control" value="{{$userDetail->id}}">
+                        <div class="form-body">
+                            <h3 class="card-title" style="font-weight: bold">Personal Info</h3>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Nama</label>
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{$userDetail->name}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Email</label>
+                                        <input type="text" name="email" class="form-control"
+                                            value="{{$userDetail->email}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Username</label>
+                                        <input type="text" name="email" class="form-control"
+                                            value="{{$userDetail->username}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Phone</label>
+                                        <input type="text" name="email" class="form-control"
+                                            value="{{$userDetail->phone}}">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Email</label>
-                                    <input type="text" name="email" class="form-control" value="{{$userDetail->email}}">
-                                    {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Type <small class="form-control-feedback"> user ini
+                                                sekarang <strong>
+                                                    {{$userDetail->access_type == 'rpk' ? 'ewarong' : $userDetail->access_type}}</strong></small></label>
+                                        @if($userDetail->type=='admin_default')
+                                        <br /> <small class="form-control-feedback">Kamu tidak dapat mengganti tipe
+                                            <strong>admin_default</strong> </small>
+                                        @else
+                                        <select class="form-control" name="access_type" custom-select">
+                                            @foreach ($roles as $role)
+                                            <option value="{{$role->name}}"
+                                                {{$userDetail->access_type == $role->name ? 'selected' :''}}>
+                                                {{$role->name}}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Type <small class="form-control-feedback"> user ini
-                                            sekarang <strong> {{$userDetail->access_type == 'rpk' ? 'ewarong' : $userDetail->access_type}}</strong></small></label>
-                                    @if($userDetail->type=='admin_default')
-                                    <br /> <small class="form-control-feedback">Kamu tidak dapat mengganti tipe
-                                        <strong>admin_default</strong> </small>
-                                    @else
-                                    <select class="form-control" name="access_type" custom-select">
-                                        @foreach ($roles as $role)
-                                        <option value="{{$role->name}}"
-                                            {{$userDetail->access_type == $role->name ? 'selected' :''}}>
-                                                 {{$role->name== 'rpk' ? 'ewarong' : $role->name}}
-                                                
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Password </label>
+                                        <input type="text" name="password" class="form-control" value="">
+                                    </div>
+                                </div>
+                                @if(!$isHasGeneral)
+                                <div class="col-lg-12 col-md-12 m-b-20">
+                                    <input type="file" name="foto" id="input-file-now" class="dropify" />
+                                </div>
+                                @endif
+                                <div class="col-md-12">
+                                    @if(!$isHasGeneral)
+                                    @if($userDetail->photo)
+                                    <img class="img-fluid rounded-circle"
+                                        src="{{ Url('storage/admin/profile/'. $userDetail->photo) }}" />
+                                    @endif
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Tanggal Daftar</label>
-                                    <input type="text" class="form-control" placeholder="2017-06-04" name="date_register"
-                                        value="{{$userDetail->date_register}}" id="mdatepicker" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Kecamatan</label>
-                                    <select class="form-control" name="district_id" custom-select">
-                                        @foreach ($districts as $district)
-                                        <option value="{{$district->id}}"
-                                            {{$userDetail->district_id == $district->id ? 'selected': null}}
-                                            >{{$district->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Desa</label>
-                                    <select class="form-control" name="village_id" custom-select">
-                                        @foreach ($villages as $village)
-                                        <option value="{{$village->id}}"
-                                            {{$userDetail->village_id == $village->id ? 'selected': null}}
-                                            >{{$village->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Alamat</label>
-                                    <input type="text" name="address" class="form-control"
-                                        value="{{$userDetail->address}}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Password </label>
-                                    <input type="text" name="password" class="form-control" value="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 m-b-20">
-                                <input type="file" name="foto" id="input-file-now" class="dropify" />
                         </div>
-                        <div class="col-md-6">
-                        <img src="{{Url('user/profile/'.$userDetail->image_url)}}"
-                            style="width: 250px;float: left;margin-bottom: 30px;" />
-                        </div>
-                        </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                            <a href="{{url('/user/admin')}}" class="btn btn-inverse">Cancel</a>
-                        </div>
-                </form>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <center class="m-t-30">
+                            @if($isHasGeneral)
+                            @if($userDetail->general->photo)
+                            <img class="img-fluid rounded-circle"
+                                src="{{ Url('storage/user/profile/'. $userDetail->general->photo) }}" />
+                            @else
+                            <img src="{{ asset('assets/images/users/user.png') }}" class="img-circle" width="150">
+                            @endif
+                            @endif
+                            <h4 class="card-title m-t-10">{{ $userDetail->name }}</h4>
+                            <h6 class="card-subtitle">{{'@' . $userDetail->username }}</h6>
+                            <!-- <div class="row text-center justify-content-md-center">
+                                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i>
+                                        <font class="font-medium">254</font>
+                                    </a></div>
+                                <div class="col-4"><a href="javascript:void(0)" class="link"><i
+                                            class="icon-picture"></i>
+                                        <font class="font-medium">54</font>
+                                    </a></div>
+                            </div> -->
+                        </center>
+                    </div>
+                    <div>
+                        <hr>
+                    </div>
+                    <div class="card-body">
+                        <small class="text-muted">Membership </small>
+                        <h6>hannagover@gmail.com</h6>
+                        <small class="text-muted p-t-30 db">Phone</small>
+                        <h6>+91 654 784 547</h6>
+                        <br>
+                        <button class="btn btn-circle btn-secondary"><i class="fab fa-facebook-f"></i></button>
+                        <button class="btn btn-circle btn-secondary"><i class="fab fa-twitter"></i></button>
+                        <button class="btn btn-circle btn-secondary"><i class="fab fa-youtube"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions m-l-15">
+                <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                <a href="{{url('/user/admin')}}" class="btn btn-inverse">Cancel</a>
+            </div>
+    </form>
 
-@endsection
+    @endsection

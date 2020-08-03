@@ -1,5 +1,12 @@
+body {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    font-weight: 400;
+}
+
 .topbar {
-    background: #FD6A00;
+    background: #364F6B;
 }
 
 .sidebar-nav>ul>li>a.active {

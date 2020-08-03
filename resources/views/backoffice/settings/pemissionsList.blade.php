@@ -16,10 +16,19 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-
-                @if ($success_message)
+   
+                @if (session('alert-success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{$success_message}}
+                    {{session('alert-success')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                @endif
+
+                @if (session('alert-error'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{session('alert-error')}}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -37,7 +46,7 @@
                 </a>
                 @if(count($permissions) > 0)
                 <div class="table-responsive m-t-10">
-                    <table id="treetable" class="table">
+                    <table id="treetable" class="table table-sm table-bordered">
                         <thead>
                             <tr>
                                 <th>Nama Permission</th>
@@ -52,7 +61,7 @@
                                 <tr data-tt-id="{{$permission->id}}" data-tt-parent-id="{{$permission->parent_id}}">
                             @endif
                                     @if ($permission->parent_id == NULL)
-                                    <td style="font-weight: bold">{{ $permission->name }}</td>
+                                    <td>{{ $permission->name }}</td>
                                     @else
                                     <td>{{ $permission->name }}</td>
                                     @endif
