@@ -103,7 +103,7 @@ class GeneralController extends Controller
             $countsocial_links = count($all_request['social_links']);
             $countlink_id = count($all_request['link_id']);
 
-            if ($counttitles > 5 || $countlinks > 5 || $countsocial_links > 5 || $countlink_id > 5) {
+            if ($counttitles > 7 || $countlinks > 7 || $countsocial_links > 7 || $countlink_id > 7) {
                 $request->session()->flash('alert', "Something error in server, hey what are you doing :)");
             } else {
                 //Find all links and delete if no exist

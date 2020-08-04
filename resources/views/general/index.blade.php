@@ -217,7 +217,7 @@
         } else {
             Swal.fire({
                 icon: 'info',
-                title: 'Batas maximal link adalah 5',
+                title: 'Batas maximal link adalah 7',
                 text: 'Mohon maaf ya, server mimin masih kecil jadi belum bisa kasih banyak, tapi mimin janji bakal berkembang lagi :)',
             });
         }
