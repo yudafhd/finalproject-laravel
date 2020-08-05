@@ -33,18 +33,16 @@ class LoginAdminController extends Controller
     public function login(Request $request)
     {
         try {
-            $userChecker = Admin::whereUsername($request->username)->firstOrFail();
+            $userChecker = Admin::where('username', $request->username)->first();
             if ($userChecker->access_type != 'general') {
                 if (auth()->guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
                     return redirect()->route('admin.dashboard');
                 }
-                return back()->withErrors(['username' => 'Email or password are wrong.']);
             }
-            return redirect()->route('home');
+            return back()->withErrors(['username' => 'Email or password are wrong.']);
         } catch (\Exception $e) {
-            return redirect()->route('home');
+            return back()->withErrors(['username' => 'Email or password are wrong.']);
         }
-
     }
 
     public function logout()

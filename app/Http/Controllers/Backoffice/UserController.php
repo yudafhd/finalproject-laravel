@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backoffice;
 
+use App\Admin;
+use App\General;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
@@ -12,19 +14,20 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->middleware('auth');
-    }
-
     public function index($type, Request $request)
     {
         if (!in_array($type, ['admin', 'general'])) {
             return abort(404);
         }
 
-        $userList = User::all()->where('access_type', $type);
+        if ($type === 'general') {
+            $userList = User::all()->where('access_type', $type);
+        } else {
+            $userList = User::all()
+                ->where('access_type', '!=', 'general')
+                ->where('access_type', '!=', 'superadmin');
+        }
+
         return view('backoffice.users.userList', compact('userList'));
     }
 
@@ -66,11 +69,10 @@ class UserController extends Controller
 
             // $user->syncRoles($roles->name,'admin');
             $request->session()->flash('alert-success', "User {$request->name} berhasil di buat!");
-            return redirect('/user/' . $url_type);
+            return redirect('/backoffice/user/admin');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
-            dd($e->getMessage());
-            return redirect('/user/' . $url_type);
+            return redirect('/backoffice/user/admin');
         }
     }
 
@@ -85,60 +87,52 @@ class UserController extends Controller
     public function storeUpdate(Request $request)
     {
         try {
-            $userDetail = User::find($request->id);
+            $userDetail = Admin::find($request->id);
             $roles = Role::findByName($request->access_type);
-
-            $imagename = null;
-            if ($request->file('foto')) {
-                if (!file_exists(public_path() . '/user/profile/')) {
-                    mkdir(public_path() . '/user/profile/', 777, true);
-                }
-
-                if (file_exists(public_path() . '/user/profile/' . $userDetail->image_url)) {
-                    Storage::delete(public_path() . '/user/profile/' . $userDetail->image_url);
-                }
-
-                $imagename = date('YmdHis-') . uniqid() . '.jpg';
-                $oriPath = public_path() . '/user/profile/' . $imagename;
-                Image::make($request->file('foto'))->fit(300, 300)->save($oriPath);
-            }
+            $url_type = $userDetail->access_type;
 
             // assign role to user
             if ($roles) {
-                $userDetail->syncRoles([$roles->name]);
+                $userDetail->syncRoles($roles);
                 $userDetail->access_type = $roles->name;
-            }
-
-            if ($request->date_register) {
-                $userDetail->date_register = $request->date_register;
             }
 
             $userDetail->name = $request->name;
             $userDetail->email = $request->email;
-            $userDetail->address = $request->address;
-            $userDetail->district_id = $request->district_id;
-            $userDetail->village_id = $request->village_id;
+            $userDetail->username = $request->username;
+            $userDetail->phone_number = $request->phone_number;
 
+            // if user upload image
             if ($request->file('foto')) {
-                $userDetail->image_url = $imagename;
+
+                $imagename = null;
+                $ifExist = Storage::exists('public/admin/profile/' . $userDetail->photo);
+
+                if ($ifExist) {
+                    Storage::delete('public/admin/profile/' . $userDetail->photo);
+                }
+
+                // Decode image
+                $imagename = date('YmdHis-') . uniqid() . '.jpg';
+                $path = '/admin/profile/' . $imagename;
+                $imagesBatch = Image::make($request->file('foto'))->fit(150, 150)->encode('jpg');
+
+                // Save proccess
+                Storage::disk('public')->put($path, $imagesBatch);
+                $userDetail->photo = $imagename;
             }
 
             if ($request->password) {
                 $userDetail->password = bcrypt($request->password);
             }
 
-            $url_type = $request->access_type;
-            if ($url_type == 'rpk') {
-                $url_type = 'ewarong';
-            }
-
             $userDetail->save();
-            $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
-            return redirect('/user/' . $url_type);
+            $request->session()->flash('alert-success', "User {$request->name} updated!");
+            return redirect('backoffice/user/admin');
         } catch (\Exception $e) {
             dd($e->getMessage());
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect('/user/admin');
+            return redirect('backoffice/user/admin');
         }
     }
 
@@ -146,122 +140,71 @@ class UserController extends Controller
     {
         try {
             $userDetail = User::find($request->id);
-            $roles = Role::findByName($request->access_type);
-
-            $imagename = null;
-            if ($request->file('foto')) {
-                if (!file_exists(public_path() . '/user/profile/')) {
-                    mkdir(public_path() . '/user/profile/', 777, true);
-                }
-
-                if (file_exists(public_path() . '/user/profile/' . $userDetail->image_url)) {
-                    Storage::delete(public_path() . '/user/profile/' . $userDetail->image_url);
-                }
-
-                $imagename = date('YmdHis-') . uniqid() . '.jpg';
-                $oriPath = public_path() . '/user/profile/' . $imagename;
-                Image::make($request->file('foto'))->fit(300, 300)->save($oriPath);
-            }
-
-            // assign role to user
-            if ($roles) {
-                $userDetail->syncRoles([$roles->name]);
-                $userDetail->access_type = $roles->name;
-            }
-
-            if ($request->date_register) {
-                $userDetail->date_register = $request->date_register;
-            }
 
             $userDetail->name = $request->name;
             $userDetail->email = $request->email;
-            $userDetail->address = $request->address;
-            $userDetail->district_id = $request->district_id;
-            $userDetail->village_id = $request->village_id;
-
-            if ($request->file('foto')) {
-                $userDetail->image_url = $imagename;
-            }
+            $userDetail->username = $request->username;
+            $userDetail->phone_number = $request->phone_number;
+            $url_type = $userDetail->access_type;
 
             if ($request->password) {
                 $userDetail->password = bcrypt($request->password);
             }
 
-            $url_type = $request->access_type;
-            if ($url_type == 'rpk') {
-                $url_type = 'ewarong';
-            }
-
             $userDetail->save();
-            $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
-            return redirect('/user/' . $url_type);
+            $request->session()->flash('alert-success', "User {$request->name} updated!");
+            return redirect('backoffice/user/' . $url_type);
         } catch (\Exception $e) {
-            dd($e->getMessage());
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect('/user/admin');
+            return redirect('backoffice/user/' . $url_type);
         }
     }
 
     public function storeUpdateProfile(Request $request)
     {
         try {
-            $roles = null;
-            $userDetail = User::find($request->id);
-
-            $imagename = null;
-            if ($request->file('foto')) {
-                if (!file_exists(public_path() . '/user/profile/')) {
-                    mkdir(public_path() . '/user/profile/', 777, true);
-                }
-
-                $verifynull_image = $userDetail->image_url ? $userDetail->image_url : 'null.jpg';
-
-                if (file_exists(public_path() . '/user/profile/' . $verifynull_image)) {
-                    Storage::delete(public_path() . '/user/profile/' . $userDetail->image_url);
-                }
-
-                $imagename = date('YmdHis-') . uniqid() . '.jpg';
-                $oriPath = public_path() . '/user/profile/' . $imagename;
-                Image::make($request->file('foto'))->fit(300, 300)->save($oriPath);
-            }
-
-            if ($request->access_type) {
-                $roles = Role::findByName($request->access_type);
-            }
-
-            // assign role to user
-            if ($roles) {
-                $userDetail->syncRoles([$roles->name]);
-                $userDetail->access_type = $roles->name;
-            }
-
-            if ($request->date_register) {
-                $userDetail->date_register = $request->date_register;
-            }
-
+            $userDetail = Admin::find($request->id);
             $userDetail->name = $request->name;
             $userDetail->email = $request->email;
-            $userDetail->address = $request->address;
+            $userDetail->username = $request->username;
+            $userDetail->phone_number = $request->phone_number;
+
+            // if user upload image
             if ($request->file('foto')) {
-                $userDetail->image_url = $imagename;
+
+                $imagename = null;
+                $ifExist = Storage::exists('public/admin/profile/' . $userDetail->photo);
+
+                if ($ifExist) {
+                    Storage::delete('public/admin/profile/' . $userDetail->photo);
+                }
+
+                // Decode image
+                $imagename = date('YmdHis-') . uniqid() . '.jpg';
+                $path = '/admin/profile/' . $imagename;
+                $imagesBatch = Image::make($request->file('foto'))->fit(150, 150)->encode('jpg');
+
+                // Save proccess
+                Storage::disk('public')->put($path, $imagesBatch);
+                $userDetail->photo = $imagename;
             }
 
             if ($request->password) {
                 $userDetail->password = bcrypt($request->password);
             }
+
             $userDetail->save();
-            $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
-            return redirect('/profile');
+            $request->session()->flash('alert-success', "User {$request->name} updated!");
+            return redirect('/backoffice/user/profile');
         } catch (\Exception $e) {
-            dd($e->getMessage());
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect('/profile');
+            return redirect('/backoffice/user/profile');
         }
     }
 
     public function profile()
     {
-        return view('users.profile');
+        return view('backoffice.users.profile');
     }
 
     public function delete($id, Request $request)

@@ -156,7 +156,6 @@
             });
         @endif
     });
-
 </script>
 
 @endsection

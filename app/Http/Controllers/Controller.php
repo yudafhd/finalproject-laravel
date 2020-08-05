@@ -12,10 +12,7 @@ class Controller extends BaseController
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct()
-    {
-
-    }
+    public $permissionInfo;
 
     public function checkIsMembership()
     {
@@ -27,6 +24,18 @@ class Controller extends BaseController
                 $justSubscription[$key] = $item;
             }
         }
-        dd($justSubscription);
+    }
+
+    public function checkPermissionAnd404($permission)
+    {
+        $this->permissionInfo = $permission;
+        $this->middleware(function ($request, $next) {;
+            if (auth()->user()->access_type !== 'superadmin') {
+                if (!auth()->user()->can($this->permissionInfo)) {
+                    abort(404);
+                }
+            }
+            return $next($request);
+        });
     }
 }

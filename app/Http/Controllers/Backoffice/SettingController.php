@@ -12,11 +12,6 @@ use Spatie\Permission\Models\Role;
 class SettingController extends Controller
 {
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->middleware('auth');
-    }
 
     public function roleList(Request $request)
     {
@@ -82,7 +77,7 @@ class SettingController extends Controller
 
             $roles->name = $request->name;
             $roles->save();
-            $request->session()->flash('alert-success', "Roles {$request->name} deleted  !");
+            $request->session()->flash('alert-success', "Roles {$request->name} updated!");
             return redirect()->route('admin.role.list');
         } catch (\Exception $e) {
             dd($e->getMessage());
@@ -173,5 +168,4 @@ class SettingController extends Controller
             return redirect()->route('admin.permission.list');
         }
     }
-
 }

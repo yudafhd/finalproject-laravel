@@ -24,6 +24,9 @@
 <script src="{{ asset('assets/plugins/d3/d3.min.js')}}"></script>
 <script src="{{ asset('assets/plugins/c3-master/c3.min.js')}}"></script>
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="http://selectize.github.io/selectize.js/js/selectize.js"></script>
+<script src="{{ asset('assets/plugins/html5-editor/wysihtml5-0.3.0.js')}}"></script>
+<script src="{{ asset('assets/plugins/html5-editor/bootstrap-wysihtml5.js')}}"></script>
 <script>
     $(document).ready(function () {
         $(".select2").select2();
@@ -51,6 +54,8 @@
         $("#treetable").treetable();
         $('#userTable').DataTable();
         $('#searchTable').DataTable();
+        $('.textarea_editor').wysihtml5();
+        $('.select-beast').selectize();
 
     });
 

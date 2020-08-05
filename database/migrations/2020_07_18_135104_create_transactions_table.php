@@ -26,6 +26,8 @@ class CreateTransactionsTable extends Migration
             $table->string('status_message')->nullable();
             $table->string('payment_type', 50)->nullable();
             $table->string('bank', 50)->nullable();
+            $table->string('discount', 50)->nullable();
+            $table->string('discount_type', 50)->nullable();
             $table->string('fraud_status', 50)->nullable();
             $table->dateTime('transaction_time')->nullable();
             $table->string('snap_token', 100)->nullable();

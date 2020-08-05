@@ -9,6 +9,19 @@ class Product extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = [
+        'name',
+        'SKU',
+        'code',
+        'type',
+        'price',
+        'description',
+        'theme_id',
+        'subscription_period_number',
+        'subscription_period_date',
+        'status',
+    ];
+
     protected $hidden = [
         'created_at', 'updated_at',
     ];

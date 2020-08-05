@@ -1,14 +1,14 @@
 @extends('backoffice_layouts.index') @section('content')
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">PRODUCT</h3>
+        <h3 class="text-themecolor">THEME</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="javascript:void(0)">Home</a>
             </li>
-            <li class="breadcrumb-item active">Product</li>
+            <li class="breadcrumb-item active">Theme</li>
         </ol>
     </div>
 </div>
@@ -34,37 +34,35 @@
                 </div>
             @endif
                 <span>
-                    Total Products 
-                    <span class="label label-success label-rounded">{{count($products)}}</span>
+                    Total Themes 
+                    <span class="label label-success label-rounded">{{count($themes)}}</span>
                 </span>
-                <a href="{{Route('admin.product.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('admin.theme.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     create
                 </a>
-                @if(count($products) > 0)
+                @if(count($themes) > 0)
                 <div class="table-responsive m-t-10">
                     <table id="searchTable" class="table table-striped table-borderless">
                         <thead>
                             <tr>
                                 <th>Code</th>
-                                <th>SKU</th>
                                 <th>Name</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>Type</th>
+                                <th>Cover colour</th>
+                                <th>Cover thumbnail</th>
+                                <th>Payment</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $product)
+                            @foreach ($themes as $product)
                             <tr>
                                 <td>{{ $product->code }}</td>
-                                <td>{{ $product->SKU }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>{!! $product->description !!}</td>
-                                <td>{{ number_format($product->price,2,',','.') }}</td>
-                                <td>{{ $product->type }}</td>
+                                <td>{{ $product->cover_colour ? $product->cover_colour : '(kosong)' }}</td>
+                                <td>{{ $product->cover_thumbnail ? $product->cover_thumbnail: '(kosong)'  }}</td>
+                                <td>{{ $product->theme_transaction }}</td>
                                 <td>{{ $product->status }}</td>
                                 <td style="text-align: center">
                                     <div class="dropdown" style="float: right">
@@ -75,8 +73,8 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('admin.product.edit', $product->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('admin.product.destroy', $product->id)}}">
+                                                href="{{Route('admin.theme.edit', $product->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('admin.theme.destroy', $product->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>

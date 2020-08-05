@@ -96,3 +96,7 @@ a {
 #pac-input:focus {
     border-color: #4d90fe;
 }
+
+.topbar ul.dropdown-user li .dw-user-box .u-text .btn:hover {
+    background: none;
+}

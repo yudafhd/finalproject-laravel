@@ -65,9 +65,9 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('admin.role.delete', $role->id)}}">Delete</a>
-                                            <a class="dropdown-item"
                                                 href="{{Route('admin.role.update', $role->id)}}">Update</a>
+                                            <a class="dropdown-item"
+                                                href="{{Route('admin.role.delete', $role->id)}}">Delete</a>
                                         </div>
                                     </div>
                                 </td>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\General;
 
-use App\User;
 use App\General;
-use App\Product;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Product;
+use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -105,12 +105,6 @@ class AccountController extends Controller
                 // Save proccess
                 Storage::disk('public')->put($path, $imagesBatch);
             }
-
-            // assign role to user
-            // if ($roles) {
-            //     $user->syncRoles([$roles->name]);
-            //     $user->access_type = $roles->name;
-            // }
 
             $user->name = $request->name;
             $user->phone_number = $request->telepon;

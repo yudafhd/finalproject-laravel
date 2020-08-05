@@ -30,20 +30,12 @@
                 <!-- ============================================================== -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{{url('/')}}">
-                        <!-- Logo icon --><b>
-
-                            {{-- <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" /> --}}
-                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
-                        </b>
+                        <!-- Logo icon -->
+                        <img src="{{ asset('assets/images/logo-light-icon.png') }}" alt="homepage" class="dark-logo" />
                         <!--End Logo icon -->
-                        <!-- Logo text --><span>
-                            <!-- dark Logo text -->
-
-                            <span class="main-logo-text"> {{ config('app.name') }} </span>
-
-                            <!-- Light Logo text -->
-                            <img src="{{ asset('assets/images/logo-light-text.png') }}" class="light-logo"
-                                alt="homepage" /></span>
+                        <!-- Logo text -->
+                        <span class="main-logo-text"> {{ config('app.name') }} </span>
+                        <!-- End Logo text -->
                     </a>
                 </div>
                 <!-- ============================================================== -->
@@ -182,8 +174,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                @if (auth()->user()->image_url)
-                                <img src="{{Url('user/profile/'.auth()->user()->image_url)}}"
+                                @if (auth()->user()->photo)
+                                <img src="{{Url('storage/admin/profile/'.auth()->user()->photo)}}"
                                 class="profile-pic" />
                                 @else                        
                                 <img src="{{Url('assets/images/users/user.png')}}" class="profile-pic" />
@@ -194,8 +186,8 @@
                                     <li>
                                         <div class="dw-user-box">
                                             <div class="u-img">
-                                                @if (auth()->user()->image_url)
-                                                <img src="{{Url('user/profile/'.auth()->user()->image_url)}}"
+                                                @if (auth()->user()->photo)
+                                                <img src="{{Url('storage/admin/profile/'.auth()->user()->photo)}}"
                                                  />
                                                 @else                        
                                                 <img src="{{ asset('assets/images/users/user.png') }}"
@@ -206,7 +198,7 @@
                                                 <h4>{{auth()->user()->name}}</h4>
                                                 <p class="text-muted">{{auth()->user()->email}}</p>
                                                 <a href="{{Route('admin.user.profile')}}"
-                                                    class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                                    class="btn btn-rounded btn-info btn-sm">View Profile</a>
                                             </div>
                                         </div>
                                     </li>
