@@ -47,18 +47,6 @@ class EwarongController extends Controller
             $all_warong->where('status', 'ACTIVE');
         }
 
-        $query = "SELECT ewarong.* from ewarong
-        left join pemesanan on pemesanan.ewarong_id = ewarong.id
-        left join stocks on stocks.ewarong_id = ewarong.id
-        join items on items.id = stocks.item_id
-        join satuans on satuans.id = stocks.satuan_id
-         WHERE stocks.item_id IN (1,2,3)
-         AND ewarong.nama_kios LIKE '%Toko%'
-         AND ewarong.jam_buka >= '06:00:00'
-         AND ewarong.jam_tutup <= '21:00:00'
-         AND ewarong.status = 'ACTIVE'
-         GROUP BY ewarong.nama_kios";
-
         $after = $all_warong->get();
 
         if ($request->items) {
