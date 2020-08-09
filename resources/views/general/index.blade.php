@@ -33,7 +33,7 @@
                                     type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#"><i id="gmail" class="mdi mdi-gmail"></i> Email</a>
+                                    <a class="dropdown-item" href="#"><i id="email" class="mdi mdi-gmail"></i> Email</a>
                                     <a class="dropdown-item" href="#"><i id="youtube" class="mdi mdi-youtube-play"></i>
                                         Youtube</a>
                                     <a class="dropdown-item" href="#"><i id="whatsapp" class="mdi mdi-whatsapp"></i>
@@ -72,7 +72,7 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#">
-                                        <i id="gmail" class="mdi mdi-gmail"></i>
+                                        <i id="email" class="mdi mdi-gmail"></i>
                                         Email</a>
                                     <a class="dropdown-item" href="#">
                                         <i id="youtube" class="mdi mdi-youtube-play"></i>

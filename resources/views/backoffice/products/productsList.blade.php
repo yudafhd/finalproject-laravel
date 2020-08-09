@@ -46,6 +46,7 @@
                     <table id="searchTable" class="table table-striped table-borderless">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Code</th>
                                 <th>SKU</th>
                                 <th>Name</th>
@@ -57,8 +58,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $product)
+                            @foreach ($products as $key => $product)
                             <tr>
+                                <td>{{ $key+1 }}</td>
                                 <td>{{ $product->code }}</td>
                                 <td>{{ $product->SKU }}</td>
                                 <td>{{ $product->name }}</td>

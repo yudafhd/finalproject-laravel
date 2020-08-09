@@ -46,7 +46,8 @@ class GeneralController extends Controller
             Link::find($links_id)->update([
                 'title' => $title ? $title : '( Judul Kosong )',
                 'url' => $links,
-                'type' => $social_links]);
+                'type' => $social_links
+            ]);
         } else {
             Link::create(['title' => $title, 'url' => $links, 'type' => $social_links, 'user_id' => $user_id, 'general_id' => $general_id]);
         }
@@ -123,7 +124,7 @@ class GeneralController extends Controller
                         $links = $all_request['links'][$key];
                         $links_id = $all_request['link_id'][$key];
                         $social_links = $all_request['social_links'][$key];
-                        if ($social_links == 'gmail') {
+                        if ($social_links == 'email') {
                             if ($this->validEmail($links)) {
                                 $this->saveDecicion($links_id, $links, $title, $social_links, $general_id, $user_id);
                             } else {
@@ -148,23 +149,26 @@ class GeneralController extends Controller
                                     'link' => $links,
                                 ]);
                             }
-
                         }
                     }
 
                     if (count($error_link) > 0) {
                         if ($error_link[0]['isEmail']) {
-                            $request->session()->flash('alert',
+                            $request->session()->flash(
+                                'alert',
                                 'Saya rasa ada beberapa email yg tidak sesuai'
-                                . '<br>Pastikan email anda benar seperti ini'
-                                . '<br><a style="font-weight:bold">pinterlink@gmail.com</a> tanpa tambahan apa-apa'
-                                . '<br>salah satu email anda yang salah<br> <a style="font-weight:bold">' . $error_link[0]['link'] . '</a>');
+                                    . '<br>Pastikan email anda benar seperti ini'
+                                    . '<br><a style="font-weight:bold">pinterlink@gmail.com</a> tanpa tambahan apa-apa'
+                                    . '<br>salah satu email anda yang salah<br> <a style="font-weight:bold">' . $error_link[0]['link'] . '</a>'
+                            );
                         } else {
-                            $request->session()->flash('alert',
+                            $request->session()->flash(
+                                'alert',
                                 'Saya rasa ada beberapa link yg tidak sesuai'
-                                . '<br>Pastikan link anda benar seperti ini'
-                                . '<br><a style="font-weight:bold" href="https://pinter.link">https://pinter.link</a> atau <a style="font-weight:bold"  href="http://pinter.link">http://pinter.link</a>'
-                                . '<br>salah satu url anda yang salah<br> <a style="font-weight:bold">' . $error_link[0]['link'] . '</a>');
+                                    . '<br>Pastikan link anda benar seperti ini'
+                                    . '<br><div class="badge badge-light p-l-10 p-r-10"><a style="font-size:20px" href="https://pinter.link">https://pinter.link</a></div>'
+                                    . '<br>salah satu url anda yang salah<br> <a class="text-danger">' . $error_link[0]['link'] . '</a>'
+                            );
                         }
                     }
                 }

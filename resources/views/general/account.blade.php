@@ -139,7 +139,7 @@
     </div>
 </div>
 
-<script>
+    <script>
     $(document).ready(function () { 
         @if ($message)
             Swal.fire({

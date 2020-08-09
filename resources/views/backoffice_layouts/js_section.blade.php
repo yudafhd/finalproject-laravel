@@ -54,6 +54,7 @@
         $("#treetable").treetable();
         $('#userTable').DataTable();
         $('#searchTable').DataTable();
+        $('.searchTable').DataTable();
         $('.textarea_editor').wysihtml5();
         $('.select-beast').selectize();
 

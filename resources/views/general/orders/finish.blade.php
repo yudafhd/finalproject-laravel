@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-body" style="text-align:center">
                <h2 class="text-success">
-                <i id="gmail" class="mdi mdi-check"></i> Pesanan Anda Berhasil
+                <i id="email" class="mdi mdi-check"></i> Pesanan Anda Berhasil
                </h2>
                <a class="btn btn-light" href="{{ Route('general') }}">
                 tekan saya untuk kembali

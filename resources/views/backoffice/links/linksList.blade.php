@@ -34,38 +34,34 @@
                 </div>
             @endif
                 <span>
-                    Total Themes 
-                    <span class="label label-success label-rounded">{{count($themes)}}</span>
+                    Total Links 
+                    <span class="label label-success label-rounded">{{count($links)}}</span>
                 </span>
-                <a href="{{Route('admin.theme.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('admin.link.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     create
                 </a>
-                @if(count($themes) > 0)
+                @if(count($links) > 0)
                 <div class="table-responsive m-t-10">
                     <table id="searchTable" class="table table-striped table-borderless">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Code</th>
-                                <th>Name</th>
-                                <th>Cover colour</th>
-                                <th>Cover thumbnail</th>
-                                <th>Payment</th>
-                                <th>Status</th>
+                                <th>Type</th>
+                                <th>Title</th>
+                                <th>Url</th>
+                                <th>User</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($themes as $key => $product)
+                            @foreach ($links as $key => $link)
                             <tr>
                                 <td>{{ $key+1 }}</td>
-                                <td>{{ $product->code }}</td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->cover_colour ? $product->cover_colour : '(kosong)' }}</td>
-                                <td>{{ $product->cover_thumbnail ? $product->cover_thumbnail: '(kosong)'  }}</td>
-                                <td>{{ $product->theme_transaction }}</td>
-                                <td>{{ $product->status }}</td>
+                                <td>{{ $link->type }}</td>
+                                <td>{{ $link->title }}</td>
+                                <td>{!! $link->type !== 'gmail' ? '<a target="_blank" href="'.$link->url.'">'.$link->url.'</a>' : $link->url !!}</td>
+                                <td>{{ $link->user->username }}</td>
                                 <td style="text-align: center">
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
@@ -75,8 +71,8 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('admin.theme.edit', $product->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('admin.theme.destroy', $product->id)}}">
+                                                href="{{Route('admin.link.edit', $link->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('admin.link.destroy', $link->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>

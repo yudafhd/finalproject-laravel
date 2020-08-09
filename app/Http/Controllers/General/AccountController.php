@@ -28,7 +28,7 @@ class AccountController extends Controller
     public function transaction(Request $request)
     {
         $user = auth()->user();
-        $allTransaction = auth()->user()->userPurchaseMap()->get();
+        $allTransaction = auth()->user()->userPurchaseMaps()->get();
         return view('general.transaction', compact('user', 'allTransaction'));
     }
 
@@ -144,5 +144,4 @@ class AccountController extends Controller
             return redirect()->route('account');
         }
     }
-
 }

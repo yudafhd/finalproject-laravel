@@ -8,7 +8,7 @@
                     @if(auth()->user()->image_url)
                     <img src="{{ Url('user/profile/'.auth()->user()->image_url) }}" class="img-circle" width="150" />
                     @else
-                    <img src="{{ Url('assets/images/users/user.png') }}" class="img-circle" width="150" />
+                           <img src="{{ asset('assets/images/user.svg') }}" class="img-circle" width="150" />
                     @endif
                     <h4 class="card-title m-t-10">{{ '@'.auth()->user()->username }}</h4>
                     <span class="badge badge-light">{{ auth()->user()->general->membership }}</span>
@@ -48,16 +48,16 @@
                                 <input class="form-check-input" type="radio" name="product_id"
                                     id="inlineRadio{{ $key }}" value="{{ $item->id }}">
                                 <label class="form-check-label" for="inlineRadio{{ $key }}">
-                                    <span class="m-l-20">
+                                    <span>
                                         {{ $item->name }}
                                     </span>
-                                    <span class="m-l-20 badge badge-pill badge-info">
-                                        Rp. {{ $item->price }}
-                                    </span>
                                 </label>
-                                <ul class="list-group list-group-flush" style="margin-left: 30px;">
+                                <div class="description-product m-t-10">
+                                <span class="badge badge-pill badge-info m-b-10 m-l-5" style="font-size:15px">
+                                       Rp. {{ $item->price }}
+                                    </span>
                                     {!! $item->description !!}
-                                </ul>
+                                </div>
                             </div>
                             @endforeach
                             @endif
@@ -83,7 +83,7 @@
                             @endif
                             @if(!$snapToken && !$currentTransaction && !$hasSuscribeTransaction)
                              <button type="submit" id="pay-button" class="btn btn-instagram m-t-10 m-b-10 text-white"
-                                style="width: 100%;">Upgrade ke Akun Membership</button>
+                                style="width: 100%;">Upgrade Akun</button>
                             @endif
                         </form>
                             @if ($snapToken)

@@ -3,6 +3,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css"
     rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.min.css" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/floating-wpp/css/floating-wpp.min.css') }}" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" />
@@ -24,6 +25,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js"></script>
 <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
     data-client-key="{{ env('MIDTRANS_CLIENTKEY') }}"></script>
+<script src="{{ asset('assets/plugins/floating-wpp/js/floating-wpp.min.js') }}"></script>
 
 <!-- SECTION FOR JAVASCRIPT CUSTOM  -->
 <script src="{{ asset('assets/js/waves.js') }}"></script>
@@ -40,6 +42,15 @@
             speed: 300, //ms'
             slideMargin: 0,
             thumbItem: 9
+        });
+        $('#float-wa').floatingWhatsApp({
+            phone: '6281357778874',
+            popupMessage: 'Halo kak ^_^ ada yg bisa saya bantu?',
+            showPopup: true,
+            message: "Halo, saya dari Pinter.link",
+            showPopup: true,
+            showOnIE: false,
+            position: 'right'
         });
     });
 </script>

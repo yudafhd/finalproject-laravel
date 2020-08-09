@@ -14,17 +14,17 @@ class Controller extends BaseController
 
     public $permissionInfo;
 
-    public function checkIsMembership()
-    {
-        $userMapTransaction = auth()->user()->userPurchaseMap;
+    // public function checkIsMembership()
+    // {
+    //     $userMapTransaction = auth()->user()->userPurchaseMaps;
 
-        $justSubscription = [];
-        foreach ($userMapTransaction as $key => $item) {
-            if ($item->product->type == 'subscription') {
-                $justSubscription[$key] = $item;
-            }
-        }
-    }
+    //     $justSubscription = [];
+    //     foreach ($userMapTransaction as $key => $item) {
+    //         if ($item->product->type == 'subscription') {
+    //             $justSubscription[$key] = $item;
+    //         }
+    //     }
+    // }
 
     public function checkPermissionAnd404($permission)
     {

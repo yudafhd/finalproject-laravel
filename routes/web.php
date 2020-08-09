@@ -77,6 +77,12 @@ Route::group(['prefix' => 'backoffice'], function () {
 
             //Theme backoffice
             Route::resource('theme', 'Backoffice\ThemeController');
+
+            //Link backoffice
+            Route::resource('link', 'Backoffice\LinkController');
+
+            //Transaction backoffice
+            Route::resource('transaction', 'Backoffice\TransactionController');
         });
     });
 });

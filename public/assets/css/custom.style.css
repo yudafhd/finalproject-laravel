@@ -100,3 +100,7 @@ a {
 .topbar ul.dropdown-user li .dw-user-box .u-text .btn:hover {
     background: none;
 }
+
+.floating-wpp {
+    right: 25px;
+}

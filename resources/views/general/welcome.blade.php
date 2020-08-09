@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="col-sm col-md d-flex m-t-20">
-        <ul id="lightSlider">
+        {{-- <ul id="lightSlider">
             <li style="text-align: center;">
                 <img width="400" src="{{ asset('assets/images/home_phone1.jpg') }}" />
             </li>
@@ -23,8 +23,8 @@
             <li style="text-align: center;">
                 <img width="400" src="{{ asset('assets/images/home_phone3.jpg') }}" />
             </li>
-        </ul>
-
+        </ul> --}}
+        <img width="400" class="m-auto" src="{{ asset('assets/images/home_phone1.jpg') }}" />
     </div>
 </div>
 @endsection

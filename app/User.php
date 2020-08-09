@@ -37,7 +37,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\General');
     }
 
-    public function userPurchaseMap()
+    public function links()
+    {
+        return $this->hasMany('App\Link');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany('App\Transaction');
+    }
+
+    public function userPurchaseMaps()
     {
         return $this->hasMany('App\UserPurchaseMap')
             ->orderBy('id', 'desc');
@@ -48,5 +58,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\UserPurchaseMap')
             ->whereDate('expired_purchase_at', '>=', \Carbon\Carbon::today()->toDateString())
             ->orderBy('id', 'desc');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($user) {
+            $user->general()->delete();
+            $user->links()->delete();
+        });
     }
 }
