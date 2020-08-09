@@ -5,7 +5,7 @@
 >
     <div class="card shadow-none login-register mt-20-xs">
         <div class="card-body">
-        <a href="{{Route('home')}}" style="font-size: 35px; text-decoration:none">
+        <a href="{{Url('')}}" style="font-size: 35px; text-decoration:none">
             Pinterlink
             </a>
             <form

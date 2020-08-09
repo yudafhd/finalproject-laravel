@@ -43,7 +43,7 @@
                             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                                 <ul class="navbar-nav mr-auto stylish-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="../Documentation/document.html">Harga</a>
+                                        <a class="nav-link" href="#">Harga</a>
                                     </li>
                                     {{-- <li class="nav-item">
                                         <a class="nav-link" href="../Documentation/document.html"
