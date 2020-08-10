@@ -16,6 +16,8 @@
         "laravel/tinker": "^1.0",
         "midtrans/midtrans-php": "^2.3",
         "moontoast/math": "^1.2",
+        "spatie/laravel-activitylog": "^3.14",
+        "spatie/laravel-backup": "^6.11",
         "spatie/laravel-permission": "^3.11"
     },
     "require-dev": {

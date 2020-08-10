@@ -27,4 +27,5 @@
         <img width="400" class="m-auto" src="{{ asset('assets/images/home_phone1.jpg') }}" />
     </div>
 </div>
+<div id="float-wa" style="z-index: 100;"></div>
 @endsection

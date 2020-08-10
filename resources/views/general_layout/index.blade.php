@@ -94,7 +94,6 @@
                 <div class="body-content container">
                     @yield('content')
                 </div>
-                <div id="float-wa" style="z-index: 100;"></div>
                 @if(isset($username))
                 @if(!$username)
                 <footer class="footer container">
