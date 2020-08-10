@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/dropify/dist/css/dropify.min.css')}}">
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="{{asset('assets/plugins/html5-editor/bootstrap-wysihtml5.css')}}">
-<link rel="stylesheet" type="text/css" href="http://selectize.github.io/selectize.js/css/selectize.default.css">
+<link rel="stylesheet" type="text/css" href="https://selectize.github.io/selectize.js/css/selectize.default.css">
 
 <style>
     .dropify-wrapper .dropify-message p {
