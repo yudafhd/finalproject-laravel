@@ -29,8 +29,16 @@
                 <h6>{{ auth()->user()->created_at }}</h6>
                 <small class="text-muted">Email address </small>
                 <h6>{{ auth()->user()->email }} <small
-                        class="text-muted">{{ auth()->user()->email_verified_at ? '' : 'Belum Verifikasi' }}</small>
+                        class="text-muted">{{ auth()->user()->hasVerifiedEmail() ? '' : 'Belum Verifikasi' }}</small>
                 </h6>
+                @if (!auth()->user()->hasVerifiedEmail())
+                    <form class="form-horizontal form-material" method="POST" action="{{ Route('verification.resend') }}">
+                     @csrf
+                      <button type="submit" class="btn btn-instagram m-t-5 m-b-10 text-white"
+                                    style="width: 100%;"><i class="mdi mdi-email"></i> Kirim Link Verifikasi</button>
+                </form>
+                @endif
+                
             </div>
         </div>
     </div>
@@ -108,7 +116,6 @@
                         <form class="form-horizontal form-material" method="POST" enctype="multipart/form-data"
                             action="{{ Route('account.update.username') }}">
                             @csrf
-                            
                             <div class="form-group">
                                 <div class="col-md-12">
                                     @if ($membershipName)
