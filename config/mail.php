@@ -10,7 +10,7 @@ return [
     'port' => env('MAIL_PORT', 587),
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'pinterusindonesia@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@pinter.link'),
         'name' => env('MAIL_FROM_NAME', 'PinterLink'),
     ],
 
