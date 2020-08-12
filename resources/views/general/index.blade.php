@@ -20,8 +20,7 @@
             </section>
             <section class="add-status">
                 <div class="form-group d-flex align-items-center m-t-20">
-                    <input type="text" placeholder="tulis tweet anda" class="form-control" name="tweet"
-                        value="{{ $tweet }}" />
+                    <textarea type="text" placeholder="tulis tweet anda" class="form-control" name="tweet">{{ $tweet }}</textarea>
                 </div>
             </section>
             <section class="add-link">

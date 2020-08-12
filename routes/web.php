@@ -4,6 +4,8 @@ Auth::routes();
 Auth::routes(['verify' => true]);
 Route::get('/', 'General\HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/contactus', 'General\ContactUsController@create')->name('contactus');
+Route::post('/contactus', 'General\ContactUsController@store')->name('contactus.store');
 
 // Midtrans Notification
 Route::group(['prefix' => 'notification'], function () {

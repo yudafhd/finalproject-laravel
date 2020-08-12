@@ -100,7 +100,7 @@
                     <ul class="list-unstyled list-inline d-flex">
                         <span class="d-block  ml-auto mr-auto">
                             <li class="list-inline-item">
-                                <a href="#! ">Hubungi Saya</a>
+                                <a href="{{ Route('contactus') }}">Hubungi Saya</a>
                             </li>
                             <!-- <li class="list-inline-item">
                                 <a
