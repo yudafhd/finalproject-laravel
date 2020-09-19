@@ -1,0 +1,292 @@
+body {
+    font-family: "Comfortaa", sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    color: #2b3b44;
+    font-weight: 300;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #2b3b44;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 400;
+}
+
+.topbar {
+    background: #fd6a00;
+}
+
+.sidebar-nav>ul>li>a.active {
+    font-weight: 400;
+    background: #ffffff;
+    color: #99abb4;
+}
+
+.text-themecolor {
+    color: #99abb4 !important;
+}
+
+a:hover {
+    /* color: #99abb4 !important; */
+    text-decoration: underline;
+}
+
+a {
+    color: #99abb4;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.sidebar-nav>ul>li.active>a i {
+    color: #99abb4;
+}
+
+.sidebar-nav ul li a.active i,
+.sidebar-nav ul li a:hover i {
+    color: #99abb4;
+}
+
+.sidebar-nav>ul>li.active>a {
+    color: #99abb4;
+    font-weight: 500;
+}
+
+.topbar .navbar-header {
+    background: none;
+}
+
+.main-logo-text {
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+}
+
+/* ---------------------- Button Custom ------------------------------- */
+
+.btn-primary,
+.btn-primary.disabled {
+    background: #0062cc;
+}
+
+.btn-primary.active.focus,
+.btn-primary.active:focus,
+.btn-primary.active:hover,
+.btn-primary.focus,
+.btn-primary.focus:active,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.btn-primary:focus,
+.open>.dropdown-toggle.btn-primary.focus,
+.open>.dropdown-toggle.btn-primary:focus,
+.open>.dropdown-toggle.btn-primary:hover,
+.show>.btn-primary.dropdown-toggle {
+    background-color: #0062cc;
+    border: 1px solid #0062cc;
+}
+
+.btn-primary.disabled:hover,
+.btn-primary:hover {
+    background-color: #0062cc;
+}
+
+.btn-info,
+.btn-info.disabled {
+    background: #5bc0de;
+}
+
+.btn {
+    padding: 4px 7px !important;
+    cursor: pointer;
+}
+
+/* ---------------------- Button Custom ------------------------------- */
+
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    margin-top: 14px;
+    padding: 5px;
+    text-overflow: ellipsis;
+    width: 400px;
+}
+
+#pac-input:focus {
+    border-color: #4d90fe;
+}
+
+.page-titles {
+    background: none !important;
+}
+
+.navbar-light .navbar-toggler {
+    border-color: #ffffff;
+}
+
+.profile-image {
+    max-width: 7rem;
+    max-height: 7rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-username {
+    font-weight: bold;
+    margin: 1rem;
+}
+
+.profile-user-menu .list-group-item {
+    background: #61cff0;
+    font-weight: bold;
+}
+
+.profile-status {
+    margin: 1rem;
+    margin-bottom: 0em;
+    font-size: 14px;
+}
+
+.wrapper-content {
+    width: 100%;
+}
+
+.footer-for-username a {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.login-register {
+    padding: 2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-wrapper {
+    min-height: 100%;
+    /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh;
+    /* These two lines are counted as one :-)       */
+    display: flex;
+    align-items: center;
+}
+
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+    .navbar-brand {
+        font-size: 2em;
+    }
+
+    .welcome-text {
+        font-size: 5em;
+        line-height: 1em;
+    }
+}
+
+/* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .navbar-brand {
+        font-size: 2em;
+    }
+
+    .welcome-text {
+        font-size: 4.2em;
+        line-height: 1em;
+    }
+}
+
+/* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .navbar-brand {
+        font-size: 2em;
+    }
+
+    .welcome-text {
+        font-size: 3em;
+        line-height: 1em;
+    }
+}
+
+/* 
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
+
+/* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .navbar-brand {
+        font-size: 1.2em;
+    }
+
+    .welcome-text {
+        font-size: 4em;
+        line-height: 1em;
+    }
+
+    .home-phone {
+        margin-left: 15vw !important;
+    }
+
+    .dashboard-mobile {
+        margin-top: 20vh;
+    }
+
+    .mt-20-xs {
+        margin-top: 20px !important;
+    }
+
+}
+
+/* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .navbar-brand {
+        font-size: 1.2em;
+    }
+
+    .welcome-text {
+        font-size: 4em;
+        line-height: 1em;
+    }
+
+    .home-phone {
+        margin-left: 15vw !important;
+    }
+
+    .dashboard-mobile {
+        margin-top: 20vh;
+    }
+
+    .mt-20-xs {
+        margin-top: 20px !important;
+    }
+}

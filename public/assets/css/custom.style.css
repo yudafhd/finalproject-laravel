@@ -1,7 +1,47 @@
+body {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    font-weight: 400;
+}
+
+.topbar {
+    background: #364F6B;
+}
+
 .sidebar-nav>ul>li>a.active {
     font-weight: 400;
     background: #ffffff;
-    color: #398bf7;
+    color: #99abb4;
+}
+
+.text-themecolor {
+    color: #99abb4 !important;
+}
+
+a:hover {
+    color: #99abb4 !important;
+    text-decoration: underline;
+}
+
+a {
+    color: #99abb4;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.sidebar-nav>ul>li.active>a i {
+    color: #99abb4;
+}
+
+.sidebar-nav ul li a.active i,
+.sidebar-nav ul li a:hover i {
+    color: #99abb4;
+}
+
+.sidebar-nav>ul>li.active>a {
+    color: #99abb4;
+    font-weight: 500;
 }
 
 .topbar .navbar-header {
@@ -39,4 +79,28 @@
 .btn-primary.disabled:hover,
 .btn-primary:hover {
     background-color: #0062cc;
+}
+
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    margin-top: 14px;
+    padding: 5px;
+    text-overflow: ellipsis;
+    width: 400px;
+}
+
+#pac-input:focus {
+    border-color: #4d90fe;
+}
+
+.topbar ul.dropdown-user li .dw-user-box .u-text .btn:hover {
+    background: none;
+}
+
+.floating-wpp {
+    right: 25px;
 }

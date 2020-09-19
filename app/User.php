@@ -3,30 +3,69 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     use HasRoles;
     use HasApiTokens;
+    use SoftDeletes;
 
     protected $fillable = [
-        'name', 'email', 'password', 'nis', 'nip', 'dob', 'city', 'address', 'parent_name', 'short_info', 'type', 'role_id', 'class_id'
+        'name',
+        'email',
+        'username',
+        'password',
+        'access_type',
     ];
 
     protected $hidden = [
-        'password', 'remember_token', 'created_at', 'updated_at'
+        'password', 'remember_token', 'created_at', 'updated_at',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function class()
+
+    public function general()
     {
-        return $this->belongsTo('App\Classes');
+        return $this->hasOne('App\General');
+    }
+
+    public function links()
+    {
+        return $this->hasMany('App\Link');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany('App\Transaction');
+    }
+
+    public function userPurchaseMaps()
+    {
+        return $this->hasMany('App\UserPurchaseMap')
+            ->orderBy('id', 'desc');
+    }
+
+    public function userPurchaseMapNotExpired()
+    {
+        return $this->hasMany('App\UserPurchaseMap')
+            ->whereDate('expired_purchase_at', '>=', \Carbon\Carbon::today()->toDateString())
+            ->orderBy('id', 'desc');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($user) {
+            $user->general()->delete();
+            $user->links()->delete();
+        });
     }
 }

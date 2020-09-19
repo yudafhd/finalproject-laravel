@@ -4,6 +4,10 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Http\Response;
+use Illuminate\Support\MessageBag;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +50,31 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // if ($exception instanceof ThrottleRequestsException) {
+        //     // return $this->response409($exception);
+        //     dd($exception->message = "Terlalu banyak request tunggu 1 menit");
+        //     dd($exception);
+        // }
         return parent::render($request, $exception);
+    }
+
+    protected function unauthenticated($request, \Illuminate\Auth\AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+
+        if (Auth::guard('admin')->check()) {
+            return redirect('/login');
+        }
+
+        return redirect('/login');
+    }
+
+    public function response409(Exception $exception)
+    {
+        $errors = new MessageBag();
+        $errors->add("message", "409 Too many requests");
+        return response()->make(view('errors.409')->withErrors($errors), Response::HTTP_CONFLICT);
     }
 }
