@@ -22,4 +22,9 @@ class General extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function theme()
+    {
+        return $this->belongsTo('App\Theme');
+    }
 }

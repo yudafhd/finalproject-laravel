@@ -80,7 +80,6 @@ class AccountController extends Controller
 
     public function accountUpdate(Request $request)
     {
-
         try {
 
             $this->validatorAccountInfo($request);
@@ -127,6 +126,7 @@ class AccountController extends Controller
             return redirect()->route('account');
         }
     }
+
     public function accountUsername(Request $request)
     {
         try {

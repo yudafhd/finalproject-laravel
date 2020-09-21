@@ -5,66 +5,23 @@
             href="{{ Route("username", "pinterus") }}">{{ Route("username", auth()->user()->username) }}</a>
     </div>
     <div class="col-sm col-md">
+    <form class="form-horizontal form-material" method="POST" action="{{ Route('general.theme.update') }}">
+        @csrf
         <div class="theme-section-free m-b-20">
-            <div class="form-check form-check-inline">
+        @foreach($themes as $key => $theme)
+        <div class="form-check form-check-inline">
                 <div class="" style="width: 70px;height:70px; border-radius:20px;
-                background-image: linear-gradient(to bottom, #46A6E2 0%, #46A6E2 40%, #D267C4 100%);margin:10px"></div>
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" 
-                {{ !$theme_id ? 'checked': '' }}
+                background-image: linear-gradient(to bottom, {{ $theme->cover_colour }});margin:10px"></div>
+                <input class="form-check-input" type="radio" name="theme_id" id="inlineRadio1" value="{{ $theme->id }}" 
+                {{ $theme->id == $theme_id ? 'checked': '' }}
                 >
-                <label class="form-check-label" for="inlineRadio1">default</label>
+                <label class="form-check-label" for="inlineRadio1">{{ $theme->name }}</label>
             </div>
-            <div class="form-check form-check-inline">
-                <div class="" style="width: 70px;height:70px; border-radius:20px;
-                background-image: linear-gradient(to bottom, #FDE13F 0%, #FDE13F 40%, #FA818C 100%);margin:10px"></div>
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option1">
-                <label class="form-check-label" for="inlineRadio2">default 2</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <div class="" style="width: 70px;height:70px; border-radius:20px;
-                background-image: linear-gradient(to bottom, #2EED8F 0%, #2EED8F 40%, #447CBD 100%);margin:10px"></div>
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1">
-                <label class="form-check-label" for="inlineRadio3">default 3</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <div class="" style="width: 70px;height:70px; border-radius:20px;
-                background-image: linear-gradient(to bottom, #AFA7CD 0%, #AFA7CD 40%, #D854C4 100%);margin:10px"></div>
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option1">
-                <label class="form-check-label" for="inlineRadio4">default 4</label>
-            </div>
-        </div>
-        <div class="theme-section-free m-b-20">
-            <p style="font-size: 14px; text-align:center">
-                Gunakan tema ini secara gratis dengan menjadi<br> member donasi kak :)
-            </p>
-            <div class="form-check form-check-inline">
-                <div class="" style="width: 70px;height:70px; border-radius:20px;
-                background-image: linear-gradient(to bottom, #46A6E2 0%, #46A6E2 40%, #D267C4 100%);margin:10px"></div>
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" 
-                >
-                <label class="form-check-label" for="inlineRadio1">default</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <div class="" style="width: 70px;height:70px; border-radius:20px;
-                background-image: linear-gradient(to bottom, #FDE13F 0%, #FDE13F 40%, #FA818C 100%);margin:10px"></div>
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option1">
-                <label class="form-check-label" for="inlineRadio2">default 2</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <div class="" style="width: 70px;height:70px; border-radius:20px;
-                background-image: linear-gradient(to bottom, #2EED8F 0%, #2EED8F 40%, #447CBD 100%);margin:10px"></div>
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1">
-                <label class="form-check-label" for="inlineRadio3">default 3</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <div class="" style="width: 70px;height:70px; border-radius:20px;
-                background-image: linear-gradient(to bottom, #AFA7CD 0%, #AFA7CD 40%, #D854C4 100%);margin:10px"></div>
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option1">
-                <label class="form-check-label" for="inlineRadio4">default 4</label>
-            </div>
+        @endforeach
         </div>
         <button type="submit" class="btn btn-instagram m-t-5 m-b-10 text-white" style="width: 100%;"><i
             class="mdi mdi-content-save"></i> Simpan</button>
+    </form>
     </div>
     <div class="col-sm col-md text-center d-none d-sm-block">
         <span>

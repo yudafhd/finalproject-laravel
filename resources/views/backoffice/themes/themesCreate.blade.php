@@ -85,8 +85,8 @@
                                 <div class="form-group">
                                     <label class="control-label">Status</label>
                                     <select  class="select-beast" name="status">
-                                        <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>active</option>
-                                        <option value="disabled" {{ old('status') == 'disabled' ? 'selected' : '' }}>disabled</option>
+                                        <option value="1" {{ old('status') == 'active' ? 'selected' : '' }}>active</option>
+                                        <option value="0" {{ old('status') == 'disabled' ? 'selected' : '' }}>disabled</option>
                                     </select>
                                 </div>
                             </div>

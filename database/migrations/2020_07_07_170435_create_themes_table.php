@@ -17,10 +17,10 @@ class CreateThemesTable extends Migration
             $table->bigIncrements('id');
             $table->char('name')->nullable();
             $table->string('code', 20)->nullable();
-            $table->string('cover_colour', 20)->nullable();
+            $table->string('cover_colour')->nullable();
             $table->string('cover_thumbnail')->nullable();
             $table->string('theme_transaction', 20)->default('free');
-            $table->string('status', 20)->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

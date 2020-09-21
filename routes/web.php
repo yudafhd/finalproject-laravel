@@ -20,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', 'General\GeneralController@saveLinks')->name('general.save.links');
         Route::get('/dashboard', 'General\DashboardController@index')->name('general.dashboard');
         Route::get('/theme', 'General\ThemeController@index')->name('general.theme');
+        Route::post('/theme/update', 'General\ThemeController@themeUpdate')->name('general.theme.update');
         Route::get('/account', 'General\AccountController@index')->name('account');
         Route::get('/transaction', 'General\AccountController@transaction')->name('transaction');
         Route::get('/account/upgrade', 'General\MidtransTransactionController@upgradeAccountViews')->name('account.upgrade');

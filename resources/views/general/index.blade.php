@@ -9,8 +9,8 @@
             @csrf
             <section class="add-upload-photo d-flex">
                 @if(auth()->user()->general->photo)
-                <img src="{{ Url('storage/user/profile/'.auth()->user()->general->photo) }}" class="img-circle m-r-20 m-b-10"
-                    width="70" />
+                <img src="{{ Url('storage/user/profile/'.auth()->user()->general->photo) }}"
+                    class="img-circle m-r-20 m-b-10" width="70" />
                 @else
                 <img width="70" src="{{ asset('assets/images/user.svg') }}" class="m-r-20 m-b-10" />
                 @endif
@@ -20,53 +20,101 @@
             </section>
             <section class="add-status">
                 <div class="form-group d-flex align-items-center m-t-20">
-                    <textarea type="text" placeholder="tulis tweet anda" class="form-control" name="tweet">{{ $tweet }}</textarea>
+                    <textarea type="text" id="tweetme" placeholder="tulis tweet anda" class="form-control"
+                        name="tweet">{{ $tweet }}</textarea>
                 </div>
             </section>
             <section class="add-link">
-                <div id="linklist" class="link-list m-20 text-center">
+                <div id="linklist" class="link-list m-20">
+                    {{-- THIS IS TEMPLATE--}}
                     <div id="first-your-link" class="m-b-20 row" style="display: none">
-                        <div class="col-md input-group ">
-                            <div class="input-group-prepend">
-                                <button id="dropdown-type-button" class="btn btn-outline-secondary dropdown-toggle"
-                                    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#"><i id="email" class="mdi mdi-gmail"></i> Email</a>
-                                    <a class="dropdown-item" href="#"><i id="youtube" class="mdi mdi-youtube-play"></i>
-                                        Youtube</a>
-                                    <a class="dropdown-item" href="#"><i id="whatsapp" class="mdi mdi-whatsapp"></i>
-                                        Whatsapp</a>
-                                    <a class="dropdown-item" href="#"><i id="other" class="mdi mdi-link"></i>
-                                        Lainnya</a>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 input-group">
+                                        <input type="hidden" name="link_id[]" style="display: none" />
+                                        <input type="text" id="social-links" name="social_links[]" style="display: none"
+                                            value="other">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"> <i
+                                                    class="mdi mdi-format-title"></i></span>
+                                        </div>
+                                        <input type="text" name="titles[]" class="form-control" placeholder="Judul"
+                                            aria-label="Tautan">
+                                    </div>
+                                    <div class="col-md-12 input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="mdi mdi-link-variant"></i></span></span>
+                                        </div>
+                                        <input type="text" name="links[]" class="form-control"
+                                            placeholder="Email atau URL anda" aria-label="Tautan">
+                                    </div>
                                 </div>
                             </div>
-                            <input type="hidden" name="link_id[]" />
-                            <input type="text" name="titles[]" class="form-control" placeholder="Judul"
-                                aria-label="Tautan">
-                            <input type="hidden" id="social-links" name="social_links[]" value="other">
-                            <input type="text" name="links[]" class="form-control" placeholder="link atau email anda"
-                                aria-label="Tautan">
-                            <div class="input-group-append">
-                                <span id="close-link" class="input-group-text"><i class="mdi mdi-close"></i></span>
+                            <div class="card-footer">
+                                <span>
+                                    <button id="dropdown-type-button" class="btn btn-outline-secondary dropdown-toggle"
+                                        type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#"><i id="email" class="mdi mdi-gmail"></i>
+                                            Email</a>
+                                        <a class="dropdown-item" href="#"><i id="youtube"
+                                                class="mdi mdi-youtube-play"></i>
+                                            Youtube</a>
+                                        <a class="dropdown-item" href="#"><i id="whatsapp" class="mdi mdi-whatsapp"></i>
+                                            Whatsapp</a>
+                                        <a class="dropdown-item active" href="#"><i id="other" class="mdi mdi-link"></i>
+                                            Lainnya</a>
+                                    </div>
+                                </span>
+                                <span id="close-link"> <button type="button" class="btn btn-outline-secondary"><i
+                                            class="mdi mdi-close"></i>
+                                        Hapus</button></span>
                             </div>
                         </div>
                     </div>
 
                     {{-- THIS IS FOR DATA ONLY --}}
                     @foreach($links as $key => $link)
-                    <div id="first-your-link-data{{ $key }}" class="m-b-20 row">
-                        <div class="col-md input-group ">
-                            <div class="input-group-prepend">
+                    <div class="card" id="first-your-link-data{{ $key }}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 input-group">
+                                    <input type="hidden" name="link_id[]" value="{{ $link->id }}"
+                                        style="display: none" />
+                                    <input type="text" id="social-links" name="social_links[]" style="display: none"
+                                        value="{{ $link->type }}" value="other">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"> <i
+                                                class="mdi mdi-format-title"></i></span>
+                                    </div>
+                                    <input type="text" name="titles[]" class="form-control" placeholder="Judul"
+                                        value="{{ $link->title }}" aria-label="Tautan">
+                                </div>
+                                <div class="col-md-12 input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="mdi mdi-link-variant"></i></span></span>
+                                    </div>
+                                    <input type="text" name="links[]" class="form-control"
+                                        placeholder="Email atau URL anda" value="{{ $link->url }}" aria-label="Tautan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span>
                                 <button id="dropdown-type-button{{ $key }}"
                                     class="btn btn-outline-secondary dropdown-toggle" type="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @if($link->type == 'youtube')
-                                    <i id="youtube" class="mdi mdi-youtube-play"></i>
+                                    <i id="youtube" class="mdi mdi-youtube-play"></i> {{ $link->type }}
                                     @elseif($link->type == 'other')
-                                    <i id="{{ $link->type }}" class="mdi mdi-link"></i>
+                                    <i id="{{ $link->type }}" class="mdi mdi-link"></i> {{ $link->type }}
                                     @else
                                     <i id="{{ $link->type }}" class="mdi mdi-{{ $link->type }}"></i>
+                                    {{ $link->type }}
                                     @endif
                                 </button>
                                 <div class="dropdown-menu">
@@ -83,18 +131,10 @@
                                         <i id="other" class="mdi mdi-link"></i>
                                         Lainnya</a>
                                 </div>
-                            </div>
-                            <input type="hidden" name="link_id[]" value="{{ $link->id }}" />
-                            <input type="text" name="titles[]" class="form-control" placeholder="Judul"
-                                value="{{ $link->title }}" aria-label="Tautan">
-                            <input type="text" id="social-links" name="social_links[]" style="display: none"
-                                value="{{ $link->type }}" value="other">
-                            <input type="text" name="links[]" class="form-control" placeholder="https://"
-                                value="{{ $link->url }}" aria-label="Tautan">
-                            <div class="input-group-append">
-                                <span id="close-link-data{{ $key }}" class="input-group-text"><i
-                                        class="mdi mdi-close"></i></span>
-                            </div>
+                            </span>
+                            <span id="close-link-data{{ $key }}"> <button type="button"
+                                    class="btn btn-outline-secondary"><i class="mdi mdi-close"></i>
+                                    Hapus</button></span>
                         </div>
                     </div>
                     @endforeach
@@ -159,6 +199,8 @@
 
         let linktotal = {{ count($links) + 1
     }};
+
+
     $("#general-info").submit(function (e) {
         e.preventDefault();
         Swal.fire({
@@ -216,7 +258,7 @@
         } else {
             Swal.fire({
                 icon: 'info',
-                title: 'Batas maximal link adalah 7',
+                title: 'Maximal link 7',
                 text: 'Mohon maaf ya, server mimin masih kecil jadi belum bisa kasih banyak, tapi mimin janji bakal berkembang lagi :)',
             });
         }

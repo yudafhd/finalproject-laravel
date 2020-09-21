@@ -10,7 +10,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon.png') }}" />
     <title>{{ config("app.name") }}</title>
     @include('general_layout.css_javascript_section')
-    <link href="{{ asset('assets/css/theme/default.css') }}" rel="stylesheet" />
 
 </head>
 @if(isset($username))
