@@ -21,7 +21,6 @@ class UsernameController extends Controller
                 $links = Link::where('user_id', $user->id)->get();
                 return view('general.username', compact('photo', 'username', 'tweet', 'links'));
             }
-
         }
     }
 }

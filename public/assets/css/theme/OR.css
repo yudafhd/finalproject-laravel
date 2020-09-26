@@ -1,0 +1,24 @@
+.body-for-username {
+    background-image: linear-gradient(to bottom, #FDE13F 0%, #FDE13F 40%, #FA818C 100%);
+    color: #ffffff;
+    padding: 0 0 60px;
+    margin: 0;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+.body-for-username list-group {
+    padding: 50px;
+}
+
+.body-for-username .list-group .list-group-item {
+    background: none;
+}
+
+.footer-for-username {
+    border-top: none;
+    background: none;
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+}

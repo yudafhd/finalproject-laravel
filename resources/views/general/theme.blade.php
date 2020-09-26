@@ -12,10 +12,10 @@
         <div class="form-check form-check-inline">
                 <div class="" style="width: 70px;height:70px; border-radius:20px;
                 background-image: linear-gradient(to bottom, {{ $theme->cover_colour }});margin:10px"></div>
-                <input class="form-check-input" type="radio" name="theme_id" id="inlineRadio1" value="{{ $theme->id }}" 
+                <input class="form-check-input" type="radio" name="theme_id" id="inlineRadio1{{ $theme->id }}" value="{{ $theme->id }}" 
                 {{ $theme->id == $theme_id ? 'checked': '' }}
                 >
-                <label class="form-check-label" for="inlineRadio1">{{ $theme->name }}</label>
+                <label class="form-check-label" for="inlineRadio1{{ $theme->id }}">{{ $theme->name }}</label>
             </div>
         @endforeach
         </div>

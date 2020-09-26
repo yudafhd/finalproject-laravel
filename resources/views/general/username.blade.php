@@ -3,16 +3,22 @@
 <div class="row page-titles m-t-40">
     <div class="col-sm col-md text-center">
         <div class="wrapper-content">
-            <div class="profile-image">
-                @if($photo)
-                <img class="img-fluid rounded-circle" src="{{ Url('storage/user/profile/'. $photo) }}" />
-                @else
-                <img class="img-fluid rounded-circle" src="{{ asset('assets/images/user.svg') }}" />
-                @endif
-
+            <div class="main" style="display: flex;width: 380px; margin-left: auto;margin-right: auto;">
+                <div class="profile-image-section">
+                    @if($photo)
+                    <img class="img-fluid rounded-circle photo-section"
+                        src="{{ Url('storage/user/profile/'. $photo) }}" />
+                    @else
+                    <img class="img-fluid rounded-circle photo-section" src="{{ asset('assets/images/user.svg') }}" />
+                    @endif
+                </div>
+                <div class="information-section">
+                    <div class="profile-username">{{ '@'.$username }}</div>
+                    <div class="profile-status">{{ $tweet }}</div>
+                </div>
             </div>
-            <div class="profile-username">{{ '@'.$username }}</div>
-            <div class="profile-status">{{ $tweet }}</div>
+
+
             <div class="profile-user-menu">
                 <ul class="list-group list-group-flush">
                     @foreach ($links as $link )
