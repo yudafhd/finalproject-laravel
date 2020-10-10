@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UserPurchaseMapSeeder extends Seeder
+class SubjectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
