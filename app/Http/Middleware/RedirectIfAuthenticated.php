@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
         if (Auth::guard('admin')->check()) {
             return redirect('/backoffice');
         } else if (Auth::guard('web')->check()) {
-            return redirect('/general');
+            return redirect('/');
         }
         return $next($request);
     }
