@@ -39,7 +39,7 @@
                     Total Roles
                     <span class="label label-success label-rounded">{{count($roles)}}</span>
                 </span>
-                <a href="{{Route('admin.role.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('role.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
                    Buat
                 </a>
@@ -65,9 +65,9 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('admin.role.update', $role->id)}}">Update</a>
+                                                href="{{Route('role.update', $role->id)}}">Update</a>
                                             <a class="dropdown-item"
-                                                href="{{Route('admin.role.delete', $role->id)}}">Delete</a>
+                                                href="{{Route('role.delete', $role->id)}}">Delete</a>
                                         </div>
                                     </div>
                                 </td>

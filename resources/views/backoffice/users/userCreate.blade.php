@@ -33,7 +33,7 @@
                 </div>
             @endif
             <div class="card-body">
-                <form method="POST" action="{{ Route('admin.user.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ Route('user.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-body">
                         <h3 class="card-title" style="font-weight: bold">Personal Info</h3>
@@ -87,7 +87,7 @@
 
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                            <a href="{{Route('admin.user.list', 'admin')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{Route('user.list', 'admin')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                 </form>
             </div>

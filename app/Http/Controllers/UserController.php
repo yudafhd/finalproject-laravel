@@ -24,14 +24,14 @@ class UserController extends Controller
 
         $userList = User::all()->where('type', $type);;
         $success_message = $request->session()->get('alert-success');
-        return view('users.userList',  ['userList' => $userList, 'success_message' => $success_message]);
+        return view('backoffice.users.userList',  ['userList' => $userList, 'success_message' => $success_message]);
     }
 
     public function create()
     {
         $roles = Role::all();
-        $classes = Classes::all();
-        return view('users.userCreate',  ['classes' => $classes, 'roles' => $roles]);
+        // $class = Classes:all();
+        return view('backoffice.users.userCreate',  ['roles' => $roles]);
     }
 
     public function store(Request $request)
@@ -69,7 +69,8 @@ class UserController extends Controller
     {
         $userDetail = User::find($id);
         $roles = Role::all();
-        $classes = Classes::all();
+        // $classes = Classes::all();
+        $classes = [];
         return view('users.userUpdate',  ['userDetail' => $userDetail, 'classes' => $classes, 'roles' => $roles]);
     }
 

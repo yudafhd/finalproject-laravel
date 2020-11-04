@@ -36,7 +36,7 @@
                 @endif
                 
                 <div class=" m-t-10">
-                    <form method="POST" action="{{ Route('admin.role.store.update') }}">
+                    <form method="POST" action="{{ Route('role.store.update') }}">
                         @csrf
                         <h3 class="card-title">Info</h3>
                         <hr>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                            <a href="{{Route('admin.role.list')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{Route('role.list')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                     </form>
                 </div>
