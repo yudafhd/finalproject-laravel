@@ -13,10 +13,10 @@
     </div>
 </div>
 @if($isHasGeneral)
-<form method="POST" action="{{ Route('admin.user.general.store.update') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ Route('user.general.store.update') }}" enctype="multipart/form-data">
     @endif
     @if(!$isHasGeneral)
-    <form method="POST" action="{{ Route('admin.user.store.update') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ Route('user.store.update') }}" enctype="multipart/form-data">
         @endif
         @csrf
         <div class="row">

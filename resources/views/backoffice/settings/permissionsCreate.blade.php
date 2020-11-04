@@ -34,7 +34,7 @@
                 </div>
                 @endif
                 <div class=" m-t-10">
-                    <form method="POST" action="{{ Route('admin.permission.store') }}">
+                    <form method="POST" action="{{ Route('permission.store') }}">
                         @csrf
                         <div class="form-row">
                             <div class="col-md-5 mb-3">

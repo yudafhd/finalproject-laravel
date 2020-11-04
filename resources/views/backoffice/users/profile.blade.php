@@ -65,7 +65,7 @@
                 <div class="tab-pane active" id="settings" role="tabpanel">
                     <div class="card-body">
                         <form class="form-horizontal form-material" method="POST" enctype="multipart/form-data"
-                        action="{{ Route('admin.user.store.update.profile') }}">
+                        action="{{ Route('user.store.update.profile') }}">
                                 @csrf
                             <input type="hidden" name="id" value="{{auth()->user()->id}}">
                             <div class="form-group">
@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label for="example-email" class="col-md-12">Email</label>
                                 <div class="col-md-12">
-                                    <input name="email" type="email" value="{{auth()->user()->email}}" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email">
+                                    <input name="email" type="email" value="{{auth()->user()->email}}" placeholder="johnathan@com" class="form-control form-control-line" name="example-email" id="example-email">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -197,7 +197,7 @@
                                             <div class="u-text">
                                                 <h4>{{auth()->user()->name}}</h4>
                                                 <p class="text-muted">{{auth()->user()->email}}</p>
-                                                <a href="{{Route('admin.user.profile')}}"
+                                                <a href="{{Route('user.profile')}}"
                                                     class="btn btn-rounded btn-info btn-sm">View Profile</a>
                                             </div>
                                         </div>
@@ -209,7 +209,7 @@
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li> --}}
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{{ route('admin.logout.auth') }}" onclick="event.preventDefault();
+                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                       document.getElementById('logout-form').submit();">
                                             <i class="fa fa-power-off"></i> {{ __('Logout') }}
                                         </a>

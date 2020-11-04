@@ -33,7 +33,7 @@
                     </button>
                 </div>
                 @endif
-                <a href="{{Route('admin.user.create')}}"
+                <a href="{{Route('user.create')}}"
                     class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
                     Buat
@@ -68,10 +68,10 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('admin.user.update', $user->id)}}">Update</a>
+                                                href="{{Route('user.update', $user->id)}}">Update</a>
                                             <a class="dropdown-item" data-toggle="modal"
                                                 data-target="#exampleModalCenter"
-                                                onclick="insertModalInfo({url:'{{Route('admin.user.delete', $user->id)}}', info:'Nama : {{$user->name}} Tipe: {{$user->access_type}}'})">Delete</a>
+                                                onclick="insertModalInfo({url:'{{Route('user.delete', $user->id)}}', info:'Nama : {{$user->name}} Tipe: {{$user->access_type}}'})">Delete</a>
                                         </div>
                                     </div>
                                 </td>
