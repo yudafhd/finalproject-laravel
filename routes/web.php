@@ -17,20 +17,21 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');
         Route::post('/storeUpdateProfile', 'UserController@storeUpdateProfile')->name('user.store.update.profile');
     });
+    
+    Route::get('/profile', 'UserController@profile')->name('user.profile');
 
     // Absensi
-    Route::resource('absents', 'AbsentsController');
+    Route::resource('absent', 'AbsentController');
 
     // Kelas
-    Route::resource('classes', 'ClassesController');
+    Route::resource('kelas', 'KelasController');
 
     // Mata Pelajaran
-    Route::resource('subjects', 'SubjectsController');
+    Route::resource('subject', 'SubjectController');
 
     // Jadwal Pelajaran
-    Route::resource('schedules', 'SchedulesController');
+    Route::resource('schedule', 'ScheduleController');
 
-    Route::get('/profile', 'UserController@profile')->name('user.profile');
 
     //Roles
     Route::group(['prefix' => 'setting'], function () {

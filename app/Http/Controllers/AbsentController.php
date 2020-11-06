@@ -12,10 +12,14 @@ class AbsentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $absents = Absent::all();
+        $success_message = $request->session()->get('alert-success');
+        $alert_error = $request->session()->get('alert-error');
+        return view('backoffice.absents.absentsList',  ['absents' => $absents, 'alert_error' => $alert_error, 'success_message' => $success_message]);
     }
+
 
     /**
      * Show the form for creating a new resource.

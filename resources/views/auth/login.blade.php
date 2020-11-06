@@ -14,22 +14,24 @@
             @csrf
             <div class="form-group m-t-40">
                 <div class="col-xs-12">
-                    <input id="email" type="email" placeholder="Email"
+                    <input id="email" placeholder="Email"
                         class="form-control @error('email') is-invalid @enderror" name="email"
-                        value="{{ old('email') }}" required autocomplete="email" autofocus />
-
+                        value="superadmin@gmail.com" required autocomplete="email" autofocus />
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
+                    <span>
+                       Jika error tidak muncul warning ketika pakai username
+                    </span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-xs-12">
                     <input id="password" type="password"
                         class="form-control @error('password') is-invalid @enderror" name="password"
-                         placeholder="Password" required autocomplete="current-password" />
+                         placeholder="Password" required autocomplete="current-password" value="adminadmin" />
 
                     @error('password')
                     <span class="invalid-feedback" role="alert">

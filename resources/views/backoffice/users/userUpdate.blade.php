@@ -13,7 +13,7 @@
     </div>
 </div>
 @if($isHasGeneral)
-<form method="POST" action="{{ Route('user.general.store.update') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ Route('user.store.update') }}" enctype="multipart/form-data">
     @endif
     @if(!$isHasGeneral)
     <form method="POST" action="{{ Route('user.store.update') }}" enctype="multipart/form-data">
@@ -53,11 +53,55 @@
                                                 value="{{$userDetail->username}}">
                                         </div>
                                     </div>
+                                    @if ($userDetail->type == "guru")
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Nip</label>
+                                            <input type="text" name="nip" class="form-control"
+                                                value="{{$userDetail->nip}}">
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @if ($userDetail->type == "siswa")
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Nis</label>
+                                            <input type="text" name="nis" class="form-control"
+                                                value="{{$userDetail->nis}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Nama Keluarga</label>
+                                            <input type="text" name="parent_name" class="form-control"
+                                                value="{{$userDetail->parent_name}}">
+                                        </div>
+                                    </div>
+                                    @endif
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Phone</label>
                                             <input type="text" name="phone_number" class="form-control"
                                                 value="{{$userDetail->phone_number}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Tanggal Lahir</label>
+                                            <input id="mdatepicker" name="dob" class="form-control" 
+                                            value="{{ $userDetail->dob }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Alamat</label>
+                                            <textarea id="mdatepicker" name="address" class="form-control">{{ $userDetail->address }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Info Singkat</label>
+                                            <textarea id="mdatepicker" name="short_info" class="form-control">{{ $userDetail->short_info }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -67,20 +111,18 @@
                                             <label class="control-label">Type
                                                 <small class="form-control-feedback"> user ini sekarang
                                                     <strong>
-                                                        {{$userDetail->access_type}}
+                                                        {{$userDetail->type}}
                                                     </strong>
                                                 </small>
                                             </label>
-                                            @if(!$isHasGeneral)
-                                            <select class="form-control" name="access_type" custom-select">
+                                            <select class="form-control" name="type" custom-select">
                                                 @foreach ($roles as $role)
                                                 <option value="{{$role->name}}"
-                                                    {{$userDetail->access_type == $role->name ? 'selected' :''}}>
+                                                    {{$userDetail->type == $role->name ? 'selected' :''}}>
                                                     {{$role->name}}
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -89,56 +131,33 @@
                                             <input type="text" name="password" class="form-control" value="">
                                         </div>
                                     </div>
-                                    @if(!$isHasGeneral)
-                                    <div class="col-lg-12 col-md-12 m-b-20">
-                                        <input type="file" name="foto" id="input-file-now" class="dropify" />
-                                    </div>
-                                    @endif
-                                    <div class="col-md-12">
-                                        @if(!$isHasGeneral)
-                                        @if($userDetail->photo)
-                                        <img class="img-fluid"
-                                            src="{{ Url('storage/admin/profile/'. $userDetail->photo) }}" />
-                                        @endif
-                                        @endif
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @if($isHasGeneral)
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
                             <center class="m-t-30">
-                                @if($userDetail->general->photo)
+                                @if($userDetail->photo)
                                 <img class="img-fluid rounded-circle"
-                                    src="{{ Url('storage/user/profile/'. $userDetail->general->photo) }}" />
+                                    src="{{ Url('storage/user/profile/'. $userDetail->photo) }}" />
                                 @else
                                 <img src="{{ asset('assets/images/users/user.png') }}" class="img-circle" width="150">
                                 @endif
                                 <h4 class="card-title m-t-10">{{ $userDetail->name }}</h4>
                                 <h6 class="card-subtitle">{{'@' . $userDetail->username }}</h6>
-                                <!-- <div class="row text-center justify-content-md-center">
-                                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i>
-                                        <font class="font-medium">254</font>
-                                    </a></div>
-                                <div class="col-4"><a href="javascript:void(0)" class="link"><i
-                                            class="icon-picture"></i>
-                                        <font class="font-medium">54</font>
-                                    </a></div>
-                            </div> -->
                             </center>
                         </div>
                         <div>
                             <hr>
                         </div>
                         <div class="card-body">
-                            <small class="text-muted">Membership </small>
-                            <h6>hannagover@gmail.com</h6>
+                            <small class="text-muted">Email </small>
+                            <h6>{{ $userDetail->email }}</h6>
                             <small class="text-muted p-t-30 db">Phone</small>
-                            <h6>+91 654 784 547</h6>
+                            <h6> {{ $userDetail->phone_number }}</h6>
                             <br>
                             <button class="btn btn-circle btn-secondary"><i class="fab fa-facebook-f"></i></button>
                             <button class="btn btn-circle btn-secondary"><i class="fab fa-twitter"></i></button>
@@ -146,12 +165,10 @@
                         </div>
                     </div>
                 </div>
-                @endif
-
                 <div class="form-actions m-l-15">
                     <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                 </div>
-    </form>
+        </form>
                     <button onclick="goBack()" class="btn btn-info text-white m-l-10">Cancel</button>
 
     @endsection

@@ -64,7 +64,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Type</label>
-                                    <select class="form-control" name="access_type" custom-select">
+                                    <select class="form-control custom-select" name="type" id="type-select">
                                         @foreach ($roles as $role)
                                         @if($role->name != 'general')
                                         <option value="{{$role->name}}">{{$role->name}}</option>
@@ -73,18 +73,63 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-6 nip" style="display:none;">
+                                <div class="form-group">
+                                    <label class="control-label">Nip</label>
+                                    <input type="number" name="nip" class="form-control" value="">
+                                    {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
+                                </div>
+                            </div>
+                            <div class="col-md-6 nis" style="display: none;">
+                                <div class="form-group">
+                                    <label class="control-label">Nis</label>
+                                    <input type="number" name="nis" class="form-control" value="">
+                                    {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
+                                </div>
+                            </div>
+                            <div class="col-md-6 nama-keluarga" style="display: none;">
+                                <div class="form-group">
+                                    <label class="control-label">Nama Keluarga</label>
+                                    <input type="text" name="parent_name" class="form-control" value="">
+                                    {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Tanggal Lahir</label>
+                                    <input id="mdatepicker" name="dob" class="form-control" value="">
+                                    {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">No. Telepon</label>
+                                    <input type="number" name="phone_number" class="form-control" value="">
+                                    {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Info Singkat</label>
+                                    <textarea name="short_info" class="form-control" ></textarea>
+                                    {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Alamat</label>
+                                    <textarea name="address" class="form-control" ></textarea>
+                                    {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label p-t-20">Password default: <span
                                             class="badge badge-info">adminadmin</span></label>
                                 </div>
                             </div>
-                                {{-- <div class="col-lg-6 col-md-6 m-b-20">
-                                    <input type="file" name="foto" id="input-file-now" class="dropify" />
-                            </div> --}}
-                            
+                        </div>
                     </div>
-
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                             <a href="{{Route('user.list', 'admin')}}" class="btn btn-inverse">Cancel</a>
@@ -94,5 +139,27 @@
         </div>
     </div>
 </div>
-
+<script>
+    $( document ).ready(function() {
+        $("#type-select").change(function() {
+            console.log($(this).val());
+            let type_user = $(this).val();
+            if(type_user == "admin") {
+                $(".nis").hide();
+                $(".nip").hide();
+                $(".nama-keluarga").hide();
+            }
+            if(type_user == "siswa") {
+                $(".nis").show();
+                $(".nip").hide();
+                $(".nama-keluarga").show();
+            }
+            if(type_user == "guru") {
+                $(".nis").hide();
+                $(".nip").show();
+                $(".nama-keluarga").hide();
+            }
+        });
+    });
+</script>
 @endsection

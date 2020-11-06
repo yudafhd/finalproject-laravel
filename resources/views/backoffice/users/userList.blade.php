@@ -33,6 +33,10 @@
                     </button>
                 </div>
                 @endif
+                <span>
+                    Total User
+                    <span class="label label-success label-rounded">{{count($userList)}}</span>
+                </span>
                 <a href="{{Route('user.create')}}"
                     class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-account-plus"></i>
@@ -44,9 +48,12 @@
                         <thead>
                             <tr>
                                 <th>Nama</th>
-                                <th>Username</th>
+                                @if ($type == "siswa")
+                                <th>Nama Keluarga</th>
+                                @endif
+                                <th>Nomer Telepon</th>
                                 <th>Email</th>
-                                <th>Tanggal Daftar</th>
+                                <th>Address</th>
                                 <th>Access</th>
                                 <th></th>
                             </tr>
@@ -55,10 +62,13 @@
                             @foreach ($userList as $user)
                             <tr>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->username }}</td>
+                                @if ($type == "siswa")
+                                <td>{{ $user->parent_name }}</td>
+                                @endif
+                                <td>{{ $user->phone_number }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->created_at }}</td>
-                                <td>{{ $user->access_type == 'rpk' ? 'ewarong' : $user->access_type }}</td>
+                                <td>{{ $user->address }}</td>
+                                <td>{{ $user->type }}</td>
                                 <td>
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
@@ -81,7 +91,7 @@
                     </table>
                 </div>
                 @else
-                <div style="text-align: center;padding:20px">Belum ada data user</div>
+                <div style="text-align: center;padding:20px">Belum ada data</div>
                 @endif
             </div>
         </div>

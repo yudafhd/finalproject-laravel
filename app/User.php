@@ -21,7 +21,18 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'username',
         'password',
-        'access_type',
+        'user',
+        'type',
+        'dob',
+        'address',
+        'city',
+        'short_info',
+        'city',
+        'nis',
+        'nip',
+        'parent_name',
+        'phone_number',
+        'password'
     ];
 
     protected $hidden = [
@@ -32,40 +43,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function general()
-    {
-        return $this->hasOne('App\General');
-    }
-
-    public function links()
-    {
-        return $this->hasMany('App\Link');
-    }
-
-    public function transactions()
-    {
-        return $this->hasMany('App\Transaction');
-    }
-
-    public function userPurchaseMaps()
-    {
-        return $this->hasMany('App\UserPurchaseMap')
-            ->orderBy('id', 'desc');
-    }
-
-    public function userPurchaseMapNotExpired()
-    {
-        return $this->hasMany('App\UserPurchaseMap')
-            ->whereDate('expired_purchase_at', '>=', \Carbon\Carbon::today()->toDateString())
-            ->orderBy('id', 'desc');
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-        static::deleting(function ($user) {
-            $user->general()->delete();
-            $user->links()->delete();
-        });
-    }
+    // public static function boot()
+    // {
+    //     parent::boot();
+    //     static::deleting(function ($user) {
+    //         $user->general()->delete();
+    //         $user->links()->delete();
+    //     });
+    // }
 }

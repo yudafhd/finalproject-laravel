@@ -77,9 +77,7 @@
                     </table>
                 </div>
                 @else 
-                <div class="table-responsive m-t-10">
-                    Roles belum ada
-                </div>
+                <div style="text-align: center;padding:20px">Belum ada data</div>
                 @endif
             </div>
         </div>

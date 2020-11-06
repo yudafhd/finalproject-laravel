@@ -30,7 +30,7 @@
                     Total Absensi
                     <span class="label label-success label-rounded">{{count($absents)}}</span>
                 </span>
-                <a href="{{Route('absents.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('absent.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     Buat
                 </a>
@@ -71,8 +71,8 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('absents.edit', $absent->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('absents.destroy', $absent->id)}}">
+                                                href="{{Route('absent.edit', $absent->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('absent.destroy', $absent->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Classes;
-use Illuminate\Support\Facades\Auth;
+use App\Kelas;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 
@@ -24,43 +23,36 @@ class UserController extends Controller
 
         $userList = User::all()->where('type', $type);;
         $success_message = $request->session()->get('alert-success');
-        return view('backoffice.users.userList',  ['userList' => $userList, 'success_message' => $success_message]);
+        return view('backoffice.users.userList',  ['type'=>$type, 'userList' => $userList, 'success_message' => $success_message]);
     }
 
     public function create()
     {
         $roles = Role::all();
-        // $class = Classes:all();
-        return view('backoffice.users.userCreate',  ['roles' => $roles]);
+        $kelas = Kelas::all();
+        return view('backoffice.users.userCreate', compact('roles', 'kelas'));
     }
 
     public function store(Request $request)
     {
-        try {
-            $roles = Role::findByName($request->type_user);
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'type' => $roles->name,
-                'dob' => $request->dob,
-                'address' => $request->address,
-                'city' => $request->city,
-                'short_info' => $request->short_info,
-                'city' => $request->city,
-                'nis' => $request->nis,
-                'nip' => $request->nip,
-                'class_id' => $request->class_id ? $request->class_id : null,
-                'parent_name' => $request->parent_name,
-                'password' => bcrypt('Smkn1user'),
 
-            ]);
+        try {
+            $roles = Role::findByName($request->type);
+
+            $additional = [
+                'password' => bcrypt('adminadmin'),
+                'type' => $roles->name
+            ];
+            $user = User::create(array_merge($request->all(), $additional));
+
             $user->syncRoles($roles->name);
+
             $request->session()->flash('alert-success', "User {$request->name} berhasil di buat!");
-            return redirect('/user/' . $request->type_user);
+            return redirect('/user/' . $request->type);
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
             dd($e->getMessage());
-            return redirect('/user/' . $request->type_user);
+            return redirect('/user/' . $request->type);
         }
     }
 
@@ -69,15 +61,15 @@ class UserController extends Controller
     {
         $userDetail = User::find($id);
         $roles = Role::all();
-        // $classes = Classes::all();
-        $classes = [];
-        return view('users.userUpdate',  ['userDetail' => $userDetail, 'classes' => $classes, 'roles' => $roles]);
+        $classes = Kelas::all();
+        $isHasGeneral = true;
+        return view('backoffice.users.userUpdate',  ['isHasGeneral'=>$isHasGeneral, 'userDetail' => $userDetail, 'classes' => $classes, 'roles' => $roles]);
     }
 
     public function storeUpdate(Request $request)
     {
         try {
-            $roles = Role::findByName($request->type_user);
+            $roles = Role::findByName($request->type);
             $userDetail = User::find($request->id);
 
             // assign role to user
@@ -87,6 +79,7 @@ class UserController extends Controller
             }
 
             $userDetail->name = $request->name;
+            $userDetail->username = $request->username;
             $userDetail->email = $request->email;
             $userDetail->dob = $request->dob;
             $userDetail->address = $request->address;
@@ -95,7 +88,7 @@ class UserController extends Controller
             $userDetail->city = $request->city;
             $userDetail->nis = $request->nis;
             $userDetail->nip = $request->nip;
-            $userDetail->class_id = $request->class_id;
+            $userDetail->phone_number = $request->phone_number;
             $userDetail->parent_name = $request->parent_name;
 
             if ($request->password) {
@@ -103,11 +96,11 @@ class UserController extends Controller
             }
             $userDetail->save();
             $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
-            return redirect('/user/admin');
+            return redirect('/user/'.$request->type);
         } catch (\Exception $e) {
             dd($e->getMessage());
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect('/user/admin/');
+            return redirect('/user/'.$request->type);
         }
     }
 
@@ -153,7 +146,6 @@ class UserController extends Controller
     public function delete($id, Request $request)
     {
         try {
-
             $user = User::find($id);
             $user->syncRoles();
             $user->delete();
