@@ -19,7 +19,7 @@
 
                 @if ($success_message)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{$success_message}}
+                    <strong>{{$success_message}}</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -51,9 +51,9 @@
                             <tr>
                                 <td>{{ $absent->user->name }}</td>
                                 <td>
-                                    {{ $absent->schedule->class->grade }}
-                                    {{ $absent->schedule->class->majors }}
-                                    {{ $absent->schedule->class->number }}
+                                    {{ $absent->schedule->kelas->grade }}
+                                    {{ $absent->schedule->kelas->majors }}
+                                    {{ $absent->schedule->kelas->number }}
                                     
                                     -
                                     {{ $absent->schedule->subject->name }}
@@ -87,8 +87,8 @@
                     </table>
                 </div>
                 @else
-                <div class="table-responsive m-t-10">
-                    Absensi belum ada
+                <div class="table-responsive m-20" style="text-align: center;">
+                    Absent Belum Ada
                 </div>
                 @endif
             </div>

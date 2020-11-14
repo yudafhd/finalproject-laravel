@@ -24,7 +24,7 @@
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="{{asset('assets/plugins/html5-editor/bootstrap-wysihtml5.css')}}">
 <link rel="stylesheet" type="text/css" href="https://selectize.github.io/selectize.js/css/selectize.default.css">
-
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css">
 <style>
     .dropify-wrapper .dropify-message p {
         text-align: center;

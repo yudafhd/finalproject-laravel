@@ -80,6 +80,16 @@
                                     {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
                                 </div>
                             </div>
+                            <div class="col-md-6 kelas" style="display:none;">
+                                <div class="form-group">
+                                    <label class="control-label">Kelas</label>
+                                    <select class="form-control" name="kelas_id" custom-select">
+                                        @foreach ($kelas as $class)
+                                        <option value="{{$class->id}}">{{$class->grade}} - {{$class->majors}} {{$class->number}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-md-6 nis" style="display: none;">
                                 <div class="form-group">
                                     <label class="control-label">Nis</label>
@@ -147,16 +157,19 @@
             if(type_user == "admin") {
                 $(".nis").hide();
                 $(".nip").hide();
+                $(".kelas").hide();
                 $(".nama-keluarga").hide();
             }
             if(type_user == "siswa") {
                 $(".nis").show();
                 $(".nip").hide();
+                $(".kelas").show();
                 $(".nama-keluarga").show();
             }
             if(type_user == "guru") {
                 $(".nis").hide();
                 $(".nip").show();
+                $(".kelas").hide();
                 $(".nama-keluarga").hide();
             }
         });

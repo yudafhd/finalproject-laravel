@@ -24,7 +24,7 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('classes.update',$class->id) }}">
+                <form method="POST" action="{{ Route('kelas.update',$kelas->id) }}">
                     @csrf
                     {{ method_field('PUT') }}
                     <div class="form-body">
@@ -34,25 +34,25 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Jurusan</label>
-                                <input type="text" class="form-control" name="majors" value="{{$class->majors}}"/>
+                                <input type="text" class="form-control" name="majors" value="{{$kelas->majors}}"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Kelas</label>
-                                    <input type="text" class="form-control" name="grade" value="{{$class->grade}}"/>
+                                    <input type="text" class="form-control" name="grade" value="{{$kelas->grade}}"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Nomor Kelas</label>
-                                    <input type="text" class="form-control" name="number" value="{{$class->number}}"/>
+                                    <input type="text" class="form-control" name="number" value="{{$kelas->number}}"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Keterangan</label>
-                                    <textarea name="description" class="form-control">{{$class->description}}</textarea>
+                                    <textarea name="description" class="form-control">{{$kelas->description}}</textarea>
                                 </div>
                             </div>
                         </div>

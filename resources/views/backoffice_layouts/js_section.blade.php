@@ -27,6 +27,8 @@
 <script src="https://selectize.github.io/selectize.js/js/selectize.js"></script>
 <script src="{{ asset('assets/plugins/html5-editor/wysihtml5-0.3.0.js')}}"></script>
 <script src="{{ asset('assets/plugins/html5-editor/bootstrap-wysihtml5.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
 <script>
     $(document).ready(function () {
         $(".select2").select2();

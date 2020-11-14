@@ -30,7 +30,7 @@
                         </li>
                         @endif
                         @if (auth()->user()->type ==='superadmin' ||  auth()->user()->can('absents'))
-                        <li><a href="{{Route('schedule.index')}}"><i class="mdi mdi-book-open-variant"></i>
+                        <li><a href="{{Route('subject.index')}}"><i class="mdi mdi-book-open-variant"></i>
                             <span class="hide-menu">
                                 Mata Pelajaran
                             </span> 

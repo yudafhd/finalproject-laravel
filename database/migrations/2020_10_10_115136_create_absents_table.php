@@ -21,8 +21,8 @@ class CreateAbsentsTable extends Migration
             $table->foreign('schedule_id')->references('id')->on('schedules');
             $table->string('reason');
             $table->date('date_absent');
-            $table->mediumText('description');
-            $table->string('image');
+            $table->mediumText('description')->nullable();
+            $table->string('image')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

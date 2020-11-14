@@ -18,25 +18,25 @@
             <div class="card-body">
                 @if ($success_message)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{$success_message}}
+                    <strong>{{$success_message}}</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 @endif
-                @if ($alert_error)
+                @if ($error_message)
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>{{$alert_error}}
+                    <strong>{{$error_message}}</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 @endif
                 <span>
-                    Total kelas 
+                    Total mata pelajaran 
                     <span class="label label-success label-rounded">{{count($subjects)}}</span>
                 </span>
-                <a href="{{Route('subjects.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('subject.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     Buat
                 </a>
@@ -64,8 +64,8 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('subjects.edit', $subject->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('subjects.destroy', $subject->id)}}">
+                                                href="{{Route('subject.edit', $subject->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('subject.destroy', $subject->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>
@@ -80,8 +80,8 @@
                     </table>
                 </div>
                 @else
-                <div class="table-responsive m-t-10">
-                    Absensi belum ada
+                <div class="table-responsive m-20" style="text-align: center;">
+                    Mata Pelajaran Belum Ada
                 </div>
                 @endif
             </div>

@@ -17,7 +17,7 @@ class CreateSubjectsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('code');
-            $table->mediumText('description');
+            $table->mediumText('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

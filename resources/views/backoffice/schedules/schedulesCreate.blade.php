@@ -24,7 +24,7 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('schedules.store') }}">
+                <form method="POST" action="{{ Route('schedule.store') }}">
                     @csrf
                     <div class="form-body">
                         <h3 class="card-title" style="font-weight: bold">Info</h3>
@@ -43,8 +43,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Kelas</label>
-                                    <select class="form-control" name="class_id" custom-select">
-                                        @foreach ($classes as $class)
+                                    <select class="form-control" name="kelas_id" custom-select">
+                                        @foreach ($kelas as $class)
                                         <option value="{{$class->id}}">{{$class->grade}} - {{$class->majors}} {{$class->number}}</option>
                                         @endforeach
                                     </select>
@@ -114,7 +114,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Simpan</button>
-                            <a href="{{url('/absents')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{url('/schedule')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                 </form>
             </div>

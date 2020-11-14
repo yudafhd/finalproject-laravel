@@ -24,7 +24,7 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('absents.update', $absents->id) }}">
+                <form method="POST" action="{{ Route('absent.update', $absents->id) }}">
                     @csrf
                     {{ method_field('PUT') }}
                     <div class="form-body">
@@ -51,9 +51,9 @@
                                         <option value="{{$schedule->id}}"
                                             {{$absents->schedule_id == $schedule->id ? 'selected' : ''}}
                                             >
-                                            {{$schedule->class->grade}}
-                                            {{$schedule->class->majors}}
-                                            {{$schedule->class->number}}
+                                            {{$schedule->kelas->grade}}
+                                            {{$schedule->kelas->majors}}
+                                            {{$schedule->kelas->number}}
                                             -
                                             {{$schedule->subject->name}}
                                             -
@@ -90,7 +90,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Simpan</button>
-                            <a href="{{url('/absents')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{url('/absent')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                 </form>
             </div>

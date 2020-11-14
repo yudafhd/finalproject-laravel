@@ -12,19 +12,23 @@ class KelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $classes = Kelas::all();
+        $success_message = $request->session()->get('alert-success');
+        $error_message = $request->session()->get('alert-error');
+        return view('backoffice.classes.classesList', compact('classes','success_message', 'error_message'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $success_message = $request->session()->get('alert-success');
+        $error_message = $request->session()->get('alert-error');
+        return view('backoffice.classes.classesCreate', compact('success_message', 'error_message'));
     }
 
     /**
@@ -35,7 +39,14 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $kelas = Kelas::create($request->all());
+            $request->session()->flash('alert-success', "Kelas {$kelas->majors} {$kelas->grade} {$kelas->number} berhasil di buat!");
+            return redirect('/kelas');
+        }catch(\Exception $e) {
+            $request->session()->flash('alert-success', $e->getMessage());
+            return redirect('/kelas');
+        }
     }
 
     /**
@@ -46,7 +57,7 @@ class KelasController extends Controller
      */
     public function show(Kelas $kelas)
     {
-        //
+       
     }
 
     /**
@@ -55,9 +66,11 @@ class KelasController extends Controller
      * @param  \App\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kelas $kelas)
+    public function edit(Kelas $kela, Request $request)
     {
-        //
+        $kelas = $kela;
+        $error_message = $request->session()->get('alert-error');
+        return view('backoffice.classes.classesUpdate', compact('kelas', 'error_message'));
     }
 
     /**
@@ -67,9 +80,20 @@ class KelasController extends Controller
      * @param  \App\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, Kelas $kela)
     {
-        //
+        try {
+            $kela->update([
+                'majors' => $request->majors,
+                'grade' => $request->grade,
+                'number' => $request->number
+            ]);
+            $request->session()->flash('alert-success', "Kelas  {$kela->grade} {$kela->majors} {$kela->number} berhasil di update!");
+            return redirect('/kelas');
+        } catch( \Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect('/kelas');
+        }
     }
 
     /**
@@ -78,8 +102,15 @@ class KelasController extends Controller
      * @param  \App\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $kelas)
+    public function destroy(Request $request, Kelas $kela)
     {
-        //
+        try {
+            $kela->delete();
+            $request->session()->flash('alert-success', "Kelas  {$kela->grade} {$kela->majors} {$kela->number} berhasil di dihapus!");
+            return redirect('/kelas');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error',  $e->getMessage());
+            return redirect('/kelas');
+        }
     }
 }

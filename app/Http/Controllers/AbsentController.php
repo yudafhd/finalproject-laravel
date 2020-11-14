@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Absent;
 use Illuminate\Http\Request;
+use App\Absent;
+use App\Schedule;
+use App\User;
 
 class AbsentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         $absents = Absent::all();
@@ -20,70 +18,75 @@ class AbsentController extends Controller
         return view('backoffice.absents.absentsList',  ['absents' => $absents, 'alert_error' => $alert_error, 'success_message' => $success_message]);
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        $users = User::all()->where('type', 'siswa');
+        $schedules = Schedule::all();
+        $error_message = $request->session()->get('alert-error');
+        return view('backoffice.absents.absentsCreate', ['users' => $users, 'schedules' => $schedules, 'error_message' => $error_message]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+
+        try {
+            $request->validate([
+                'user_id' => 'required',
+                'schedule_id' => 'required',
+                'date_absent' => 'required',
+                'reason' => 'required',
+            ]);
+            Absent::create($request->all());
+            $request->session()->flash('alert-success', "Absen berhasil dibuat!");
+            return redirect()->route('absent.index');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect()->route('absent.create');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Absent  $absent
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Absent $absent)
+    public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Absent  $absent
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Absent $absent)
+    public function edit($id, Request $request)
     {
-        //
+        $absents = Absent::find($id);
+        $users = User::all()->where('type', 'siswa');
+        $schedules = Schedule::all();
+        $error_message = $request->session()->get('alert-error');
+        return view('backoffice.absents.absentsUpdate', ['absents' => $absents, 'users' => $users, 'schedules' => $schedules, 'error_message' => $error_message]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Absent  $absent
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Absent $absent)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            $absents = Absent::find($id);
+            $absents->user_id = $request->user_id;
+            $absents->schedule_id = $request->schedule_id;
+            $absents->date_absent = $request->date_absent;
+            $absents->reason = $request->reason;
+            $absents->description = $request->description;
+            $absents->save();
+            $request->session()->flash('alert-success', "Absen berhasil di perbarui!");
+            return redirect()->route('absent.index');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect()->route('absent.index');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Absent  $absent
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Absent $absent)
+    public function destroy(Request $request, Absent $absent)
     {
-        //
+        try {
+            $absent->delete();
+            $request->session()->flash('alert-success', "Absen berhasil dihapus!");
+            return redirect()->route('absent.index');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect()->route('absent.index');
+        }
     }
 }

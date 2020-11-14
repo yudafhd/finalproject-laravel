@@ -24,7 +24,7 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('subjects.store') }}">
+                <form method="POST" action="{{ Route('subject.store') }}">
                     @csrf
                     <div class="form-body">
                         <h3 class="card-title" style="font-weight: bold">Info</h3>
@@ -38,14 +38,14 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Kode (Jika kosong auto generate) </label>
+                                    <label class="control-label">Kode (jika kosong auto generate) </label>
                                     <input type="text" class="form-control" name="code" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Simpan</button>
-                            <a href="{{url('/absents')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{url('/subject')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                 </form>
             </div>

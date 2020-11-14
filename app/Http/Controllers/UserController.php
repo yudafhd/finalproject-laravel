@@ -35,7 +35,6 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-
         try {
             $roles = Role::findByName($request->type);
 
@@ -61,9 +60,9 @@ class UserController extends Controller
     {
         $userDetail = User::find($id);
         $roles = Role::all();
-        $classes = Kelas::all();
+        $kelas = Kelas::all();
         $isHasGeneral = true;
-        return view('backoffice.users.userUpdate',  ['isHasGeneral'=>$isHasGeneral, 'userDetail' => $userDetail, 'classes' => $classes, 'roles' => $roles]);
+        return view('backoffice.users.userUpdate',  ['isHasGeneral'=>$isHasGeneral, 'userDetail' => $userDetail, 'kelas' => $kelas, 'roles' => $roles]);
     }
 
     public function storeUpdate(Request $request)
@@ -88,6 +87,7 @@ class UserController extends Controller
             $userDetail->city = $request->city;
             $userDetail->nis = $request->nis;
             $userDetail->nip = $request->nip;
+            $userDetail->kelas_id = $request->kelas_id;
             $userDetail->phone_number = $request->phone_number;
             $userDetail->parent_name = $request->parent_name;
 

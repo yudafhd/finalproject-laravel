@@ -18,7 +18,7 @@ class CreateKelasTable extends Migration
             $table->string('majors');
             $table->string('grade');
             $table->string('number');
-            $table->mediumText('description');
+            $table->mediumText('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

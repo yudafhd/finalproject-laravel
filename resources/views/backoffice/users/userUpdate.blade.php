@@ -20,11 +20,36 @@
         @endif
         @csrf
         <div class="row">
-            @if(!$isHasGeneral)
-            <div class="col-lg-12">
-                @else
-                <div class="col-lg-6">
-                    @endif
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <center class="m-t-30">
+                            @if($userDetail->photo)
+                            <img class="img-fluid rounded-circle"
+                                src="{{ Url('storage/user/profile/'. $userDetail->photo) }}" />
+                            @else
+                            <img src="{{ asset('assets/images/users/user.png') }}" class="img-circle" width="150">
+                            @endif
+                            <h4 class="card-title m-t-10">{{ $userDetail->name }} ({{ $userDetail->type }})</h4>
+                            <h6 class="card-subtitle">{{'@' . $userDetail->username }}</h6>
+                        </center>
+                    </div>
+                    <div>
+                        <hr>
+                    </div>
+                    <div class="card-body">
+                        <small class="text-muted">Email </small>
+                        <h6>{{ $userDetail->email }}</h6>
+                        <small class="text-muted p-t-30 db">Phone</small>
+                        <h6> {{ $userDetail->phone_number }}</h6>
+                        <br>
+                        <button class="btn btn-circle btn-secondary"><i class="fab fa-facebook-f"></i></button>
+                        <button class="btn btn-circle btn-secondary"><i class="fab fa-twitter"></i></button>
+                        <button class="btn btn-circle btn-secondary"><i class="fab fa-youtube"></i></button>
+                    </div>
+                </div>
+            </div>
+                <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
                             <input type="hidden" name="id" class="form-control" value="{{$userDetail->id}}">
@@ -75,6 +100,18 @@
                                             <label class="control-label">Nama Keluarga</label>
                                             <input type="text" name="parent_name" class="form-control"
                                                 value="{{$userDetail->parent_name}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Kelas</label>
+                                            <select class="form-control" name="kelas_id" custom-select">
+                                                @foreach ($kelas as $class)
+                                                <option value="{{$class->id}}"
+                                                    {{$userDetail->kelas_id == $class->id ? 'selected': ''}}
+                                                    >{{$class->grade}} - {{$class->majors}} {{$class->number}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     @endif
@@ -136,39 +173,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <center class="m-t-30">
-                                @if($userDetail->photo)
-                                <img class="img-fluid rounded-circle"
-                                    src="{{ Url('storage/user/profile/'. $userDetail->photo) }}" />
-                                @else
-                                <img src="{{ asset('assets/images/users/user.png') }}" class="img-circle" width="150">
-                                @endif
-                                <h4 class="card-title m-t-10">{{ $userDetail->name }}</h4>
-                                <h6 class="card-subtitle">{{'@' . $userDetail->username }}</h6>
-                            </center>
-                        </div>
-                        <div>
-                            <hr>
-                        </div>
-                        <div class="card-body">
-                            <small class="text-muted">Email </small>
-                            <h6>{{ $userDetail->email }}</h6>
-                            <small class="text-muted p-t-30 db">Phone</small>
-                            <h6> {{ $userDetail->phone_number }}</h6>
-                            <br>
-                            <button class="btn btn-circle btn-secondary"><i class="fab fa-facebook-f"></i></button>
-                            <button class="btn btn-circle btn-secondary"><i class="fab fa-twitter"></i></button>
-                            <button class="btn btn-circle btn-secondary"><i class="fab fa-youtube"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-actions m-l-15">
+                <div style="width:100%;text-align:right;margin-right:1rem">
                     <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                </div>
-        </form>
                     <button onclick="goBack()" class="btn btn-info text-white m-l-10">Cancel</button>
-
+                </div>
+                
+        </div>
+        </form>
     @endsection

@@ -24,7 +24,7 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('subjects.update', $subject->id) }}">
+                <form method="POST" action="{{ Route('subject.update', $subject->id) }}">
                     @csrf
                     {{ method_field('PUT') }}
                     <div class="form-body">
@@ -46,7 +46,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Simpan</button>
-                            <a href="{{url('/subjects')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{url('/subject')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                 </form>
             </div>

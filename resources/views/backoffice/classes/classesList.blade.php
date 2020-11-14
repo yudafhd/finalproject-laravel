@@ -18,15 +18,15 @@
             <div class="card-body">
                 @if ($success_message)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{$success_message}}
+                    <strong>{{$success_message}}</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 @endif
-                @if ($alert_error)
+                @if ($error_message)
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>{{$alert_error}}
+                    <strong>{{$alert_error}}</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -36,7 +36,7 @@
                     Total kelas 
                     <span class="label label-success label-rounded">{{count($classes)}}</span>
                 </span>
-                <a href="{{Route('classes.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('kelas.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     Buat
                 </a>
@@ -45,7 +45,7 @@
                     <table id="myTable" class="table">
                         <thead>
                             <tr>
-                                <th>Nama kelas</th>
+                                <th>Kelas , Jurusan , Nomer Kelas</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -62,8 +62,8 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('classes.edit', $classe->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('classes.destroy', $classe->id)}}">
+                                                href="{{Route('kelas.edit', $classe->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('kelas.destroy', $classe->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>

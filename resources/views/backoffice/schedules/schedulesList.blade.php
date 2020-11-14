@@ -18,7 +18,7 @@
             <div class="card-body">
                 @if ($success_message)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{$success_message}}
+                    <strong>{{$success_message}}</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -26,7 +26,7 @@
                 @endif
                 @if ($alert_error)
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>{{$alert_error}}
+                    <strong>{{$alert_error}}</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -36,7 +36,7 @@
                     Total Jadwal 
                     <span class="label label-success label-rounded">{{count($schedules)}}</span>
                 </span>
-                <a href="{{Route('schedules.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
+                <a href="{{Route('schedule.create')}}" class="btn btn-primary waves-effect waves-light m-b-20 float-right">
                     <i class="mdi mdi-plus"></i>
                     Buat
                 </a>
@@ -55,14 +55,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($schedules as $schedule)
+                            @foreach ($schedules as $schedules)
                             <tr>
-                            <td>{{$schedule->class->grade}} - {{ $schedule->class->majors }} {{$schedule->class->number}}</td>
-                            <td>{{$schedule->subject->name}}</td>
-                            <td>{{$schedule->user->name}}</td>
-                            <td>{{$schedule->day}}</td>
-                            <td>{{$schedule->semester}}</td>
-                            <td>{{$schedule->year}}</td>
+                            <td>{{$schedules->kelas->grade}} - {{ $schedules->kelas->majors }} {{$schedules->kelas->number}}</td>
+                            <td>{{$schedules->subject->name}}</td>
+                            <td>{{$schedules->user->name}}</td>
+                            <td>{{$schedules->day}}</td>
+                            <td>{{$schedules->semester}}</td>
+                            <td>{{$schedules->year}}</td>
                                 <td style="text-align: center">
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"
@@ -72,8 +72,8 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('schedules.edit', $schedule->id)}}">Update</a>
-                                                <form method="POST" action="{{Route('schedules.destroy', $schedule->id)}}">
+                                                href="{{Route('schedule.edit', $schedules->id)}}">Update</a>
+                                                <form method="POST" action="{{Route('schedule.destroy', $schedules->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn"> Delete </button>
@@ -88,8 +88,8 @@
                     </table>
                 </div>
                 @else
-                <div class="table-responsive m-t-10">
-                    Absensi belum ada
+                <div class="table-responsive m-20" style="text-align: center;">
+                    Jadwal Belum Ada
                 </div>
                 @endif
             </div>

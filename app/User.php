@@ -30,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'city',
         'nis',
         'nip',
+        'kelas_id',
         'parent_name',
         'phone_number',
         'password'
@@ -38,6 +39,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token', 'created_at', 'updated_at',
     ];
+
+    protected $dates = ['deleted_at'];
 
     protected $casts = [
         'email_verified_at' => 'datetime',

@@ -24,7 +24,7 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('schedules.update', $schedule->id) }}">
+                <form method="POST" action="{{ Route('schedule.update', $schedule->id) }}">
                     @csrf
                     {{ method_field('PUT') }}
                     <div class="form-body">
@@ -46,10 +46,10 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Kelas</label>
-                                    <select class="form-control" name="class_id" custom-select">
-                                        @foreach ($classes as $class)
+                                    <select class="form-control" name="kelas_id" custom-select">
+                                        @foreach ($kelas as $class)
                                         <option value="{{$class->id}}"
-                                            {{$schedule->class_id == $class->id ? 'selected': ''}}
+                                            {{$schedule->kelas_id == $class->id ? 'selected': ''}}
                                             >{{$class->grade}} - {{$class->majors}} {{$class->number}}</option>
                                         @endforeach
                                     </select>

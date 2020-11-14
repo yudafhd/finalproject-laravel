@@ -24,7 +24,7 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('absents.store') }}">
+                <form method="POST" action="{{ Route('absent.store') }}">
                     @csrf
                     <div class="form-body">
                         <h3 class="card-title" style="font-weight: bold">Absent Info</h3>
@@ -46,9 +46,9 @@
                                     <select class="form-control" name="schedule_id" custom-select">
                                         @foreach ($schedules as $schedule)
                                         <option value="{{$schedule->id}}">
-                                            {{$schedule->class->grade}}
-                                            {{$schedule->class->majors}}
-                                            {{$schedule->class->number}}
+                                            {{$schedule->kelas->grade}}
+                                            {{$schedule->kelas->majors}}
+                                            {{$schedule->kelas->number}}
                                             -
                                             {{$schedule->subject->name}}
                                             -
@@ -85,7 +85,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Simpan</button>
-                            <a href="{{url('/absents')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{url('/absent')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                 </form>
             </div>

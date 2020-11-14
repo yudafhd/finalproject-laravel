@@ -24,7 +24,7 @@
                         </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('classes.store') }}">
+                <form method="POST" action="{{ Route('kelas.store') }}">
                     @csrf
                     <div class="form-body">
                         <h3 class="card-title" style="font-weight: bold">Kelas Info</h3>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Simpan</button>
-                            <a href="{{url('/absents')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{url('/kelas')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                 </form>
             </div>
