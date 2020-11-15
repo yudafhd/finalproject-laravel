@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
-use App\Ewarong;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -23,7 +22,10 @@ class AuthController extends Controller
             $this->validateLogin($request);
 
             if (!$this->attemptLogin($request)) {
-                return response(['status' => 'error', 'message' => 'username / password salah'], 422);
+                return response([
+                    'status' => 'error', 
+                    'message' => 'username / password salah',
+                ], 422);
             }
 
             $accessToken = auth()->user()->createToken('authToken')->accessToken;

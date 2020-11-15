@@ -17,17 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::post('/login', 'Api\AuthController@login');
 Route::post('/register', 'Api\AuthController@register');
-Route::get('/ewarong', 'Api\EwarongController@allEwarong');
-Route::get('/alldistrics', 'Api\EwarongController@allDistrics');
-Route::get('/allvillages', 'Api\EwarongController@allVillages');
-Route::get('/allitems', 'Api\EwarongController@allItems');
-Route::get('/getfromradius', 'Api\EwarongController@getFromMyRadius');
 
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/getorderbyuser', 'Api\EwarongController@getOrderByUser');
-    Route::post('/orderuser', 'Api\EwarongController@orderUser');
-    Route::get('/todaychartuser', 'Api\ReportController@todayChartUser');
+Route::group(['middleware' => 'api'], function () {
+    Route::get('/profile', 'Api\ProfileController@index');
+    Route::get('/teacher/home', 'Api\HomeTeacherController@index');
 });
