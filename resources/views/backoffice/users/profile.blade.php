@@ -23,7 +23,7 @@
                     @else                        
                     <img src="{{Url('assets/images/users/user.png')}}" class="img-circle" width="150" />
                     @endif
-                <h4 class="card-title m-t-10">{{auth()->user()->name}}</h4>
+                <h4 class="card-title m-t-10">{{"@".auth()->user()->username}}</h4>
                     <h6 class="card-subtitle">{{auth()->user()->access_type}}</h6>
                 </center>
             </div>

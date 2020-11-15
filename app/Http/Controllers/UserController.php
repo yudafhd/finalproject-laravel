@@ -106,7 +106,7 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('users.profile',  []);
+        return view('backoffice.users.profile',  []);
     }
 
     public function storeUpdateProfile(Request $request)
@@ -128,6 +128,7 @@ class UserController extends Controller
 
             $userDetail->name = $request->name;
             $userDetail->email = $request->email;
+            $userDetail->phone_number = $request->phone_number;
             $userDetail->address = $request->address;
 
             if ($request->password) {
