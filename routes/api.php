@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/login', 'Api\AuthController@login');
 Route::post('/register', 'Api\AuthController@register');
 
-Route::group(['middleware' => 'api'], function () {
+Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/profile', 'Api\ProfileController@index');
     Route::get('/teacher/home', 'Api\HomeTeacherController@index');
 });

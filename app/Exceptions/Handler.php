@@ -64,10 +64,6 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        if (Auth::guard('admin')->check()) {
-            return redirect('/login');
-        }
-
         return redirect('/login');
     }
 
