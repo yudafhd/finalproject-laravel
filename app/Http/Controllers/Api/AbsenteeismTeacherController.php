@@ -15,12 +15,10 @@ class AbsenteeismTeacherController extends Controller
     public function index(Request $request)
     {
         try {
-            $hours = date('h:i:s', strtotime($request->hours));
             $day = $request->day;
             $schedule_today = Schedule::with(['kelas', 'subject'])
                 ->where('day', '=', $day)
-                ->whereTime('start_at', '<=', $hours)
-                ->whereTime('end_at', '>=', $hours)
+                ->whereTime('end_at', '>=', $request->hours)
                 ->get();
 
             $class_today = [];
