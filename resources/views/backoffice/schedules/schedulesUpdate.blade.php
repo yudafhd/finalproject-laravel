@@ -89,13 +89,13 @@
                                 <div class="form-group">
                                     <label class="control-label">Hari</label>
                                     <select class="form-control" name="day" custom-select">
-                                        <option value="senin">Senin</option>
-                                        <option value="selasa">Selasa</option>
-                                        <option value="rabu">Rabu</option>
-                                        <option value="kamis">Kamis</option>
-                                        <option value="jumat">Jumat</option>
-                                        <option value="sabtu">Sabtu</option>
-                                        <option value="minggu">Minggu</option>
+                                        <option value="senin"  {{ $schedule->day == 'senin' ? 'selected':'' }}>Senin</option>
+                                        <option value="selasa" {{ $schedule->day == 'selasa' ? 'selected':'' }}>Selasa</option>
+                                        <option value="rabu" {{ $schedule->day == 'rabu' ? 'selected':'' }}>Rabu</option>
+                                        <option value="kamis" {{ $schedule->day == 'kamis' ? 'selected':'' }}>Kamis</option>
+                                        <option value="jumat" {{ $schedule->day == 'jumat' ? 'selected':'' }}>Jumat</option>
+                                        <option value="sabtu" {{ $schedule->day == 'sabtu' ? 'selected':'' }}>Sabtu</option>
+                                        <option value="minggu" {{ $schedule->day == 'minggu' ? 'selected':'' }}>Minggu</option>
                                     </select>
                                 </div>
                             </div>

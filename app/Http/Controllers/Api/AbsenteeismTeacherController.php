@@ -16,7 +16,6 @@ class AbsenteeismTeacherController extends Controller
     {
         try {
             $hours = date('h:i:s', strtotime($request->hours));
-            // $day = $this->switchDayName(date('D', strtotime($request->date)));
             $day = $request->day;
             $schedule_today = Schedule::with(['kelas', 'subject'])
                 ->where('day', '=', $day)
