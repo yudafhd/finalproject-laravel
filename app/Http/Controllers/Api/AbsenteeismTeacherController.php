@@ -31,6 +31,7 @@ class AbsenteeismTeacherController extends Controller
                 }
             }
             return response(['data' => [
+                'all_req' => $request->all(),
                 'schedule_today' => $schedule_today,
                 'class_list' => $class_today
             ]]);
