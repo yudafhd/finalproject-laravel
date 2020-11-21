@@ -22,7 +22,7 @@ Route::post('/register', 'Api\AuthController@register');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/profile', 'Api\ProfileController@index');
-    Route::get('/teacher/home', 'Api\HomeTeacherController@index');
+    Route::post('/teacher/home', 'Api\HomeTeacherController@index');
     Route::get('/teacher/absenteeism', 'Api\AbsenteeismTeacherController@index');
     Route::post('/teacher/absenteeism', 'Api\AbsenteeismTeacherController@submitAbsent');
 });
