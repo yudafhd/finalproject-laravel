@@ -27,7 +27,7 @@ class HomeTeacherController extends Controller
             'absent_today22' => $absent_today22,
             'absent_today23' => $absent_today23,
             'absent_todaystr' => $absent_todaystr,
-            'request-date_absent' => $request->date_absent,
+            'request-date_absent' => $request,
             'schedules' => $schedule_today
         ]]);
     }
