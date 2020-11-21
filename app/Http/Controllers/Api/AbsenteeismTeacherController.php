@@ -18,7 +18,7 @@ class AbsenteeismTeacherController extends Controller
             $day = $request->day;
             $schedule_today = Schedule::with(['kelas', 'subject'])
                 ->where('day', '=', $day)
-                ->whereTime('end_at', '>=', $request->hours)
+                ->whereTime('end_at', '>=', date('H:i:s', strtotime($request->hours)))
                 ->get();
 
             $class_today = [];
