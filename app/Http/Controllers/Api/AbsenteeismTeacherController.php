@@ -16,11 +16,12 @@ class AbsenteeismTeacherController extends Controller
     {
         try {
             $day = $request->day;
+            $time = strtotime($request->time);
+
             $schedule_today = Schedule::with(['kelas', 'subject'])
                 ->where('day', '=', $day)
-                ->whereTime('end_at', '>=', date('H:i:s', strtotime($request->hours)))
+                ->whereTime('end_at', '>=', date('H:i:s', $time))
                 ->get();
-
             $class_today = [];
             foreach ($schedule_today as $key => $value) {
                 $users = User::where('kelas_id', '=', $value->kelas_id)->get();
@@ -31,7 +32,6 @@ class AbsenteeismTeacherController extends Controller
                 }
             }
             return response(['data' => [
-                'all_req' => $request->all(),
                 'schedule_today' => $schedule_today,
                 'class_list' => $class_today
             ]]);
