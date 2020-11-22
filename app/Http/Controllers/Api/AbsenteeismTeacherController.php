@@ -20,6 +20,7 @@ class AbsenteeismTeacherController extends Controller
 
             $schedule_today = [];
             $schedule = Schedule::with(['kelas', 'subject'])
+                ->where('user_id', auth()->user()->id)
                 ->where('day', '=', $day)
                 ->whereTime('end_at', '>=', date('H:i:s', $time))
                 ->get()->first();
