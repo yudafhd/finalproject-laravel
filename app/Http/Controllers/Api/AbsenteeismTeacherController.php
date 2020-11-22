@@ -15,22 +15,28 @@ class AbsenteeismTeacherController extends Controller
     public function index(Request $request)
     {
         try {
-            $day = $request->day;
+            $day = $this->switchDayName($request->day);
             $time = strtotime($request->time);
 
-            $schedule_today = Schedule::with(['kelas', 'subject'])
+            $schedule_today = [];
+            $schedule = Schedule::with(['kelas', 'subject'])
                 ->where('day', '=', $day)
                 ->whereTime('end_at', '>=', date('H:i:s', $time))
-                ->get();
+                ->get()->first();
+            if ($schedule) {
+                $schedule_today = $schedule;
+            }
+
             $class_today = [];
-            foreach ($schedule_today as $key => $value) {
-                $users = User::where('kelas_id', '=', $value->kelas_id)->get();
+            if ($schedule_today) {
+                $users = User::where('kelas_id', '=', $schedule_today->kelas_id)->get();
                 if (count($users)) {
                     foreach ($users as $user) {
-                        $class_today[$key][] = new UserItem($user);
+                        $class_today[] = new UserItem($user);
                     }
                 }
             }
+
             return response(['data' => [
                 'schedule_today' => $schedule_today,
                 'class_list' => $class_today
