@@ -50,25 +50,20 @@ class AbsenteeismTeacherController extends Controller
     public function submitAbsent(Request $request)
     {
         try {
-            $absent = [];
+            $userAbsentToday = [];
             if (count($request->user_id)) {
                 foreach ($request->user_id as $key => $value) {
-                    $absent = Absent::where('date_absent', '=', $request->date_absent)
+                    $userAbsentToday = Absent::where('date_absent', '=', $request->date_absent)
                         ->where('schedule_id', '=', $request->schedule_id)
-                        ->where('user_id', '=', $value)
-                        ->get();
-                    if (count($absent)) {
-                        // foreach ($absent as $absent_index) {
-                        //     $absent_index->reason = $request->reasons[$key];
-                        //     $absent_index->description = $request->descriptions[$key];
-                        //     $absent_index->save();
-                        // }
+                        ->where('user_id', '=', $value)->first();
+                    if ($userAbsentToday) {
+                        $userAbsentToday->reason = $request->reasons[$key];
+                        $userAbsentToday->save();
                     } else {
-                        $absent = Absent::create([
+                        Absent::create([
                             'schedule_id' => $request->schedule_id,
                             'user_id' => $value,
                             'reason' => $request->reasons[$key],
-                            'description' => $request->descriptions[$key],
                             'date_absent' => $request->date_absent
                         ]);
                     }
