@@ -34,10 +34,10 @@
                     <i class="mdi mdi-plus"></i>
                     Buat Kegiatan
                 </a>
-                <a href="{{Route('kegiatan.report')}}" class="btn btn-success waves-effect waves-light m-b-20 m-r-20 float-right">
+                {{-- <a href="{{Route('kegiatan.report')}}" class="btn btn-success waves-effect waves-light m-b-20 m-r-20 float-right">
                     <i class="mdi mdi-chart"></i>
                     Download Reports
-                </a>
+                </a> --}}
                 @if(count($kegiatans) > 0)
                 <div class="table-responsive m-t-10">
                     <table id="myTable" class="table">

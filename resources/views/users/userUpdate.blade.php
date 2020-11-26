@@ -81,9 +81,9 @@
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                             @if (auth()->user()->level ==='superadmin' ||  auth()->user()->level ==='admin_knpi')
-                            <a href="{{url('/user')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{url('/okp')}}" class="btn btn-inverse">Cancel</a>
                             @else
-                            <a href="{{url('/kegiatan')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{url('/okp')}}" class="btn btn-inverse">Cancel</a>
                             @endif
                         </div>
                 </form>

@@ -73,13 +73,12 @@
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
-                             <div class="col-md-6">
+                             {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Telephone</label>
                                     <input type="text" name="telephone" class="form-control" value="{{$okp->telephone}}">
-                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <h3 class="card-title" style="font-weight: bold">Profile</h3>
                         <hr>

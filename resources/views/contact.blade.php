@@ -2,15 +2,17 @@
 <div class="container m-t-40">
     <div class="row">
         <div class="col-md-12">
-            <h3>
+            <h1>
                 CONTACT
-            </h3>
+            </h1>
+            <h2>
             <br />
-            Sekretariat DPD KNPI Kota Kediri
+            Sekretariat DPD Kota Mojokerto
             <br />
-            Jl. H. Kurdi 1 No.104, Pelindung Hewan, Kec. Astanaanyar, Kota Kediri, Jawa Timur 40275 
+            Jl. Benteng Pancasila, Kedungsair, Kota Mojokerto, Jawa Timur 40275 
             <br />
              Telp : (022) 5205618
+            </h2>
         </div>
     
     </div>

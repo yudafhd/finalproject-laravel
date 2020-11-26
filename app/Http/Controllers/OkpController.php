@@ -67,7 +67,7 @@ class OkpController extends Controller
                 'bidang' => $request->bidang,
                 'alamat' => $request->alamat,
                 'no_okp' => $request->no_okp,
-                'telephone' => $request->telephone,
+                // 'telephone' => $request->telephone,
                 'status' => $request->status,
                 'tanggal_daftar' => $request->tanggal_daftar,
                 'visi' => $request->visi,
