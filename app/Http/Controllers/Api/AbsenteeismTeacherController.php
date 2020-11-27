@@ -76,15 +76,21 @@ class AbsenteeismTeacherController extends Controller
                         ->where('schedule_id', '=', $request->schedule_id)
                         ->where('user_id', '=', $value)->first();
                     if ($userAbsentToday) {
-                        $userAbsentToday->reason = $request->reasons[$key];
-                        $userAbsentToday->save();
+                        if ($request->reasons[$key] == 'masuk') {
+                            $userAbsentToday->delete();
+                        } else {
+                            $userAbsentToday->reason = $request->reasons[$key];
+                            $userAbsentToday->save();
+                        }
                     } else {
-                        Absent::create([
-                            'schedule_id' => $request->schedule_id,
-                            'user_id' => $value,
-                            'reason' => $request->reasons[$key],
-                            'date_absent' => $request->date_absent
-                        ]);
+                        if ($request->reasons[$key] !== 'masuk') {
+                            Absent::create([
+                                'schedule_id' => $request->schedule_id,
+                                'user_id' => $value,
+                                'reason' => $request->reasons[$key],
+                                'date_absent' => $request->date_absent
+                            ]);
+                        }
                     }
                 }
             }
