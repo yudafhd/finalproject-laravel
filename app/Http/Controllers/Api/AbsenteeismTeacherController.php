@@ -26,7 +26,7 @@ class AbsenteeismTeacherController extends Controller
             $schedule_today = [];
             $schedule = Schedule::with(['kelas', 'subject'])
                 ->where('user_id', auth()->user()->id)
-                ->where('day', '=', $day)
+                ->where('day', $day)
                 ->whereTime('end_at', '>=', date('H:i:s', $time))
                 ->get()->first();
             if ($schedule) {
@@ -40,7 +40,7 @@ class AbsenteeismTeacherController extends Controller
                 if (count($users) && count($absent_today)) {
                     foreach ($absent_today as $absent) {
                         foreach ($users as $student) {
-                            if ($absent->user_id == $student->id) {
+                            if ($absent->user_id == $student->id && $absent->schedule_id == $schedule_today->id) {
                                 $student->status = $absent->reason;
                             } else {
                                 $student->status = "masuk";
