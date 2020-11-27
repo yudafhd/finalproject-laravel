@@ -18,6 +18,11 @@ class AbsenteeismTeacherController extends Controller
             $day = $this->switchDayName($request->day);
             $time = strtotime($request->time);
 
+            $absent_today = [];
+            $absent_today = Absent::with(['user', 'schedule'])
+                ->where('date_absent', date('Y-m-d', strtotime($request->date_absent)))
+                ->get();
+
             $schedule_today = [];
             $schedule = Schedule::with(['kelas', 'subject'])
                 ->where('user_id', auth()->user()->id)
@@ -31,6 +36,19 @@ class AbsenteeismTeacherController extends Controller
             $class_today = [];
             if ($schedule_today) {
                 $users = User::where('kelas_id', '=', $schedule_today->kelas_id)->get();
+
+                if (count($users) && count($absent_today)) {
+                    foreach ($absent_today as $absent) {
+                        foreach ($users as $student) {
+                            if ($absent->user_id == $student->id) {
+                                $student->status = $absent->reason;
+                            } else {
+                                $student->status = "masuk";
+                            }
+                        }
+                    }
+                }
+
                 if (count($users)) {
                     foreach ($users as $user) {
                         $class_today[] = new UserItem($user);
@@ -39,6 +57,7 @@ class AbsenteeismTeacherController extends Controller
             }
 
             return response(['data' => [
+                // 'absent_today' => $absent_today,
                 'schedule_today' => $schedule_today,
                 'class_list' => $class_today
             ]]);

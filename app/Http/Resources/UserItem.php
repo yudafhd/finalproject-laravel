@@ -18,6 +18,7 @@ class UserItem extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "nis" => $this->nis,
+            "status" => $this->status,
         ];
     }
 }
