@@ -18,7 +18,7 @@ class UserItem extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "nis" => $this->nis,
-            "status" => $this->status,
+            "status" => $this->status == 'active' ? 'masuk' : $this->status
         ];
     }
 }
