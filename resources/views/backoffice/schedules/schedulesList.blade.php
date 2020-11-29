@@ -47,10 +47,10 @@
                             <tr>
                                 <th>Kelas</th>
                                 <th>Mata Pelajaran</th>
-                                <th>Guru Pengajar</th>
+                                <th>Guru</th>
                                 <th>Hari</th>
-                                <th>Semester</th>
-                                <th>Tahun</th>
+                                <th>Jam Mulai</th>
+                                <th>Jam Selesai</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -61,8 +61,8 @@
                             <td>{{$schedules->subject->name}}</td>
                             <td>{{$schedules->user->name}}</td>
                             <td>{{$schedules->day}}</td>
-                            <td>{{$schedules->semester}}</td>
-                            <td>{{$schedules->year}}</td>
+                            <td>{{$schedules->start_at}}</td>
+                            <td>{{$schedules->end_at}}</td>
                                 <td style="text-align: center">
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"

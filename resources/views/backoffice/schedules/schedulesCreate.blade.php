@@ -68,14 +68,14 @@
                                 <div class="form-group">
                                     <label class="control-label">Jam Mulai</label>
                                     <input type="text" class="form-control" name="start_at"
-                                        id="timePicker1" />
+                                        id="timePicker1" required />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Jam Selesai</label>
                                     <input type="text" class="form-control" name="end_at"
-                                    id="timePicker2" />
+                                    id="timePicker2" required />
                                 </div>
                             </div>
                             <div class="col-md-6">

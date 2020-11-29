@@ -95,10 +95,6 @@ a {
     background-color: #0062cc;
 }
 
-.btn-info,
-.btn-info.disabled {
-    background: #5bc0de;
-}
 
 .btn {
     padding: 4px 7px !important;

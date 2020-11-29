@@ -20,8 +20,7 @@ class ScheduleController extends Controller
         $schedules = Schedule::all();
         $success_message = $request->session()->get('alert-success');
         $alert_error = $request->session()->get('alert-error');
-        return view('backoffice.schedules.schedulesList', compact('schedules','success_message', 'alert_error'));
-
+        return view('backoffice.schedules.schedulesList', compact('schedules', 'success_message', 'alert_error'));
     }
 
     /**
@@ -37,8 +36,10 @@ class ScheduleController extends Controller
         $teachers = User::where('type', 'guru')->get();
         $success_message = $request->session()->get('alert-success');
         $error_message = $request->session()->get('alert-error');
-        return view('backoffice.schedules.schedulesCreate', 
-        compact('schedules','kelas','subjects','teachers','success_message', 'error_message'));
+        return view(
+            'backoffice.schedules.schedulesCreate',
+            compact('schedules', 'kelas', 'subjects', 'teachers', 'success_message', 'error_message')
+        );
     }
 
     /**
@@ -50,12 +51,68 @@ class ScheduleController extends Controller
     public function store(Request $request)
     {
         try {
+
+            if (strtotime($request->start_at) > strtotime($request->end_at)) {
+                abort(403, 'Jam dimulai atau jam selesai ada yang salah. Jam dimulai ' . $request->start_at . ' Jam selesai '
+                    . $request->end_at);
+            }
+
+            $check_schedule_kelas = Schedule::where('kelas_id', $request->kelas_id)
+                ->where('day', $request->day)
+                ->where('semester', $request->semester)
+                ->where('year', $request->year)
+                ->get();
+
+            $check_schedule_teacher = Schedule::where('user_id', $request->user_id)
+                ->where('day', $request->day)
+                ->where('semester', $request->semester)
+                ->where('year', $request->year)
+                ->get();
+
+            if ($check_schedule_kelas) {
+                foreach ($check_schedule_kelas as $schedule) {
+                    if (strtotime($request->start_at) < strtotime($schedule->start_at)) {
+                        if (strtotime($request->end_at) < strtotime($schedule->start_at)) {
+                            // dd('start at lebih kecil dan start end lebih kecil'); //next
+                        } else {
+                            abort(403, 'Jam pada jadwal yang anda buat sedang digunakan di kelas ini.');
+                        }
+                    } else {
+                        if (strtotime($request->start_at) < strtotime($schedule->end_at)) {
+                            abort(403, 'Jam pada jadwal yang anda buat sedang digunakan di kelas ini.');
+                        } else {
+                            // dd('start at lebih kecil dan start end lebih kecil'); //next
+                        }
+                    }
+                }
+            }
+
+            if ($check_schedule_teacher) {
+                foreach ($check_schedule_teacher as $schedule) {
+                    if (strtotime($request->start_at) < strtotime($schedule->start_at)) {
+                        if (strtotime($request->end_at) < strtotime($schedule->start_at)) {
+                            // dd('start at lebih kecil dan start end lebih kecil'); //next
+                        } else {
+                            abort(403, 'Guru sudah mempunyai jadwal di jam ini. Jam dimulai ' . $request->start_at . ' Jam selesai '
+                                . $request->end_at);
+                        }
+                    } else {
+                        if (strtotime($request->start_at) < strtotime($schedule->end_at)) {
+                            abort(403, 'Guru sudah mempunyai jadwal di jam ini. Jam dimulai ' . $request->start_at . ' Jam selesai '
+                                . $request->end_at);
+                        } else {
+                            // dd('start at lebih kecil dan start end lebih kecil'); //next
+                        }
+                    }
+                }
+            }
+
             Schedule::create($request->all());
             $request->session()->flash('alert-success', "Jadwa berhasil di buat!");
             return redirect('/schedule');
-        }catch(\Exception $e) {
-            $request->session()->flash('alert-success', $e->getMessage());
-            return redirect('/schedule');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect('/schedule/create');
         }
     }
 
@@ -76,15 +133,17 @@ class ScheduleController extends Controller
      * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function edit( Request $request, Schedule $schedule)
+    public function edit(Request $request, Schedule $schedule)
     {
         $kelas = Kelas::all();
         $subjects = Subject::all();
         $teachers = User::where('type', 'guru')->get();
         $success_message = $request->session()->get('alert-success');
         $error_message = $request->session()->get('alert-error');
-        return view('backoffice.schedules.schedulesUpdate', 
-        compact('schedule','kelas','subjects','teachers','success_message', 'error_message'));
+        return view(
+            'backoffice.schedules.schedulesUpdate',
+            compact('schedule', 'kelas', 'subjects', 'teachers', 'success_message', 'error_message')
+        );
     }
 
     /**
@@ -109,7 +168,7 @@ class ScheduleController extends Controller
             ]);
             $request->session()->flash('alert-success', "Jadwal berhasil di update!");
             return redirect('/schedule');
-        } catch( \Exception $e) {
+        } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
             return redirect('/schedule');
         }
