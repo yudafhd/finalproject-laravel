@@ -27,8 +27,8 @@ class AbsenteeismTeacherController extends Controller
             $schedule = Schedule::with(['kelas', 'subject'])
                 ->where('user_id', auth()->user()->id)
                 ->where('day', $day)
-                ->whereTime('start_at', '<=', date('H:i:s', $time))
-                ->whereTime('end_at', '>=', date('H:i:s', $time))
+                ->where('start_at', '<=', date('H:i:s', $time))
+                ->where('end_at', '>=', date('H:i:s', $time))
                 ->get()->first();
 
             if ($schedule) {
@@ -59,7 +59,7 @@ class AbsenteeismTeacherController extends Controller
             }
 
             return response(['data' => [
-                // 'absent_today' => $absent_today,
+                'test' => date('H:i:s', $time),
                 'schedule_today' => $schedule_today,
                 'class_list' => $class_today
             ]]);
