@@ -6,7 +6,8 @@ body {
 }
 
 .topbar {
-    background: #264066;
+    background: rgb(6,176,177);
+    background: linear-gradient(90deg, rgba(6,176,177,1) 1%, rgba(6,176,177,1) 9%, rgba(0,117,179,1) 100%);
 }
 
 .sidebar-nav>ul>li>a.active {
@@ -56,7 +57,7 @@ a {
 
 .btn-primary,
 .btn-primary.disabled {
-    background: #0062cc
+    background:rgb(33, 150, 243);
 }
 
 
@@ -74,11 +75,6 @@ a {
 .show>.btn-primary.dropdown-toggle {
     background-color: #0062cc;
     border: 1px solid #0062cc;
-}
-
-.btn-primary.disabled:hover,
-.btn-primary:hover {
-    background-color: #0062cc;
 }
 
 #pac-input {
