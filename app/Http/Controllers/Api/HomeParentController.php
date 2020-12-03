@@ -14,11 +14,11 @@ class HomeParentController extends Controller
     {
         $user = auth()->user();
 
-        $semester = date('m', strtotime($request->date)) - 1 < 6 ? 'genap' : 'ganjil';
-        $date = date('Y-m-d', strtotime($request->date));
-        $year = date('m', strtotime($request->date));
-        $day = $this->switchDayName(date('D', strtotime($request->date)));
-        $hours = date('H:i:s', strtotime($request->date));
+        $semester = date('m', $request->date) - 1 < 6 ? 'genap' : 'ganjil';
+        $date = date('Y-m-d', $request->date);
+        $year = date('Y', $request->date);
+        $day = $this->switchDayName(date('D', $request->date));
+        $hours = date('H:i:s', $request->date);
 
         $schedules_today = Schedule::with(['subject'])
             ->where('kelas_id', '=', $user->kelas_id)
@@ -39,15 +39,15 @@ class HomeParentController extends Controller
                 $value->absenteeism = $this->getReasonById($value->id, $absent_today);
             } else {
                 if ($value->end_at <= $hours) {
-
                     $value->absenteeism = 'hadir';
                 } else {
-                    $value->absenteeism = 'belum terjadwal';
+                    $value->absenteeism = 'belum dimulai';
                 }
             }
         }
+
         return response(['data' => [
-            'schedules_absent_today' => $absent_today,
+            'schedules_absent_today' => $schedules_today,
 
         ]]);
     }
