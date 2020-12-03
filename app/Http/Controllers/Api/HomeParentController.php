@@ -4,30 +4,31 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Absents;
-use App\Schedules;
-use App\Subjects;
+use App\Absent;
+use App\Schedule;
+use App\Subject;
 
 class HomeParentController extends Controller
 {
     public function index(Request $request)
     {
         $user = auth()->user();
-        $semester = date('m', strtotime($request->date)) - 1 < 6 ? 'genap' : 'ganjil';
-        $date = date('Y-m-d', $request->date);
-        $year = date('Y', $request->date);
-        $day = $this->switchDayName(date('D', $request->date));
-        $hours = date('H:i:s', $request->date);
 
-        $schedules_today = Schedules::with(['subject'])
-            ->where('class_id', '=', $user->class_id)
+        $semester = date('m', strtotime($request->date)) - 1 < 6 ? 'genap' : 'ganjil';
+        $date = date('Y-m-d', strtotime($request->date));
+        $year = date('m', strtotime($request->date));
+        $day = $this->switchDayName(date('D', strtotime($request->date)));
+        $hours = date('H:i:s', strtotime($request->date));
+
+        $schedules_today = Schedule::with(['subject'])
+            ->where('kelas_id', '=', $user->kelas_id)
             ->where('day', '=', $day)
             ->where('semester', '=', $semester)
             ->where('year', '=', $year)
             ->orderBy('start_at')
             ->get();
 
-        $absent_today = Absents::where('date_absent', '=', $date)
+        $absent_today = Absent::where('date_absent', '=', $date)
             ->where('user_id', '=', $user->id)
             ->get();
 
@@ -46,7 +47,7 @@ class HomeParentController extends Controller
             }
         }
         return response(['data' => [
-            'schedules_absent_today' => $schedules_today,
+            'schedules_absent_today' => $absent_today,
 
         ]]);
     }
@@ -54,8 +55,8 @@ class HomeParentController extends Controller
     public function homeParentAllRecap()
     {
         $user = auth()->user();
-        $all_recap = Absents::with(['user', 'schedule'])->where('user_id', '=', $user->id)->get();
-        $subjects = Subjects::all();
+        $all_recap = Absent::with(['user', 'schedule'])->where('user_id', '=', $user->id)->get();
+        $subjects = Subject::all();
         $subject_ids = $subjects->pluck('id')->toArray();
         foreach ($all_recap as $value) {
             $subject_id = $value->schedule->subject_id;
