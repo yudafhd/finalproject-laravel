@@ -25,6 +25,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/teacher/home', 'Api\HomeTeacherController@index');
     Route::post('/teacher/absenteeism', 'Api\AbsenteeismTeacherController@index');
     Route::post('/teacher/absenteeism/submit', 'Api\AbsenteeismTeacherController@submitAbsent');
-    Route::get('/parent/home', 'Api\HomeParentController@index');
+    Route::post('/parent/home', 'Api\HomeParentController@index');
     Route::get('/parent/allrecapitulation', 'Api\HomeParentController@homeParentAllRecap');
 });
