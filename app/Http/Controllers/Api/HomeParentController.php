@@ -12,8 +12,8 @@ class HomeParentController extends Controller
 {
     public function index(Request $request)
     {
+        date_default_timezone_set('Asia/Jakarta');
         $user = auth()->user();
-
         $semester = date('m', $request->date) - 1 < 6 ? 'genap' : 'ganjil';
         $date = date('Y-m-d', $request->date);
         $year = date('Y', $request->date);
