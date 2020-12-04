@@ -40,8 +40,12 @@ class HomeParentController extends Controller
             } else {
                 if ($value->end_at <= $hours) {
                     $value->absenteeism = 'hadir';
-                } else {
-                    $value->absenteeism = 'belum dimulai';
+                }
+                if ($value->start_at >= $hours) {
+                    $value->absenteeism = 'belum di mulai';
+                }
+                if ($value->start_at <= $hours && $value->end_at >= $hours) {
+                    $value->absenteeism = 'sedang berjalan';
                 }
             }
         }
