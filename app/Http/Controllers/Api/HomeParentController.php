@@ -52,6 +52,7 @@ class HomeParentController extends Controller
 
         return response(['data' => [
             'schedules_absent_today' => $schedules_today,
+            'hours' => $hours
 
         ]]);
     }
