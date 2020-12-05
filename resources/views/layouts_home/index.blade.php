@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">
-    <title>{{ config('app.name') }}</title>
+    <title>DPD KNPI MOJOKERTO</title>
     @include('layouts.css_section') 
 </head>
 
@@ -31,9 +31,9 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <!-- Logo will be here -->
-                <a class="navbar-brand" href="{{Route('homes')}}"
+                <a class="navbar-brand" href="{{Route('homes')}}" style="font-weight: bold"
                         >
-                        KNPI KEDIRI
+                        KNPI MOJOKERTO
                     </a>
                     <!-- This is the navigation menu -->
                     <div
@@ -45,12 +45,14 @@
                                 <a
                                     class="nav-link"
                                     href="{{Route('visi')}}"
+                                    style="font-weight: bold"
                                     >Visi & Misi</a
                                     >
                                 </li>
                                 <li class="nav-item">
                                     <a
                                     class="nav-link"
+                                    style="font-weight: bold"
                                     href="{{Route('contact')}}"
                                     >Contact</a
                                 >
@@ -59,8 +61,11 @@
                         <ul class="navbar-nav ml-auto stylish-nav">
                             <li class="nav-item">
                                 @if (auth()->user())
-                                Selamat datang, {{auth()->user()->name}}
+                                <span style="font-weight: bold;margin-right:20px">
+                                    Selamat datang Admin!
+                                </span>
                                 <a 
+                                    class="btn btn-info"
                                     href="{{Route('okp.index')}}">
                                 Go to Admin
                                 </a> 
@@ -97,7 +102,7 @@
             </div>
         </div>
         @include('layouts.js_section') 
-        <footer class="footer container"> © {{date("Y")}} KNPI Kediri 
+        <footer class="footer container"> © {{date("Y")}} KNPI MOJOKERTO 
             <span class="float-right">
             <i class="mdi mdi-facebook"></i>
             <i class="mdi mdi-instagram"></i>

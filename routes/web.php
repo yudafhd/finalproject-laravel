@@ -11,7 +11,6 @@
 |
 */
 
-
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('homes');
 Route::get('/detail/{id}', 'HomeController@detail')->name('detail');
@@ -26,11 +25,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('kegiatan', 'KegiatanController');
     Route::resource('anggota', 'AnggotaController');
     Route::resource('bidang', 'BidangController');
+    Route::resource('jabatan', 'JabatanController');
 });
 
-
 // User
-Route::group(['prefix' => 'user'], function () {
+Route::group(['prefix' => 'users'], function () {
     Route::get('/create', 'UserController@create')->name('user.create');
     Route::post('/store', 'UserController@store')->name('user.store');
     Route::get('/', 'UserController@index')->name('user.list');
@@ -47,7 +46,6 @@ Route::group(['prefix' => 'setting'], function () {
     Route::get('/roles/delete/{name}', 'SettingController@deleteRole')->name('role.delete');
     Route::get('/roles/update/{id}', 'SettingController@updateRole')->name('role.update');
     Route::post('/roles/storeUpdate', 'SettingController@storeUpdateRole')->name('role.store.update');
-
     Route::get('/permissions', 'SettingController@permissionList')->name('permission.list');
     Route::get('/permissions/create', 'SettingController@createPermission')->name('permission.create');
     Route::post('/permissions/store', 'SettingController@storePermission')->name('permission.store');
@@ -55,7 +53,5 @@ Route::group(['prefix' => 'setting'], function () {
     Route::get('/permissions/update/{id}', 'SettingController@updatePermission')->name('permission.update');
     Route::post('/permissions/storeUpdate', 'SettingController@storeUpdatePermission')->name('permission.store.update');
 });
-
-
 
 // Route::resource('customers', 'CustomerController');

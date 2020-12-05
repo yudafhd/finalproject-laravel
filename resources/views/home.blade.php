@@ -1,6 +1,13 @@
 @extends('layouts_home.index')
 
 @section('content')
+<div class="container m-t-20 p-10" style="background:#1b6f6c;text-align:center">
+    <span>
+        <h3 style="color: white;">
+            Daftar dan detail Acara 
+        </h3>
+    </span>
+</div>
 <div class="container m-t-40">
     <div class="row">
         @foreach ($kegiatans as $kegiatan )
@@ -10,22 +17,22 @@
               background-position: center;
             background-size: 400px auto;
              background-image: url('{{ asset('storage/kegiatan/photo/'.$kegiatan->foto) }}');"></div>
-            <div class="card-header">
+            <div class="card-header" style="background-color: white !important">
                 <h3>
-                   <a href="{{ Route('detail', $kegiatan->id) }}">{{$kegiatan->judul}}</a>
+                   <a style="font-weight: bold; color:#67757c" href="{{ Route('detail', $kegiatan->id) }}">{{$kegiatan->judul}}</a>
                 </h3>
+                <span style="font-size:15px">
+                    by :  
+                   </span>
+                    <span style="font-weight:bold; font-size:12px;color:#1b6f6c">
+                              {{$kegiatan->okp->nama}}
+                    </span>
             </div>
                 <div class="card-body">
-                    <div style="font-weight: bold">
-                              {{$kegiatan->okp->nama}}
-                    </div>
-                    <br />
                    {{$kegiatan->detail_kegiatan}}
                    <br />
-                   <br />
-                   <br />
                 </div>
-                  <div class="card-footer" style="font-size:14px; background:#f3f1f1; padding:20px">
+                  <div class="card-footer" style="font-size:14px; background:#f3f1f1; padding:10px">
                       <i class="mdi mdi-pin"></i> {{$kegiatan->tempat}}
                     </div>
             </div>

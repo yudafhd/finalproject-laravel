@@ -42,7 +42,6 @@ class AnggotaController extends Controller
     public function store(Request $request)
     {
         try {
-
             $anggota = Anggota::create($request->all());
 
             if ($request->okp_id) {
@@ -113,7 +112,7 @@ class AnggotaController extends Controller
             return redirect('/anggota/create');
         }
     }
-    
+
     public function downloadReport()
     {
         return Excel::download(new AnggotaExport(), 'anggota.xlsx');
