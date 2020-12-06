@@ -100,6 +100,9 @@ class AbsenteeismParentController extends Controller
                 } else {
                     foreach ($userAbsentToday as $absent) {
                         $absent->reason = $request->reasons;
+                        if ($request->description) {
+                            $absent->description = $request->description;
+                        }
                         if ($imagename) {
                             $absent->image = $imagename;
                         }
@@ -115,7 +118,8 @@ class AbsenteeismParentController extends Controller
                                 'user_id' => $user->id,
                                 'reason' => $request->reasons,
                                 'date_absent' => $date,
-                                'image' => $imagename
+                                'image' => $imagename,
+                                'description' => $request->description
                             ]);
                         }
                     } else {
