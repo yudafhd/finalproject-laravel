@@ -67,7 +67,7 @@ class AbsenteeismParentController extends Controller
             );
 
             if ($validator->fails()) {
-                return response()->json(['error' => $validator->errors()], 401);
+                return response()->json(['status' => 'error', 'message' => $validator->errors()]);
             }
 
             $imagename = null;
@@ -118,6 +118,8 @@ class AbsenteeismParentController extends Controller
                                 'image' => $imagename
                             ]);
                         }
+                    } else {
+                        return response()->json(['status' => 'error', 'message' => 'Tidak ada jadwal sekolah']);
                     }
                 }
             }
