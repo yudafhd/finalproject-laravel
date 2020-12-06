@@ -53,6 +53,13 @@
                                     <a
                                     class="nav-link"
                                     style="font-weight: bold"
+                                    href="{{Route('daftarokp')}}"
+                                    >Daftar OKP</a
+                                >
+                                <li class="nav-item">
+                                    <a
+                                    class="nav-link"
+                                    style="font-weight: bold"
                                     href="{{Route('contact')}}"
                                     >Contact</a
                                 >
