@@ -134,6 +134,10 @@ class AbsenteeismParentController extends Controller
             return response([
                 'status' => 'success',
                 'message' => 'absent berhasil diajukan',
+                'test' => $userAbsentToday,
+                'test2' => $userScheduleToday,
+                'date' => $date,
+                'day' => $day
             ]);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
