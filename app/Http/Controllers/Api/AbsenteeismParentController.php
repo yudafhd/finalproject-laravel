@@ -126,6 +126,7 @@ class AbsenteeismParentController extends Controller
                             'test2' => $userScheduleToday,
                             'date' => $date,
                             's' =>  $request->date,
+                            'sll' =>  $request->all(),
                             'day' => $day,
                         ]);
                     }
