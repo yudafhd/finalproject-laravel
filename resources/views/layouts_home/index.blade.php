@@ -95,7 +95,15 @@
             </div>
         </header>
         <div class="container">
+            @if(\Request::route()->getName() == 'detailokp')
+                @if($okp->foto)
+                <img style="width: 100%" src="{{ asset('storage/okp/photo/'.$okp->foto) }}" />
+                @else
+                <img style="width: 100%" src="{{asset('assets/images/background/login-register.jpg')}}" />
+                @endif
+            @else
             <img style="width: 100%" src="{{asset('assets/images/background/login-register.jpg')}}" />
+            @endif
         </div>
             <div class="container m-b-40" style="min-height:75vh">
                 @yield('content')

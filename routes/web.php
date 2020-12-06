@@ -16,6 +16,8 @@ Route::get('/', 'HomeController@index')->name('homes');
 Route::get('/detail/{id}', 'HomeController@detail')->name('detail');
 Route::get('/visi', 'HomeController@visi')->name('visi');
 Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::get('/daftar-organisasi', 'HomeController@daftarOkp')->name('daftarokp');
+Route::get('/daftar-organisasi/{id}', 'HomeController@detailOkp')->name('detailokp');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', 'OkpController@index')->name('dashboard');
     Route::get('/anggota/reportdownload', 'AnggotaController@downloadReport')->name('anggota.report');
