@@ -119,7 +119,14 @@ class AbsenteeismParentController extends Controller
                             ]);
                         }
                     } else {
-                        return response()->json(['status' => 'error', 'message' => 'Tidak ada jadwal sekolah']);
+                        return response()->json([
+                            'status' => 'error',
+                            'message' => 'Tidak ada jadwal sekolah',
+                            'test' => $userAbsentToday,
+                            'test2' => $userScheduleToday,
+                            'date' => $date,
+                            'day' => $day,
+                        ]);
                     }
                 }
             }
