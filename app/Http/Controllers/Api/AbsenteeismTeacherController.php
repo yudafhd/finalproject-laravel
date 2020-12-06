@@ -82,6 +82,7 @@ class AbsenteeismTeacherController extends Controller
                             $userAbsentToday->delete();
                         } else {
                             $userAbsentToday->reason = $request->reasons[$key];
+                            $userAbsentToday->description = $request->description[$key];
                             $userAbsentToday->save();
                         }
                     } else {
@@ -90,7 +91,8 @@ class AbsenteeismTeacherController extends Controller
                                 'schedule_id' => $request->schedule_id,
                                 'user_id' => $value,
                                 'reason' => $request->reasons[$key],
-                                'date_absent' => $request->date_absent
+                                'date_absent' => $request->date_absent,
+                                'description' => $request->description
                             ]);
                         }
                     }

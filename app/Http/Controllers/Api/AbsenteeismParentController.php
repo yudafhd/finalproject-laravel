@@ -119,6 +119,7 @@ class AbsenteeismParentController extends Controller
                                 'reason' => $request->reasons,
                                 'date_absent' => $date,
                                 'image' => $imagename,
+                                'submit_from_parent' => 1,
                                 'description' => $request->description
                             ]);
                         }
@@ -126,12 +127,6 @@ class AbsenteeismParentController extends Controller
                         return response()->json([
                             'status' => 'error',
                             'message' => 'Tidak ada jadwal sekolah',
-                            'test' => $userAbsentToday,
-                            'test2' => $userScheduleToday,
-                            'date' => $date,
-                            's' =>  $request->date,
-                            'sll' =>  $request->all(),
-                            'day' => $day,
                         ]);
                     }
                 }
@@ -140,10 +135,6 @@ class AbsenteeismParentController extends Controller
             return response([
                 'status' => 'success',
                 'message' => 'absent berhasil diajukan',
-                'test' => $userAbsentToday,
-                'test2' => $userScheduleToday,
-                'date' => $date,
-                'day' => $day
             ]);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
