@@ -75,6 +75,7 @@
                                     <select class="form-control" name="reason">
                                         <option value="absen" {{$absents->reason == 'absen' ? 'selected' : ''}}>Absen</option>
                                         <option value="izin" {{$absents->reason == 'izin' ? 'selected' : ''}}>Izin</option>
+                                        <option value="izin" {{$absents->reason == 'sakit' ? 'selected' : ''}}>Sakit</option>
                                         <option value="lain" {{$absents->reason == 'lain' ? 'selected' : ''}}>Lain</option>
                                     </select>
                                 </div>
@@ -86,6 +87,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
+                                <label class="control-label">Foto surat keterangan</label><br/>
+                                <img src="{{Url('storage/user/absent/'.$absents->user->id.'/'.$absents->image)}}" />
                             </div>
                         </div>
                         <div class="form-actions">

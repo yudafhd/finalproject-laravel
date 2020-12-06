@@ -69,8 +69,9 @@
                                     <label class="control-label">Reason</label>
                                     <select class="form-control" name="reason">
                                         <option value="absen">Absen</option>
+                                        <option value="sakit">Sakit</option>
                                         <option value="izin">Izin</option>
-                                        <option value="lain">Lain</option>
+                                        <option value="lainnya">Lainnya</option>
                                     </select>
                                 </div>
                             </div>

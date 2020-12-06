@@ -13,6 +13,7 @@ class Absent extends Model
         'user_id',
         'schedule_id',
         'reason',
+        'image',
         'date_absent',
         'description'
     ];
