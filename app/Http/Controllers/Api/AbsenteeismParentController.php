@@ -75,7 +75,7 @@ class AbsenteeismParentController extends Controller
                 // Decode image
                 $imagename = date('YmdHis-') . uniqid() . '.jpg';
                 $path = '/user/absent/' . auth()->user()->id . '/' . $imagename;
-                $imagesBatch = Image::make($request->file('foto'))->fit(300, 300)->encode('jpg');
+                $imagesBatch = Image::make($request->file('foto'))->encode('jpg');
 
                 // Save proccess
                 Storage::disk('public')->put($path, $imagesBatch);
