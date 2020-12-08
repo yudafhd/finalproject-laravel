@@ -72,6 +72,7 @@ class AbsenteeismTeacherController extends Controller
     {
         try {
             $userAbsentToday = [];
+
             if (count($request->user_id)) {
                 foreach ($request->user_id as $key => $value) {
                     $userAbsentToday = Absent::where('date_absent', '=', $request->date_absent)
@@ -82,11 +83,12 @@ class AbsenteeismTeacherController extends Controller
                             $userAbsentToday->delete();
                         } else {
                             $userAbsentToday->reason = $request->reasons[$key];
-                            $userAbsentToday->description = $request->description[$key];
+                            $userAbsentToday->description = $request->descriptions[$key];
                             $userAbsentToday->save();
                         }
                     } else {
                         if ($request->reasons[$key] !== 'masuk') {
+
                             Absent::create([
                                 'schedule_id' => $request->schedule_id,
                                 'user_id' => $value,
@@ -94,14 +96,57 @@ class AbsenteeismTeacherController extends Controller
                                 'date_absent' => $request->date_absent,
                                 'description' => $request->description
                             ]);
+
+                            // Send notification
+                            $userData = User::find($value);
+                            $scheduleData = Schedule::find($request->schedule_id);
+                            $this->sendNotification($userData, $scheduleData->subject->name);
                         }
                     }
                 }
             }
-            return response(['status' => 'success', 'message' => 'absent berhasil ditambahkan']);
+            return response([
+                'status' => 'success',
+                'message' => 'absent berhasil ditambahkan',
+            ]);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
         }
+    }
+
+    public function sendNotification($user, $schedule_name)
+    {
+
+        $SERVER_API_KEY = env('FCM_ACCESS_KEY');
+
+        $firebaseToken = array($user->notification_token);
+
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => 'PEMBERITAHUAN',
+                "body" => 'Siswa A/N ' . $user->name .
+                    ' tidak mengikuti pelajaran ' .
+                    $schedule_name . ' hari ini',
+            ]
+        ];
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+        curl_exec($ch);
     }
 
     public function switchDayName($name)
