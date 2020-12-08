@@ -168,6 +168,12 @@
                                             <input type="text" name="password" class="form-control" value="">
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">FCM </label>
+                                            {{ $userDetail->notification_token }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

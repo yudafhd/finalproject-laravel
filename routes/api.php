@@ -31,4 +31,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     // Notif token
     Route::post('/user/notification/token', 'Api\NotificationTokenController@index');
+
+    // Test notif
+    Route::post('/user/notification/test', 'Api\FCMNotificationController@sendNotification');
 });

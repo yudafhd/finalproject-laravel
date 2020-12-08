@@ -125,7 +125,7 @@ class AbsenteeismTeacherController extends Controller
             "registration_ids" => $firebaseToken,
             "notification" => [
                 "title" => 'PEMBERITAHUAN',
-                "body" => 'Siswa A/N ' . $user->name .
+                "body" => 'Siswa a/n ' . $user->name .
                     ' tidak mengikuti pelajaran ' .
                     $schedule_name . ' hari ini',
             ]
