@@ -28,4 +28,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/parent/home', 'Api\HomeParentController@index');
     Route::get('/parent/allrecapitulation', 'Api\HomeParentController@homeParentAllRecap');
     Route::post('/parent/absenteeism/submit', 'Api\AbsenteeismParentController@submitAbsent');
+
+    // Notif token
+    Route::post('/user/notification/token', 'Api\NotificationTokenController@index');
 });

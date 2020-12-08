@@ -33,7 +33,8 @@ class User extends Authenticatable
         'kelas_id',
         'parent_name',
         'phone_number',
-        'password'
+        'password',
+        'notification_token'
     ];
 
     protected $hidden = [
@@ -45,13 +46,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    // public static function boot()
-    // {
-    //     parent::boot();
-    //     static::deleting(function ($user) {
-    //         $user->general()->delete();
-    //         $user->links()->delete();
-    //     });
-    // }
 }
