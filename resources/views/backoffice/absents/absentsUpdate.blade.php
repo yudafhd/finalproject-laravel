@@ -88,7 +88,11 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="control-label">Foto surat keterangan</label><br/>
+                                @if($absents->image)
                                 <img src="{{Url('storage/user/absent/'.$absents->user->id.'/'.$absents->image)}}" />
+                                @else 
+                                Tidak ada foto
+                                @endif
                             </div>
                         </div>
                         <div class="form-actions">
