@@ -90,7 +90,7 @@
                                 <label class="control-label">Foto surat keterangan</label><br/>
                                 @if($absents->image)
                                 <a target="_blank" href="{{Url('storage/user/absent/'.$absents->user->id.'/'.$absents->image)}}">
-                                    <img src="{{Url('storage/user/absent/'.$absents->user->id.'/'.$absents->image)}}" />
+                                    <img style="width: 100%" src="{{Url('storage/user/absent/'.$absents->user->id.'/'.$absents->image)}}" />
                                 </a>
                                 @else 
                                 Tidak ada foto
