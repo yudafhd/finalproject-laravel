@@ -16,7 +16,11 @@ body {
   -webkit-box-direction: normal;
           flex-direction: column;
   padding: 68px 100px;
-  background-color: #fff; }
+  background-color: #fff; 
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
   @media (max-width: 991px) {
     .login-section-wrapper {
       padding-left: 50px;
