@@ -149,6 +149,11 @@ a {
     width: 50px;
 }
 
+.btn-primary.disabled:hover, .btn-primary:hover{
+    color: #fff !important;
+    background-color: #0069d9 !important;
+}
+
 .footer{
     text-align: center;
 }
