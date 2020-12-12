@@ -14,9 +14,9 @@
                             <i class="mdi mdi-account-box"></i>
                         <span class="hide-menu">Users</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{Route('user.list', 'admin')}}">Admin</a></li>
-                                <li><a href="{{Route('user.list', 'guru')}}">Guru</a></li>
-                                <li><a href="{{Route('user.list', 'siswa')}}">Siswa</a></li>
+                                <li><a href="{{Route('user.list', 'admin')}}">admin</a></li>
+                                <li><a href="{{Route('user.list', 'guru')}}">guru</a></li>
+                                <li><a href="{{Route('user.list', 'siswa')}}">siswa</a></li>
                             </ul>
                         </li>
                         @endif
@@ -29,21 +29,21 @@
                         </a>
                         </li>
                         @endif
-                        @if (auth()->user()->type ==='superadmin' ||  auth()->user()->can('absents'))
+                        @if (auth()->user()->type ==='superadmin' ||  auth()->user()->can('subjects'))
                         <li><a href="{{Route('subject.index')}}"><i class="mdi mdi-book-open-variant"></i>
                             <span class="hide-menu">
                                 Mata Pelajaran
                             </span> 
                         </a></li>
                         @endif
-                        @if (auth()->user()->type ==='superadmin' ||  auth()->user()->can('absents'))
+                        @if (auth()->user()->type ==='superadmin' ||  auth()->user()->can('classes'))
                         <li><a href="{{Route('kelas.index')}}"><i class="mdi mdi-chair-school"></i>
                             <span class="hide-menu">
                                 Kelas
                             </span> 
                         </a></li>
                         @endif
-                        @if (auth()->user()->type ==='superadmin' ||  auth()->user()->can('absents'))
+                        @if (auth()->user()->type ==='superadmin' ||  auth()->user()->can('schedules'))
                         <li><a href="{{Route('schedule.index')}}"><i class="mdi mdi-calendar-check"></i>
                              <span class="hide-menu">
                                 Jadwal

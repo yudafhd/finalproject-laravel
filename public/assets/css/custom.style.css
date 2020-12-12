@@ -144,3 +144,7 @@ a {
     border: 1px solid #e3e6f0;
     border-radius: .35rem;
 }
+
+.topbar ul.dropdown-user li .dw-user-box .u-img {
+    width: 50px;
+}

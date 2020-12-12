@@ -93,13 +93,11 @@ class ScheduleController extends Controller
                         if (strtotime($request->end_at) < strtotime($schedule->start_at)) {
                             // dd('start at lebih kecil dan start end lebih kecil'); //next
                         } else {
-                            abort(403, 'Guru sudah mempunyai jadwal di jam ini. Jam dimulai ' . $request->start_at . ' Jam selesai '
-                                . $request->end_at);
+                            abort(403, 'Guru sudah mempunyai jadwal di jam yang anda setting');
                         }
                     } else {
                         if (strtotime($request->start_at) < strtotime($schedule->end_at)) {
-                            abort(403, 'Guru sudah mempunyai jadwal di jam ini. Jam dimulai ' . $request->start_at . ' Jam selesai '
-                                . $request->end_at);
+                            abort(403, 'Guru sudah mempunyai jadwal di jam yang anda setting. Jam dimulai ');
                         } else {
                             // dd('start at lebih kecil dan start end lebih kecil'); //next
                         }
