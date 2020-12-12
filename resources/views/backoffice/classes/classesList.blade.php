@@ -78,8 +78,8 @@
                     </table>
                 </div>
                 @else
-                <div class="table-responsive m-t-10">
-                    Absensi belum ada
+                <div class="table-responsive m-20" style="text-align: center;">
+                    Kelas Belum Ada
                 </div>
                 @endif
             </div>
