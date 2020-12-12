@@ -104,7 +104,7 @@ class SettingController extends Controller
 
     public function permissionList(Request $request)
     {
-        $permissions = Permission::orderBy('created_at', 'ASC')->get();
+        $permissions = Permission::orderBy('name', 'DESC')->get();
         return view('backoffice.settings.pemissionsList', compact('permissions'));
     }
 

@@ -71,36 +71,14 @@
     </div>
 </div>
 <div class="row">
-    {{-- <div class="col-12">
+    <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <canvas id="myChart" width="10vw" height="10vh"></canvas>
-                <script>
-                    var ctx = document.getElementById('myChart');
-                    var myChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Grey'],
-                            datasets: [{
-                                label: 'Grafik absensi satu tahun',
-                                data: [2, 1, 5, 5, 3, 3,],
-                                responsive: 'true',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }]
-                            }
-                        }
-                    });
-                </script>
+                <h2>Report absensi hari ini</h2>
+                <br />
+                <div class="ct-chart"></div>
             </div>
         </div>
-    </div> --}}
+    </div>
 </div>
 @endsection

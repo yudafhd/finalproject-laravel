@@ -36,7 +36,7 @@
                 <div class=" m-t-10">
                     <form method="POST" action="{{ Route('permission.store') }}">
                         @csrf
-                        <div class="form-row">
+                        {{-- <div class="form-row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label class="control-label">Parent</label>
@@ -48,7 +48,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-row">
                             <div class="col-md-5 mb-3">
                                 <label>Nama Permission</label>

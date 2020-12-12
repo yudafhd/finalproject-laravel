@@ -7,7 +7,8 @@
 <script src="{{ asset('assets/js/custom.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/toast-master/js/jquery.toast.js') }}"></script>
 <script src="{{ asset('assets/js/dashboard1.js') }}"></script>
-{{-- <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script> --}}
+{{--
+<script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script> --}}
 <script src="{{ asset('assets/plugins/clockpicker/dist/jquery-clockpicker.min.js') }}"></script>
 <script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
 <script src="{{ asset('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}">
@@ -27,8 +28,7 @@
 <script src="https://selectize.github.io/selectize.js/js/selectize.js"></script>
 <script src="{{ asset('assets/plugins/html5-editor/wysihtml5-0.3.0.js')}}"></script>
 <script src="{{ asset('assets/plugins/html5-editor/bootstrap-wysihtml5.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.js"></script>
 <script>
     $(document).ready(function () {
         $(".select2").select2();
@@ -60,6 +60,14 @@
         $('.textarea_editor').wysihtml5();
         $('.select-beast').selectize();
 
+        new Chartist.Line('.ct-chart', {
+            labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
+            series: [
+                [30, 10, 22, 8, 10, 8],
+            ]
+        }, {
+            fullWidth: true,
+        });
     });
 
     function insertModalInfo(data) {

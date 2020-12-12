@@ -232,10 +232,8 @@
             <div class="container-fluid">
                 @yield('content')
             </div>
-            <footer class="footer"> © 2019 {{ config('app.name') }} </footer>
+            <footer class="footer"> © 2020 {{ config('app.name') }} </footer>
         </div>
     </div>
-  
 </body>
-
 </html>

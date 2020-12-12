@@ -16,7 +16,7 @@ class SettingController extends Controller
     public function roleList(Request $request)
     {
         $user = Auth::user();
-        $roles = Roles::orderBy('updated_at', 'DESC')->get();
+        $roles = Roles::orderBy('name', 'ASC')->get();
         return view('backoffice.settings.rolesList', compact('roles'));
     }
 
@@ -104,7 +104,7 @@ class SettingController extends Controller
 
     public function permissionList(Request $request)
     {
-        $permissions = Permission::orderBy('created_at', 'ASC')->get();
+        $permissions = Permission::orderBy('name', 'ASC')->get();
         return view('backoffice.settings.pemissionsList', compact('permissions'));
     }
 

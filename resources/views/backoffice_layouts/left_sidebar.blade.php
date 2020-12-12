@@ -14,9 +14,15 @@
                             <i class="mdi mdi-account-box"></i>
                         <span class="hide-menu">Users</span></a>
                             <ul aria-expanded="false" class="collapse">
+                                @if (auth()->user()->type ==='superadmin' ||  auth()->user()->can('user admin'))
                                 <li><a href="{{Route('user.list', 'admin')}}">admin</a></li>
+                                @endif
+                                @if (auth()->user()->type ==='superadmin' ||  auth()->user()->can('user siswa'))
                                 <li><a href="{{Route('user.list', 'guru')}}">guru</a></li>
+                                @endif
+                                @if (auth()->user()->type ==='superadmin' ||  auth()->user()->can('user guru'))
                                 <li><a href="{{Route('user.list', 'siswa')}}">siswa</a></li>
+                                @endif
                             </ul>
                         </li>
                         @endif
