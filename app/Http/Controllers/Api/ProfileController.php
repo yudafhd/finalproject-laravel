@@ -11,11 +11,6 @@ class ProfileController extends Controller
     {
 
         $user = Auth::user();
-        // $user = auth()->user();
-        // $user_class_id = auth()->user()->class_id;
-        // if ($user_class_id) {
-        //     $user->class = auth()->user()->class;
-        // }
         return response(['status' => 'success', 'data' => $user]);
     }
 }

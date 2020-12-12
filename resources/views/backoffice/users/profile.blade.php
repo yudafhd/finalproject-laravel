@@ -18,7 +18,7 @@
             <div class="card-body">
                 <center class="m-t-30"> 
                     @if (auth()->user()->photo)
-                    <img src="{{Url('storage/admin/profile/'.auth()->user()->photo)}}"
+                    <img src="{{Url('storage/user/profile/'.auth()->user()->id.'/'.auth()->user()->photo)}}"
                     class="img-circle" width="150" />
                     @else                        
                     <img src="{{Url('assets/images/users/user.png')}}" class="img-circle" width="150" />
@@ -28,12 +28,6 @@
                 </center>
             </div>
             <div>
-                <hr> </div>
-            <div class="card-body"> 
-                <small class="text-muted">Tanggal Daftar </small>
-                <h6>{{auth()->user()->created_at}}</h6> 
-                <small class="text-muted">Email address </small>
-                <h6>{{auth()->user()->email}}</h6> 
             </div>
         </div>
     </div>

@@ -45,11 +45,11 @@
                     Buat
                 </a>
                 @if(count($permissions) > 0)
-                <div class="table-responsive m-t-10">
-                    <table id="treetable" class="table table-sm table-bordered">
+                <div class="m-t-10">
+                    <table id="treetable" class="table table-sm">
                         <thead>
                             <tr>
-                                <th>Nama Permission</th>
+                                <th style="padding: 10px">Nama Permission</th>
                                 <th></th>
                             </tr>
                         </thead>

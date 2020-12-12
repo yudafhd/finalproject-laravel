@@ -37,18 +37,11 @@
                     <form method="POST" action="{{ Route('permission.store') }}">
                         @csrf
                         <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                                <label>Nama Permission</label>
-                                <input type="text" name="name" class="form-control" placeholder="example show data user"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="form-row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label class="control-label">Parent</label>
                                     <select class="form-control" name="parent_id" custom-select">
-                                        <option value="">Chose parent permission</option>
+                                        <option value="">Pilih parent permission</option>
                                         @foreach ($permissions as $permission)
                                         <option value="{{$permission->id}}">{{$permission->name}}</option>
                                         @endforeach
@@ -56,6 +49,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="col-md-5 mb-3">
+                                <label>Nama Permission</label>
+                                <input type="text" name="name" class="form-control" placeholder="masukan nama"
+                                    required>
+                            </div>
+                        </div>
+                        
                         <button class="btn btn-primary" type="submit">Kirim</button>
                     </form>
                 </div>

@@ -11,8 +11,8 @@
                     @csrf
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input id="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="superadmin@gmail.com" required autocomplete="email" autofocus />
+                        <input id="email" placeholder="Masukan email" class="form-control @error('email') is-invalid @enderror"
+                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
                         @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -23,7 +23,7 @@
                         <label for="password">Password</label>
                         <input id="password" type="password"
                             class="form-control @error('password') is-invalid @enderror" name="password"
-                            placeholder="Password" required autocomplete="current-password" value="adminadmin" />
+                            placeholder="masukan password" required autocomplete="current-password" />
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -31,7 +31,8 @@
                         </span>
                         @enderror
                     </div>
-                    <button class="btn btn-block btn-lg btn-success" style="background: linear-gradient(45deg, rgb(33, 150, 243) 30%, rgb(33, 203, 243) 90%);"
+                    <button class="btn btn-block btn-lg btn-success" 
+                    style="background: linear-gradient(45deg, rgb(33, 150, 243) 30%, rgb(33, 203, 243) 90%);"
                     type="submit">
                         Masuk
                     </button>

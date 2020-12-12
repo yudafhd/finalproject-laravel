@@ -42,7 +42,7 @@
                 </a>
                 @if(count($schedules) > 0)
                 <div class="table-responsive m-t-10">
-                    <table id="myTable" class="table">
+                    <table id="searchTable" class="table">
                         <thead>
                             <tr>
                                 <th>Kelas</th>

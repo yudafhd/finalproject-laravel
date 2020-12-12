@@ -16,7 +16,6 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-
                 @if (session('alert-success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{session('alert-success')}}
@@ -45,10 +44,10 @@
                 </a>
                 @if(count($roles) > 0)
                 <div class="table-responsive m-t-10">
-                    <table id="searchTable" class="table table-sm table-bordered">
+                    <table class="table table-sm table">
                         <thead>
                             <tr>
-                                <th>Nama Role</th>
+                                <th style="padding:10px; padding-left:0px">Nama Role</th>
                                 <th></th>
                             </tr>
                         </thead>

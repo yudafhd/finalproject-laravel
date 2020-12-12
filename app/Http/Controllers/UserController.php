@@ -6,6 +6,8 @@ use App\User;
 use App\Kelas;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
 {
@@ -23,7 +25,7 @@ class UserController extends Controller
 
         $userList = User::all()->where('type', $type);;
         $success_message = $request->session()->get('alert-success');
-        return view('backoffice.users.userList',  ['type'=>$type, 'userList' => $userList, 'success_message' => $success_message]);
+        return view('backoffice.users.userList',  ['type' => $type, 'userList' => $userList, 'success_message' => $success_message]);
     }
 
     public function create()
@@ -62,7 +64,7 @@ class UserController extends Controller
         $roles = Role::all();
         $kelas = Kelas::all();
         $isHasGeneral = true;
-        return view('backoffice.users.userUpdate',  ['isHasGeneral'=>$isHasGeneral, 'userDetail' => $userDetail, 'kelas' => $kelas, 'roles' => $roles]);
+        return view('backoffice.users.userUpdate',  ['isHasGeneral' => $isHasGeneral, 'userDetail' => $userDetail, 'kelas' => $kelas, 'roles' => $roles]);
     }
 
     public function storeUpdate(Request $request)
@@ -96,11 +98,11 @@ class UserController extends Controller
             }
             $userDetail->save();
             $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
-            return redirect('/user/'.$request->type);
+            return redirect('/user/' . $request->type);
         } catch (\Exception $e) {
             dd($e->getMessage());
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect('/user/'.$request->type);
+            return redirect('/user/' . $request->type);
         }
     }
 
@@ -126,9 +128,21 @@ class UserController extends Controller
                 $userDetail->type = $roles->name;
             }
 
+            $imagename = null;
+            if ($request->file('foto')) {
+                // Decode image
+                $imagename = date('YmdHis-') . uniqid() . '.jpg';
+                $path = '/user/profile/' . auth()->user()->id . '/' . $imagename;
+                $imagesBatch = Image::make($request->file('foto'))->resize(300, 300)->encode('jpg');
+
+                // Save proccess
+                Storage::disk('public')->put($path, $imagesBatch);
+            }
+
             $userDetail->name = $request->name;
             $userDetail->email = $request->email;
             $userDetail->phone_number = $request->phone_number;
+            $userDetail->photo = $imagename;
             $userDetail->address = $request->address;
 
             if ($request->password) {

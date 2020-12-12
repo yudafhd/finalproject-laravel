@@ -175,7 +175,7 @@
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 @if (auth()->user()->photo)
-                                <img src="{{Url('storage/admin/profile/'.auth()->user()->photo)}}"
+                                <img src="{{Url('storage/user/profile/'.auth()->user()->id.'/'.auth()->user()->photo)}}"
                                 class="profile-pic" />
                                 @else                        
                                 <img src="{{Url('assets/images/users/user.png')}}" class="profile-pic" />
@@ -187,7 +187,7 @@
                                         <div class="dw-user-box">
                                             <div class="u-img">
                                                 @if (auth()->user()->photo)
-                                                <img src="{{Url('storage/admin/profile/'.auth()->user()->photo)}}"
+                                                <img src="{{Url('storage/user/profile/'.auth()->user()->id.'/'.auth()->user()->photo)}}"
                                                  />
                                                 @else                        
                                                 <img src="{{ asset('assets/images/users/user.png') }}"
