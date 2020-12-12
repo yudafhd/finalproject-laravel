@@ -71,7 +71,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('absent.edit', $absent->id)}}">Update</a>
+                                                href="{{Route('absent.edit', $absent->id)}}">Update & Detail</a>
                                                 <form method="POST" action="{{Route('absent.destroy', $absent->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}

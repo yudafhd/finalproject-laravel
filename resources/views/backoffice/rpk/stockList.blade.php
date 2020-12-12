@@ -66,7 +66,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('stock.edit', $stock->id)}}">Update</a>
+                                                href="{{Route('stock.edit', $stock->id)}}">Update & Detail</a>
                                                 <form method="POST" action="{{Route('stock.destroy', $stock->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}

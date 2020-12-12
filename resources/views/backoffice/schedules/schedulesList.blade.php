@@ -72,7 +72,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('schedule.edit', $schedules->id)}}">Update</a>
+                                                href="{{Route('schedule.edit', $schedules->id)}}">Update & Detail</a>
                                                 <form method="POST" action="{{Route('schedule.destroy', $schedules->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}

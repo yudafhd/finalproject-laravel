@@ -74,7 +74,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('permission.update', $permission->id)}}">Update</a>
+                                                href="{{Route('permission.update', $permission->id)}}">Update & Detail</a>
                                             <a class="dropdown-item"
                                                 href="{{Route('permission.delete', $permission->name)}}">Delete</a>
                                         </div>

@@ -62,7 +62,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('kelas.edit', $classe->id)}}">Update</a>
+                                                href="{{Route('kelas.edit', $classe->id)}}">Update & Detail</a>
                                                 <form method="POST" action="{{Route('kelas.destroy', $classe->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}

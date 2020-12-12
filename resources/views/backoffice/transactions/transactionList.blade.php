@@ -154,7 +154,7 @@
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item"
-                                                        href="{{Route('admin.transaction.edit', $transaction->id)}}">Update</a>
+                                                        href="{{Route('admin.transaction.edit', $transaction->id)}}">Update & Detail</a>
                                                     <form method="POST"
                                                         action="{{Route('admin.transaction.destroy', $transaction->id)}}">
                                                         @csrf

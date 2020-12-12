@@ -75,7 +75,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('admin.theme.edit', $product->id)}}">Update</a>
+                                                href="{{Route('admin.theme.edit', $product->id)}}">Update & Detail</a>
                                                 <form method="POST" action="{{Route('admin.theme.destroy', $product->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}

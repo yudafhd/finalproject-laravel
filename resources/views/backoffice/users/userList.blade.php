@@ -78,7 +78,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('user.update', $user->id)}}">Update</a>
+                                                href="{{Route('user.update', $user->id)}}">Update & Detail</a>
                                             <a class="dropdown-item" data-toggle="modal"
                                                 data-target="#exampleModalCenter"
                                                 onclick="insertModalInfo({url:'{{Route('user.delete', $user->id)}}', info:'Nama : {{$user->name}} Tipe: {{$user->access_type}}'})">Delete</a>

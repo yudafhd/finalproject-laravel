@@ -82,7 +82,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                                href="{{Route('ewarong.edit', $rpk->id)}}">Update</a>
+                                                href="{{Route('ewarong.edit', $rpk->id)}}">Update & Detail</a>
                                                
                                                 @if (auth()->user()->access_type ==='superadmin')
                                                 <form method="POST" action="{{Route('ewarong.destroy', $rpk->id)}}">
