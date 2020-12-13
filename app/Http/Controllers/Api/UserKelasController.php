@@ -15,7 +15,7 @@ class UserKelasController extends Controller
         $user = User::where('kelas_id', $request->kelas_id)
             ->where('type', 'siswa')
             ->get();
-        return response(['status' => 'success', 'data' => $user]);
+        return response(['status' => 'success', 'data' => $user, 'request' => $request->all()]);
     }
     public function schedule(Request $request)
     {
