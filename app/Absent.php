@@ -16,7 +16,8 @@ class Absent extends Model
         'image',
         'date_absent',
         'description',
-        'submit_from_parent'
+        'submit_from_parent',
+        'status',
     ];
 
     protected $hidden = [

@@ -99,18 +99,17 @@
                             </div>
                             <div class="col-md-6 nama-keluarga" style="display: none;">
                                 <div class="form-group">
-                                    <label class="control-label">Nama Keluarga</label>
+                                    <label class="control-label">Nama Orang Tua</label>
                                     <input type="text" name="parent_name" class="form-control" value="">
                                     {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tanggal Lahir</label>
                                     <input id="mdatepicker" name="dob" class="form-control" value="">
-                                    {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">No. Telepon</label>

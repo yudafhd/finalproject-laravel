@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/html5-editor/bootstrap-wysihtml5.css')}}">
 <link rel="stylesheet" type="text/css" href="https://selectize.github.io/selectize.js/css/selectize.default.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <style>
     .dropify-wrapper .dropify-message p {
         text-align: center;

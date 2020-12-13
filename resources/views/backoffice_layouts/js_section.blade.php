@@ -6,13 +6,10 @@
 <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
 <script src="{{ asset('assets/js/custom.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/toast-master/js/jquery.toast.js') }}"></script>
-<script src="{{ asset('assets/js/dashboard1.js') }}"></script>
-{{--
-<script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script> --}}
 <script src="{{ asset('assets/plugins/clockpicker/dist/jquery-clockpicker.min.js') }}"></script>
 <script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
-<script src="{{ asset('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}">
-</script>
+<script
+    src="{{ asset('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js') }}"></script>
@@ -20,8 +17,6 @@
 <script src="{{ asset('assets/plugins/ludo-jquery-treetable/jquery.treetable.js') }}"></script>
 <script src="{{ asset('assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
 <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js')}}"></script>
-<script src="{{ asset('assets/plugins/chartist-js/dist/chartist.min.js')}}"></script>
-<script src="{{ asset('assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js')}}"></script>
 <script src="{{ asset('assets/plugins/d3/d3.min.js')}}"></script>
 <script src="{{ asset('assets/plugins/c3-master/c3.min.js')}}"></script>
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -29,13 +24,13 @@
 <script src="{{ asset('assets/plugins/html5-editor/wysihtml5-0.3.0.js')}}"></script>
 <script src="{{ asset('assets/plugins/html5-editor/bootstrap-wysihtml5.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
         $(".select2").select2();
         var dateNow = new Date();
         $('#mdatepicker').bootstrapMaterialDatePicker({
             time: false,
-            currentDate: dateNow,
         });
         $('#timePicker1').bootstrapMaterialDatePicker({
             date: false,
@@ -58,8 +53,7 @@
         $('#searchTable').DataTable();
         $('.searchTable').DataTable();
         $('.textarea_editor').wysihtml5();
-        $('.select-beast').selectize();
-
+        $('.selectize_custom').selectize();
         new Chartist.Line('.ct-chart', {
             labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
             series: [

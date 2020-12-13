@@ -35,3 +35,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     // Test notif
     Route::post('/user/notification/test', 'Api\FCMNotificationController@sendNotification');
 });
+
+// Additional for web
+Route::get('/user/kelas', 'Api\UserKelasController@index');
+Route::get('/user/jadwal', 'Api\UserKelasController@schedule');

@@ -75,8 +75,8 @@
                                     <select class="form-control" name="reason">
                                         <option value="absen" {{$absents->reason == 'absen' ? 'selected' : ''}}>Absen</option>
                                         <option value="izin" {{$absents->reason == 'izin' ? 'selected' : ''}}>Izin</option>
-                                        <option value="izin" {{$absents->reason == 'sakit' ? 'selected' : ''}}>Sakit</option>
-                                        <option value="lain" {{$absents->reason == 'lain' ? 'selected' : ''}}>Lain</option>
+                                        <option value="sakit" {{$absents->reason == 'sakit' ? 'selected' : ''}}>Sakit</option>
+                                        <option value="lainnya" {{$absents->reason == 'lainnya' ? 'selected' : ''}}>Lainnya</option>
                                     </select>
                                 </div>
                             </div>

@@ -82,13 +82,13 @@
                                 <div class="form-group">
                                     <label class="control-label">Hari</label>
                                     <select class="form-control" name="day" custom-select">
-                                        <option value="senin">Senin</option>
-                                        <option value="selasa">Selasa</option>
-                                        <option value="rabu">Rabu</option>
-                                        <option value="kamis">Kamis</option>
-                                        <option value="jumat">Jumat</option>
-                                        <option value="sabtu">Sabtu</option>
-                                        <option value="minggu">Minggu</option>
+                                        <option value="senin">senin</option>
+                                        <option value="selasa">selasa</option>
+                                        <option value="rabu">rabu</option>
+                                        <option value="kamis">kamis</option>
+                                        <option value="jumat">jumat</option>
+                                        <option value="sabtu">sabtu</option>
+                                        <option value="minggu">minggu</option>
                                     </select>
                                 </div>
                             </div>

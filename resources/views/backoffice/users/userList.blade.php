@@ -49,12 +49,11 @@
                             <tr>
                                 <th>Nama</th>
                                 @if ($type == "siswa")
-                                <th>Nama Keluarga</th>
+                                <th>Kelas</th>
+                                <th>Nama Orang Tua</th>
                                 @endif
                                 <th>Nomer Telepon</th>
-                                <th>Email</th>
                                 <th>Address</th>
-                                <th>Access</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -63,12 +62,11 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 @if ($type == "siswa")
+                                <td>{{ $user->kelas->grade }} - {{ $user->kelas->majors }} {{ $user->kelas->number }}</td>
                                 <td>{{ $user->parent_name }}</td>
                                 @endif
                                 <td>{{ $user->phone_number }}</td>
-                                <td>{{ $user->email }}</td>
                                 <td>{{ $user->address }}</td>
-                                <td>{{ $user->type }}</td>
                                 <td>
                                     <div class="dropdown" style="float: right">
                                         <button class="btn btn-success waves-effect waves-light m-r-10 dropdown-toggle"

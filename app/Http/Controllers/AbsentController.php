@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Absent;
 use App\Schedule;
 use App\User;
+use App\Kelas;
 
 class AbsentController extends Controller
 {
@@ -23,13 +24,16 @@ class AbsentController extends Controller
 
         $users = User::all()->where('type', 'siswa');
         $schedules = Schedule::all();
+        $classes = Kelas::all();
         $error_message = $request->session()->get('alert-error');
-        return view('backoffice.absents.absentsCreate', ['users' => $users, 'schedules' => $schedules, 'error_message' => $error_message]);
+        return view(
+            'backoffice.absents.absentsCreate',
+            ['users' => $users, 'request' => $request, 'classes' => $classes, 'schedules' => $schedules, 'error_message' => $error_message]
+        );
     }
 
     public function store(Request $request)
     {
-
         try {
             $request->validate([
                 'user_id' => 'required',
@@ -37,7 +41,19 @@ class AbsentController extends Controller
                 'date_absent' => 'required',
                 'reason' => 'required',
             ]);
-            Absent::create($request->all());
+
+            foreach ($request->user_id as $user_val) {
+                foreach ($request->schedule_id as $schedule_val) {
+                    Absent::create([
+                        'user_id' => $user_val,
+                        'schedule_id' => $schedule_val,
+                        'date_absent' => $request->date_absent,
+                        'reason' => $request->reason,
+                        'description' => $request->description,
+                        'status' => 1
+                    ]);
+                }
+            }
             $request->session()->flash('alert-success', "Absen berhasil dibuat!");
             return redirect()->route('absent.index');
         } catch (\Exception $e) {
