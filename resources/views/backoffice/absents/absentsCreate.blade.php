@@ -24,7 +24,7 @@
                     </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ Route('absent.store') }}">
+                <form method="POST" action="{{ Route('absent.store') }}" id="testing">
                     @csrf
                     <div class="form-body">
                         <h3 class="card-title" style="font-weight: bold">Absent Info</h3>
@@ -93,8 +93,8 @@
             $('#pelajaran_select_container').html(' <span>Pilih jadwal</span> <br />');
             $('#siswa_select_container').html('<label class="control-label">Siswa</label><select class="selectize_custom_multiple" id="siswa_select" name="user_id[]"><option value="">Pilih Siswa</option></select>');
             $.ajax({
-                type: "GET",
-                url: "{{ $request->getSchemeAndHttpHost() }}/api/user/kelas",
+                type: "POST",
+                url: "{{ $request->getSchemeAndHttpHost() }}/smkn1-absensi/public/api/user/kelas",
                 data: { kelas_id: this.value },
                 success: function (data) {
                     data.data.forEach(element => {
@@ -115,8 +115,8 @@
             const selector = $('#pelajaran_select_container');
             selector.html(' <div style="margin-bottom:5px">Pilih jadwal</div>');
             $.ajax({
-                type: "GET",
-                url: "{{ $request->getSchemeAndHttpHost() }}/api/user/jadwal",
+                type: "POST",
+                url: "{{ $request->getSchemeAndHttpHost() }}/smkn1-absensi/public/api/user/jadwal",
                 data: { date: this.value, kelas_id: $("#kelas_select").val() },
                 success: function (data) {
                     console.log(data);

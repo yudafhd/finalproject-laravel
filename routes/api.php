@@ -37,5 +37,5 @@ Route::group(['middleware' => 'auth:api'], function () {
 });
 
 // Additional for web
-Route::get('/user/kelas', 'Api\UserKelasController@index');
-Route::get('/user/jadwal', 'Api\UserKelasController@schedule');
+Route::post('/user/kelas', 'Api\UserKelasController@index');
+Route::post('/user/jadwal', 'Api\UserKelasController@schedule');
