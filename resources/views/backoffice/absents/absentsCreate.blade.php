@@ -44,7 +44,6 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group" style="display: none;" id="siswa_select_container">
-
                                 </div>
                             </div>
                             <div class="col-md-6">

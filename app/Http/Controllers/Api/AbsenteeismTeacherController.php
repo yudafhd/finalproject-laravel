@@ -14,6 +14,7 @@ class AbsenteeismTeacherController extends Controller
 
     public function index(Request $request)
     {
+        date_default_timezone_set('Asia/Jakarta');
         try {
             $day = $this->switchDayName($request->day);
             $time = strtotime($request->time);
@@ -37,7 +38,9 @@ class AbsenteeismTeacherController extends Controller
 
             $class_today = [];
             if ($schedule_today) {
-                $users = User::where('kelas_id', '=', $schedule_today->kelas_id)->get();
+                $users = User::where('kelas_id', '=', $schedule_today->kelas_id)
+                    ->whereNotNull('kelas_id')
+                    ->get();
 
                 if (count($users) && count($absent_today)) {
                     foreach ($absent_today as $absent) {

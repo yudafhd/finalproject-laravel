@@ -79,6 +79,12 @@ class UserController extends Controller
                 $userDetail->type = $roles->name;
             }
 
+            if ($roles) {
+                if ($roles->name != 'guru') {
+                    $userDetail->kelas_id = $request->kelas_id;
+                }
+            }
+
             $userDetail->name = $request->name;
             $userDetail->username = $request->username;
             $userDetail->email = $request->email;
@@ -89,7 +95,6 @@ class UserController extends Controller
             $userDetail->city = $request->city;
             $userDetail->nis = $request->nis;
             $userDetail->nip = $request->nip;
-            $userDetail->kelas_id = $request->kelas_id;
             $userDetail->phone_number = $request->phone_number;
             $userDetail->parent_name = $request->parent_name;
 
