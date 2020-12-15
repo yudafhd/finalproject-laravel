@@ -38,7 +38,7 @@ class HomeTeacherController extends Controller
         foreach ($days as $key => $day) {
             foreach ($data as $val) {
                 if ($day == $val->day) {
-                    $result[$key] = $val;
+                    $result[] = $val;
                 }
             }
         }
