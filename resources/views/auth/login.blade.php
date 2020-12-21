@@ -32,7 +32,7 @@
                             id="email"
                             type="email"
                             placeholder="Email"
-                            value="alifa@gmail.com"
+                            value="wira@gmail.com"
                             class="form-control @error('email') is-invalid @enderror"
                             name="email"
                             value="{{ old('email') }}"

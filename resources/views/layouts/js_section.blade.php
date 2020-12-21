@@ -149,5 +149,27 @@
     }
 
     
-
+    $(document).ready(function() {
+        $("[name=okp_id]").change(function() {
+            let id = $(this).val();
+            let jabatans = JSON.parse($("[name=jabatan]").attr("data-jabatan"));
+            let jabatan = $("[name=jabatan]").find("option");
+            console.log("id", id)
+            console.log("jabatan", jabatan)
+            if(jabatans.length > 0) {
+                let opt = '';
+                for(let i=0; i<jabatans.length; i++) {
+                    if(jabatans[i].okp_id == id) {
+                        let val = jabatans[i].nama;
+                        let name = jabatans[i].nama;
+                        let okp = jabatans[i].okp_id;
+                        opt += '<option value='+val+' data-okp='+okp+'>'+name+'</option>';
+                    }
+                    $("[name=jabatan]").html(opt);
+                }
+            } else {
+                $("[name=jabatan]").html("").trigger("change");
+            }
+        })
+    })
 </script>

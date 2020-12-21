@@ -33,7 +33,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Jabatan</label>
-                                    <input type="text" name="jabatan" class="form-control" value="">
+                                    <select class="form-control" name="jabatan" data-jabatan="{{$jabatans}}" custom-select>
+                                        <option value="">Pilih Jabatan</option>
+                                        @foreach ($jabatans as $jabatan)
+                                        <option value="{{$jabatan->nama}}" data-okp="{{$jabatan->okp_id}}">{{$jabatan->nama}}</option>
+                                        @endforeach
+                                    </select>
+                                    <!-- <input type="text" name="jabatan" class="form-control" value=""> -->
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
@@ -56,7 +62,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">OKP</label>
-                                    <select class="form-control" name="okp_id" custom-select">
+                                    <select class="form-control" required name="okp_id" custom-select>
+                                        <option value="">Pilih OKP</option>
                                         @foreach ($okps as $okp)
                                         <option value="{{$okp->id}}">{{$okp->nama}}</option>
                                         @endforeach
