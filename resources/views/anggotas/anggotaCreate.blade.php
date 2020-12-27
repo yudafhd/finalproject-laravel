@@ -36,8 +36,10 @@
                                     <select class="form-control" name="jabatan" data-jabatan="{{$jabatans}}" custom-select>
                                         <option value="">Pilih Jabatan</option>
                                         @foreach ($jabatans as $jabatan)
-                                            @if($jabatan->okp_id == Auth::user()->okp->id)
+                                            @if(isset(Auth::user()->okp->id))
+                                                @if($jabatan->okp_id == Auth::user()->okp->id)
                                             <option value="{{$jabatan->nama}}" data-okp="{{$jabatan->okp_id}}">{{$jabatan->nama}}</option>
+                                                @endif
                                             @endif
                                         @endforeach
                                     </select>
