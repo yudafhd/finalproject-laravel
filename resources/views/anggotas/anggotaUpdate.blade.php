@@ -37,9 +37,11 @@
                                     <select class="form-control" name="jabatan" data-jabatan="{{$jabatans}}" custom-select>
                                         <option value="">Pilih Jabatan</option>
                                         @foreach ($jabatans as $jabatan)
-                                        <option 
-                                        {{$anggota->jabatan == $jabatan->nama ? 'selected' :''}}
-                                        value="{{$jabatan->nama}}" data-okp="{{$jabatan->okp_id}}">{{$jabatan->nama}}</option>
+                                            @if($jabatan->okp_id == Auth::user()->okp->id)
+                                                <option 
+                                                {{$anggota->jabatan == $jabatan->nama ? 'selected' :''}}
+                                                value="{{$jabatan->nama}}" data-okp="{{$jabatan->okp_id}}">{{$jabatan->nama}}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                     <!-- <input type="text" name="jabatan" class="form-control" value="{{$anggota->jabatan}}"> -->
@@ -56,8 +58,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tanggal Masuk</label>
-                                    <input type="text" class="form-control" placeholder="2017-06-04"
-                                        name="tanggal_masuk" id="mdatepicker2" value="{{$anggota->tanggal_masuk}}" />
+                                    <input type="date" class="form-control" placeholder="2017-06-04"
+                                        name="tanggal_masuk" value="{{$anggota->tanggal_masuk}}" />
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>

@@ -62,8 +62,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tanggal Terlaksana</label>
-                                    <input type="text" class="form-control" placeholder="2017-06-04" value="{{$kegiatan->tanggal_terlaksana}}"
-                                        name="tanggal_terlaksana" id="mdatepicker2" />
+                                    <input type="date" class="form-control" placeholder="2017-06-04" value="{{$kegiatan->tanggal_terlaksana}}"
+                                        name="tanggal_terlaksana" />
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jabatan;
 use App\Okp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JabatanController extends Controller
 {
@@ -20,7 +21,7 @@ class JabatanController extends Controller
         if (auth()->user()->level == 'superadmin' || auth()->user()->level == 'admin_knpi') {
             $data = Jabatan::all();
         } else {
-            $data = Jabatan::with('okp')->whereOkpId(auth()->user()->okp()->id)->get();
+            $data = Jabatan::with('okp')->whereOkpId(Auth::user()->okp->id)->get();
         }
 
         $success_message = $request->session()->get('alert-success');
@@ -80,27 +81,32 @@ class JabatanController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Jabatan  $jabatan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Jabatan $jabatan)
+    public function edit($id)
     {
-        //
+        $is_not_okp_admin = false;
+        $okps = null;
+        if (auth()->user()->level === 'superadmin' || auth()->user()->level === 'admin_knpi') {
+            $is_not_okp_admin = true;
+            $okps = Okp::all();
+            
+        }
+        $jabatan = Jabatan::find($id);
+        return view('jabatans.jabatanUpdate', ['jabatan' => $jabatan, 'is_not_okp_admin' => $is_not_okp_admin, 'okps' => $okps]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Jabatan  $jabatan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Jabatan $jabatan)
+    public function update(Request $request, $id)
     {
-        //
+        $jabatan = Jabatan::find($id);
+        try {
+            //
+            $jabatan->nama = $request->nama;
+            $jabatan->save();
+            $request->session()->flash('alert-success', "Berhasil di update!");
+            return redirect('/jabatan');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error', $e->getMessage());
+            return redirect('/jabatan/' . $jabatan->id . 'edit');
+        }
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Kegiatan;
 use App\Okp;
 use App\Exports\KegiatanExport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -79,6 +80,7 @@ class KegiatanController extends Controller
             $request->session()->flash('alert-success', "Berhasil di buat!");
             return redirect('/kegiatan');
         } catch (\Exception $e) {
+            dd($e->getMessage());
             $request->session()->flash('alert-error', $e->getMessage());
             return redirect('/kegiatan/create');
         }

@@ -57,7 +57,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                              <a class="dropdown-item"
-                                                href="{{Route('anggota.edit', $jabatan->id)}}">Lihat Detail / Update</a>
+                                                href="{{Route('jabatan.edit', $jabatan->id)}}">Lihat Detail / Update</a>
                                                 <form method="POST" action="{{Route('jabatan.destroy', $jabatan->id)}}">
                                                     @csrf
                                                     {{ method_field('DELETE') }}

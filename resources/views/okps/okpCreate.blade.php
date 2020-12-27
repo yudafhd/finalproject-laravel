@@ -56,13 +56,13 @@
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Nomer OKP</label>
                                     <input type="number" name="no_okp" class="form-control" value="">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Status</label>
@@ -169,7 +169,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h3 class="card-title" style="font-weight: bold">Maps</h3>
+                        <!-- <h3 class="card-title" style="font-weight: bold">Maps</h3>
                         <hr>
                         <div class="row" style="margin-bottom:20px">
                             <div class="col-3">
@@ -187,13 +187,13 @@
                                 <input id="pac-input" class="controls" type="text" placeholder="Cari Alamat">
                                 <div id="mapGoogle" style="height: 500px;"></div>
                             </div>
-                        </div>
+                        </div> -->
                         <h3 class="card-title" style="font-weight: bold; margin-top: 20px;">Foto</h3>
                         <hr>
                         <div class="row">
                             <div class="col-lg-5 col-md-5">
                                 <div class="card">
-                                    <div class="card-body" style="text-align: center !important;">
+                                    <div class="card-body">
                                         <input type="file" name="foto" id="input-file-now" class="dropify" />
                                     </div>
                                 </div>

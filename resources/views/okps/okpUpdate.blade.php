@@ -137,7 +137,7 @@
                                 <h4>{{$okp->user->level}}</h4>
                             </div>
                         </div>
-                        <h3 class="card-title" style="font-weight: bold; margin-top: 20px;">Maps</h3>
+                        <!-- <h3 class="card-title" style="font-weight: bold; margin-top: 20px;">Maps</h3>
                         <hr>
                         <div class="row" style="margin-bottom:20px">
                             <div class="col-3">
@@ -155,7 +155,7 @@
                                 <input id="pac-input" class="controls" type="text" placeholder="Cari Alamat">
                                 <div id="mapGoogle" style="height: 500px;"></div>
                             </div>
-                        </div>
+                        </div> -->
                         <h3 class="card-title" style="font-weight: bold; margin-top: 20px;">Foto</h3>
                         <hr>
                         <div class="row">
