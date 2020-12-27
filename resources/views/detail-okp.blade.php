@@ -95,7 +95,7 @@
                 <div style="height:200px; background:#f3f1f1;
               background-position: center;
             background-size: 400px auto;
-             background-image: url('{{ asset('storage/okp/photo/'.$kegiatan->foto) }}');"></div>
+             background-image: url('{{ asset('storage/kegiatan/photo/'.$kegiatan->foto) }}');"></div>
                 <div class="card-header" style="background-color: white !important">
                     <h3>
                         <a style="font-weight: bold; color:#67757c" href="{{ Route('detail', $kegiatan->id) }}">{{$kegiatan->judul}}</a>

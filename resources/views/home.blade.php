@@ -17,7 +17,7 @@
               background-position: center;
             background-size: 400px auto;
              background-image: url('{{ asset('storage/kegiatan/photo/'.$kegiatan->foto) }}');"></div>
-            <div class="card-header" style="background-color: white !important">
+            <div class="card-header" style="background-color: white !important;min-height: 150px;">
                 <h3>
                    <a style="font-weight: bold; color:#67757c" href="{{ Route('detail', $kegiatan->id) }}">{{$kegiatan->judul}}</a>
                 </h3>
@@ -28,7 +28,7 @@
                               {{$kegiatan->okp->nama}}
                     </span>
             </div>
-                <div class="card-body">
+                <div class="card-body" style="min-height: 100px;">
                    {{$kegiatan->detail_kegiatan}}
                    <br />
                 </div>

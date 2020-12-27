@@ -16,8 +16,8 @@
             <div style="height:200px; background:#f3f1f1;
               background-position: center;
             background-size: 400px auto;
-             background-image: url('{{ asset('storage/kegiatan/photo/'.$okp->foto) }}');"></div>
-            <div class="card-header" style="background-color: white !important">
+             background-image: url('{{ asset('storage/okp/photo/'.$okp->foto) }}');"></div>
+            <div class="card-header" style="background-color: white !important; min-height: 150px!important">
                 <h3>
                    <a style="font-weight: bold; color:#67757c" href="{{ Route('detailokp', $okp->id) }}">{{$okp->nama}}</a>
                 </h3>
@@ -28,10 +28,10 @@
                               
                     </span> -->
             </div>
-                <div class="card-body">
+                <!-- <div class="card-body">
 
                    <br />
-                </div>
+                </div> -->
                   <div class="card-footer" style="font-size:14px; background:#f3f1f1; padding:10px">
                       <i class="mdi mdi-pin"></i> 
                       {{$okp->bidang}}
