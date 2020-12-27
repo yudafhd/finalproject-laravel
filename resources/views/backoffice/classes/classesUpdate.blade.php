@@ -58,7 +58,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Simpan</button>
-                            <a href="{{url('/absents')}}" class="btn btn-inverse">Cancel</a>
+                            <a href="{{url('/kelas')}}" class="btn btn-inverse">Cancel</a>
                         </div>
                 </form>
             </div>

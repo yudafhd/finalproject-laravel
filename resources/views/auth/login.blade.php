@@ -1,4 +1,4 @@
-@extends('general_layout.index')
+@extends('layouts.index')
 @section('content')
 <div class="container-fluid">
     <div class="row">
