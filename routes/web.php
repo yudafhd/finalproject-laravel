@@ -17,7 +17,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');
         Route::post('/storeUpdateProfile', 'UserController@storeUpdateProfile')->name('user.store.update.profile');
     });
-    
+
     Route::get('/profile', 'UserController@profile')->name('user.profile');
 
     // Absensi
@@ -28,9 +28,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Mata Pelajaran
     Route::resource('subject', 'SubjectController');
+    Route::post('/subject/importExcel', 'SubjectController@importExcel')->name('subject.import');
 
     // Jadwal Pelajaran
     Route::resource('schedule', 'ScheduleController');
+    Route::get('/shcedule/exportCSV', 'ScheduleController@exportToCSV');
 
 
     //Roles

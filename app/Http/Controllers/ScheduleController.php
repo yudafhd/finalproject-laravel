@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Schedule;
-use App\Subject;
-use App\Kelas;
 use App\User;
+use App\Kelas;
+use App\Subject;
+use App\Schedule;
 use Illuminate\Http\Request;
+use App\Exports\ScheduleExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ScheduleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function exportToCSV()
+    {
+        return Excel::download(new ScheduleExport, 'schedules.xlsx');
+    }
+
     public function index(Request $request)
     {
         $schedules = Schedule::all();
@@ -23,11 +26,6 @@ class ScheduleController extends Controller
         return view('backoffice.schedules.schedulesList', compact('schedules', 'success_message', 'alert_error'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
         $kelas = Kelas::all();

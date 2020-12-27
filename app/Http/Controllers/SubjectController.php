@@ -3,11 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Subject;
-use Illuminate\Foundation\Console\Presets\React;
+use App\Imports\SubjectImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
+
+
+    public function importExcel(Request $request)
+    {
+        try {
+            $file = $request->file_excel;
+            Excel::import(new SubjectImport, $file);
+            $request->session()->flash('alert-success', "Jadwal berhasil di import!");
+            return redirect('/subject');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error',  $e->getMessage());
+            return redirect('/subject');
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +34,7 @@ class SubjectController extends Controller
         $subjects = Subject::all();
         $success_message = $request->session()->get('alert-success');
         $error_message = $request->session()->get('alert-error');
-        return view('backoffice.subjects.subjectsList', compact('subjects','success_message', 'error_message'));
+        return view('backoffice.subjects.subjectsList', compact('subjects', 'success_message', 'error_message'));
     }
 
     /**
@@ -43,7 +59,7 @@ class SubjectController extends Controller
     {
         try {
             $code = [];
-            if(!$request->code) {
+            if (!$request->code) {
                 $code = [
                     'code' => strtolower(trim($request->name))
                 ];
@@ -79,7 +95,7 @@ class SubjectController extends Controller
     {
         $success_message = $request->session()->get('alert-success');
         $error_message = $request->session()->get('alert-error');
-        return view('backoffice.subjects.subjectsUpdate', compact('subject','success_message', 'error_message'));
+        return view('backoffice.subjects.subjectsUpdate', compact('subject', 'success_message', 'error_message'));
     }
 
     /**
@@ -93,13 +109,13 @@ class SubjectController extends Controller
     {
         try {
             $subjectUpdate = ['name' => $request->name];
-            if($request->code) {
-                array_merge($subjectUpdate, ['code'=> $request->code]);
+            if ($request->code) {
+                array_merge($subjectUpdate, ['code' => $request->code]);
             }
             $subject->update($subjectUpdate);
             $request->session()->flash('alert-success', "Mata Pelajaran {$subject->name} berhasil di update!");
             return redirect('/subject');
-        } catch( \Exception $e) {
+        } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
             return redirect('/subject');
         }

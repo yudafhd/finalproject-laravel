@@ -14,6 +14,7 @@
         "laravel/framework": "^6.2",
         "laravel/passport": "^9.2",
         "laravel/tinker": "^1.0",
+        "maatwebsite/excel": "^3.1",
         "midtrans/midtrans-php": "^2.3",
         "moontoast/math": "^1.2",
         "spatie/laravel-activitylog": "^3.14",
