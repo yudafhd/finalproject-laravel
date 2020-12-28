@@ -104,13 +104,13 @@
         <div class="container">
             @if(\Request::route()->getName() == 'detailokp')
                 @if($okp->foto)
-                <img style="width: 100%" src="{{ asset('storage/okp/photo/'.$okp->foto) }}" />
+                <img style="width: 100%" src="{{ asset('storage/okp/file/'.$okp->foto) }}" />
                 @else
                 <img style="width: 100%" src="{{asset('assets/images/background/login-register.jpg')}}" />
                 @endif
             @elseif(\Request::route()->getName() == 'detail')
                 @if($kegiatans->foto)
-                <img style="width: 100%" src="{{ asset('storage/kegiatan/photo/'.$kegiatans->foto) }}" />
+                <img style="width: 100%" src="{{ asset('storage/kegiatan/file/'.$kegiatans->foto) }}" />
                 @else
                 <img style="width: 100%" src="{{asset('assets/images/background/login-register.jpg')}}" />
                 @endif

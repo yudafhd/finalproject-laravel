@@ -17,7 +17,7 @@
             <div class="card-body little-profile text-center">
                 <div class="pro-img m-t-20">
                     @if($okps->foto)
-                    <img src="{{asset('storage/okp/photo/'.$okps->foto)}}" alt="user">
+                    <img src="{{asset('storage/okp/file/'.$okps->foto)}}" alt="user">
                     @else
                     <img src="{{asset('assets/images/users/user.png')}}" alt="user">   
                     @endif

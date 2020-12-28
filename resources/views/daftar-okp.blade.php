@@ -17,7 +17,7 @@
                     <div style="height:200px; background:#f3f1f1;
               background-position: center;
             background-size: 400px auto;
-             background-image: url('{{ asset('storage/okp/photo/'.$okp->foto) }}');"></div>
+             background-image: url('{{ asset('storage/okp/file/'.$okp->foto) }}');"></div>
                     <div class="card-header" style="background-color: white !important; min-height: 150px!important">
                         <h4>
                             {{$okp->nama}}
