@@ -49,13 +49,12 @@
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Nomer OKP</label>
                                     <input type="number" name="no_okp" class="form-control" value="{{$okp->no_okp}}">
-                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Status</label>
@@ -166,7 +165,7 @@
                                             <div style="width: 100%;">
                                                 <label><small>Foto terbaru</small></label>
                                             </div>
-                                            <img src="{{asset('storage/okp/photo/'.$okp->foto)}}"
+                                            <img src="{{asset('storage/okp/file/'.$okp->foto)}}"
                                                 style="width: 250px;float: left;margin-bottom: 30px;" />
                                             <input type="file" name="foto" id="input-file-now" class="dropify" />
                                         </div>
@@ -174,7 +173,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h3 class="card-title" style="font-weight: bold; margin-top: 20px;">Berkas</h3>
+                        {{-- <h3 class="card-title" style="font-weight: bold; margin-top: 20px;">Berkas</h3>
                         <hr>
                         <div class="row">
                             <div class="col-lg-7 col-md-7">
@@ -187,7 +186,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-actions" style="margin-top:20px">
                         </div> <button type="submit" class="btn btn-success">

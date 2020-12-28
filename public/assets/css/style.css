@@ -7545,3 +7545,30 @@ screen and (-ms-high-contrast:active) {
         padding: 0.5rem 0.6rem
     }
 }
+
+
+.topbar {
+    background: rgb(6,176,177) !important;
+    background: linear-gradient(90deg, rgba(6,176,177,1) 1%, rgba(6,176,177,1) 9%, rgba(0,117,179,1) 100%) !important;
+}
+
+.topbar .navbar-header {
+    background: none !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color:white;
+}
+
+.topbar .top-navbar .navbar-nav>.nav-item>.nav-link {
+    line-height: 0px;
+}
+
+.fix-header .page-wrapper {
+    padding-top: 95px;
+}
+
+.sidebar-nav ul li a {
+    font-size: 15px !important;
+    font-weight: 400;
+}

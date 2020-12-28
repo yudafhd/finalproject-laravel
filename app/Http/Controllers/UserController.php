@@ -43,11 +43,11 @@ class UserController extends Controller
             ]);
             $user->syncRoles($roles->name);
             $request->session()->flash('alert-success', "User {$request->name} berhasil di buat!");
-            return redirect('/user');
+            return redirect('/users');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
             dd($e->getMessage());
-            return redirect('/user');
+            return redirect('/users');
         }
     }
 
@@ -81,10 +81,10 @@ class UserController extends Controller
             $userDetail->email = $request->email;
             $userDetail->save();
             $request->session()->flash('alert-success', "User {$request->name} berhasil di update!");
-            return redirect('/user');
+            return redirect('/users');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
-            return redirect('/user/update/' . $request->id);
+            return redirect('/users/update/' . $request->id);
         }
     }
 
@@ -97,11 +97,11 @@ class UserController extends Controller
             $user->syncRoles();
             $user->delete();
             $request->session()->flash('alert-success', "User {$user->name} berhasil dihapus!");
-            return redirect('/user/' . $user->type);
+            return redirect('/users/' . $user->type);
         } catch (\Exception $e) {
             dd($e);
             $request->session()->flash('alert-error',  $e->getMessage());
-            return redirect('/user/' . $user->type);
+            return redirect('/users/' . $user->type);
         }
     }
 }

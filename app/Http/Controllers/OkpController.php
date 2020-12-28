@@ -58,6 +58,7 @@ class OkpController extends Controller
             if ($request->file('berkas')) {
                 $berkas = Storage::putFile('public/okp/file', $request->file('berkas'));
             }
+
             if ($request->file('foto')) {
                 $storage = Storage::putFile('public/okp/file', $request->file('foto'));
             }
@@ -66,7 +67,7 @@ class OkpController extends Controller
                 'nama' => $request->nama,
                 'bidang' => $request->bidang,
                 'alamat' => $request->alamat,
-                'no_okp' => (Okp::count() + 1),
+                'no_okp' => (Okp::latest()->first()->no_okp + 1),
                 // 'telephone' => $request->telephone,
                 'status' => $request->status,
                 'tanggal_daftar' => $request->tanggal_daftar,
@@ -108,7 +109,7 @@ class OkpController extends Controller
             $okp->nama = $request->nama;
             $okp->bidang = $request->bidang;
             $okp->alamat = $request->alamat;
-            $okp->no_okp = $request->no_okp;
+            // $okp->no_okp = $request->no_okp;
             $okp->status = $request->status;
             $okp->tanggal_daftar = $request->tanggal_daftar;
             $okp->visi = $request->visi;
@@ -122,8 +123,8 @@ class OkpController extends Controller
 
             //delete and update foto
             if ($request->file('foto')) {
-                Storage::delete('public/okp/photo/' . $okp->foto);
-                $storage = Storage::putFile('public/okp/photo', $request->file('foto'));
+                Storage::delete('public/okp/file/' . $okp->foto);
+                $storage = Storage::putFile('public/okp/file', $request->file('foto'));
                 $okp->foto = basename($storage);
             }
             if ($request->file('berkas')) {
@@ -147,7 +148,7 @@ class OkpController extends Controller
             $user_id = $okp->user_id;
 
             // Delete data okp
-            Storage::delete('public/okp/photo/' . $okp->foto);
+            Storage::delete('public/okp/file/' . $okp->foto);
             $okp->delete();
 
             // Delete admin okp

@@ -40,7 +40,7 @@
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
                 
-                         <span style="font-size:25px;color:royalblue;font-weight:bold"> {{ config('app.name', 'Laravel') }}
+                         <span style="font-size:25px;color:white;font-weight:bold"> {{ config('app.name', 'Laravel') }}
                         </span>
                     
                          <!-- Light Logo text -->    
@@ -72,10 +72,10 @@
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
                                 <i class="mdi  mdi-bell-outline "></i>
-                                {{-- <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div> --}}
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
                                 <ul>
@@ -115,7 +115,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                         <!-- ============================================================== -->
                         <!-- End Comment -->
                         <!-- ============================================================== -->
@@ -182,7 +182,9 @@
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" 
                             data-toggle="dropdown" aria-haspopup="true" 
                             aria-expanded="false">
-                            <img src="{{ asset('assets/images/users/user.png') }}" alt="user" class="profile-pic" /></a>
+                            <i class="mdi mdi-face" style="font-size: 2em"></i>
+                            {{-- <img src="{{ asset('assets/images/users/user.png') }}" alt="user" class="profile-pic" /> --}}
+                        </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>

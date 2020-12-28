@@ -45,21 +45,21 @@
                                 <a
                                     class="nav-link"
                                     href="{{Route('visi')}}"
-                                    style="font-weight: bold"
+                                    style="font-weight: bold; color:rgb(100, 99, 99)"
                                     >Visi & Misi</a
                                     >
                                 </li>
                                 <li class="nav-item">
                                     <a
                                     class="nav-link"
-                                    style="font-weight: bold"
+                                    style="font-weight: bold;color:rgb(100, 99, 99)"
                                     href="{{Route('daftarokp')}}"
                                     >Daftar OKP</a
                                 >
                                 <li class="nav-item">
                                     <a
                                     class="nav-link"
-                                    style="font-weight: bold"
+                                    style="font-weight: bold;color:rgb(100, 99, 99)"
                                     href="{{Route('contact')}}"
                                     >Contact</a
                                 >

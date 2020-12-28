@@ -24,8 +24,8 @@
                 <span style="font-size:15px">
                     by :  
                    </span>
-                    <span style="font-weight:bold; font-size:12px;color:#1b6f6c">
-                              {{$kegiatan->okp->nama}}
+                    <span>
+                             <a href="{{ Route('detailokp', $kegiatan->okp->id) }}"  style="font-weight:bold; font-size:14px;color:#1b6f6c"> {{$kegiatan->okp->nama}}</a>
                     </span>
             </div>
                 <div class="card-body" style="min-height: 100px;">
