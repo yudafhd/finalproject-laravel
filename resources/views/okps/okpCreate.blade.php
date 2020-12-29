@@ -83,12 +83,12 @@
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
-                           {{-- <div class="col-md-6">
+                           <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Telephone</label>
-                                    <input type="text" name="telephone" class="form-control" value="">
+                                    <input type="number" name="phone" class="form-control" value="">
                                 </div>
-                            </div> --}}
+                            </div>
 
                         </div>
                         <h3 class="card-title" style="font-weight: bold">Profile</h3>

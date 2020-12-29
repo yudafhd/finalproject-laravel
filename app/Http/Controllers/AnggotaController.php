@@ -33,12 +33,15 @@ class AnggotaController extends Controller
     {
         $is_not_okp_admin = false;
         $okps = null;
+        $jabatans = null;
         if (auth()->user()->level === 'superadmin' || auth()->user()->level === 'admin_knpi') {
             $is_not_okp_admin = true;
             $okps = Okp::all();
-            
+            $jabatans = Jabatan::all();
+        } else {
+            $jabatans = Jabatan::where('okp_id', auth()->user()->okp->id)->get();
         }
-        $jabatans = Jabatan::all();
+
         return view('anggotas.anggotaCreate', ['is_not_okp_admin' => $is_not_okp_admin, 'okps' => $okps, 'jabatans' => $jabatans]);
     }
 
@@ -75,7 +78,6 @@ class AnggotaController extends Controller
         if (auth()->user()->level === 'superadmin' || auth()->user()->level === 'admin_knpi') {
             $is_not_okp_admin = true;
             $okps = Okp::all();
-            
         }
         $jabatans = Jabatan::all();
         $anggota = Anggota::find($id);
@@ -91,6 +93,7 @@ class AnggotaController extends Controller
             $anggota->jabatan = $request->jabatan;
             $anggota->tanggal_masuk = $request->tanggal_masuk;
             $anggota->alamat = $request->alamat;
+            $anggota->phone = $request->phone;
             $anggota->status = $request->status;
             if ($request->okp_id) {
                 $anggota->okp_id = $request->okp_id;

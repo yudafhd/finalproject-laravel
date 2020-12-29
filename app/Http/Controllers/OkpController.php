@@ -61,7 +61,7 @@ class OkpController extends Controller
                 'bidang' => $request->bidang,
                 'alamat' => $request->alamat,
                 'no_okp' => (Okp::count() + 1),
-                // 'telephone' => $request->telephone,
+                'phone' => $request->phone,
                 'status' => $request->status,
                 'tanggal_daftar' => $request->tanggal_daftar,
                 'visi' => $request->visi,
@@ -117,7 +117,7 @@ class OkpController extends Controller
             $okp->tanggal_daftar = $request->tanggal_daftar;
             $okp->visi = $request->visi;
             $okp->misi = $request->misi;
-            // $okp->telephone = $request->telephone;
+            $okp->phone = $request->phone;
             $okp->tanggal_berdiri = $request->tanggal_berdiri;
             $okp->pendiri = $request->pendiri;
             $okp->latar_belakang = $request->latar_belakang;

@@ -47,6 +47,7 @@
                                 <th>Jabatan</th>
                                 <th>Tanggal Masuk</th>
                                 <th>Alamat</th>
+                                <th>Telephone</th>
                                 <th>Nama OKP</th>
                                 <th></th>
                             </tr>
@@ -58,6 +59,7 @@
                                 <td>{{ $anggota->jabatan }}</td>
                                 <td>{{ $anggota->tanggal_masuk }}</td>
                                 <td>{{ $anggota->alamat }}</td>
+                                <td>{{ $anggota->phone }}</td>
                                 <td>{{ $anggota->okp->nama }}</td>
                                 <td>
                                     <div class="dropdown">
