@@ -44,13 +44,6 @@ class OkpController extends Controller
     public function store(Request $request)
     {
         try {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'level' => $request->level,
-            ]);
-            $user->syncRoles($request->level);
 
             $berkas = null;
             $storage = null;
@@ -63,11 +56,11 @@ class OkpController extends Controller
                 $storage = Storage::putFile('public/okp/file', $request->file('foto'));
             }
 
-            Okp::create([
+            $okp  = Okp::create([
                 'nama' => $request->nama,
                 'bidang' => $request->bidang,
                 'alamat' => $request->alamat,
-                'no_okp' => (Okp::latest()->first()->no_okp + 1),
+                'no_okp' => (Okp::count() + 1),
                 // 'telephone' => $request->telephone,
                 'status' => $request->status,
                 'tanggal_daftar' => $request->tanggal_daftar,
@@ -80,8 +73,19 @@ class OkpController extends Controller
                 'lat' => $request->longitude,
                 'foto' => $storage ? basename($storage) : null,
                 'berkas' => $berkas ? basename($berkas) : null,
-                'user_id' => $user->id,
             ]);
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'level' => $request->level,
+            ]);
+            $user->syncRoles($request->level);
+
+            $okp->user_id = $user->id;
+            $okp->save();
+
             $request->session()->flash('alert-success', "Berhasil di buat!");
             return redirect('/okp');
         } catch (\Exception $e) {
@@ -109,7 +113,6 @@ class OkpController extends Controller
             $okp->nama = $request->nama;
             $okp->bidang = $request->bidang;
             $okp->alamat = $request->alamat;
-            // $okp->no_okp = $request->no_okp;
             $okp->status = $request->status;
             $okp->tanggal_daftar = $request->tanggal_daftar;
             $okp->visi = $request->visi;
