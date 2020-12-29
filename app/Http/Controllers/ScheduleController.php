@@ -15,6 +15,7 @@ class ScheduleController extends Controller
 
     public function exportToCSV()
     {
+        dd(12);
         return Excel::download(new ScheduleExport, 'schedules.xlsx');
     }
 

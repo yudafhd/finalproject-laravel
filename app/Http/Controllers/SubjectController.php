@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Subject;
 use App\Imports\SubjectImport;
+use App\Exports\SubjectExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
+
+    public function exportToCSV()
+    {
+        return Excel::download(new SubjectExport, 'subjects.xlsx');
+    }
 
 
     public function importExcel(Request $request)

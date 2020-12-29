@@ -14,14 +14,16 @@
 </div>
 <div class="row">
     <div class="col-12">
-
         <div class="card">
+           <div class="card-body">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                         aria-controls="nav-home" aria-selected="true">Home</a>
-                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-import" role="tab"
                         aria-controls="nav-profile" aria-selected="false">Import Data</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-download" role="tab"
+                        aria-controls="nav-profile" aria-selected="false">Download Data</a>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -103,21 +105,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="tab-pane fade" id="nav-import" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <div class="card">
                         <div class="card-body">
                             <form class="form-inline" method="POST" action="{{ Route('subject.import') }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="file" name="file_excel" class="form-control-file">
+                                    <input type="file" name="file_excel" class="form-control-file" />
+                                    <br /> <br />
+                                    <small> Mohon mempersiapkan file seperti yang sudah ditentukan oleh operator / developer </small>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Proses</button>
                             </form>
                         </div>
                     </div>
                 </div>
+                <div class="tab-pane fade" id="nav-download" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="{{ Route('subject.export') }}" class="btn btn-primary">Download Excel</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+           </div>
         </div>
     </div>
 </div>

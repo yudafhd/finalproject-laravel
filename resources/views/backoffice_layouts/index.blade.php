@@ -226,7 +226,7 @@
                 </div>
             </nav>
         </header>
-        @include('backoffice_layouts.left_sidebar')
+        @include('backoffice_layouts.sidebar')
         @include('backoffice_layouts.js_section')
         <div class="page-wrapper">
             <div class="container-fluid">

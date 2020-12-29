@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Kelas;
+use App\Exports\UserExport;
+use App\Imports\UserImport;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
@@ -17,15 +20,54 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    public function importExcel(Request $request)
+    {
+        try {
+            $file = $request->file_excel;
+            $type = $request->type;
+            $kelas_id = $request->kelas_id;
+
+            Excel::import(new UserImport($type, $kelas_id), $file);
+            $request->session()->flash('alert-success', "User berhasil di import!");
+            return redirect('/user/' . $type);
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error',  $e->getMessage());
+            return redirect('/user/' . $type);
+        }
+    }
+
+    public function exportToCSV(Request $request)
+    {
+        $name = 'admin_user.xlsx';
+
+        if ($request->type == 'guru') {
+            $name = 'guru_user.xlsx';
+        }
+
+        if ($request->type == 'siswa') {
+            $name = 'siswa_user.xlsx';
+        }
+
+        return Excel::download(new UserExport($request->type), $name);
+    }
+
     public function index($type, Request $request)
     {
         if (!in_array($type, ['admin', 'guru', 'siswa'])) {
             return abort(404);
         }
-
+        $classes = Kelas::all();
         $userList = User::all()->where('type', $type);;
         $success_message = $request->session()->get('alert-success');
-        return view('backoffice.users.userList',  ['type' => $type, 'userList' => $userList, 'success_message' => $success_message]);
+        return view(
+            'backoffice.users.userList',
+            [
+                'type' => $type,
+                'userList' => $userList,
+                'classes' => $classes,
+                'success_message' => $success_message
+            ]
+        );
     }
 
     public function create()

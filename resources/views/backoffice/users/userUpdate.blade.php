@@ -31,7 +31,7 @@
                             <img src="{{ asset('assets/images/users/user.png') }}" class="img-circle" width="150">
                             @endif
                             <h4 class="card-title m-t-10">{{ $userDetail->name }} ({{ $userDetail->type }})</h4>
-                            <h6 class="card-subtitle">{{'@' . $userDetail->username }}</h6>
+                            {{-- <h6 class="card-subtitle">{{'@' . $userDetail->username }}</h6> --}}
                         </center>
                     </div>
                     <div>
@@ -71,17 +71,17 @@
                                                 value="{{$userDetail->email}}">
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    {{-- <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Username</label>
                                             <input type="text" name="username" class="form-control"
                                                 value="{{$userDetail->username}}">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     @if ($userDetail->type == "guru")
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="control-label">Nip</label>
+                                            <label class="control-label">NIP</label>
                                             <input type="text" name="nip" class="form-control"
                                                 value="{{$userDetail->nip}}">
                                         </div>
@@ -118,14 +118,14 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Phone</label>
-                                            <input type="text" name="phone_number" class="form-control"
+                                            <input type="number" name="phone_number" class="form-control"
                                                 value="{{$userDetail->phone_number}}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Tanggal Lahir</label>
-                                            <input id="mdatepicker" name="dob" class="form-control" 
+                                            <input type="date" name="dob" class="form-control" 
                                             value="{{ $userDetail->dob }}">
                                         </div>
                                     </div>
@@ -168,12 +168,12 @@
                                             <input type="text" name="password" class="form-control" value="">
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    {{-- <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">FCM </label>
                                             {{ $userDetail->notification_token }}
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

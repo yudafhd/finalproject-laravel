@@ -17,7 +17,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/storeUpdate', 'UserController@storeUpdate')->name('user.store.update');
         Route::post('/storeUpdateProfile', 'UserController@storeUpdateProfile')->name('user.store.update.profile');
     });
+    Route::post('/user/importExcel', 'UserController@importExcel')->name('user.import');
+    Route::get('/download/users/exportExcel', 'UserController@exportToCSV')->name('user.export');
 
+    // Profile
     Route::get('/profile', 'UserController@profile')->name('user.profile');
 
     // Absensi
@@ -25,14 +28,17 @@ Route::middleware(['auth'])->group(function () {
 
     // Kelas
     Route::resource('kelas', 'KelasController');
+    Route::post('/kelas/importExcel', 'KelasController@importExcel')->name('kelas.import');
+    Route::get('/download/kelas/exportExcel', 'KelasController@exportToCSV')->name('kelas.export');
 
     // Mata Pelajaran
     Route::resource('subject', 'SubjectController');
     Route::post('/subject/importExcel', 'SubjectController@importExcel')->name('subject.import');
+    Route::get('/download/subject/exportExcel', 'SubjectController@exportToCSV')->name('subject.export');
 
     // Jadwal Pelajaran
     Route::resource('schedule', 'ScheduleController');
-    Route::get('/shcedule/exportCSV', 'ScheduleController@exportToCSV');
+    Route::get('/download/schedule/exportCSV', 'ScheduleController@exportToCSV');
 
 
     //Roles

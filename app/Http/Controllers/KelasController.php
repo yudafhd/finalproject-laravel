@@ -3,10 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Kelas;
+use App\Exports\KelasExport;
+use App\Imports\KelasImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KelasController extends Controller
 {
+
+    public function exportToCSV()
+    {
+        return Excel::download(new KelasExport, 'kelas.xlsx');
+    }
+
+    public function importExcel(Request $request)
+    {
+        try {
+            $file = $request->file_excel;
+            Excel::import(new KelasImport, $file);
+            $request->session()->flash('alert-success', "Kelas berhasil di import!");
+            return redirect('/kelas');
+        } catch (\Exception $e) {
+            $request->session()->flash('alert-error',  $e->getMessage());
+            return redirect('/kelas');
+        }
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +40,7 @@ class KelasController extends Controller
         $classes = Kelas::all();
         $success_message = $request->session()->get('alert-success');
         $error_message = $request->session()->get('alert-error');
-        return view('backoffice.classes.classesList', compact('classes','success_message', 'error_message'));
+        return view('backoffice.classes.classesList', compact('classes', 'success_message', 'error_message'));
     }
     /**
      * Show the form for creating a new resource.
@@ -43,7 +66,7 @@ class KelasController extends Controller
             $kelas = Kelas::create($request->all());
             $request->session()->flash('alert-success', "Kelas {$kelas->majors} {$kelas->grade} {$kelas->number} berhasil di buat!");
             return redirect('/kelas');
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
             $request->session()->flash('alert-success', $e->getMessage());
             return redirect('/kelas');
         }
@@ -57,7 +80,6 @@ class KelasController extends Controller
      */
     public function show(Kelas $kelas)
     {
-       
     }
 
     /**
@@ -90,7 +112,7 @@ class KelasController extends Controller
             ]);
             $request->session()->flash('alert-success', "Kelas  {$kela->grade} {$kela->majors} {$kela->number} berhasil di update!");
             return redirect('/kelas');
-        } catch( \Exception $e) {
+        } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
             return redirect('/kelas');
         }

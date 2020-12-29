@@ -93,7 +93,7 @@
             $('#siswa_select_container').html('<label class="control-label">Siswa</label><select class="selectize_custom_multiple" id="siswa_select" name="user_id[]"><option value="">Pilih Siswa</option></select>');
             $.ajax({
                 type: "POST",
-                url: "{{ $request->getSchemeAndHttpHost() }}/api/user/kelas",
+                url: "{{ url('/api/user/kelas')}}",
                 data: { kelas_id: this.value },
                 success: function (data) {
                     data.data.forEach(element => {
@@ -115,7 +115,7 @@
             selector.html(' <div style="margin-bottom:5px">Pilih jadwal</div>');
             $.ajax({
                 type: "POST",
-                url: "{{ $request->getSchemeAndHttpHost() }}/api/user/jadwal",
+                url: "{{ url('/api/user/jadwal') }}",
                 data: { date: this.value, kelas_id: $("#kelas_select").val() },
                 success: function (data) {
                     console.log(data);

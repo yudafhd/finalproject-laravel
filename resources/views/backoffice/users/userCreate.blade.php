@@ -46,13 +46,12 @@
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Username</label>
                                     <input type="text" name="username" class="form-control" value="">
-                                    {{-- <small class="form-control-feedback"> This field has error. </small>  --}}
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Email</label>
@@ -83,7 +82,7 @@
                             <div class="col-md-6 kelas" style="display:none;">
                                 <div class="form-group">
                                     <label class="control-label">Kelas</label>
-                                    <select class="form-control" name="kelas_id" custom-select">
+                                    <select class="form-control custom-select" name="kelas_id">
                                         <option value="">Pilih kelas</option>
                                         @foreach ($kelas as $class)
                                         <option value="{{$class->id}}">{{$class->grade}} - {{$class->majors}} {{$class->number}}</option>
