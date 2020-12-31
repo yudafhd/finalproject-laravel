@@ -106,7 +106,15 @@ class UserController extends Controller
         $roles = Role::all();
         $kelas = Kelas::all();
         $isHasGeneral = true;
-        return view('backoffice.users.userUpdate',  ['isHasGeneral' => $isHasGeneral, 'userDetail' => $userDetail, 'kelas' => $kelas, 'roles' => $roles]);
+        return view(
+            'backoffice.users.userUpdate',
+            [
+                'isHasGeneral' => $isHasGeneral,
+                'userDetail' => $userDetail,
+                'kelas' => $kelas,
+                'roles' => $roles
+            ]
+        );
     }
 
     public function storeUpdate(Request $request)

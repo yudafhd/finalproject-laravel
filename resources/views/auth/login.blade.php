@@ -11,7 +11,8 @@
                     @csrf
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input id="email" placeholder="Masukan email" class="form-control @error('email') is-invalid @enderror"
+                        <input id="email" placeholder="Masukan email" 
+                        value="superadmin@gmail.com" class="form-control @error('email') is-invalid @enderror"
                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -22,6 +23,7 @@
                     <div class="form-group mb-4">
                         <label for="password">Password</label>
                         <input id="password" type="password"
+                            value="adminadmin"
                             class="form-control @error('password') is-invalid @enderror" name="password"
                             placeholder="masukan password" required autocomplete="current-password" />
 

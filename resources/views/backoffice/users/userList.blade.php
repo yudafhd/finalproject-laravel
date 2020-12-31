@@ -20,11 +20,13 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
                             role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+                            @if($type !=='admin')
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-import"
                             role="tab" aria-controls="nav-profile" aria-selected="false">Import Data</a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-download"
                             role="tab" aria-controls="nav-profile" aria-selected="false">Download Data</a>
-                    </div>
+                            @endif
+                        </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -61,6 +63,7 @@
                                     <table id="userTable" class="table table-sm table-striped table-borderless ">
                                         <thead>
                                             <tr>
+                                               
                                                 @if ($type == "guru")
                                                 <th>NIP</th>
                                                 @endif
@@ -68,18 +71,25 @@
                                                 <th>NIS</th>
                                                 @endif
                                                 <th>Nama</th>
+                                                @if ($type == "admin")
+                                                <th>Email</th>
+                                                @endif
+                                                @if ($type == "guru")
+                                                <th>Address</th>
+                                                @endif
                                                 @if ($type == "siswa")
                                                 <th>Kelas</th>
                                                 <th>Nama Orang Tua</th>
+                                                <th>Address</th>
                                                 @endif
                                                 <th>Nomer Telepon</th>
-                                                <th>Address</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($userList as $user)
                                             <tr>
+                                                
                                                 @if ($type == "guru")
                                                 <td>{{ $user->nip }}</td>
                                                 @endif
@@ -87,13 +97,20 @@
                                                 <td>{{ $user->nis }}</td>
                                                 @endif
                                                 <td>{{ $user->name }}</td>
+                                                @if ($type == "admin")
+                                                <td>{{ $user->email }}</td>
+                                                @endif
+                                                @if ($type == "guru")
+                                                <td>{{ $user->address }}</td>
+                                                @endif
                                                 @if ($type == "siswa")
                                                 <td>{{ $user->kelas->grade }} - {{ $user->kelas->majors }} {{
                                                     $user->kelas->number }}</td>
                                                 <td>{{ $user->parent_name }}</td>
+                                                <td>{{ $user->address }}</td>
                                                 @endif
                                                 <td>{{ $user->phone_number }}</td>
-                                                <td>{{ $user->address }}</td>
+                                               
                                                 <td>
                                                     <div class="dropdown" style="float: right">
                                                         <button

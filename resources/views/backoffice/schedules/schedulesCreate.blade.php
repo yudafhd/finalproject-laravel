@@ -33,7 +33,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Mata Pelajaran</label>
-                                    <select class="form-control" name="subject_id" custom-select">
+                                    <select class="selectize_custom" name="subject_id" required>
                                         @foreach ($subjects as $subject)
                                         <option value="{{$subject->id}}">{{$subject->name}}</option>
                                         @endforeach
@@ -43,7 +43,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Kelas</label>
-                                    <select class="form-control" name="kelas_id" custom-select">
+                                    <select class="selectize_custom" required name="kelas_id">
                                         @foreach ($kelas as $class)
                                         <option value="{{$class->id}}">{{$class->grade}} - {{$class->majors}} {{$class->number}}</option>
                                         @endforeach
@@ -53,7 +53,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Guru Pengajar</label>
-                                    <select class="form-control" name="user_id" custom-select">
+                                    <select class="selectize_custom" required name="user_id">
                                         @foreach ($teachers as $teacher)
                                         <option value="{{$teacher->id}}">{{$teacher->name}}</option>
                                         @endforeach
@@ -81,7 +81,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Hari</label>
-                                    <select class="form-control" name="day" custom-select">
+                                    <select class="selectize_custom" required name="day">
                                         <option value="senin">senin</option>
                                         <option value="selasa">selasa</option>
                                         <option value="rabu">rabu</option>
@@ -95,7 +95,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Semester</label>
-                                    <select class="form-control" name="semester" custom-select">
+                                    <select class="selectize_custom"  name="semester" required>
                                         <option value="ganjil">ganjil</option>
                                         <option value="genap">genap</option>
                                     </select>
@@ -104,9 +104,11 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tahun</label>
-                                    <select class="form-control" name="year" custom-select">
+                                    <select class="selectize_custom"  name="year" required>
                                         <option value="{{date('Y')}}">{{date('Y')}}</option>
                                         <option value="{{date('Y', strtotime('+1 year'))}}">{{date('Y', strtotime('+1 year'))}}</option>
+                                        <option value="{{date('Y', strtotime('+2 year'))}}">{{date('Y', strtotime('+2 year'))}}</option>
+                                        <option value="{{date('Y', strtotime('+3year'))}}">{{date('Y', strtotime('+3 year'))}}</option>
                                     </select>
                                 </div>
                             </div>

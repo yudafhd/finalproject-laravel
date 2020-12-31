@@ -181,7 +181,7 @@
                 </div>
                 <div style="width:100%;text-align:right;margin-right:1rem">
                     <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                    <button onclick="goBack()" class="btn btn-info text-white m-l-10">Cancel</button>
+                    <a href="{{Route('user.list', $userDetail->type)}}" class="btn btn-inverse">Cancel</a>
                 </div>
                 
         </div>

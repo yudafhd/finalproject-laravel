@@ -33,16 +33,18 @@ class UserImport implements ToModel, WithHeadingRow
         }
 
         if ($this->type == 'siswa') {
-            return new User([
-                'name'     => $row['name'],
-                'nis'     => $row['nis'],
-                'phone_number'     => $row['phone'],
-                'parent_name'     => $row['parent_name'],
-                'address'     => $row['alamat'],
-                'kelas_id'     => $this->kelas_id,
-                'password'     =>  bcrypt($row['password']),
-                'type'     => 'siswa',
-            ]);
+            if ($row['name']) {
+                return new User([
+                    'name'     => $row['name'],
+                    'nis'     => $row['nis'],
+                    'phone_number'     => $row['phone'],
+                    'parent_name'     => $row['parent_name'],
+                    'address'     => $row['alamat'],
+                    'kelas_id'     => $this->kelas_id,
+                    'password'     =>  bcrypt($row['password']),
+                    'type'     => 'siswa',
+                ]);
+            }
         }
     }
 }
