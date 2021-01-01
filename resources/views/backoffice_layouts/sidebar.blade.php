@@ -4,11 +4,11 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li>
+                {{-- <li>
                     <a href="{{Route('dashboard')}}">
                         <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span>
                     </a>
-                </li>
+                </li> --}}
                 @if (auth()->user()->type ==='superadmin' || auth()->user()->can('users'))
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                         <i class="mdi mdi-account-box"></i>

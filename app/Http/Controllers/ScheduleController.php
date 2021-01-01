@@ -105,7 +105,7 @@ class ScheduleController extends Controller
             }
 
             Schedule::create($request->all());
-            $request->session()->flash('alert-success', "Jadwa berhasil di buat!");
+            $request->session()->flash('alert-success', "Jadwal berhasil di buat!");
             return redirect('/schedule');
         } catch (\Exception $e) {
             $request->session()->flash('alert-error', $e->getMessage());
