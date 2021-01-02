@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Absensi
     Route::resource('absent', 'AbsentController');
+    Route::post('/download/absent/exportExcel', 'AbsentController@exportToCSV')->name('absent.export');
 
     // Kelas
     Route::resource('kelas', 'KelasController');

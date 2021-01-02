@@ -7,9 +7,16 @@ use App\Absent;
 use App\Schedule;
 use App\User;
 use App\Kelas;
+use App\Exports\AbsentExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AbsentController extends Controller
 {
+
+    public function exportToCSV(Request $request)
+    {
+        return Excel::download(new AbsentExport($request->start_at, $request->end_at), 'report_absensi.xlsx');
+    }
 
     public function index(Request $request)
     {
