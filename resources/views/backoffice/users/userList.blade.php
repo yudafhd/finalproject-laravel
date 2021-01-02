@@ -181,8 +181,14 @@
                     <div class="tab-pane fade" id="nav-download" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div class="card">
                             <div class="card-body">
-                                <a href="{{ Route('user.export', ['type'=>$type]) }}" class="btn btn-primary">Download
-                                    Excel</a>
+                                <form class="form" method="POST" action="{{ Route('user.export') }}">
+                                    @csrf
+                                    <input type="hidden" value="{{ $type }}" name="type" />
+                                    <button 
+                                        class="btn btn-primary">Download
+                                        Excel
+                                    </a>
+                                </form>
                             </div>
                         </div>
                     </div>

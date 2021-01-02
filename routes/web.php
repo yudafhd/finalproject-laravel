@@ -18,7 +18,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/storeUpdateProfile', 'UserController@storeUpdateProfile')->name('user.store.update.profile');
     });
     Route::post('/user/importExcel', 'UserController@importExcel')->name('user.import');
-    Route::get('/download/users/exportExcel', 'UserController@exportToCSV')->name('user.export');
+    Route::post('/download/users/exportExcel', 'UserController@exportToCSV')->name('user.export');
 
     // Profile
     Route::get('/profile', 'UserController@profile')->name('user.profile');
