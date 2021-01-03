@@ -47,6 +47,7 @@ class AbsenteeismTeacherController extends Controller
                         foreach ($users as $student) {
                             if ($absent->user_id == $student->id && $absent->schedule_id == $schedule_today->id) {
                                 $student->status = $absent->reason;
+                                $student->detail = $absent;
                             } else {
                                 $student->status = "masuk";
                             }
