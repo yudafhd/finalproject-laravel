@@ -23,7 +23,7 @@ class HomeParentController extends Controller
         $schedules_today = Schedule::with(['subject'])
             ->where('kelas_id', '=', $user->kelas_id)
             ->where('day', '=', $day)
-            ->where('semester', '=', $semester)
+            // ->where('semester', '=', $semester)
             ->where('year', '=', $year)
             ->orderBy('start_at')
             ->get();
@@ -52,7 +52,7 @@ class HomeParentController extends Controller
 
         return response(['data' => [
             'schedules_absent_today' => $schedules_today,
-            'hours' => $hours
+            'hours' => $semester
 
         ]]);
     }
