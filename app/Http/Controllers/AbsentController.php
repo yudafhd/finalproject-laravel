@@ -23,7 +23,14 @@ class AbsentController extends Controller
         $absents = Absent::all();
         $success_message = $request->session()->get('alert-success');
         $alert_error = $request->session()->get('alert-error');
-        return view('backoffice.absents.absentsList',  ['absents' => $absents, 'alert_error' => $alert_error, 'success_message' => $success_message]);
+        return view(
+            'backoffice.absents.absentsList',
+            [
+                'absents' => $absents,
+                'alert_error' => $alert_error,
+                'success_message' => $success_message
+            ]
+        );
     }
 
     public function create(Request $request)
@@ -56,6 +63,9 @@ class AbsentController extends Controller
                         'schedule_id' => $schedule_val,
                         'date_absent' => $request->date_absent,
                         'reason' => $request->reason,
+                        'submit_from_admin' => 1,
+                        'submit_from_parent' => 0,
+                        'submit_from_teacher' => 0,
                         'description' => $request->description,
                         'status' => 1
                     ]);
@@ -92,6 +102,9 @@ class AbsentController extends Controller
             $absents->date_absent = $request->date_absent;
             $absents->reason = $request->reason;
             $absents->description = $request->description;
+            $absents->submit_from_admin = 1;
+            $absents->submit_from_parent = 0;
+            $absents->submit_from_teacher = 0;
             $absents->save();
             $request->session()->flash('alert-success', "Absen berhasil di perbarui!");
             return redirect()->route('absent.index');

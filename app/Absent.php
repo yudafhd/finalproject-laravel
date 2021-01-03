@@ -17,6 +17,8 @@ class Absent extends Model
         'date_absent',
         'description',
         'submit_from_parent',
+        'submit_from_teacher',
+        'submit_from_admin',
         'status',
     ];
 

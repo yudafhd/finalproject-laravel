@@ -100,6 +100,9 @@ class AbsenteeismParentController extends Controller
                 } else {
                     foreach ($userAbsentToday as $absent) {
                         $absent->reason = $request->reasons;
+                        $absent->submit_from_teacher = 0;
+                        $absent->submit_from_admin = 0;
+                        $absent->submit_from_parent = 1;
                         if ($request->description) {
                             $absent->description = $request->description;
                         }

@@ -87,16 +87,19 @@ class AbsenteeismTeacherController extends Controller
                         } else {
                             $userAbsentToday->reason = $request->reasons[$key];
                             $userAbsentToday->description = $request->descriptions[$key];
+                            $userAbsentToday->submit_from_teacher = 1;
+                            $userAbsentToday->submit_from_admin = 0;
+                            $userAbsentToday->submit_from_parent = 0;
                             $userAbsentToday->save();
                         }
                     } else {
                         if ($request->reasons[$key] !== 'masuk') {
-
                             Absent::create([
                                 'schedule_id' => $request->schedule_id,
                                 'user_id' => $value,
                                 'reason' => $request->reasons[$key],
                                 'date_absent' => $request->date_absent,
+                                'submit_from_teacher' => 1,
                                 'description' => $request->description
                             ]);
 
