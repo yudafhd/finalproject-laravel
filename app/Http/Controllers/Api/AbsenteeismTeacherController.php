@@ -65,7 +65,7 @@ class AbsenteeismTeacherController extends Controller
             return response(['data' => [
                 'test' => date('H:i:s', $time),
                 'schedule_today' => $schedule_today,
-                'class_list' => $class_today
+                'class_list' => $users
             ]]);
         } catch (\Exception $e) {
             return response(['message' => $e->getMessage()], 500);
