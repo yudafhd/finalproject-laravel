@@ -87,7 +87,7 @@ class AbsenteeismTeacherController extends Controller
                             $userAbsentToday->delete();
                         } else {
                             $userAbsentToday->reason = $request->reasons[$key];
-                            $userAbsentToday->description = $request->descriptions[$key];
+                            // $userAbsentToday->description = $request->descriptions[$key];
                             $userAbsentToday->submit_from_teacher = 1;
                             $userAbsentToday->submit_from_admin = 0;
                             $userAbsentToday->submit_from_parent = 0;
@@ -100,8 +100,8 @@ class AbsenteeismTeacherController extends Controller
                                 'user_id' => $value,
                                 'reason' => $request->reasons[$key],
                                 'date_absent' => $request->date_absent,
-                                'submit_from_teacher' => 1,
-                                'description' => $request->description
+                                'description' => $request->description,
+                                'submit_from_teacher' => 1
                             ]);
 
                             // Send notification
