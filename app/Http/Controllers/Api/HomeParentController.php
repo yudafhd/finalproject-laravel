@@ -63,12 +63,12 @@ class HomeParentController extends Controller
         $all_recap = Absent::with(['user', 'schedule'])->where('user_id', '=', $user->id)->get();
         $subjects = Subject::all();
         $subject_ids = $subjects->pluck('id')->toArray();
-        foreach ($all_recap as $value) {
-            $subject_id = $value->schedule->subject_id;
-            if (in_array($value->schedule->subject_id, $subject_ids)) {
-                $value->schedule->subject = $this->getSubjectById($subject_id, $subjects);
-            }
-        }
+        // foreach ($all_recap as $value) {
+        //     $subject_id = $value->schedule->subject_id;
+        //     if (in_array($value->schedule->subject_id, $subject_ids)) {
+        //         $value->schedule->subject = $this->getSubjectById($subject_id, $subjects);
+        //     }
+        // }
         return response(['data' => [
             'all_recap' => $all_recap,
 
