@@ -95,9 +95,9 @@ class AbsenteeismParentController extends Controller
                     }
                 }
             } else {
-                $userScheduleToday = Schedule::where('day', $day)
-                    ->where('kelas_id', $user->kelas_id)
-                    ->get();
+                // $userScheduleToday = Schedule::where('day', $day)
+                //     ->where('kelas_id', $user->kelas_id)
+                //     ->get();
             }
 
             if (count($userAbsentToday)) {
@@ -122,7 +122,7 @@ class AbsenteeismParentController extends Controller
                 }
             } else {
                 if ($request->reasons !== 'masuk') {
-                    if (count($userScheduleToday)) {
+                    if (count($userScheduleToday) > 0) {
                         foreach ($userScheduleToday as $schedule) {
                             Absent::create([
                                 'schedule_id' => $schedule->id,
@@ -146,7 +146,7 @@ class AbsenteeismParentController extends Controller
             return response([
                 'status' => 'success',
                 'message' => 'absent berhasil diajukan',
-                'result' => $userScheduleToday,
+                'result' => count($userScheduleToday),
                 'date' => $date
             ]);
         } catch (\Exception $e) {
