@@ -119,6 +119,25 @@ class AbsenteeismParentController extends Controller
                         }
                         $absent->save();
                     }
+                    $inArrayIds = [];
+                    if (count($userScheduleToday) > 0) {
+                        foreach ($userAbsentToday as $value) {
+                            $inArrayIds = array_merge($inArrayIds, [$value->schedule_id]);
+                        }
+                        foreach ($userScheduleToday as $usershcedule) {
+                            if (!in_array($usershcedule->id, $inArrayIds)) {
+                                Absent::create([
+                                    'schedule_id' => $usershcedule->id,
+                                    'user_id' => $user->id,
+                                    'reason' => $request->reasons,
+                                    'date_absent' => $date,
+                                    'image' => $imagename,
+                                    'submit_from_parent' => 1,
+                                    'description' => $request->description
+                                ]);
+                            }
+                        }
+                    }
                 }
             } else {
                 if ($request->reasons !== 'masuk') {
@@ -146,7 +165,9 @@ class AbsenteeismParentController extends Controller
                 'status' => 'success',
                 'message' => 'absent berhasil diajukan',
                 'result' => count($userScheduleToday),
-                'date' => $date
+                'date' => $date,
+                'inArrayIds' => $inArrayIds,
+                'userAbsentToday' => $userAbsentToday
             ]);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
