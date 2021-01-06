@@ -137,7 +137,7 @@ class AbsenteeismParentController extends Controller
                     } else {
                         return response()->json([
                             'status' => 'error',
-                            'message' => 'Tidak ada jadwal untuk mengajukan izin',
+                            'message' => 'Tidak ada jadwal untuk mengajukan izin, pilih jadwal terlebih dahulu',
                         ]);
                     }
                 }
