@@ -110,7 +110,7 @@
                 @endif
             @elseif(\Request::route()->getName() == 'detail')
                 @if($kegiatans->foto)
-                <img style="width: 100%" src="{{ asset('storage/kegiatan/file/'.$kegiatans->foto) }}" />
+                <img style="width: 100%" src="{{ asset('storage/kegiatan/photo/'.$kegiatans->foto) }}" />
                 @else
                 <img style="width: 100%" src="{{asset('assets/images/background/login-register.jpg')}}" />
                 @endif

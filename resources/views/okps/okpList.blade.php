@@ -83,8 +83,8 @@
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal{{ $key }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content" style="width: 40vw;">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Detail {{ $okp->nama }}
                                             </h5>
@@ -114,6 +114,38 @@
                                                         <a
                                                             href="{{ asset('storage/okp/file/'.$okp->berkas) }}">{{ $okp->berkas }}</a><br><br>
                                                     </span></div> --}}
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h3>Anggota</h3>
+                                                    <ul>
+                                                        @foreach($okp->anggota as $anggota)
+                                                        <li style="list-style: none;">
+                                                            <div class="row">
+                                                            <div class="col-3">Nama</div>
+                                                            <div class="col-9">: {{$anggota->nama}}</div>
+                                                            
+                                                            <div class="col-3">Jabatan</div>
+                                                            <div class="col-9">: {{$anggota->jabatan}}</div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                            <hr>
+                                                            </div>
+                                                        </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                                <div class="col-12">
+                                                    <h3>Kegiatan</h3>
+                                                    <ul>
+                                                        @foreach($okp->kegiatan as $kegiatan)
+                                                        <li>
+                                                        {{$kegiatan->judul}} <br>
+
+                                                        </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
