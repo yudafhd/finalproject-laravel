@@ -60,7 +60,7 @@ class HomeParentController extends Controller
     public function homeParentAllRecap()
     {
         $user = auth()->user();
-        $all_recap = Absent::with(['user', 'schedule'])->where('user_id', '=', $user->id)->get();
+        $all_recap = Absent::with(['user', 'schedule'])->where('user_id', '=', $user->id)->orderBy('date_absent', 'DESC')->get();
         $subjects = Subject::all();
         $subject_ids = $subjects->pluck('id')->toArray();
         foreach ($all_recap as $value) {
