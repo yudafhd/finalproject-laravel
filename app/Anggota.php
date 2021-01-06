@@ -14,6 +14,7 @@ class Anggota extends Model
         'alamat',
         'okp_id',
         'status',
+        'phone',
     ];
 
     public function okp()

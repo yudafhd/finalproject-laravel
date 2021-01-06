@@ -32,23 +32,6 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Jabatan</label>
-                                    <select class="form-control" name="jabatan" data-jabatan="{{$jabatans}}" custom-select>
-                                        <option value="">Pilih Jabatan</option>
-                                        @foreach ($jabatans as $jabatan)
-                                            @if(isset(Auth::user()->okp->id))
-                                                @if($jabatan->okp_id == Auth::user()->okp->id)
-                                            <option value="{{$jabatan->nama}}" data-okp="{{$jabatan->okp_id}}">{{$jabatan->nama}}</option>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                    <!-- <input type="text" name="jabatan" class="form-control" value=""> -->
-                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label class="control-label">Alamat</label>
                                     <input type="text" name="alamat" class="form-control" value="">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
@@ -60,6 +43,12 @@
                                     <input type="date" class="form-control" placeholder="2017-06-04"
                                         name="tanggal_masuk" />
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Telephone</label>
+                                    <input type="number" name="phone" class="form-control" value="">
                                 </div>
                             </div>
                             @if ($is_not_okp_admin)
@@ -77,6 +66,19 @@
                             @endif
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label">Jabatan</label>
+                                    <select class="form-control" name="jabatan" data-jabatan="{{$jabatans}}" custom-select>
+                                        <option value="">Pilih Jabatan</option>
+                                        @foreach ($jabatans as $jabatan)
+                                            <option value="{{$jabatan->nama}}" data-okp="{{$jabatan->okp_id}}">{{$jabatan->nama}} - {{$jabatan->okp->nama}}</option>
+                                        @endforeach
+                                    </select>
+                                    <!-- <input type="text" name="jabatan" class="form-control" value=""> -->
+                                    {{-- <small class="form-control-feedback"> This is inline help </small> --}}
+                                </div>
+                            </div> 
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label class="control-label">Status</label>
                                     <select class="form-control" name="status" custom-select">
                                        <option value="ACTIVE">ACTIVE</option>
@@ -84,10 +86,11 @@
                                     </select>
                                 </div>
                             </div>
+                            
                         </div>
                         <button type="submit" class="btn btn-success" style="margin-right: 5px">
                             <i class="fa fa-check"></i> Save</button>
-                        <a href="{{url('/kegiatan')}}" class="btn btn-inverse">Cancel</a>
+                        <a href="{{url('/anggota')}}" class="btn btn-inverse">Cancel</a>
                     
                     </div>
                 </form>

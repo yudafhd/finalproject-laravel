@@ -67,17 +67,17 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tanggal Daftar</label>
-                                    <input type="text" class="form-control" placeholder="2017-06-04"
-                                        value="{{$okp->tanggal_daftar}}" name="tanggal_daftar" id="mdatepicker2" />
+                                    <input type="date" class="form-control" placeholder="2017-06-04"
+                                        value="{{$okp->tanggal_daftar}}" name="tanggal_daftar" />
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
-                             {{-- <div class="col-md-6">
+                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Telephone</label>
-                                    <input type="text" name="telephone" class="form-control" value="{{$okp->telephone}}">
+                                    <input type="number" name="phone" class="form-control" value="{{$okp->phone}}">
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                         <h3 class="card-title" style="font-weight: bold">Profile</h3>
                         <hr>
@@ -99,8 +99,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tanggal Berdiri</label>
-                                    <input type="text" class="form-control" placeholder="2017-06-04"
-                                        value="{{$okp->tanggal_berdiri}}" name="tanggal_berdiri" id="mdatepicker" />
+                                    <input type="date" class="form-control" placeholder="2017-06-04"
+                                        value="{{$okp->tanggal_berdiri}}" name="tanggal_berdiri" />
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>

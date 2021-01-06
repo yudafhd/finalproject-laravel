@@ -48,6 +48,7 @@
                                 <th>Nama</th>
                                 <th>Bidang</th>
                                 <th>ALamat</th>
+                                <th>Telephone</th>
                                 <th>Pendiri</th>
                                 <th></th>
                             </tr>
@@ -59,6 +60,7 @@
                                 <td>{{ $okp->nama }}</td>
                                 <td>{{ $okp->bidang }}</td>
                                 <td>{{ $okp->alamat }}</td>
+                                <td>{{ $okp->phone }}</td>
                                 <td>{{ $okp->pendiri }}</td>
                                 <td>
                                     <div class="dropdown">
@@ -103,12 +105,15 @@
                                                 <div class="col-6 m-b-15" style="font-weight: bold;">Pendiri</div>
                                                 <div class="col-6">{{ $okp->pendiri }}</div>
                                                 <div class="col-6 m-b-15" style="font-weight: bold;">Telephone</div>
-                                                <div class="col-6">{{ $okp->telephone }}</div>
+                                                <div class="col-6">{{ $okp->phone }}</div>
                                                 <div class="col-6 m-b-15" style="font-weight: bold;">Email Admin</div>
                                                 <div class="col-6">{{ $okp->user->email }}</div>
                                                 <div class="col-6 m-b-15" style="font-weight: bold;">Foto</div>
+                                                <div class="col-6">Tidak ada</div>
+                                                @if($okp->foto)
                                                 <div class="col-6"><img src="{{asset('storage/okp/file/'.$okp->foto)}}"
                                                         style="width: 250px;float: left;margin-bottom: 30px;" /></div>
+                                                @endif
                                                 {{-- <div class="col-6 m-b-15" style="font-weight: bold;">Berkas</div>
                                                 <div class="col-6"> <span style="margin-bottom:20px">
                                                         <a

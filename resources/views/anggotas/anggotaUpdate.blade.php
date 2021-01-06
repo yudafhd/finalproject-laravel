@@ -56,6 +56,12 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label">Telephone</label>
+                                    <input type="number" name="phone" class="form-control" value="{{$anggota->phone}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label class="control-label">Alamat</label>
                                     <input type="text" name="alamat" class="form-control" value="{{$anggota->alamat}}">
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}

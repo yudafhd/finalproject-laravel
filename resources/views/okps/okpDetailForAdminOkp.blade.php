@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="card-body text-center">
-               Visi : {{$okps->visi}} Misi : {{$okps->misi}}<br>
+               <span style="font-weight: bold">Visi</span> : {{$okps->visi}} <br /><span style="font-weight: bold">Misi</span> : {{$okps->misi}}<br>
             <span>{{$okps->latar_belakang}}</span>
             </div>
         </div>

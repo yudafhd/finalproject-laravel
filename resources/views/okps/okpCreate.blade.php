@@ -83,12 +83,12 @@
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
-                           {{-- <div class="col-md-6">
+                           <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Telephone</label>
-                                    <input type="text" name="telephone" class="form-control" value="">
+                                    <input type="number" name="phone" class="form-control" value="">
                                 </div>
-                            </div> --}}
+                            </div>
 
                         </div>
                         <h3 class="card-title" style="font-weight: bold">Profile</h3>
@@ -111,8 +111,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tanggal Berdiri</label>
-                                    <input type="text" class="form-control" placeholder="2017-06-04"
-                                        name="tanggal_berdiri" id="mdatepicker" />
+                                    <input type="date" class="form-control" placeholder="2017-06-04"
+                                        name="tanggal_berdiri" />
                                     {{-- <small class="form-control-feedback"> This is inline help </small> --}}
                                 </div>
                             </div>
