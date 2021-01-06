@@ -100,7 +100,7 @@ class AbsenteeismParentController extends Controller
                 //     ->get();
             }
 
-            if (count($userAbsentToday)) {
+            if (count($userAbsentToday) > 0 && count($userScheduleToday) > 0) {
                 if ($request->reasons == 'masuk') {
                     foreach ($userAbsentToday as $absent) {
                         $absent->delete();
@@ -142,7 +142,6 @@ class AbsenteeismParentController extends Controller
                     }
                 }
             }
-
             return response([
                 'status' => 'success',
                 'message' => 'absent berhasil diajukan',
