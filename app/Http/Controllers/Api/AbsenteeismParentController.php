@@ -88,9 +88,17 @@ class AbsenteeismParentController extends Controller
                 ->where('user_id', '=', $user->id)
                 ->get();
 
-            $userScheduleToday = Schedule::where('day', $day)
-                ->where('kelas_id', $user->kelas_id)
-                ->get();
+            if ($request->schedule) {
+                foreach (json_decode($request->schedule) as $index => $value) {
+                    if ($value->status) {
+                        $userScheduleToday[$index] = $value;
+                    }
+                }
+            } else {
+                $userScheduleToday = Schedule::where('day', $day)
+                    ->where('kelas_id', $user->kelas_id)
+                    ->get();
+            }
 
             if (count($userAbsentToday)) {
                 if ($request->reasons == 'masuk') {
@@ -129,7 +137,7 @@ class AbsenteeismParentController extends Controller
                     } else {
                         return response()->json([
                             'status' => 'error',
-                            'message' => 'Tidak ada jadwal sekolah',
+                            'message' => 'Tidak ada jadwal untuk mengajukan izin',
                         ]);
                     }
                 }
@@ -138,6 +146,8 @@ class AbsenteeismParentController extends Controller
             return response([
                 'status' => 'success',
                 'message' => 'absent berhasil diajukan',
+                'result' => $userScheduleToday,
+                'date' => $date
             ]);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
