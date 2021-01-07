@@ -9,7 +9,7 @@
                         <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span>
                     </a>
                 </li> --}}
-                @if (auth()->user()->type ==='superadmin' || auth()->user()->can('users'))
+                {{-- @if (auth()->user()->type ==='superadmin' || auth()->user()->can('users'))
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                         <i class="mdi mdi-account-box"></i>
                         <span class="hide-menu">Users</span></a>
@@ -25,12 +25,21 @@
                         @endif
                     </ul>
                 </li>
-                @endif
+                @endif --}}
                 @if (auth()->user()->type ==='superadmin' || auth()->user()->can('users'))
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                         <i class="mdi mdi-database"></i>
                         <span class="hide-menu">Master Data</span></a>
                     <ul aria-expanded="false" class="collapse">
+                        @if (auth()->user()->type ==='superadmin' || auth()->user()->can('users admin'))
+                        <li><a href="{{Route('user.list', 'admin')}}">admin</a></li>
+                        @endif
+                        @if (auth()->user()->type ==='superadmin' || auth()->user()->can('users siswa'))
+                        <li><a href="{{Route('user.list', 'guru')}}">guru</a></li>
+                        @endif
+                        @if (auth()->user()->type ==='superadmin' || auth()->user()->can('users guru'))
+                        <li><a href="{{Route('user.list', 'siswa')}}">siswa</a></li>
+                        @endif
                         @if (auth()->user()->type ==='superadmin' || auth()->user()->can('subjects'))
                         <li><a href="{{Route('subject.index')}}">
                                 <span class="hide-menu">

@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/teacher/absenteeism', 'Api\AbsenteeismTeacherController@index');
     Route::post('/teacher/absenteeism/submit', 'Api\AbsenteeismTeacherController@submitAbsent');
     Route::post('/parent/home', 'Api\HomeParentController@index');
-    Route::get('/parent/allrecapitulation', 'Api\HomeParentController@homeParentAllRecap');
+    Route::post('/parent/allrecapitulation', 'Api\HomeParentController@homeParentAllRecap');
     Route::post('/parent/absenteeism/submit', 'Api\AbsenteeismParentController@submitAbsent');
 
     // Notif token

@@ -57,20 +57,60 @@ class HomeParentController extends Controller
         ]]);
     }
 
-    public function homeParentAllRecap()
+    public function homeParentAllRecap(Request $request)
     {
         $user = auth()->user();
-        $all_recap = Absent::with(['user', 'schedule'])->where('user_id', '=', $user->id)->orderBy('date_absent', 'DESC')->get();
+        $semester = $request->semester;
+        $tahun = $request->year;
+        $data = [];
+
+        $all_recap = Absent::with(['user', 'schedule'])
+            ->where('user_id', '=', $user->id)
+            ->orderBy('date_absent', 'DESC');
+
+        if ($semester) {
+            $data_ganjil = [1, 2, 3, 4, 5, 6];
+            if ($semester == 'genap') {
+                $data_ganjil = [7, 8, 9, 10, 11, 12];
+            }
+            // $implode_array = '(' . implode(",", $data_ganjil) . ')';
+            // $all_recap->whereMonth('date_absent', 'IN', $implode_array);
+            $all_recap->whereYear('date_absent', $tahun);
+            $temp = $all_recap->get();
+            // if ($temp) {
+            //     foreach ($temp as $key => $val) {
+            //         $data[$key] = $val['schedule']['semester'];
+            //     }
+            // }
+            $data = $temp;
+        } else {
+            $data = $all_recap->get()->toArray();
+        }
+
+
         $subjects = Subject::all();
         $subject_ids = $subjects->pluck('id')->toArray();
-        foreach ($all_recap as $value) {
+        foreach ($data as $value) {
             $subject_id = $value->schedule->subject_id;
             if (in_array($value->schedule->subject_id, $subject_ids)) {
                 $value->schedule->subject = $this->getSubjectById($subject_id, $subjects);
             }
         }
+        $temp = [];
+        if ($semester) {
+            foreach ($data as $key => $val) {
+                if ($semester == $val['schedule']['semester']) {
+                    $temp[$key] = $val;
+                }
+            }
+        } else {
+
+            $temp = $data;
+        }
+
+
         return response(['data' => [
-            'all_recap' => $all_recap,
+            'all_recap' => $temp,
 
         ]]);
     }
