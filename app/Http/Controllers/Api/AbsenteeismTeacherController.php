@@ -135,7 +135,7 @@ class AbsenteeismTeacherController extends Controller
                 "body" => 'Siswa a/n ' . $user->name .
                     ' tidak mengikuti pelajaran ' .
                     $schedule_name . ' hari ini tanggal '
-                    . date('Y-m-d'),
+                    . date('d-m-Y'),
             ]
         ];
         $dataString = json_encode($data);
