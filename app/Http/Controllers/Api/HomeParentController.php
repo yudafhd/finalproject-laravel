@@ -62,29 +62,36 @@ class HomeParentController extends Controller
         $user = auth()->user();
         $semester = $request->semester;
         $tahun = $request->year;
+        $useDate = $request->useDate;
+        $start_at = date('Y-m-d', strtotime($request->start_at));
+        $end_at = date('Y-m-d', strtotime($request->end_at));
         $data = [];
 
         $all_recap = Absent::with(['user', 'schedule'])
             ->where('user_id', '=', $user->id)
             ->orderBy('date_absent', 'DESC');
 
-        if ($semester) {
-            $data_ganjil = [1, 2, 3, 4, 5, 6];
-            if ($semester == 'genap') {
-                $data_ganjil = [7, 8, 9, 10, 11, 12];
+        if ($useDate) {
+            if ($start_at) {
+                $all_recap->where('date_absent', '>=', $start_at);
+                $all_recap->where('date_absent', '<=', $end_at);
+                $temp = $all_recap->get();
+                $data = $temp;
+            } else {
+                $data = $all_recap->get()->toArray();
             }
-            // $implode_array = '(' . implode(",", $data_ganjil) . ')';
-            // $all_recap->whereMonth('date_absent', 'IN', $implode_array);
-            $all_recap->whereYear('date_absent', $tahun);
-            $temp = $all_recap->get();
-            // if ($temp) {
-            //     foreach ($temp as $key => $val) {
-            //         $data[$key] = $val['schedule']['semester'];
-            //     }
-            // }
-            $data = $temp;
         } else {
-            $data = $all_recap->get()->toArray();
+            if ($semester) {
+                $data_ganjil = [1, 2, 3, 4, 5, 6];
+                if ($semester == 'genap') {
+                    $data_ganjil = [7, 8, 9, 10, 11, 12];
+                }
+                $all_recap->whereYear('date_absent', $tahun);
+                $temp = $all_recap->get();
+                $data = $temp;
+            } else {
+                $data = $all_recap->get()->toArray();
+            }
         }
 
 
@@ -104,14 +111,14 @@ class HomeParentController extends Controller
                 }
             }
         } else {
-
             $temp = $data;
         }
 
 
         return response(['data' => [
             'all_recap' => $temp,
-
+            'end_at' => $end_at,
+            'start_at' => $start_at,
         ]]);
     }
 
