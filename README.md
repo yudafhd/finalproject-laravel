@@ -1,2 +1,2 @@
 # finalproject_laravel
-Base sistem web admin based on Laravel
+Base system for admin web with Larave
